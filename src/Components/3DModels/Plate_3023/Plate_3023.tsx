@@ -4,11 +4,16 @@ import { ModelProps } from "../../../Types/ModelProps";
 import PlateModel_3023 from "../../../assets/3D/Plane_3023/Plane_3023.glb";
 import { Ref, forwardRef } from "react";
 import { MeshRef } from "../../../Types/MeshRef";
+import useElementsData from "../../../Hooks/useElementsData";
 
 const Plate_3023 = forwardRef((props: ModelProps, refs: Ref<MeshRef>) => {
   const { nodes, materials } = useGLTF(PlateModel_3023);
+  const { elementsData } = useElementsData();
   return (
     <mesh
+      onClick={(e) => {
+        elementsData.setSelectedObject(e.eventObject);
+      }}
       {...props}
       ref={refs}
       castShadow

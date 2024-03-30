@@ -4,9 +4,11 @@ import { ModelProps } from "../../../Types/ModelProps";
 import TrainBaseModel from "../../../assets/3D/TrainBase_4178/Train_base_4178.glb";
 import { Ref, forwardRef } from "react";
 import { MeshRef } from "../../../Types/MeshRef";
+import useElementsData from "../../../Hooks/useElementsData";
 
 const TrainBase_4178 = forwardRef((props: ModelProps, refs: Ref<MeshRef>) => {
   const { nodes, materials } = useGLTF(TrainBaseModel);
+  const { elementsData } = useElementsData();
 
   return (
     <mesh
@@ -17,6 +19,9 @@ const TrainBase_4178 = forwardRef((props: ModelProps, refs: Ref<MeshRef>) => {
       geometry={nodes.Train_base_4178.geometry}
       material={nodes.Train_base_4178.material}
       userData={{ Part_number: "4178", name: "Train_base_4178", M3: {} }}
+      onClick={(e) => {
+        elementsData.setSelectedObject(e.eventObject);
+      }}
     >
       <mesh
         castShadow
