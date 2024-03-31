@@ -11,13 +11,18 @@ function App() {
   return (
     <SceneSection>
       <StyledCanvas
-        camera={{ near: 0.1, far: 1000, position: [0, 50, 100] }}
+        shadows
+        camera={{ near: 0.1, far: 1000, position: [0, 50, 250] }}
         onPointerMissed={() => {
           elementsData.resetSelectedObject();
         }}
       >
         <Suspense fallback={<Loader />}>
-          <OrbitControls enableDamping />
+          <OrbitControls
+            enableDamping
+            minPolarAngle={0}
+            maxPolarAngle={Math.PI / 2}
+          />
           <directionalLight position={[1, 1, 1]} intensity={3} />
           <SteamLocomotive_7722 />
         </Suspense>

@@ -22,7 +22,7 @@ const SteamLocomotive_7722 = () => {
   }, [steamLocomotiveRef]);
 
   return (
-    <group ref={steamLocomotiveRef} name="SteamLocomotive_7722">
+    <group ref={steamLocomotiveRef} name="SteamLocomotive_7722" castShadow>
       <TrainBase_4178 /*rotation={[Math.PI, 0, 0]}*/ />
       <Plate_3023 />
       <Plate_3023 />
