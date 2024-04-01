@@ -27,7 +27,7 @@ function App() {
         </Suspense>
       </StyledCanvas>
       {selectedMesh && (
-        <SelectedElementContextMenu name={selectedMesh.userData.name} />
+        <SelectedElementContextMenu selectedElement={selectedMesh} />
       )}
     </SceneSection>
   );
