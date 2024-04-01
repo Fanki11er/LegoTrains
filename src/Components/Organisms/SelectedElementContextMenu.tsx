@@ -1,4 +1,7 @@
-import { RotateElementContextMenuButton } from "../Atoms/Buttons/Buttons.styles";
+import {
+  ElementContextMenuButton,
+  RotateElementContextMenuButton,
+} from "../Atoms/Buttons/Buttons.styles";
 import {
   SelectedElementContextMenuWrapper,
   SelectedElementMenuSection,
@@ -41,6 +44,13 @@ const SelectedElementContextMenu = (props: ComponentProps) => {
             Down
           </RotateElementContextMenuButton>
         </SelectedElementMenuSectionHorizontalWrapper>
+      </SelectedElementMenuSection>
+
+      <SelectedElementMenuSection>
+        <SelectedElementMenuSectionHeader>
+          Place to connect
+        </SelectedElementMenuSectionHeader>
+        <ElementContextMenuButton>Select connector</ElementContextMenuButton>
       </SelectedElementMenuSection>
     </SelectedElementContextMenuWrapper>
   );

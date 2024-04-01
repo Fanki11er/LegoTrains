@@ -5,16 +5,19 @@ import { ThreeEvent } from "@react-three/fiber";
 
 const useElementSelection = () => {
   const [isSelected, setIsSelected] = useState(false);
-  const { handleResetSelectedMesh, handleSelectMesh } = useElementContextmenu();
+  const { handleResetSelectedMesh, handleSelectMesh, isElementLocked } =
+    useElementContextmenu();
 
   const handleSelectElement = (event: ThreeEvent<MouseEvent>) => {
-    const element = event.eventObject as Mesh;
-    setIsSelected(true);
-    handleSelectMesh(element);
+    if (!isElementLocked) {
+      const element = event.eventObject as Mesh;
+      setIsSelected(true);
+      handleSelectMesh(element);
+    }
   };
 
   const handleUnselectElement = () => {
-    if (isSelected) {
+    if (isSelected && !isElementLocked) {
       setIsSelected(false);
       handleResetSelectedMesh();
     }

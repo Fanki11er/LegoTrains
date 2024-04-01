@@ -6,7 +6,6 @@ export const rotateElementUp = (
   angle: number | undefined
 ) => {
   const rotationAngle = (angle !== undefined ? angle : 90) * (Math.PI / 180);
-  console.log(rotationAngle);
   switch (axis) {
     case "y": {
       element.rotateY(rotationAngle);

@@ -5,27 +5,37 @@ type SelectedMesh = Mesh | null;
 
 export const ElementContextMenuContext = createContext({
   selectedMesh: null as SelectedMesh,
+  isElementLocked: false,
   handleSelectMesh: (element: Mesh) => {
     element;
   },
   handleResetSelectedMesh: () => {},
+  handleLockElement: () => {},
 });
 
 const ElementContextMenuProvider = (props: PropsWithChildren) => {
   const [selectedMesh, setSelectedMesh] = useState<SelectedMesh>(null);
+  const [isElementLocked, setIsElementLocked] = useState(false);
 
   const handleSelectMesh = (element: Mesh) => {
     setSelectedMesh(element);
   };
 
   const handleResetSelectedMesh = () => {
+    setIsElementLocked(false);
     setSelectedMesh(null);
+  };
+
+  const handleLockElement = () => {
+    setIsElementLocked(true);
   };
 
   const context = {
     selectedMesh,
+    isElementLocked,
     handleSelectMesh,
     handleResetSelectedMesh,
+    handleLockElement,
   };
 
   return (
@@ -36,4 +46,3 @@ const ElementContextMenuProvider = (props: PropsWithChildren) => {
 };
 
 export default ElementContextMenuProvider;
-//Todo Lock Selected Element??

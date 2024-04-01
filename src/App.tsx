@@ -22,7 +22,7 @@ function App() {
             minPolarAngle={0}
             maxPolarAngle={Math.PI / 2}
           />
-          <directionalLight position={[1, 1, 1]} intensity={3} />
+          <directionalLight position={[0, 15, 5]} intensity={3} />
           <SteamLocomotive_7722 />
         </Suspense>
       </StyledCanvas>

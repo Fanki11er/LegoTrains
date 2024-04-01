@@ -24,10 +24,11 @@ export const SelectedElementMenuSectionHorizontalWrapper = styled.div`
 `;
 
 export const SelectedElementMenuSection = styled.section`
-  width: 200px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 10px 0 10px 0;
+  align-items: center;
   justify-content: space-between;
   gap: 10px;
 `;
