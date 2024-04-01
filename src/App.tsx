@@ -4,18 +4,17 @@ import { StyledCanvas } from "./Components/Atoms/StyledCanvas/StyledCanvas";
 import Loader from "./Components/Molecules/Loader/Loader";
 import SteamLocomotive_7722 from "./Components/TrainModels/SteamLocomotive_7722/SteamLocomotive_7722";
 import { OrbitControls } from "@react-three/drei";
-import useElementsData from "./Hooks/useElementsData";
+
+import SelectedElementContextMenu from "./Components/Organisms/SelectedElementContextMenu";
+import useElementContextmenu from "./Hooks/useElementContextMenu";
 
 function App() {
-  const { elementsData } = useElementsData();
+  const { selectedMesh } = useElementContextmenu();
   return (
     <SceneSection>
       <StyledCanvas
         shadows
         camera={{ near: 0.1, far: 1000, position: [0, 50, 250] }}
-        onPointerMissed={() => {
-          elementsData.resetSelectedObject();
-        }}
       >
         <Suspense fallback={<Loader />}>
           <OrbitControls
@@ -27,6 +26,9 @@ function App() {
           <SteamLocomotive_7722 />
         </Suspense>
       </StyledCanvas>
+      {selectedMesh && (
+        <SelectedElementContextMenu name={selectedMesh.userData.name} />
+      )}
     </SceneSection>
   );
 }

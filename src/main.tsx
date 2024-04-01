@@ -2,13 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import GlobalStyle from "./Theme/GlobalTheme.tsx";
-import ElementsDataProvider from "./Providers/ElementsDataProvider.tsx";
+import ElementContextMenuProvider from "./Providers/ElementMenuProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <GlobalStyle />
-    <ElementsDataProvider>
+    <ElementContextMenuProvider>
       <App />
-    </ElementsDataProvider>
+    </ElementContextMenuProvider>
   </React.StrictMode>
 );

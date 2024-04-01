@@ -2,26 +2,28 @@ import { useGLTF } from "@react-three/drei";
 import { ModelProps } from "../../../Types/ModelProps";
 // @ts-expect-error Model is not a type
 import TrainBaseModel from "../../../assets/3D/TrainBase_4178/Train_base_4178.glb";
-import { Ref, forwardRef } from "react";
-import { MeshRef } from "../../../Types/MeshRef";
-import useElementsData from "../../../Hooks/useElementsData";
+import useElementSelection from "../../../Hooks/useElementSelection";
+import { selectedElementMaterial } from "../../../Materials/SelectedElementMaterial";
 
-const TrainBase_4178 = forwardRef((props: ModelProps, refs: Ref<MeshRef>) => {
+const TrainBase_4178 = (props: ModelProps) => {
   const { nodes, materials } = useGLTF(TrainBaseModel);
-  const { elementsData } = useElementsData();
+  const { isSelected, handleSelectElement, handleUnselectElement } =
+    useElementSelection();
 
   return (
     <mesh
       {...props}
-      ref={refs}
       castShadow
       receiveShadow
       geometry={nodes.Train_base_4178.geometry}
-      material={nodes.Train_base_4178.material}
+      material={
+        isSelected ? selectedElementMaterial : nodes.Train_base_4178.material
+      }
       userData={{ Part_number: "4178", name: "Train_base_4178", M3: {} }}
       onClick={(e) => {
-        elementsData.setSelectedObject(e.eventObject);
+        handleSelectElement(e);
       }}
+      onPointerMissed={() => handleUnselectElement()}
     >
       <mesh
         castShadow
@@ -59,6 +61,6 @@ const TrainBase_4178 = forwardRef((props: ModelProps, refs: Ref<MeshRef>) => {
       />
     </mesh>
   );
-});
+};
 
 export default TrainBase_4178;

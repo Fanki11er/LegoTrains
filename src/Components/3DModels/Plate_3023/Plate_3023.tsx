@@ -2,24 +2,29 @@ import { useGLTF } from "@react-three/drei";
 import { ModelProps } from "../../../Types/ModelProps";
 // @ts-expect-error Model is not a type
 import PlateModel_3023 from "../../../assets/3D/Plane_3023/Plane_3023.glb";
-import { Ref, forwardRef } from "react";
-import { MeshRef } from "../../../Types/MeshRef";
-import useElementsData from "../../../Hooks/useElementsData";
+import { GLTFResult } from "../../../Types/GLTFResult";
+import useElementSelection from "../../../Hooks/useElementSelection";
+import { selectedElementMaterial } from "../../../Materials/SelectedElementMaterial";
 
-const Plate_3023 = forwardRef((props: ModelProps, refs: Ref<MeshRef>) => {
-  const { nodes, materials } = useGLTF(PlateModel_3023);
-  const { elementsData } = useElementsData();
+const Plate_3023 = (props: ModelProps) => {
+  const { isSelected, handleSelectElement, handleUnselectElement } =
+    useElementSelection();
+  const { nodes, materials } = useGLTF(PlateModel_3023) as GLTFResult;
   return (
     <mesh
       onClick={(e) => {
-        elementsData.setSelectedObject(e.eventObject);
+        handleSelectElement(e);
+      }}
+      onPointerMissed={() => {
+        handleUnselectElement();
       }}
       {...props}
-      ref={refs}
       castShadow
       receiveShadow
       geometry={nodes["3023_Plate001"].geometry}
-      material={nodes["3023_Plate001"].material}
+      material={
+        isSelected ? selectedElementMaterial : nodes["3023_Plate001"].material
+      }
       userData={{ partNumber: "3023", name: "3023_Plate.001", M3: {} }}
     >
       <mesh
@@ -40,6 +45,6 @@ const Plate_3023 = forwardRef((props: ModelProps, refs: Ref<MeshRef>) => {
       />
     </mesh>
   );
-});
+};
 
 export default Plate_3023;

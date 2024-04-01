@@ -4,6 +4,7 @@ import {
   Group,
   Mesh,
   MeshBasicMaterial,
+  MeshStandardMaterial,
   Object3D,
   Object3DEventMap,
 } from "three";
@@ -13,6 +14,7 @@ import { SelectedObject } from "../Types/SelectedObject";
 export class ElementsData {
   private blocks: Object3D[] = [];
   private emptyNests: Object3D[] = [];
+  private emptyNestsForSelectedElements: Object3D[] = [];
   private selectedObject: SelectedObject | null = null;
 
   fillBlocksArray = (ref: RefObject<Group<Object3DEventMap>>) => {
@@ -30,6 +32,14 @@ export class ElementsData {
       });
       this.emptyNests.push(...nests);
     });
+  };
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  fillEmptyNestArrayForSelectedElement = () => {};
+
+  clearEmptyNestsArrayForSelectedElement = () => {
+    while (this.emptyNestsForSelectedElements.length > 0) {
+      this.emptyNestsForSelectedElements.pop();
+    }
   };
 
   getBlocksArrayLength = () => {
@@ -61,9 +71,14 @@ export class ElementsData {
 
   resetSelectedObject = () => {
     if (this.selectedObject) {
-      const material = this.selectedObject.object.material as MeshBasicMaterial;
+      const material = this.selectedObject.object
+        .material as MeshStandardMaterial;
       material.color = this.selectedObject.originalMaterialColor;
       this.selectedObject = null;
     }
+  };
+
+  isObjectSelected = () => {
+    return !!this.selectedObject;
   };
 }
