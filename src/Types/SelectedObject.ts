@@ -1,6 +1,6 @@
-import { Color, Mesh } from "three";
+import { Material, Mesh } from "three";
 
 export type SelectedObject = {
   object: Mesh;
-  originalMaterialColor: Color;
+  originalMaterial: Material | Material[];
 };

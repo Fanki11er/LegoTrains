@@ -9,50 +9,66 @@ import {
   SelectedElementMenuSectionHorizontalWrapper,
 } from "./SelectedElementContextMenu.styles";
 import { rotateElementUp } from "../../Utilities/utilities";
-import { Mesh } from "three";
+import useElementContextmenu from "../../Hooks/useElementContextMenu";
+import { Html } from "@react-three/drei";
 
-type ComponentProps = {
-  selectedElement: Mesh;
-};
-const SelectedElementContextMenu = (props: ComponentProps) => {
-  const { selectedElement } = props;
+const SelectedElementContextMenu = () => {
+  const { selectedMesh } = useElementContextmenu();
   return (
-    <SelectedElementContextMenuWrapper>
-      <SelectedElementMenuSection>
-        <SelectedElementMenuSectionHeader>
-          Rotate
-        </SelectedElementMenuSectionHeader>
-        <SelectedElementMenuSectionHorizontalWrapper>
-          <RotateElementContextMenuButton
-            onClick={() => rotateElementUp(selectedElement, "x", -90)}
-          >
-            Up
-          </RotateElementContextMenuButton>
-          <RotateElementContextMenuButton
-            onClick={() => rotateElementUp(selectedElement, "y", -90)}
-          >
-            Left
-          </RotateElementContextMenuButton>
-          <RotateElementContextMenuButton
-            onClick={() => rotateElementUp(selectedElement, "y", 90)}
-          >
-            Right
-          </RotateElementContextMenuButton>
-          <RotateElementContextMenuButton
-            onClick={() => rotateElementUp(selectedElement, "x", 90)}
-          >
-            Down
-          </RotateElementContextMenuButton>
-        </SelectedElementMenuSectionHorizontalWrapper>
-      </SelectedElementMenuSection>
+    <Html>
+      {selectedMesh && (
+        <SelectedElementContextMenuWrapper>
+          <SelectedElementMenuSection>
+            <SelectedElementMenuSectionHeader>
+              Rotate
+            </SelectedElementMenuSectionHeader>
+            <SelectedElementMenuSectionHorizontalWrapper>
+              <RotateElementContextMenuButton
+                onClick={(e) => {
+                  e.stopPropagation();
+                  rotateElementUp(selectedMesh.object, "x", -90);
+                }}
+              >
+                Up
+              </RotateElementContextMenuButton>
+              <RotateElementContextMenuButton
+                onClick={(e) => {
+                  e.stopPropagation();
+                  rotateElementUp(selectedMesh.object, "y", -90);
+                }}
+              >
+                Left
+              </RotateElementContextMenuButton>
+              <RotateElementContextMenuButton
+                onClick={(e) => {
+                  e.stopPropagation();
+                  rotateElementUp(selectedMesh.object, "y", 90);
+                }}
+              >
+                Right
+              </RotateElementContextMenuButton>
+              <RotateElementContextMenuButton
+                onClick={(e) => {
+                  e.stopPropagation();
+                  rotateElementUp(selectedMesh.object, "x", 90);
+                }}
+              >
+                Down
+              </RotateElementContextMenuButton>
+            </SelectedElementMenuSectionHorizontalWrapper>
+          </SelectedElementMenuSection>
 
-      <SelectedElementMenuSection>
-        <SelectedElementMenuSectionHeader>
-          Place to connect
-        </SelectedElementMenuSectionHeader>
-        <ElementContextMenuButton>Select connector</ElementContextMenuButton>
-      </SelectedElementMenuSection>
-    </SelectedElementContextMenuWrapper>
+          <SelectedElementMenuSection>
+            <SelectedElementMenuSectionHeader>
+              Place to connect
+            </SelectedElementMenuSectionHeader>
+            <ElementContextMenuButton>
+              Select connector
+            </ElementContextMenuButton>
+          </SelectedElementMenuSection>
+        </SelectedElementContextMenuWrapper>
+      )}
+    </Html>
   );
 };
 export default SelectedElementContextMenu;

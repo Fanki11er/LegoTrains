@@ -8,11 +8,19 @@ export const rotateElementUp = (
   const rotationAngle = (angle !== undefined ? angle : 90) * (Math.PI / 180);
   switch (axis) {
     case "y": {
-      element.rotateY(rotationAngle);
+      if (element.userData.isConnected && element.parent) {
+        element.parent!.rotateY(rotationAngle);
+      } else {
+        element.rotateY(rotationAngle);
+      }
       break;
     }
     default: {
-      element.rotateX(rotationAngle);
+      if (element.userData.isConnected && element.parent) {
+        element.parent!.rotateX(rotationAngle);
+      } else {
+        element.rotateX(rotationAngle);
+      }
       break;
     }
   }

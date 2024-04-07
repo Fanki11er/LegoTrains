@@ -1,38 +1,37 @@
-import TrainBase_4178 from "../../3DModels/TrainBase_4178/TrainBase_4178";
-import Plate_3023 from "../../3DModels/Plate_3023/Plate_3023";
-import { Vector3 } from "three";
-import { useEffect, useRef } from "react";
-import { Group } from "three";
-import useModelTree from "../../../Hooks/useModelTree";
+import { Mesh } from "three";
+// @ts-expect-error Not a type
+import modelBaseNest from "../../../assets/3D/ModelBaseNest/ModelBaseNest.glb";
+import Nest from "../../3DModels/Nest/Nest";
+import useElementContextmenu from "../../../Hooks/useElementContextMenu";
+import Part from "../../3DModels/Part/Part";
+import { steamLocomotivePartsList } from "../../../PartsLists/steamLocomotivePartsList";
+import ModelBase from "../../3DModels/ModelBase/ModelBase";
 
 const SteamLocomotive_7722 = () => {
-  const steamLocomotiveRef = useRef<Group>(null);
-  const { modelTree, handleLoadModelTree } = useModelTree();
-  useEffect(() => {
-    if (steamLocomotiveRef.current && !modelTree) {
-      handleLoadModelTree(steamLocomotiveRef.current);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [steamLocomotiveRef]);
+  console.log("Rerender Locomotive");
+  const { freeNestsToConnectElement } = useElementContextmenu();
 
-  // useEffect(() => {
-  //   if (
-  //     elementsData.getBlocksArrayLength() === 0 &&
-  //     steamLocomotiveRef.current
-  //   ) {
-  //     elementsData.fillBlocksArray(steamLocomotiveRef);
-  //     elementsData.fillEmptyNestsArray();
-  //   }
-  //   console.log(elementsData.getBlocksArray());
-  //   console.log(elementsData.getEmptyNestArray());
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [steamLocomotiveRef]);
+  const renderParts = (partsList: string[]) => {
+    return partsList.map((part, index) => {
+      return <Part modelPath={part} key={index} />;
+    });
+  };
+
+  const renderNests = (nests: Mesh[]) => {
+    return nests.map((nest) => {
+      return <Nest key={nest.uuid} nest={nest} />;
+    });
+  };
 
   return (
-    <group ref={steamLocomotiveRef} castShadow>
-      <TrainBase_4178 />
-      <Plate_3023 position={new Vector3(0, 0, 100)} />
-      <Plate_3023 />
+    <group>
+      <group castShadow name={"FreeBlocks"}>
+        {renderParts(steamLocomotivePartsList)}
+      </group>
+      <group name="BuiltModel">
+        <ModelBase nestPath={modelBaseNest} position={[0, 0, 0]} />
+      </group>
+      <group name={"FreeNests"}>{renderNests(freeNestsToConnectElement)}</group>
     </group>
   );
 };

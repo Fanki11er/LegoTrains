@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { ElementContextMenuContext } from "../Providers/ElementMenuProvider";
 
-const useElementContextmenu = () => {
+const useElementContextMenu = () => {
   return useContext(ElementContextMenuContext);
 };
 
-export default useElementContextmenu;
+export default useElementContextMenu;

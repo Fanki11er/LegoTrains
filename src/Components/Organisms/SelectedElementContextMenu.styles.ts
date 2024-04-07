@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 export const SelectedElementContextMenuWrapper = styled.menu`
   width: fit-content;
-  max-width: 20%;
+  //max-width: 20%;
   height: fit-content;
-  position: fixed;
-  bottom: 0;
-  right: 0;
+  left: 50px;
+  top: 50px;
+  position: absolute;
   background-color: gray;
   opacity: 0.5;
   z-index: 10;
