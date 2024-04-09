@@ -14,15 +14,15 @@ const Part = (props: PartProps) => {
   const { handleSelectMesh, handleResetSelectedMesh } = useElementContextMenu();
   const model = nodes["Scene"].children[0] as Mesh;
 
-  useEffect(() => {
-    model.children.forEach((child) => {
-      const userData = child.userData;
-      if (userData.isSlot || userData.isConnector) {
-        child.visible = false;
-      }
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   model.children.forEach((child) => {
+  //     const userData = child.userData;
+  //     if (userData.isSlot || userData.isConnector) {
+  //       child.visible = false;
+  //     }
+  //   });
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <primitive

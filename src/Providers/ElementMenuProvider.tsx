@@ -60,8 +60,8 @@ const ElementContextMenuProvider = (props: PropsWithChildren) => {
 
   const handleConnectElements = (selectedNest: Mesh) => {
     if (selectedMesh && selectedNest) {
-      connectSelectedElementToTheSelectedNest(selectedNest);
       rotateSelectedElement(selectedMesh.object, selectedNest);
+      connectSelectedElementToTheSelectedNest(selectedNest);
       selectedNest.parent?.remove(selectedNest);
       handleResetSelectedMesh();
     }
@@ -98,7 +98,7 @@ const ElementContextMenuProvider = (props: PropsWithChildren) => {
   const getSelectedPartNumber = () => {
     return selectedMesh?.object.userData.partNumber;
   };
-
+  //!!! Find way to rotate
   const rotateSelectedElement = (selectedMesh: Mesh, nest: Mesh) => {
     selectedMesh.rotation.set(
       nest.rotation.x,
@@ -109,8 +109,9 @@ const ElementContextMenuProvider = (props: PropsWithChildren) => {
 
   const connectSelectedElementToTheSelectedNest = (selectedNest: Mesh) => {
     if (selectedMesh && selectedNest) {
-      //const parent = selectedNest.parent;
-      const connector = selectedMesh.object.children[0];
+      const [connector] = selectedMesh.object.children.filter((child) => {
+        return child.userData.isConnector;
+      });
 
       // Offset between object and its connector
       const connectorOffset = new Vector3();
@@ -119,33 +120,16 @@ const ElementContextMenuProvider = (props: PropsWithChildren) => {
         connector.position
       );
 
-      console.log(connectorOffset.y);
-
       // Compute new position of the object
       const newPosition = new Vector3();
-      //selectedNest.localToWorld(newPosition);
+      selectedNest.worldToLocal(newPosition);
 
-      newPosition.addVectors(newPosition, connectorOffset);
+      selectedMesh.object.translateX(connectorOffset.x - newPosition.x);
+      selectedMesh.object.translateY(connectorOffset.y - newPosition.y);
+      selectedMesh.object.translateZ(connectorOffset.z - newPosition.z);
 
-      //Move connector to nest
-      //selectedNest.localToWorld(connector.position);
-      //connector.matrixAutoUpdate = false;
-
-      // Move Object to its new position
-      selectedMesh.object.translateX(
-        selectedNest.position.x - selectedMesh.object.position.x
-      );
-      // selectedMesh.object.position.setY(selectedNest.position.y);
-      selectedMesh.object.translateY(
-        selectedNest.position.y -
-          selectedMesh.object.position.y +
-          connectorOffset.y
-      );
-      selectedMesh.object.translateZ(
-        selectedNest.position.z - selectedMesh.object.position.z
-      );
-      selectedMesh.object.children[0].matrixWorldNeedsUpdate = true;
       builtModelGroup?.add(selectedMesh.object);
+
       selectedMesh.object.userData.isConnected = true;
     }
   };
