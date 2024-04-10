@@ -9,7 +9,7 @@ import ModelBase from "../../3DModels/ModelBase/ModelBase";
 
 const SteamLocomotive_7722 = () => {
   console.log("Rerender Locomotive");
-  const { freeNestsToConnectElement } = useElementContextmenu();
+  const { freeNestsToConnectElement, selectedMesh } = useElementContextmenu();
 
   const renderParts = (partsList: string[]) => {
     return partsList.map((part, index) => {
@@ -17,9 +17,9 @@ const SteamLocomotive_7722 = () => {
     });
   };
 
-  const renderNests = (nests: Mesh[]) => {
+  const renderNests = (nests: Mesh[], selectedMesh: Mesh) => {
     return nests.map((nest) => {
-      return <Nest key={nest.uuid} nest={nest} />;
+      return <Nest key={nest.uuid} nest={nest} selectedMesh={selectedMesh} />;
     });
   };
 
@@ -31,7 +31,10 @@ const SteamLocomotive_7722 = () => {
       <group name="BuiltModel">
         <ModelBase nestPath={modelBaseNest} position={[0, 0, 0]} />
       </group>
-      <group name={"FreeNests"}>{renderNests(freeNestsToConnectElement)}</group>
+      <group name={"FreeNests"}>
+        {selectedMesh &&
+          renderNests(freeNestsToConnectElement, selectedMesh?.object)}
+      </group>
     </group>
   );
 };

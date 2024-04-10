@@ -1,46 +1,44 @@
-import { Box } from "@react-three/drei";
-import { Mesh, Vector3 } from "three";
+import { Mesh } from "three";
 import useElementContextMenu from "../../../Hooks/useElementContextMenu";
-import { useState } from "react";
-import { SlotOrConnectorPosition } from "../../../Enums/SlotOrConnectorPosition";
+import { nestMaterial } from "../../../Materials/NestMaterial";
+import { useMemo, useState } from "react";
 
 type NestProps = {
   nest: Mesh;
+  selectedMesh: Mesh;
 };
 
 const Nest = (props: NestProps) => {
-  const { nest } = props;
-  const { handleConnectElements } = useElementContextMenu();
+  const { nest, selectedMesh } = props;
   const [isHovered, setIsHovered] = useState(false);
-  const figurePosition = () => {
-    const side = nest.userData.Position;
-    switch (side) {
-      case SlotOrConnectorPosition.Top: {
-        return new Vector3(nest.position.x, nest.position.y, nest.position.z);
-      }
-      case SlotOrConnectorPosition.Bottom: {
-        return new Vector3(nest.position.x, nest.position.y, nest.position.z);
-      }
-      default:
-        nest.position;
-    }
-  };
+
+  const { handleProjectElementOnPosition, handleConnectElements } =
+    useElementContextMenu();
+  const position = useMemo(() => {
+    return handleProjectElementOnPosition(nest, selectedMesh);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [nest, selectedMesh]);
   return (
-    <Box
-      position={figurePosition()}
-      scale={[10, 2, 10]}
-      material-color={isHovered ? "green" : "blue"}
-      onClick={(e) => {
-        e.stopPropagation();
-        handleConnectElements(nest);
-      }}
-      onPointerEnter={() => {
-        setIsHovered(true);
-      }}
-      onPointerLeave={() => {
-        setIsHovered(false);
-      }}
-    />
+    <>
+      {position && (
+        <mesh
+          geometry={selectedMesh.geometry}
+          material={nestMaterial}
+          material-color={isHovered ? "green" : "blue"}
+          position={position}
+          onPointerEnter={() => {
+            setIsHovered(true);
+          }}
+          onPointerLeave={() => {
+            setIsHovered(false);
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleConnectElements(nest, position);
+          }}
+        />
+      )}
+    </>
   );
 };
 
