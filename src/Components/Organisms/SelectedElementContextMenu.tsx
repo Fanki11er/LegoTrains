@@ -9,11 +9,11 @@ import {
   SelectedElementMenuSectionHorizontalWrapper,
 } from "./SelectedElementContextMenu.styles";
 import { rotateElementUp } from "../../Utilities/utilities";
-import useElementContextmenu from "../../Hooks/useElementContextMenu";
 import { Html } from "@react-three/drei";
+import useElementsManipulations from "../../Hooks/useElementsManipulations";
 
 const SelectedElementContextMenu = () => {
-  const { selectedMesh } = useElementContextmenu();
+  const { selectedMesh } = useElementsManipulations();
   return (
     <Html>
       {selectedMesh && (

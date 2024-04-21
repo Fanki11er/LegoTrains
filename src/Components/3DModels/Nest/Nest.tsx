@@ -1,7 +1,7 @@
 import { Mesh } from "three";
-import useElementContextMenu from "../../../Hooks/useElementContextMenu";
 import { nestMaterial } from "../../../Materials/NestMaterial";
 import { useMemo, useState } from "react";
+import useElementsManipulations from "../../../Hooks/useElementsManipulations";
 
 type NestProps = {
   nest: Mesh;
@@ -13,19 +13,21 @@ const Nest = (props: NestProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const { handleProjectElementOnPosition, handleConnectElements } =
-    useElementContextMenu();
-  const position = useMemo(() => {
+    useElementsManipulations();
+  const newPosition = useMemo(() => {
     return handleProjectElementOnPosition(nest, selectedMesh);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nest, selectedMesh]);
+
   return (
     <>
-      {position && (
+      {newPosition && (
         <mesh
-          geometry={selectedMesh.geometry}
-          material={nestMaterial}
+          geometry={selectedMesh.geometry.clone()}
+          material={nestMaterial.clone()}
           material-color={isHovered ? "green" : "blue"}
-          position={position}
+          position={newPosition.position}
+          quaternion={newPosition.rotation}
           onPointerEnter={() => {
             setIsHovered(true);
           }}
@@ -34,7 +36,7 @@ const Nest = (props: NestProps) => {
           }}
           onClick={(e) => {
             e.stopPropagation();
-            handleConnectElements(nest, position);
+            handleConnectElements(nest);
           }}
         />
       )}

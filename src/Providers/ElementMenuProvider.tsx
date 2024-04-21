@@ -130,9 +130,11 @@ const ElementContextMenuProvider = (props: PropsWithChildren) => {
       connectorOffset.subVectors(selectedMesh.position, connector.position);
 
       // Compute new position of the object
-      selectedNest.worldToLocal(worldToLocalPosition);
+      //!!selectedNest.worldToLocal(worldToLocalPosition);
+      worldToLocalPosition.setFromMatrixPosition(selectedNest.matrixWorld);
 
-      projectedPosition.subVectors(connectorOffset, worldToLocalPosition);
+      projectedPosition.addVectors(connectorOffset, worldToLocalPosition);
+      //!!projectedPosition.subVectors(connectorOffset, worldToLocalPosition);
 
       return projectedPosition;
     }

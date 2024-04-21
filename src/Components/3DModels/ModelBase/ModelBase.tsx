@@ -2,17 +2,20 @@ import { useGLTF } from "@react-three/drei";
 import { Mesh } from "three";
 
 type ModelBaseProps = {
-  position: [number, number, number];
   nestPath: string;
 };
 const ModelBase = (props: ModelBaseProps) => {
-  const { nestPath, position } = props;
+  const { nestPath } = props;
   const { nodes } = useGLTF(nestPath);
 
   const nest = nodes["Scene"].children[0] as Mesh;
 
   return (
-    <mesh name={"ModelBase"} position={position}>
+    <mesh
+      name={"ModelBase"}
+      position={[0, 0, 0]}
+      //rotation={[0, 0, Math.PI / 2]}
+    >
       <mesh
         geometry={nest.geometry}
         material={nest.material}

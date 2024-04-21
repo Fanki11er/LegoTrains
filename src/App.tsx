@@ -5,7 +5,7 @@ import Loader from "./Components/Molecules/Loader/Loader";
 import SteamLocomotive_7722 from "./Components/TrainModels/SteamLocomotive_7722/SteamLocomotive_7722";
 import { OrbitControls } from "@react-three/drei";
 import SelectedElementContextMenu from "./Components/Organisms/SelectedElementContextMenu";
-import ElementContextMenuProvider from "./Providers/ElementMenuProvider";
+import ElementsManipulationsProvider from "./Providers/ElementsManipulationProvider";
 
 function App() {
   console.log("RefreshApp");
@@ -23,10 +23,10 @@ function App() {
           />
 
           <directionalLight position={[0, 15, 5]} intensity={3} />
-          <ElementContextMenuProvider>
+          <ElementsManipulationsProvider>
             <SelectedElementContextMenu />
             <SteamLocomotive_7722 />
-          </ElementContextMenuProvider>
+          </ElementsManipulationsProvider>
         </Suspense>
       </StyledCanvas>
     </SceneSection>
