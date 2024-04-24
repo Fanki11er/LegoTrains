@@ -29,8 +29,6 @@ const LegoPart = (props: PartProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(modelRef?.current?.quaternion, "EEMENT");
-
   const renderModel = (
     model: Object3D<Object3DEventMap>,
     addEvents: boolean = false
