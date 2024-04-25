@@ -8,12 +8,13 @@ import {
 import { TrainInstruction } from "../Classes/TrainInstruction";
 import { PartInfo } from "../Types/PartInfo";
 import { useThree } from "@react-three/fiber";
+import { Object3D, Object3DEventMap } from "three";
 
 export const TrainInstructionContext = createContext({
   handleGetPartsList: (): PartInfo[] => [],
-  handleGetMarkersForSelectedPart: (partId: string) => {
-    partId;
-  },
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  handleGetMarkersForSelectedPart: (_partId: string) =>
+    [] as Object3D<Object3DEventMap>[],
 });
 type InstructionData = {
   instruction: TrainInstruction;
@@ -39,10 +40,13 @@ const TrainInstructionProvider = (
     return [];
   }, []);
 
-  const handleGetMarkersForSelectedPart = useCallback((partId: string) => {
-    const activeModel = trainInstruction.current.getActiveModel();
-    return activeModel.getMarkersForSelectedPart(partId);
-  }, []);
+  const handleGetMarkersForSelectedPart = useCallback(
+    (partId: string): Object3D<Object3DEventMap>[] => {
+      const activeModel = trainInstruction.current.getActiveModel();
+      return activeModel.getMarkersForSelectedPart(partId);
+    },
+    []
+  );
   const context = {
     handleGetPartsList,
     handleGetMarkersForSelectedPart,

@@ -6,7 +6,7 @@
 //import ModelBase from "../../3DModels/ModelBase/ModelBase";
 //import Floor from "../../3DModels/Floor/Floor";
 // import LegoPart from "../../LegoPart/LegoPart";
-import { useThree } from "@react-three/fiber";
+//import { useThree } from "@react-three/fiber";
 //import { useEffect } from "react";
 import { PartInfo } from "../../../Types/PartInfo";
 //import useElementsManipulations from "../../../Hooks/useElementsManipulations";
