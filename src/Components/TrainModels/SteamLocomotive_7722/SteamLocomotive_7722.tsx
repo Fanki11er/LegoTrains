@@ -37,12 +37,6 @@ const SteamLocomotive_7722 = () => {
     });
   };
 
-  // const renderNests = (nests: Mesh[], selectedMesh: Mesh) => {
-  //   return nests.map((nest) => {
-  //     return <Nest key={nest.uuid} nest={nest} selectedMesh={selectedMesh} />;
-  //   });
-  // };
-
   return (
     <>
       {/* <Floor /> */}
@@ -53,10 +47,3 @@ const SteamLocomotive_7722 = () => {
 };
 
 export default SteamLocomotive_7722;
-/*
- <group name="BuiltModel">{<ModelBase />}</group>
-      {<group name={"FreeNests"}>
-        {selectedMesh &&
-          renderNests(freeNestsToConnectElement, selectedMesh?.object)}
-      </group> }
-*/

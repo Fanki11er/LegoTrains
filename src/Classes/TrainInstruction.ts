@@ -1,16 +1,29 @@
-import { Scene } from "three";
+import { Object3D, Scene } from "three";
 import { PartInfo } from "../Types/PartInfo";
 
 export class TrainInstruction {
   private models: Model[] = [];
   private scene: Scene | null = null;
+  private activeModel: Model | null = null;
 
-  //Todo Fix active model info
   getActiveModelPartsList = () => {
-    return this.models[0].getModelPartsList();
+    if (this.activeModel) {
+      return this.activeModel.getModelPartsList();
+    }
+    return [];
   };
+
   addModel = (model: Model) => {
     this.models.push(model);
+    if (!this.activeModel) {
+      this.activeModel = model;
+    }
+  };
+
+  setActiveModel = (index: number) => {
+    if (this.models.length > index) {
+      this.activeModel = this.models[index];
+    }
   };
 
   getMarkers = () => {
@@ -23,14 +36,28 @@ export class TrainInstruction {
     return [];
   };
 
+  getMarkerById = (id: number) => {
+    if (this.scene) {
+      return this.scene.getObjectById(id);
+    }
+  };
+
   loadScene = (scene: Scene) => {
     this.scene = scene;
   };
 
   getActiveModel = () => {
-    return this.models[0];
+    return this.activeModel;
+  };
+
+  finishPartConnection = (marker: Object3D) => {
+    marker.removeFromParent();
+    this.activeModel?.activePhase.updateNeededPartList(
+      marker.userData.forPartId
+    );
   };
 }
+
 //!! Model
 export class Model {
   private phases: Phase[];
@@ -82,8 +109,7 @@ export class Model {
     if (isPartNeededInActivePhase) {
       const markers = this.instruction.getMarkers();
       return markers.filter((marker) => {
-        //Todo Change name to camelCase
-        return marker.userData.ForPartId === partId;
+        return marker.userData.forPartId === partId;
       });
     }
     return [];
@@ -108,5 +134,11 @@ export class Phase {
       return true;
     }
     return false;
+  };
+
+  updateNeededPartList = (partId: string) => {
+    const recordIndexToRemove = this.neededPartsList.indexOf(partId);
+    this.neededPartsList.splice(recordIndexToRemove, 1);
+    console.log(this.neededPartsList);
   };
 }

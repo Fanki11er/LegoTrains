@@ -1,7 +1,6 @@
 import { useGLTF } from "@react-three/drei";
 import {
   BufferGeometry,
-  Material,
   Mesh,
   NormalBufferAttributes,
   Object3D,
@@ -12,62 +11,61 @@ import { PartInfo } from "../../../Types/PartInfo";
 import useTrainInstruction from "../../../Hooks/useTrainInstruction";
 import NestV2 from "../NestV2/NestV2";
 import { selectedElementMaterial } from "../../../Materials/SelectedElementMaterial";
+import { PartUserData } from "../../../Types/PartUserData";
+import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";
+import { OriginalMaterial } from "../../../Types/OriginalMaterial";
 
 type PartProps = {
   partInfo: PartInfo;
 };
 
-type OriginalMaterial = {
-  material: Material | Material[] | undefined;
-};
-
 const LegoPartV2 = (props: PartProps) => {
   const { partInfo } = props;
   const { scene } = useGLTF(partInfo.partPath);
-  const { handleGetMarkersForSelectedPart } = useTrainInstruction();
+  const {
+    handleGetMarkersForSelectedPart,
+    handleGetMarkerById,
+    handleFinishPartConnection,
+  } = useTrainInstruction();
   const [markersList, setMarkersList] = useState<Object3D<Object3DEventMap>[]>(
     []
   );
+
   const [isSelected, setIsSelected] = useState(false);
 
   const model = useMemo(() => {
     return scene.children[0].clone() as Mesh;
   }, [scene]);
-  const modelRef = useRef<Mesh | null>(null);
+
+  const modelRef = useRef<Mesh>(null!);
+
   const originalMaterial = useRef<OriginalMaterial>({
-    material: undefined,
+    [model.uuid]: model.material,
   });
-  console.log(model.material);
 
   useEffect(() => {
     if (modelRef.current) {
       modelRef.current.position.setX(partInfo.partStartPosition.x);
       modelRef.current.position.setY(15);
       modelRef.current.position.setZ(partInfo.partStartPosition.z);
+
+      modelRef.current.userData = {
+        partId: partInfo.partId,
+        isConnected: false,
+      } as PartUserData;
+
+      modelRef.current.name = partInfo.partId;
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    if (isSelected && modelRef.current) {
-      originalMaterial.current.material = model.material;
-      modelRef.current.material = selectedElementMaterial;
-    } else if (
-      !isSelected &&
-      modelRef.current &&
-      originalMaterial.current.material
-    ) {
-      modelRef.current.material = originalMaterial.current.material;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSelected]);
 
   const renderNests = (
     markersList: Object3D<Object3DEventMap>[],
     geometry: BufferGeometry<NormalBufferAttributes>
   ) => {
     return markersList.map((marker) => {
-      return <NestV2 marker={marker} geometry={geometry} />;
+      return <NestV2 key={marker.uuid} marker={marker} geometry={geometry} />;
     });
   };
 
@@ -76,12 +74,19 @@ const LegoPartV2 = (props: PartProps) => {
       <primitive
         ref={modelRef}
         object={model}
+        material={
+          isSelected
+            ? selectedElementMaterial
+            : originalMaterial.current[model.uuid]
+        }
         onClick={() => {
-          const list = handleGetMarkersForSelectedPart(
-            modelRef.current?.userData.partId
-          );
-          setMarkersList(list);
-          setIsSelected(true);
+          if (modelRef.current && !modelRef.current.userData.isConnected) {
+            const list = handleGetMarkersForSelectedPart(
+              modelRef.current.userData.partId
+            );
+            setMarkersList(list);
+            setIsSelected(true);
+          }
         }}
         onPointerMissed={() => {
           if (isSelected) {
@@ -90,11 +95,22 @@ const LegoPartV2 = (props: PartProps) => {
           }
         }}
       />
+      {isSelected && <SelectedElementContextMenu mesh={modelRef.current} />}
       <group
         name="NestsForThisPart"
         onClick={(e) => {
-          console.log(e);
-          /*//Todo Add part to model (onclick must be in nest) */
+          if (modelRef.current) {
+            const nest = e.object;
+            const marker = handleGetMarkerById(nest.userData.markerId);
+
+            if (marker && marker.parent) {
+              modelRef.current.position.copy(marker.position);
+              modelRef.current.quaternion.copy(marker.quaternion);
+              marker.parent.add(modelRef.current);
+              modelRef.current.userData.isConnected = true;
+              handleFinishPartConnection(marker);
+            }
+          }
         }}
       >
         {modelRef.current &&

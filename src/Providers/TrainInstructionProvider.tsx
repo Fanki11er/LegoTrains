@@ -15,7 +15,13 @@ export const TrainInstructionContext = createContext({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleGetMarkersForSelectedPart: (_partId: string) =>
     [] as Object3D<Object3DEventMap>[],
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  handleGetMarkerById: (_id: number) =>
+    undefined as Object3D<Object3DEventMap> | undefined,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  handleFinishPartConnection: (_marker: Object3D) => {},
 });
+
 type InstructionData = {
   instruction: TrainInstruction;
 };
@@ -40,16 +46,30 @@ const TrainInstructionProvider = (
     return [];
   }, []);
 
+  const handleGetMarkerById = useCallback((id: number) => {
+    return trainInstruction.current.getMarkerById(id);
+  }, []);
+
   const handleGetMarkersForSelectedPart = useCallback(
     (partId: string): Object3D<Object3DEventMap>[] => {
       const activeModel = trainInstruction.current.getActiveModel();
-      return activeModel.getMarkersForSelectedPart(partId);
+      if (activeModel) {
+        return activeModel.getMarkersForSelectedPart(partId);
+      }
+      return [];
     },
     []
   );
+
+  const handleFinishPartConnection = useCallback((marker: Object3D) => {
+    trainInstruction.current.finishPartConnection(marker);
+  }, []);
+
   const context = {
     handleGetPartsList,
     handleGetMarkersForSelectedPart,
+    handleGetMarkerById,
+    handleFinishPartConnection,
   };
 
   return (
