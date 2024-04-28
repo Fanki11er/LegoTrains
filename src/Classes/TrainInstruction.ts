@@ -52,77 +52,97 @@ export class TrainInstruction {
 
   finishPartConnection = (marker: Object3D) => {
     marker.removeFromParent();
-    this.activeModel?.activePhase.updateNeededPartList(
-      marker.userData.forPartId
-    );
+    if (this.activeModel && this.activeModel.activePhase)
+      this.activeModel.activePhase.updateNeededPartList(
+        marker.userData.forPartId
+      );
   };
 }
 
 //!! Model
 export class Model {
-  private phases: Phase[];
-  activePhase: Phase;
-  private partsList: PartInfo[];
+  private phases: Phase[] = [];
+  activePhase: Phase | null = null;
   private instruction: TrainInstruction;
 
-  constructor(
-    partsList: PartInfo[],
-    phases: Phase[],
-    instruction: TrainInstruction
-  ) {
-    this.partsList = partsList;
-    this.phases = phases;
+  constructor(instruction: TrainInstruction) {
     this.instruction = instruction;
-    if (!phases.length) {
-      throw new Error("Model phases number is 0");
-    }
+    // if (!phases.length) {
+    //   throw new Error("Model phases number is 0");
+    // }
 
-    this.activePhase = this.findFirstPhase();
+    //this.activePhase = this.findFirstPhase();
   }
+
+  addPhases = (phasesList: Phase[]) => {
+    this.phases = phasesList;
+    if (!this.activePhase) {
+      this.activePhase = this.phases[0];
+    }
+  };
 
   getModelPartsList = () => {
     //??
     console.log("GetPartsList");
-    return this.partsList;
-  };
-
-  private findFirstPhaseNumber = () => {
-    const firstPhaseNumber = Math.min(
-      ...this.phases.map((phase) => {
-        return phase.getPhaseNumber();
+    return this.phases
+      .map((phase) => {
+        return phase.getPhasePartsList();
       })
-    );
-    return firstPhaseNumber;
+      .flat();
   };
 
-  private findFirstPhase = () => {
-    const firstPhase =
-      this.phases.find((phase) => {
-        return phase.getPhaseNumber() === this.findFirstPhaseNumber();
-      }) || this.phases[0];
-    return firstPhase;
-  };
+  // private findFirstPhaseNumber = () => {
+  //   const firstPhaseNumber = Math.min(
+  //     ...this.phases.map((phase) => {
+  //       return phase.getPhaseNumber();
+  //     })
+  //   );
+  //   return firstPhaseNumber;
+  // };
+
+  // private findFirstPhase = () => {
+  //   const firstPhase =
+  //     this.phases.find((phase) => {
+  //       return phase.getPhaseNumber() === this.findFirstPhaseNumber();
+  //     }) || this.phases[0];
+  //   return firstPhase;
+  // };
 
   getMarkersForSelectedPart = (partId: string) => {
-    const isPartNeededInActivePhase =
-      this.activePhase.checkIfPartIsNeededInPhase(partId);
-    if (isPartNeededInActivePhase) {
-      const markers = this.instruction.getMarkers();
-      return markers.filter((marker) => {
-        return marker.userData.forPartId === partId;
-      });
+    if (this.activePhase) {
+      const isPartNeededInActivePhase =
+        this.activePhase.checkIfPartIsNeededInPhase(partId);
+      if (isPartNeededInActivePhase) {
+        const markers = this.instruction.getMarkers();
+        return markers.filter((marker) => {
+          return marker.userData.forPartId === partId;
+        });
+      }
     }
     return [];
+  };
+
+  incrementActivePhase = () => {
+    if (this.activePhase) {
+      const currentPhaseIndex = this.phases.indexOf(this.activePhase);
+      const newPhaseIndex = currentPhaseIndex + 1;
+      if (newPhaseIndex <= this.phases.length) {
+        this.activePhase = this.phases[newPhaseIndex];
+      }
+    }
   };
 }
 //!! Phase
 export class Phase {
   private phaseNumber: number;
-  private neededPartsList: string[];
+  private neededPartsList: string[] = [];
+  private phasePartsList: PartInfo[] = [];
+  model: Model;
 
-  constructor(phaseNumber: number, neededPartsList: string[]) {
+  constructor(model: Model, phaseNumber: number, phasePartsList: PartInfo[]) {
+    this.model = model;
     this.phaseNumber = phaseNumber;
-    this.neededPartsList = neededPartsList;
+    this.addPartsToPhase(phasePartsList);
   }
 
   getPhaseNumber = () => {
@@ -139,6 +159,19 @@ export class Phase {
   updateNeededPartList = (partId: string) => {
     const recordIndexToRemove = this.neededPartsList.indexOf(partId);
     this.neededPartsList.splice(recordIndexToRemove, 1);
-    console.log(this.neededPartsList);
+    if (!this.neededPartsList.length) {
+      this.model.incrementActivePhase();
+    }
+  };
+
+  getPhasePartsList = () => {
+    return this.phasePartsList;
+  };
+
+  addPartsToPhase = (partInfoList: PartInfo[]) => {
+    partInfoList.forEach((partInfo) => {
+      this.phasePartsList.push(partInfo);
+      this.neededPartsList.push(partInfo.partId);
+    });
   };
 }

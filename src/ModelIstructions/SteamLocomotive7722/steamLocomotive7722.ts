@@ -1,15 +1,14 @@
 import { Model, Phase, TrainInstruction } from "../../Classes/TrainInstruction";
-import { steamLocomotivePartsList } from "../../PartsLists/steamLocomotivePartsList";
+import { steamLocomotive7722Parts } from "../../PartsLists/steamLocomotivePartsList";
 export const set7722Instruction = new TrainInstruction();
 
+const steamLocomotive7722Model = new Model(set7722Instruction);
+
 const steamLocomotive772phases = [
-  new Phase(1, ["4178", "3023", "3023", "3062b", "3062b", "3062b", "3062b"]),
+  new Phase(steamLocomotive7722Model, 1, steamLocomotive7722Parts["phase1"]),
+  new Phase(steamLocomotive7722Model, 2, steamLocomotive7722Parts["phase2"]),
 ];
 
-const steamLocomotive7722Model = new Model(
-  steamLocomotivePartsList,
-  steamLocomotive772phases,
-  set7722Instruction
-);
+steamLocomotive7722Model.addPhases(steamLocomotive772phases);
 
 set7722Instruction.addModel(steamLocomotive7722Model);
