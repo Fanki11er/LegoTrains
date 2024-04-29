@@ -33,8 +33,6 @@ export class Model {
   };
 
   getModelPartsList = () => {
-    //??
-    console.log("GetPartsList");
     return this.phases
       .map((phase) => {
         return phase.getPhasePartsList();
@@ -63,6 +61,7 @@ export class Model {
     if (this.activePhase) {
       const isPartNeededInActivePhase =
         this.activePhase.checkIfPartIsNeededInPhase(partId);
+
       if (isPartNeededInActivePhase) {
         const markers = this.instruction.getMarkers();
         return markers.filter((marker) => {

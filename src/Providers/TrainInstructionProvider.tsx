@@ -32,8 +32,9 @@ const TrainInstructionProvider = (
 ) => {
   const { children, instruction } = props;
   const { scene } = useThree();
-  console.log(scene);
+
   const trainInstruction = useRef(instruction);
+
   useEffect(() => {
     if (trainInstruction.current) {
       trainInstruction.current.loadScene(scene);

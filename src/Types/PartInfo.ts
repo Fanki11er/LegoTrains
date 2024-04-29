@@ -4,4 +4,5 @@ export type PartInfo = {
   partPath: string;
   partId: string;
   partStartPosition: Vector3;
+  partPriority: number;
 };

@@ -17,26 +17,31 @@ export const steamLocomotive7722Parts: PhaseParts = {
       partPath: trainBase_4178,
       partStartPosition: new Vector3(0, 0, 60),
       partId: "4178",
+      partPriority: 1,
     },
     {
       partPath: roundOpenStud_3062b,
       partStartPosition: new Vector3(-25, 0, 100),
       partId: "3062b",
+      partPriority: 2,
     },
     {
       partPath: roundOpenStud_3062b,
       partStartPosition: new Vector3(-10, 0, 100),
       partId: "3062b",
+      partPriority: 2,
     },
     {
       partPath: roundOpenStud_3062b,
       partStartPosition: new Vector3(10, 0, 100),
       partId: "3062b",
+      partPriority: 2,
     },
     {
       partPath: roundOpenStud_3062b,
       partStartPosition: new Vector3(25, 0, 100),
       partId: "3062b",
+      partPriority: 2,
     },
   ],
 
@@ -45,21 +50,25 @@ export const steamLocomotive7722Parts: PhaseParts = {
       partPath: plate_x461b,
       partStartPosition: new Vector3(15, 0, 120),
       partId: "x461b",
+      partPriority: 1,
     },
     {
       partPath: plate_x461b,
       partStartPosition: new Vector3(-15, 0, 120),
       partId: "x461b",
+      partPriority: 1,
     },
     {
       partPath: plate_3023,
       partStartPosition: new Vector3(60, 0, 100),
       partId: "3023",
+      partPriority: 1,
     },
     {
       partPath: plate_3023,
       partStartPosition: new Vector3(80, 0, 100),
       partId: "3023",
+      partPriority: 1,
     },
   ],
 };

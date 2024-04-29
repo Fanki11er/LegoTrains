@@ -11,6 +11,7 @@ const SteamLocomotive_7722 = () => {
   console.log("Rerender Locomotive");
   const { handleGetPartsList, handleGetModelMarkersPath } =
     useTrainInstruction();
+
   const partsList = useMemo(() => {
     return handleGetPartsList();
   }, [handleGetPartsList]);
