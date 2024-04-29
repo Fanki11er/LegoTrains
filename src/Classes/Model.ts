@@ -3,18 +3,33 @@ import { TrainInstruction } from "./TrainInstruction";
 
 export class Model {
   private phases: Phase[] = [];
-  activePhase: Phase | null = null;
+  private activePhase: Phase | null = null;
   private instruction: TrainInstruction;
+  private modelMarkersPath: string | null = null;
 
   constructor(instruction: TrainInstruction) {
     this.instruction = instruction;
   }
+  getActivePhase = () => {
+    return this.activePhase;
+  };
+
+  getModelMarkersPath = () => {
+    if (!this.modelMarkersPath) {
+      console.error("Model markers missed");
+    }
+    return this.modelMarkersPath;
+  };
 
   addPhases = (phasesList: Phase[]) => {
     this.phases = phasesList;
     if (!this.activePhase) {
       this.activePhase = this.findFirstPhase();
     }
+  };
+
+  addModelMarkersPath = (path: string) => {
+    this.modelMarkersPath = path;
   };
 
   getModelPartsList = () => {

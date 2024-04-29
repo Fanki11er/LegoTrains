@@ -52,7 +52,7 @@ export class TrainInstruction {
 
   finishPartConnection = (marker: Object3D) => {
     marker.removeFromParent();
-    if (this.activeModel && this.activeModel.activePhase)
+    if (this.activeModel && this.activeModel.getActivePhase())
       this.activeModel.updateNeededPartList(marker.userData.forPartId);
   };
 }

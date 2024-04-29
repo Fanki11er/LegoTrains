@@ -3,17 +3,19 @@
 import { PartInfo } from "../../../../Types/PartInfo";
 import useTrainInstruction from "../../../../Hooks/useTrainInstruction";
 import { useMemo } from "react";
-// @ts-expect-error Not a type
-import modelMarkers from "../../../../assets/3D/ModelsMarkers/SteamLocomotive7722/Markers.glb";
+
 import LegoPart from "../../LegoPart/LegoPart";
 import ModelMarkers from "../../ModelMarkers/ModelMarkers";
 
 const SteamLocomotive_7722 = () => {
-  //console.log("Rerender Locomotive");
-  const { handleGetPartsList } = useTrainInstruction();
+  console.log("Rerender Locomotive");
+  const { handleGetPartsList, handleGetModelMarkersPath } =
+    useTrainInstruction();
   const partsList = useMemo(() => {
     return handleGetPartsList();
   }, [handleGetPartsList]);
+
+  const modelMarkersPath = handleGetModelMarkersPath();
   // const { scene } = useThree();
   // console.log(scene);
   // useEffect(() => {
@@ -30,7 +32,7 @@ const SteamLocomotive_7722 = () => {
     <>
       {/* <Floor /> */}
       <group name={"LeftBlocks"}>{renderLegoParts(partsList)}</group>
-      <ModelMarkers modelPath={modelMarkers} />
+      {modelMarkersPath && <ModelMarkers modelPath={modelMarkersPath} />}
     </>
   );
 };
