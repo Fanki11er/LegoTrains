@@ -2,10 +2,10 @@ import { Suspense } from "react";
 import { SceneSection } from "./Components/Atoms/AppWrapper/SceneSection.styles";
 import { StyledCanvas } from "./Components/Atoms/StyledCanvas/StyledCanvas";
 import Loader from "./Components/Molecules/Loader/Loader";
-import SteamLocomotive_7722 from "./Components/TrainModels/SteamLocomotive_7722/SteamLocomotive_7722";
+import SteamLocomotive_7722 from "./Components/3DModels/TrainModels/SteamLocomotive_7722/SteamLocomotive_7722";
 import { OrbitControls } from "@react-three/drei";
 import TrainInstructionProvider from "./Providers/TrainInstructionProvider";
-import { set7722Instruction } from "./ModelIstructions/SteamLocomotive7722/steamLocomotive7722";
+import { set7722Instruction } from "./ModelInstructions/SteamLocomotive7722/steamLocomotive7722";
 
 function App() {
   return (
@@ -31,9 +31,3 @@ function App() {
 }
 
 export default App;
-/*
- <ElementsManipulationsProvider>
-            <SelectedElementContextMenu />
-            <SteamLocomotive_7722 />
-          </ElementsManipulationsProvider>
-*/

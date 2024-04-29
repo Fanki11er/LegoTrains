@@ -1,46 +1,46 @@
-import { Mesh } from "three";
+import {
+  BufferGeometry,
+  NormalBufferAttributes,
+  Object3D,
+  Object3DEventMap,
+  Quaternion,
+  Vector3,
+} from "three";
 import { nestMaterial } from "../../../Materials/NestMaterial";
-import { useMemo, useState } from "react";
-import useElementsManipulations from "../../../Hooks/useElementsManipulations";
+import { useState } from "react";
+import { NestElementUserData } from "../../../Types/NestElementUserData";
 
 type NestProps = {
-  nest: Mesh;
-  selectedMesh: Mesh;
+  marker: Object3D<Object3DEventMap>;
+  geometry: BufferGeometry<NormalBufferAttributes>;
 };
 
 const Nest = (props: NestProps) => {
-  const { nest, selectedMesh } = props;
+  const { marker, geometry } = props;
   const [isHovered, setIsHovered] = useState(false);
 
-  const { handleProjectElementOnPosition, handleConnectElements } =
-    useElementsManipulations();
-  const newPosition = useMemo(() => {
-    return handleProjectElementOnPosition(nest, selectedMesh);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [nest, selectedMesh]);
+  const rotation = new Quaternion();
+  rotation.setFromRotationMatrix(marker.matrixWorld);
+
+  const position = new Vector3();
+  position.setFromMatrixPosition(marker.matrixWorld);
 
   return (
-    <>
-      {newPosition && (
-        <mesh
-          geometry={selectedMesh.geometry.clone()}
-          material={nestMaterial.clone()}
-          material-color={isHovered ? "green" : "blue"}
-          position={newPosition.position}
-          quaternion={newPosition.rotation}
-          onPointerEnter={() => {
-            setIsHovered(true);
-          }}
-          onPointerLeave={() => {
-            setIsHovered(false);
-          }}
-          onClick={(e) => {
-            e.stopPropagation();
-            handleConnectElements(nest);
-          }}
-        />
-      )}
-    </>
+    <mesh
+      name="Nest"
+      geometry={geometry.clone()}
+      material={nestMaterial.clone()}
+      material-color={isHovered ? "green" : "blue"}
+      position={position}
+      quaternion={rotation}
+      userData={{ markerId: marker.id } as NestElementUserData}
+      onPointerEnter={() => {
+        setIsHovered(true);
+      }}
+      onPointerLeave={() => {
+        setIsHovered(false);
+      }}
+    />
   );
 };
 

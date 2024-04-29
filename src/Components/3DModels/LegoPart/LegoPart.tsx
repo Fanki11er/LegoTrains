@@ -9,7 +9,7 @@ import {
 import { useEffect, useMemo, useRef, useState } from "react";
 import { PartInfo } from "../../../Types/PartInfo";
 import useTrainInstruction from "../../../Hooks/useTrainInstruction";
-import NestV2 from "../NestV2/NestV2";
+import Nest from "../Nest/Nest";
 import { selectedElementMaterial } from "../../../Materials/SelectedElementMaterial";
 import { PartUserData } from "../../../Types/PartUserData";
 import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";
@@ -19,7 +19,7 @@ type PartProps = {
   partInfo: PartInfo;
 };
 
-const LegoPartV2 = (props: PartProps) => {
+const LegoPart = (props: PartProps) => {
   const { partInfo } = props;
   const { scene } = useGLTF(partInfo.partPath);
   const {
@@ -65,7 +65,7 @@ const LegoPartV2 = (props: PartProps) => {
     geometry: BufferGeometry<NormalBufferAttributes>
   ) => {
     return markersList.map((marker) => {
-      return <NestV2 key={marker.uuid} marker={marker} geometry={geometry} />;
+      return <Nest key={marker.uuid} marker={marker} geometry={geometry} />;
     });
   };
 
@@ -99,6 +99,7 @@ const LegoPartV2 = (props: PartProps) => {
       <group
         name="NestsForThisPart"
         onClick={(e) => {
+          e.stopPropagation();
           if (modelRef.current) {
             const nest = e.object;
             const marker = handleGetMarkerById(nest.userData.markerId);
@@ -120,4 +121,4 @@ const LegoPartV2 = (props: PartProps) => {
   );
 };
 
-export default LegoPartV2;
+export default LegoPart;
