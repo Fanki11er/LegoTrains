@@ -4,10 +4,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { PartInfo } from "../../../Types/PartInfo";
 import useTrainInstruction from "../../../Hooks/useTrainInstruction";
 import Nest from "../Nest/Nest";
-import { selectedElementMaterial } from "../../../Materials/SelectedElementMaterial";
 import { PartUserData } from "../../../Types/PartUserData";
 import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";
 import useSelectModel from "../../../Hooks/useSelectModel";
+import { customMaterials } from "../../../Materials/customMaterials";
 
 type PartProps = {
   partInfo: PartInfo;
@@ -26,8 +26,12 @@ const LegoPart = (props: PartProps) => {
   );
 
   const model = useMemo(() => {
-    return scene.children[0].clone() as Mesh;
-  }, [scene]);
+    const model = scene.children[0].clone() as Mesh;
+    if (partInfo.materialId) {
+      model.material = customMaterials[partInfo.materialId];
+    }
+    return model;
+  }, [scene, partInfo.materialId]);
 
   const modelRef = useRef<Mesh>(null!);
 
@@ -63,7 +67,7 @@ const LegoPart = (props: PartProps) => {
         object={model}
         material={
           isSelected
-            ? selectedElementMaterial
+            ? customMaterials.selectedElementMaterial
             : originalMaterial.current[model.uuid]
         }
         onClick={() => {

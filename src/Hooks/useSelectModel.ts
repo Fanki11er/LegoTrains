@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState } from "react";
 import { OriginalMaterial } from "../Types/OriginalMaterial";
 import { Mesh, Object3D } from "three";
-import { selectedElementMaterial } from "../Materials/SelectedElementMaterial";
+import { customMaterials } from "../Materials/customMaterials";
 
 const useSelectModel = () => {
   const [isSelected, setIsSelected] = useState(false);
@@ -14,7 +14,7 @@ const useSelectModel = () => {
         modelRef.traverse((child) => {
           if (child instanceof Mesh) {
             originalMaterial.current[child.uuid] = child.material;
-            child.material = selectedElementMaterial;
+            child.material = customMaterials.selectedElementMaterial;
           }
         });
         return true;

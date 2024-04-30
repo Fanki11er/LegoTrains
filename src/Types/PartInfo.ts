@@ -5,4 +5,5 @@ export type PartInfo = {
   partId: string;
   partStartPosition: Vector3;
   partPriority: number;
+  materialId?: string;
 };

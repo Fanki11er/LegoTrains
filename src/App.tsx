@@ -14,6 +14,7 @@ function App() {
         shadows
         camera={{ near: 0.1, far: 1000, position: [0, 50, 250] }}
       >
+        //Todo Fix scene colors and light
         <Suspense fallback={<Loader />}>
           <OrbitControls
             enableDamping
@@ -23,7 +24,7 @@ function App() {
           <TrainInstructionProvider instruction={set7722Instruction}>
             <SteamLocomotive_7722 />
           </TrainInstructionProvider>
-          <directionalLight position={[0, 15, 5]} intensity={3} />
+          <directionalLight position={[0, 50, 5]} intensity={7} />
         </Suspense>
       </StyledCanvas>
     </SceneSection>
