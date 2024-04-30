@@ -1,9 +1,9 @@
 import { useGLTF } from "@react-three/drei";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { Box3, Mesh, Object3D, Vector3 } from "three";
+import { useEffect, useMemo, useRef } from "react";
+import { Box3, Object3D, Vector3 } from "three";
 import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";
-import { selectedElementMaterial } from "../../../Materials/SelectedElementMaterial";
-import { OriginalMaterial } from "../../../Types/OriginalMaterial";
+
+import useSelectModel from "../../../Hooks/useSelectModel";
 
 type Props = {
   modelPath: string;
@@ -12,14 +12,14 @@ type Props = {
 const ModelMarkers = (props: Props) => {
   const { modelPath } = props;
   const { scene } = useGLTF(modelPath);
-  const [isSelected, setIsSelected] = useState<boolean>(false);
 
   const model = useMemo(() => {
     return scene.children[0];
   }, [scene]);
 
-  const ref = useRef<Object3D>(null);
-  const originalMaterials = useRef<OriginalMaterial>({});
+  const ref = useRef<Object3D>(null!);
+
+  const { isSelected, handleSelect, handleUnselect } = useSelectModel();
 
   useEffect(() => {
     //Todo Figure if element is not on the floor
@@ -41,29 +41,12 @@ const ModelMarkers = (props: Props) => {
         ref={ref}
         wireframe={true}
         onClick={() => {
-          setIsSelected((prevState) => {
-            if (prevState === false && ref.current) {
-              ref.current?.traverse((child) => {
-                if (child instanceof Mesh) {
-                  originalMaterials.current[child.uuid] = child.material;
-                  child.material = selectedElementMaterial;
-                }
-              });
-              return true;
-            }
-            return prevState;
-          });
+          if (ref.current) {
+            handleSelect(ref.current);
+          }
         }}
         onPointerMissed={() => {
-          if (isSelected && ref.current) {
-            ref.current.traverse((child) => {
-              const material = originalMaterials.current[child.uuid];
-              if (child instanceof Mesh && material) {
-                child.material = material;
-              }
-            });
-            setIsSelected(false);
-          }
+          handleUnselect(ref.current);
         }}
       />
       {isSelected && ref.current && (

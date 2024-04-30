@@ -7,7 +7,7 @@ import Nest from "../Nest/Nest";
 import { selectedElementMaterial } from "../../../Materials/SelectedElementMaterial";
 import { PartUserData } from "../../../Types/PartUserData";
 import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";
-import { OriginalMaterial } from "../../../Types/OriginalMaterial";
+import useSelectModel from "../../../Hooks/useSelectModel";
 
 type PartProps = {
   partInfo: PartInfo;
@@ -25,17 +25,11 @@ const LegoPart = (props: PartProps) => {
     []
   );
 
-  const [isSelected, setIsSelected] = useState(false);
-
   const model = useMemo(() => {
     return scene.children[0].clone() as Mesh;
   }, [scene]);
 
   const modelRef = useRef<Mesh>(null!);
-
-  const originalMaterial = useRef<OriginalMaterial>({
-    [model.uuid]: model.material,
-  });
 
   useEffect(() => {
     if (modelRef.current) {
@@ -50,14 +44,13 @@ const LegoPart = (props: PartProps) => {
 
       modelRef.current.name = partInfo.partId;
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const renderNests = (
-    markersList: Object3D<Object3DEventMap>[]
-    //geometry: BufferGeometry<NormalBufferAttributes>
-  ) => {
+  const { isSelected, originalMaterial, handleSelect, handleUnselect } =
+    useSelectModel();
+
+  const renderNests = (markersList: Object3D<Object3DEventMap>[]) => {
     return markersList.map((marker) => {
       return <Nest key={marker.uuid} marker={marker} mesh={modelRef.current} />;
     });
@@ -79,13 +72,14 @@ const LegoPart = (props: PartProps) => {
               modelRef.current.userData.partId
             );
             setMarkersList(list);
-            setIsSelected(true);
+
+            handleSelect(modelRef.current);
           }
         }}
         onPointerMissed={() => {
           if (isSelected) {
             setMarkersList([]);
-            setIsSelected(false);
+            handleUnselect(modelRef.current);
           }
         }}
       />
