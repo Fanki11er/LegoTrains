@@ -29,8 +29,11 @@ export class TrainInstruction {
   getMarkers = () => {
     if (this.scene) {
       const rootModelMarker = this.scene.getObjectByName("ModelRootMarker");
-      if (rootModelMarker) {
-        return rootModelMarker.children;
+      if (rootModelMarker && this.activeModel) {
+        const activePhase = this.activeModel.getActivePhase();
+        return rootModelMarker.children.filter((marker) => {
+          return marker.userData.phaseId === activePhase?.getPhaseNumber();
+        });
       }
     }
     return [];

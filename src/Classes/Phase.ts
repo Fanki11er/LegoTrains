@@ -17,6 +17,7 @@ export class Phase {
 
   checkIfPartIsNeededInPhase = (partId: string) => {
     const currentPriority = this.getCurrentPriority();
+    console.log(currentPriority, "Priority");
     if (
       this.neededPartsList.find((part) => {
         return part.partId === partId && part.partPriority === currentPriority;

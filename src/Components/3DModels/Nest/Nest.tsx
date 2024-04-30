@@ -12,7 +12,6 @@ import { NestElementUserData } from "../../../Types/NestElementUserData";
 
 type NestProps = {
   marker: Object3D<Object3DEventMap>;
-  //geometry: BufferGeometry<NormalBufferAttributes>;
   mesh: Mesh | Group;
 };
 
