@@ -1,6 +1,6 @@
 import {
-  BufferGeometry,
-  NormalBufferAttributes,
+  Group,
+  Mesh,
   Object3D,
   Object3DEventMap,
   Quaternion,
@@ -12,11 +12,12 @@ import { NestElementUserData } from "../../../Types/NestElementUserData";
 
 type NestProps = {
   marker: Object3D<Object3DEventMap>;
-  geometry: BufferGeometry<NormalBufferAttributes>;
+  //geometry: BufferGeometry<NormalBufferAttributes>;
+  mesh: Mesh | Group;
 };
 
 const Nest = (props: NestProps) => {
-  const { marker, geometry } = props;
+  const { marker, mesh } = props;
   const [isHovered, setIsHovered] = useState(false);
 
   const rotation = new Quaternion();
@@ -25,23 +26,41 @@ const Nest = (props: NestProps) => {
   const position = new Vector3();
   position.setFromMatrixPosition(marker.matrixWorld);
 
-  return (
-    <mesh
-      name="Nest"
-      geometry={geometry.clone()}
-      material={nestMaterial.clone()}
-      material-color={isHovered ? "green" : "blue"}
-      position={position}
-      quaternion={rotation}
-      userData={{ markerId: marker.id } as NestElementUserData}
-      onPointerEnter={() => {
-        setIsHovered(true);
-      }}
-      onPointerLeave={() => {
-        setIsHovered(false);
-      }}
-    />
-  );
+  const renderMesh = (mesh: Mesh) => {
+    return (
+      <mesh
+        name="Nest"
+        geometry={mesh.geometry.clone()}
+        material={nestMaterial.clone()}
+        material-color={isHovered ? "green" : "blue"}
+        position={position}
+        quaternion={rotation}
+        userData={{ markerId: marker.id } as NestElementUserData}
+        onPointerEnter={() => {
+          setIsHovered(true);
+        }}
+        onPointerLeave={() => {
+          setIsHovered(false);
+        }}
+      />
+    );
+  };
+
+  const render = (mesh: Mesh | Group) => {
+    if (mesh.type === "Mesh") {
+      return renderMesh(mesh as Mesh);
+    } else if (mesh.type === "Group") {
+      return (
+        <group>
+          {mesh.children.map((child) => {
+            return renderMesh(child as Mesh);
+          })}
+        </group>
+      );
+    }
+  };
+
+  return render(mesh);
 };
 
 export default Nest;

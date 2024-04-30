@@ -11,6 +11,7 @@ const steamLocomotive7722Model = new Model(set7722Instruction);
 const steamLocomotive772phases = [
   new Phase(1, steamLocomotive7722Parts["phase1"]),
   new Phase(2, steamLocomotive7722Parts["phase2"]),
+  new Phase(3, steamLocomotive7722Parts["phase3"]),
 ];
 
 steamLocomotive7722Model.addPhases(steamLocomotive772phases);

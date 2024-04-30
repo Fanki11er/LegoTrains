@@ -1,11 +1,5 @@
 import { useGLTF } from "@react-three/drei";
-import {
-  BufferGeometry,
-  Mesh,
-  NormalBufferAttributes,
-  Object3D,
-  Object3DEventMap,
-} from "three";
+import { Mesh, Object3D, Object3DEventMap } from "three";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { PartInfo } from "../../../Types/PartInfo";
 import useTrainInstruction from "../../../Hooks/useTrainInstruction";
@@ -61,11 +55,11 @@ const LegoPart = (props: PartProps) => {
   }, []);
 
   const renderNests = (
-    markersList: Object3D<Object3DEventMap>[],
-    geometry: BufferGeometry<NormalBufferAttributes>
+    markersList: Object3D<Object3DEventMap>[]
+    //geometry: BufferGeometry<NormalBufferAttributes>
   ) => {
     return markersList.map((marker) => {
-      return <Nest key={marker.uuid} marker={marker} geometry={geometry} />;
+      return <Nest key={marker.uuid} marker={marker} mesh={modelRef.current} />;
     });
   };
 
@@ -114,8 +108,7 @@ const LegoPart = (props: PartProps) => {
           }
         }}
       >
-        {modelRef.current &&
-          renderNests(markersList, modelRef.current.geometry)}
+        {modelRef.current && renderNests(markersList)}
       </group>
     </>
   );
