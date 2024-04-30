@@ -1,4 +1,4 @@
-//import { useThree } from "@react-three/fiber";
+import { useThree } from "@react-three/fiber";
 //import { useEffect } from "react";
 import { PartInfo } from "../../../../Types/PartInfo";
 import useTrainInstruction from "../../../../Hooks/useTrainInstruction";
@@ -6,6 +6,7 @@ import { useMemo } from "react";
 
 import LegoPart from "../../LegoPart/LegoPart";
 import ModelMarkers from "../../ModelMarkers/ModelMarkers";
+import Floor from "../../Floor/Floor";
 
 const SteamLocomotive_7722 = () => {
   console.log("Rerender Locomotive");
@@ -17,8 +18,8 @@ const SteamLocomotive_7722 = () => {
   }, [handleGetPartsList]);
 
   const modelMarkersPath = handleGetModelMarkersPath();
-  // const { scene } = useThree();
-  // console.log(scene);
+  const { scene } = useThree();
+  console.log(scene);
   // useEffect(() => {
   //   console.log("--SCENE--", scene);
   // });
@@ -31,7 +32,7 @@ const SteamLocomotive_7722 = () => {
 
   return (
     <>
-      {/* <Floor /> */}
+      <Floor />
       <group name={"LeftBlocks"}>{renderLegoParts(partsList)}</group>
       {modelMarkersPath && <ModelMarkers modelPath={modelMarkersPath} />}
     </>

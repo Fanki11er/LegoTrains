@@ -39,7 +39,6 @@ const ModelMarkers = (props: Props) => {
       <primitive
         object={model}
         ref={ref}
-        wireframe={true}
         onClick={() => {
           if (ref.current) {
             handleSelect(ref.current);

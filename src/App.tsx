@@ -8,13 +8,13 @@ import TrainInstructionProvider from "./Providers/TrainInstructionProvider";
 import { set7722Instruction } from "./ModelInstructions/SteamLocomotive7722/steamLocomotive7722";
 
 function App() {
+  //Todo Fix scene colors and light
   return (
     <SceneSection>
       <StyledCanvas
         shadows
         camera={{ near: 0.1, far: 1000, position: [0, 50, 250] }}
       >
-        //Todo Fix scene colors and light
         <Suspense fallback={<Loader />}>
           <OrbitControls
             enableDamping
