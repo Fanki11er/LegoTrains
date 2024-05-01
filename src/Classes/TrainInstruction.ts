@@ -13,6 +13,10 @@ export class TrainInstruction {
     return [];
   };
 
+  getIsSceneLoaded = () => {
+    return !!this.scene;
+  };
+
   addModel = (model: Model) => {
     this.models.push(model);
     if (!this.activeModel) {

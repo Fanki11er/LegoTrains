@@ -8,6 +8,7 @@ import { PartUserData } from "../../../Types/PartUserData";
 import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";
 import useSelectModel from "../../../Hooks/useSelectModel";
 import { customMaterials } from "../../../Materials/customMaterials";
+import { moveElementToFloorLevel } from "../../../Utilities/utilities";
 
 type PartProps = {
   partInfo: PartInfo;
@@ -38,8 +39,9 @@ const LegoPart = (props: PartProps) => {
   useEffect(() => {
     if (modelRef.current) {
       modelRef.current.position.setX(partInfo.partStartPosition.x);
-      modelRef.current.position.setY(15);
       modelRef.current.position.setZ(partInfo.partStartPosition.z);
+
+      moveElementToFloorLevel(modelRef.current);
 
       modelRef.current.userData = {
         partId: partInfo.partId,
@@ -87,7 +89,7 @@ const LegoPart = (props: PartProps) => {
           }
         }}
       />
-      {isSelected && <SelectedElementContextMenu mesh={modelRef.current} />}
+      {isSelected && <SelectedElementContextMenu mesh={model} />}
       <group
         name="NestsForThisPart"
         onClick={(e) => {

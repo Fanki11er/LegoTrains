@@ -6,6 +6,7 @@ import SteamLocomotive_7722 from "./Components/3DModels/TrainModels/SteamLocomot
 import { OrbitControls } from "@react-three/drei";
 import TrainInstructionProvider from "./Providers/TrainInstructionProvider";
 import { set7722Instruction } from "./ModelInstructions/SteamLocomotive7722/steamLocomotive7722";
+import Floor from "./Components/3DModels/Floor/Floor";
 
 function App() {
   //Todo Fix scene colors and light
@@ -22,6 +23,7 @@ function App() {
             maxPolarAngle={Math.PI / 2}
           />
           <TrainInstructionProvider instruction={set7722Instruction}>
+            <Floor />
             <SteamLocomotive_7722 />
           </TrainInstructionProvider>
           <directionalLight position={[0, 50, 5]} intensity={7} />

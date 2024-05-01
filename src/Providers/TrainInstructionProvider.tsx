@@ -36,7 +36,10 @@ const TrainInstructionProvider = (
   const trainInstruction = useRef(instruction);
 
   useEffect(() => {
-    if (trainInstruction.current) {
+    if (
+      trainInstruction.current &&
+      !trainInstruction.current.getIsSceneLoaded()
+    ) {
       trainInstruction.current.loadScene(scene);
     }
   }, [scene]);

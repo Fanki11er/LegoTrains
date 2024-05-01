@@ -1,9 +1,10 @@
 import { useGLTF } from "@react-three/drei";
 import { useEffect, useMemo, useRef } from "react";
-import { Box3, Object3D, Vector3 } from "three";
+import { Object3D } from "three";
 import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";
 
 import useSelectModel from "../../../Hooks/useSelectModel";
+import { moveElementToFloorLevel } from "../../../Utilities/utilities";
 
 type Props = {
   modelPath: string;
@@ -21,17 +22,20 @@ const ModelMarkers = (props: Props) => {
 
   const { isSelected, handleSelect, handleUnselect } = useSelectModel();
 
-  useEffect(() => {
-    //Todo Figure if element is not on the floor
+  const handleMoveElementToFloorLevel = () => {
     if (ref.current) {
-      ref.current.addEventListener("childadded", () => {
-        const box = new Box3().setFromObject(ref.current!);
-        const size = new Vector3();
-        box.getSize(size);
-        //console.log(box, "BOX");
-        //console.log(size, "SIZE");
-      });
+      moveElementToFloorLevel(ref.current);
     }
+  };
+
+  useEffect(() => {
+    const model = ref.current;
+    if (model) {
+      model.addEventListener("childadded", handleMoveElementToFloorLevel);
+    }
+
+    return () =>
+      model.removeEventListener("childadded", handleMoveElementToFloorLevel);
   }, []);
 
   return (
