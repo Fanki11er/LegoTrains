@@ -18,42 +18,45 @@ const ModelMarkers = (props: Props) => {
     return scene.children[0];
   }, [scene]);
 
-  const ref = useRef<Object3D>(null!);
+  const modelRef = useRef<Object3D>(null!);
 
   const { isSelected, handleSelect, handleUnselect } = useSelectModel();
 
   const handleMoveElementToFloorLevel = () => {
-    if (ref.current) {
-      moveElementToFloorLevel(ref.current);
+    if (modelRef.current) {
+      moveElementToFloorLevel(modelRef.current);
     }
   };
 
   useEffect(() => {
-    const model = ref.current;
+    const model = modelRef.current;
     if (model) {
       model.addEventListener("childadded", handleMoveElementToFloorLevel);
+      model.addEventListener("childremoved", handleMoveElementToFloorLevel);
     }
 
-    return () =>
+    return () => {
       model.removeEventListener("childadded", handleMoveElementToFloorLevel);
+      model.removeEventListener("childremoved", handleMoveElementToFloorLevel);
+    };
   }, []);
 
   return (
     <>
       <primitive
         object={model}
-        ref={ref}
+        ref={modelRef}
         onClick={() => {
-          if (ref.current) {
-            handleSelect(ref.current);
+          if (modelRef.current) {
+            handleSelect(modelRef.current);
           }
         }}
         onPointerMissed={() => {
-          handleUnselect(ref.current);
+          handleUnselect(modelRef.current);
         }}
       />
-      {isSelected && ref.current && (
-        <SelectedElementContextMenu mesh={ref.current} />
+      {isSelected && modelRef.current && (
+        <SelectedElementContextMenu mesh={modelRef.current} />
       )}
     </>
   );

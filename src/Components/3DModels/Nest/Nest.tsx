@@ -1,14 +1,8 @@
-import {
-  Group,
-  Mesh,
-  Object3D,
-  Object3DEventMap,
-  Quaternion,
-  Vector3,
-} from "three";
+import { Group, Mesh, Object3D, Object3DEventMap } from "three";
 import { nestMaterial } from "../../../Materials/NestMaterial";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NestElementUserData } from "../../../Types/NestElementUserData";
+import useTrainInstruction from "../../../Hooks/useTrainInstruction";
 
 type NestProps = {
   marker: Object3D<Object3DEventMap>;
@@ -16,24 +10,35 @@ type NestProps = {
 };
 
 const Nest = (props: NestProps) => {
+  console.log("RENDER");
   const { marker, mesh } = props;
   const [isHovered, setIsHovered] = useState(false);
+  const nestRef = useRef<Group>(null!);
+  const { handleFinishPartConnection } = useTrainInstruction();
 
-  const rotation = new Quaternion();
-  rotation.setFromRotationMatrix(marker.matrixWorld);
+  useEffect(() => {
+    const nest = nestRef.current;
+    if (marker.parent && nest) {
+      marker.parent.add(nest);
+    }
 
-  const position = new Vector3();
-  position.setFromMatrixPosition(marker.matrixWorld);
+    return () => {
+      if (nest) {
+        nest.removeFromParent();
+      }
+    };
+  }, [marker]);
 
   const renderMesh = (mesh: Mesh) => {
     return (
       <mesh
+        key={mesh.uuid}
         name="Nest"
         geometry={mesh.geometry.clone()}
         material={nestMaterial.clone()}
         material-color={isHovered ? "green" : "blue"}
-        position={position}
-        quaternion={rotation}
+        position={marker.position}
+        quaternion={marker.quaternion}
         userData={{ markerId: marker.id } as NestElementUserData}
         onPointerEnter={() => {
           setIsHovered(true);
@@ -50,16 +55,36 @@ const Nest = (props: NestProps) => {
       return renderMesh(mesh as Mesh);
     } else if (mesh.type === "Group") {
       return (
-        <group>
+        <>
           {mesh.children.map((child) => {
             return renderMesh(child as Mesh);
           })}
-        </group>
+        </>
       );
     }
   };
 
-  return render(mesh);
+  return (
+    <group
+      ref={nestRef}
+      onClick={(e) => {
+        e.stopPropagation();
+        if (nestRef.current) {
+          const nest = e.object;
+
+          if (marker.parent) {
+            mesh.position.copy(nest.position);
+            mesh.quaternion.copy(nest.quaternion);
+            marker.parent.add(mesh);
+            mesh.userData.isConnected = true;
+            handleFinishPartConnection(marker);
+          }
+        }
+      }}
+    >
+      {render(mesh)}
+    </group>
+  );
 };
 
 export default Nest;

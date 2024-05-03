@@ -17,6 +17,7 @@ function App() {
         camera={{ near: 0.1, far: 1000, position: [0, 50, 250] }}
       >
         <Suspense fallback={<Loader />}>
+          <directionalLight position={[0, 50, 5]} intensity={7} />
           <OrbitControls
             enableDamping
             minPolarAngle={0}
@@ -26,7 +27,6 @@ function App() {
             <Floor />
             <SteamLocomotive_7722 />
           </TrainInstructionProvider>
-          <directionalLight position={[0, 50, 5]} intensity={7} />
         </Suspense>
       </StyledCanvas>
     </SceneSection>

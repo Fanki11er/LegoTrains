@@ -1,12 +1,13 @@
 import { useGLTF } from "@react-three/drei";
 import { Mesh, Object3D, Object3DEventMap } from "three";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { ThreeEvent } from "@react-three/fiber";
 import { PartInfo } from "../../../Types/PartInfo";
-import useTrainInstruction from "../../../Hooks/useTrainInstruction";
-import Nest from "../Nest/Nest";
 import { PartUserData } from "../../../Types/PartUserData";
-import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";
+import { useEffect, useMemo, useRef, useState } from "react";
+import useTrainInstruction from "../../../Hooks/useTrainInstruction";
 import useSelectModel from "../../../Hooks/useSelectModel";
+import Nest from "../Nest/Nest";
+import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";
 import { customMaterials } from "../../../Materials/customMaterials";
 import { moveElementToFloorLevel } from "../../../Utilities/utilities";
 
@@ -17,11 +18,7 @@ type PartProps = {
 const LegoPart = (props: PartProps) => {
   const { partInfo } = props;
   const { scene } = useGLTF(partInfo.partPath);
-  const {
-    handleGetMarkersForSelectedPart,
-    handleGetMarkerById,
-    handleFinishPartConnection,
-  } = useTrainInstruction();
+  const { handleGetMarkersForSelectedPart } = useTrainInstruction();
   const [markersList, setMarkersList] = useState<Object3D<Object3DEventMap>[]>(
     []
   );
@@ -72,13 +69,16 @@ const LegoPart = (props: PartProps) => {
             ? customMaterials.selectedElementMaterial
             : originalMaterial.current[model.uuid]
         }
-        onClick={() => {
+        onClick={(e: ThreeEvent<Event>) => {
+          if (!modelRef.current.userData.isConnected) {
+            e.stopPropagation();
+          }
+
           if (modelRef.current && !modelRef.current.userData.isConnected) {
             const list = handleGetMarkersForSelectedPart(
               modelRef.current.userData.partId
             );
             setMarkersList(list);
-
             handleSelect(modelRef.current);
           }
         }}
@@ -90,24 +90,7 @@ const LegoPart = (props: PartProps) => {
         }}
       />
       {isSelected && <SelectedElementContextMenu mesh={model} />}
-      <group
-        name="NestsForThisPart"
-        onClick={(e) => {
-          e.stopPropagation();
-          if (modelRef.current) {
-            const nest = e.object;
-            const marker = handleGetMarkerById(nest.userData.markerId);
-
-            if (marker && marker.parent) {
-              modelRef.current.position.copy(marker.position);
-              modelRef.current.quaternion.copy(marker.quaternion);
-              marker.parent.add(modelRef.current);
-              modelRef.current.userData.isConnected = true;
-              handleFinishPartConnection(marker);
-            }
-          }
-        }}
-      >
+      <group name="NestsForThisPart">
         {modelRef.current && renderNests(markersList)}
       </group>
     </>
