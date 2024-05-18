@@ -6,6 +6,9 @@ import plate_x461b from "../assets/3D/Plate_x461b/Plate_x461b.glb";
 import roundOpenStud_3062b from "../assets/3D/RoundOpenStud_3062b/RoundOpenStud_3062b.glb";
 import plate_3023 from "../assets/3D/Plate_3023/Plate_3023.glb";
 import electricEngine_x469b from "../assets/3D/ElectricEngine_x469b/ElectricEngine_x469b.glb";
+import magnetCylindrical_73092 from "../assets/3D/MagnetCylindrical_73092/MagnetCylindrical_73092.glb";
+import trainCoupling_4023 from "../assets/3D/TrainCoupling_4023/TrainCoupling_4023.glb";
+
 import { PartInfo } from "../Types/PartInfo";
 
 export type PhaseParts = {
@@ -100,6 +103,30 @@ export const steamLocomotive7722Parts: PhaseParts = {
       partId: "3023",
       partPriority: 1,
       materialId: "blackPlasticMaterial",
+    },
+    {
+      partPath: trainCoupling_4023,
+      partStartPosition: new Vector3(120, 0, 45),
+      partId: "4023",
+      partPriority: 2,
+    },
+    {
+      partPath: trainCoupling_4023,
+      partStartPosition: new Vector3(120, 0, 65),
+      partId: "4023",
+      partPriority: 2,
+    },
+    {
+      partPath: magnetCylindrical_73092,
+      partStartPosition: new Vector3(110, 0, 85),
+      partId: "73092",
+      partPriority: 3,
+    },
+    {
+      partPath: magnetCylindrical_73092,
+      partStartPosition: new Vector3(125, 0, 85),
+      partId: "73092",
+      partPriority: 3,
     },
   ],
 };

@@ -10,7 +10,6 @@ type NestProps = {
 };
 
 const Nest = (props: NestProps) => {
-  console.log("RENDER");
   const { marker, mesh } = props;
   const [isHovered, setIsHovered] = useState(false);
   const nestRef = useRef<Group>(null!);
