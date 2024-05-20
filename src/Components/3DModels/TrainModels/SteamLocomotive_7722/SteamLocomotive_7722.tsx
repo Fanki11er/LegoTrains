@@ -3,6 +3,7 @@ import useTrainInstruction from "../../../../Hooks/useTrainInstruction";
 import { useMemo } from "react";
 import LegoPart from "../../LegoPart/LegoPart";
 import ModelMarkers from "../../ModelMarkers/ModelMarkers";
+import Instruction from "../../Instruction/Instruction";
 
 const SteamLocomotive_7722 = () => {
   console.log("Rerender Locomotive");
@@ -23,8 +24,9 @@ const SteamLocomotive_7722 = () => {
 
   return (
     <>
-      <group name={"LeftBlocks"}>{renderLegoParts(partsList)}</group>
-      {modelMarkersPath && <ModelMarkers modelPath={modelMarkersPath} />}
+      {/* <group name={"LeftBlocks"}>{renderLegoParts(partsList)}</group>
+      {modelMarkersPath && <ModelMarkers modelPath={modelMarkersPath} />} */}
+      <Instruction />
     </>
   );
 };

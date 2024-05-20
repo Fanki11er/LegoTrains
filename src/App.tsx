@@ -21,7 +21,8 @@ function App() {
           <OrbitControls
             enableDamping
             minPolarAngle={0}
-            maxPolarAngle={Math.PI / 2}
+            maxPolarAngle={Math.PI / 2.05}
+            maxDistance={450}
           />
           <TrainInstructionProvider instruction={set7722Instruction}>
             <Floor />

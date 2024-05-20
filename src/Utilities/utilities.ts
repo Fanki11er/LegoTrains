@@ -1,4 +1,4 @@
-import { Box3, Mesh, Object3D } from "three";
+import { Box3, Mesh, Object3D, SRGBColorSpace, Texture } from "three";
 
 export const rotateElementUp = (
   element: Mesh | Object3D,
@@ -25,8 +25,13 @@ export const moveElementToFloorLevel = (model: Mesh | Object3D) => {
   const box = new Box3();
   box.setFromObject(model);
   if (box.min.y < 0 && box.min.y !== -Infinity) {
-    model.position.y += Math.abs(box.min.y);
+    model.position.y += Math.abs(box.min.y) + 1;
   } else if (box.min.y > 0 && box.min.y !== Infinity) {
-    model.position.y -= Math.abs(box.min.y);
+    model.position.y -= Math.abs(box.min.y) - 1;
   }
+};
+
+export const setTextureOptions = (texture: Texture) => {
+  texture.flipY = false;
+  texture.colorSpace = SRGBColorSpace;
 };
