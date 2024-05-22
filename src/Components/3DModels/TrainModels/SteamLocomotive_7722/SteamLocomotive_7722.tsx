@@ -26,7 +26,7 @@ const SteamLocomotive_7722 = () => {
     <>
       {/* <group name={"LeftBlocks"}>{renderLegoParts(partsList)}</group>
       {modelMarkersPath && <ModelMarkers modelPath={modelMarkersPath} />} */}
-      <Instruction />
+      <Instruction position={[0, 0, 0]} />
     </>
   );
 };

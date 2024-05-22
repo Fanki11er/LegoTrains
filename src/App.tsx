@@ -14,7 +14,7 @@ function App() {
     <SceneSection>
       <StyledCanvas
         shadows
-        camera={{ near: 0.1, far: 1000, position: [0, 50, 250] }}
+        camera={{ near: 1, far: 1000, position: [0, 50, 250] }}
       >
         <Suspense fallback={<Loader />}>
           <directionalLight position={[0, 50, 5]} intensity={7} />
@@ -22,7 +22,7 @@ function App() {
             enableDamping
             minPolarAngle={0}
             maxPolarAngle={Math.PI / 2.05}
-            maxDistance={450}
+            maxDistance={500}
           />
           <TrainInstructionProvider instruction={set7722Instruction}>
             <Floor />
