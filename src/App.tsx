@@ -18,6 +18,7 @@ function App() {
       >
         <Suspense fallback={<Loader />}>
           <directionalLight position={[0, 50, 5]} intensity={7} />
+          <ambientLight intensity={0.5} />
           <OrbitControls
             enableDamping
             minPolarAngle={0}

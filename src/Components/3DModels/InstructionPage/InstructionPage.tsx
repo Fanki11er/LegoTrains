@@ -17,6 +17,7 @@ const InstructionPage = (props: Props) => {
   const { pageTextures, index } = props;
 
   const [isPageTurned, setIsPageTurned] = useState(false);
+  const [isPageTurning, setIsPageTurning] = useState(false);
 
   const pageRef = useRef<Group<Object3DEventMap>>(null);
 
@@ -36,23 +37,28 @@ const InstructionPage = (props: Props) => {
   const [springs, api] = useSpring(() => ({
     rotation: [0, 0, 0],
     position: [pageStartXPosition, pageClosedYPosition, pageStartZPosition],
-
+    flip: 0,
+    onRest: () => setIsPageTurning(false),
     config: {
-      mass: 1,
-      tension: 10,
-      friction: 8,
+      mass: 0.5,
+      tension: 4,
+      friction: 4,
     },
   }));
 
   const handleTurnThePage = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
-    setIsPageTurned((prevState) => !prevState);
-    api.start({
-      rotation: isPageTurned ? [0, 0, 0] : [0, 0, Math.PI],
-      position: isPageTurned
-        ? [pageStartXPosition, pageClosedYPosition, pageStartZPosition]
-        : [pageStartXPosition, pageOpenedYPosition, pageStartZPosition],
-    });
+    if (!isPageTurning) {
+      setIsPageTurning(true);
+      setIsPageTurned((prevState) => !prevState);
+      api.start({
+        rotation: isPageTurned ? [0, 0, 0] : [0, 0, Math.PI],
+        position: isPageTurned
+          ? [pageStartXPosition, pageClosedYPosition, pageStartZPosition]
+          : [pageStartXPosition, pageOpenedYPosition, pageStartZPosition],
+        flip: isPageTurned ? 0 : 100,
+      });
+    }
   };
 
   const pageMaterials = useMemo(() => {
@@ -106,3 +112,49 @@ const InstructionPage = (props: Props) => {
 
 export default InstructionPage;
 //Todo Try to animate flipping page
+
+/*pageMaterials.frontPageMaterial.onBeforeCompile = (shader) => {
+    shader.uniforms.uFlip = { value: 0 };
+    shader.vertexShader = shader.vertexShader.replace(
+      "#include <common>",
+      `
+    #include <common>
+    uniform float uFlip;
+    `
+    );
+
+    shader.vertexShader = shader.vertexShader.replace(
+      "#include <begin_vertex>",
+      `
+      #include <begin_vertex>
+    
+     
+      transformed.y += pow2(transformed.x * 0.1) * uFlip;
+     
+       
+      `
+    );
+  };
+
+  pageMaterials.backPageMaterial.onBeforeCompile = (shader) => {
+    shader.uniforms.uFlip = { value: 0 };
+    shader.vertexShader = shader.vertexShader.replace(
+      "#include <common>",
+      `
+    #include <common>
+    uniform float uFlip;
+    `
+    );
+
+    shader.vertexShader = shader.vertexShader.replace(
+      "#include <begin_vertex>",
+      `
+      #include <begin_vertex>
+    
+     
+      transformed.y += pow2(transformed.x * 0.1) * uFlip;
+     
+       
+      `
+    );
+  }; */
