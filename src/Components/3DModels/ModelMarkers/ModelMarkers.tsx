@@ -17,6 +17,7 @@ const ModelMarkers = (props: Props) => {
   const model = useMemo(() => {
     return scene.children[0];
   }, [scene]);
+  console.log(model)
 
   const modelRef = useRef<Object3D>(null!);
 

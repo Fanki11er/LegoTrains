@@ -11,6 +11,10 @@ import trainCoupling_4023 from "../assets/3D/TrainCoupling_4023/TrainCoupling_40
 import slope_3040 from "../assets/3D/Slope_3040/Slope_3040.glb";
 import plate_With_Ladder_4175 from "../assets/3D/4175_Plate_With_Ladder/4175_Plate_With_Ladder.glb";
 import brick_3003 from "../assets/3D/3003_Brick/3003_Brick.glb";
+import brick_4070 from "../assets/3D/Brick_4070/Brick_4070.glb";
+import electric_Wire_766c28 from "../assets/3D/ElectricWire_766c28/Electric_Wire_766c28.glb"
+import round_Plate_4073 from "../assets/3D/Round_Plate_4073/Round_Plate_4073.glb"
+
 
 import { PartInfo } from "../Types/PartInfo";
 
@@ -183,4 +187,74 @@ export const steamLocomotive7722Parts: PhaseParts = {
       materialId: "blackPlasticMaterial",
     },
   ],
+  phase5:[
+    {
+      partPath: brick_4070,
+      partStartPosition: new Vector3(180, 0, 85),
+      partId: "4070",
+      partPriority: 1,
+      materialId: "blackPlasticMaterial",
+    },
+    {
+      partPath: brick_4070,
+      partStartPosition: new Vector3(195, 0, 85),
+      partId: "4070",
+      partPriority: 1,
+      materialId: "blackPlasticMaterial",
+    },
+    {
+      partPath: brick_4070,
+      partStartPosition: new Vector3(180, 0, 100),
+      partId: "4070",
+      partPriority: 1,
+      materialId: "blackPlasticMaterial",
+    },
+    {
+      partPath: brick_4070,
+      partStartPosition: new Vector3(195, 0, 100),
+      partId: "4070",
+      partPriority: 1,
+      materialId: "blackPlasticMaterial",
+    },
+    {
+      //!! Turn off automatic alignment and rotation
+      partPath: electric_Wire_766c28,
+      partStartPosition: new Vector3(180, 0, -20),
+      partId: "766c28",
+      partPriority: 2,
+      canBeRotated: false,
+      noAutomaticMoveToGroundLevel: true
+    },
+    {
+      partPath: round_Plate_4073,
+      partStartPosition: new Vector3(195, 0, 70),
+      partId: "4073",
+      partPriority: 2,
+      materialId: "whiteTransparentMaterial"
+      //!! Export properties names
+    },
+    {
+      partPath: round_Plate_4073,
+      partStartPosition: new Vector3(195, 0, 55),
+      partId: "4073",
+      partPriority: 2,
+      materialId: "whiteTransparentMaterial"
+    },
+    {
+      partPath: round_Plate_4073,
+      partStartPosition: new Vector3(180, 0, 55),
+      partId: "4073",
+      partPriority: 2,
+      materialId:"redTransparentMaterial"
+      
+    },
+    {
+      partPath: round_Plate_4073,
+      partStartPosition: new Vector3(180, 0, 70),
+      partId: "4073",
+      partPriority: 2,
+      materialId:"redTransparentMaterial"
+  
+    },
+  ]
 };

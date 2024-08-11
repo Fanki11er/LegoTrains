@@ -6,4 +6,6 @@ export type PartInfo = {
   partStartPosition: Vector3;
   partPriority: number;
   materialId?: string;
+  canBeRotated?: boolean
+  noAutomaticMoveToGroundLevel? : boolean
 };

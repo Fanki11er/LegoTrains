@@ -38,8 +38,10 @@ const LegoPart = (props: PartProps) => {
       modelRef.current.position.setX(partInfo.partStartPosition.x);
       modelRef.current.position.setZ(partInfo.partStartPosition.z);
 
-      moveElementToFloorLevel(modelRef.current);
-
+      if(!partInfo.noAutomaticMoveToGroundLevel){
+        moveElementToFloorLevel(modelRef.current);
+      }
+      
       modelRef.current.userData = {
         partId: partInfo.partId,
         isConnected: false,
