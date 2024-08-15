@@ -1,46 +1,88 @@
-import { Mesh } from "three";
+import { Group, Mesh, Object3D, Object3DEventMap } from "three";
 import { nestMaterial } from "../../../Materials/NestMaterial";
-import { useMemo, useState } from "react";
-import useElementsManipulations from "../../../Hooks/useElementsManipulations";
+import { useEffect, useRef, useState } from "react";
+import { NestElementUserData } from "../../../Types/NestElementUserData";
+import useTrainInstruction from "../../../Hooks/useTrainInstruction";
 
 type NestProps = {
-  nest: Mesh;
-  selectedMesh: Mesh;
+  marker: Object3D<Object3DEventMap>;
+  mesh: Mesh | Group;
 };
 
 const Nest = (props: NestProps) => {
-  const { nest, selectedMesh } = props;
+  const { marker, mesh } = props;
   const [isHovered, setIsHovered] = useState(false);
+  const nestRef = useRef<Group>(null!);
+  const { handleFinishPartConnection } = useTrainInstruction();
 
-  const { handleProjectElementOnPosition, handleConnectElements } =
-    useElementsManipulations();
-  const newPosition = useMemo(() => {
-    return handleProjectElementOnPosition(nest, selectedMesh);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [nest, selectedMesh]);
+  useEffect(() => {
+    const nest = nestRef.current;
+    if (marker.parent && nest) {
+      marker.parent.add(nest);
+    }
+
+    return () => {
+      if (nest) {
+        nest.removeFromParent();
+      }
+    };
+  }, [marker]);
+
+  const renderMesh = (mesh: Mesh) => {
+    return (
+      <mesh
+        key={mesh.uuid}
+        name="Nest"
+        geometry={mesh.geometry.clone()}
+        material={nestMaterial.clone()}
+        material-color={isHovered ? "green" : "blue"}
+        position={marker.position}
+        quaternion={marker.quaternion}
+        userData={{ markerId: marker.id } as NestElementUserData}
+        onPointerEnter={() => {
+          setIsHovered(true);
+        }}
+        onPointerLeave={() => {
+          setIsHovered(false);
+        }}
+      />
+    );
+  };
+
+  const render = (mesh: Mesh | Group) => {
+    if (mesh.type === "Mesh") {
+      return renderMesh(mesh as Mesh);
+    } else if (mesh.type === "Group") {
+      return (
+        <>
+          {mesh.children.map((child) => {
+            return renderMesh(child as Mesh);
+          })}
+        </>
+      );
+    }
+  };
 
   return (
-    <>
-      {newPosition && (
-        <mesh
-          geometry={selectedMesh.geometry.clone()}
-          material={nestMaterial.clone()}
-          material-color={isHovered ? "green" : "blue"}
-          position={newPosition.position}
-          quaternion={newPosition.rotation}
-          onPointerEnter={() => {
-            setIsHovered(true);
-          }}
-          onPointerLeave={() => {
-            setIsHovered(false);
-          }}
-          onClick={(e) => {
-            e.stopPropagation();
-            handleConnectElements(nest);
-          }}
-        />
-      )}
-    </>
+    <group
+      ref={nestRef}
+      onClick={(e) => {
+        e.stopPropagation();
+        if (nestRef.current) {
+          const nest = e.object;
+
+          if (marker.parent) {
+            mesh.position.copy(nest.position);
+            mesh.quaternion.copy(nest.quaternion);
+            marker.parent.add(mesh);
+            mesh.userData.isConnected = true;
+            handleFinishPartConnection(marker);
+          }
+        }
+      }}
+    >
+      {render(mesh)}
+    </group>
   );
 };
 
