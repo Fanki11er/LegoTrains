@@ -7,6 +7,7 @@ import { phase5 } from "./Phase5";
 import { phase6 } from "./Phase6";
 import { phase7 } from "./Phase7";
 import { phase8 } from "./Phase8";
+import { phase9 } from "./Phase9";
 
 export type PhaseParts = {
   [key: string]: PartInfo[];
@@ -21,5 +22,6 @@ export const steamLocomotive7722Parts: PhaseParts = {
   phase6,
   phase7,
   phase8,
+  phase9,
   //!! Turn off automatic rotation
 };
