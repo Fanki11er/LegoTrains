@@ -1,5 +1,6 @@
 import { PartInfo } from "../../Types/PartInfo";
 import { phase1 } from "./Phase1";
+import { phase10 } from "./Phase10";
 import { phase2 } from "./Phase2";
 import { phase3 } from "./Phase3";
 import { phase4 } from "./Phase4";
@@ -23,5 +24,6 @@ export const steamLocomotive7722Parts: PhaseParts = {
   phase7,
   phase8,
   phase9,
+  phase10,
   //!! Turn off automatic rotation
 };
