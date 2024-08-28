@@ -36,14 +36,14 @@ export const phase11: PartInfo[] = [
     partStartPosition: new Vector3(180, 0, 40),
     partId: "4073",
     partPriority: 1,
-    materialId: "redTransparentMaterial",
+    materialId: "redPlasticMaterial",
   },
   {
     partPath: round_Plate_4073,
     partStartPosition: new Vector3(180, 0, 25),
     partId: "4073",
     partPriority: 1,
-    materialId: "redTransparentMaterial",
+    materialId: "redPlasticMaterial",
   },
   {
     partPath: plate_1x4_3010,
