@@ -54,14 +54,14 @@ export const phase6: PartInfo[] = [
   },
   {
     partPath: slope_Brick_Inverted_3665,
-    partStartPosition: new Vector3(220, 0, 95),
+    partStartPosition: new Vector3(230, 0, 95),
     partId: "3665",
     partPriority: 1,
     materialId: "blackPlasticMaterial",
   },
   {
     partPath: slope_Brick_Inverted_3665,
-    partStartPosition: new Vector3(240, 0, 95),
+    partStartPosition: new Vector3(250, 0, 95),
     partId: "3665",
     partPriority: 1,
     materialId: "blackPlasticMaterial",

@@ -56,7 +56,7 @@ export const phase5: PartInfo[] = [
     partStartPosition: new Vector3(180, 0, -20),
     partId: "766c28",
     partPriority: 2,
-    canBeRotated: false,
+    canNotBeRotated: true,
     noAutomaticMoveToGroundLevel: true,
   },
   {
