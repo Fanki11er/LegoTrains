@@ -6,12 +6,13 @@ import {
   useRef,
 } from "react";
 import { TrainInstruction } from "../Classes/TrainInstruction";
-import { PartInfo } from "../Types/PartInfo";
+//import { PartInfo } from "../Types/PartInfo";
 import { useThree } from "@react-three/fiber";
 import { Object3D, Object3DEventMap } from "three";
+import { LegoBlock } from "../PartsLists/SteamLocomotive7722Parts/SetLegoBlockTypes";
 
 export const TrainInstructionContext = createContext({
-  handleGetPartsList: (): PartInfo[] => [],
+  handleGetPartsList: (): LegoBlock[] => [],
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleGetMarkersForSelectedPart: (_partId: string) =>
     [] as Object3D<Object3DEventMap>[],

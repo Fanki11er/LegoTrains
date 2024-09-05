@@ -1,7 +1,7 @@
 import { useGLTF } from "@react-three/drei";
 import { Mesh, Object3D, Object3DEventMap } from "three";
 import { ThreeEvent } from "@react-three/fiber";
-import { PartInfo } from "../../../Types/PartInfo";
+//import { PartInfo } from "../../../Types/PartInfo";
 import { PartUserData } from "../../../Types/PartUserData";
 import { useEffect, useMemo, useRef, useState } from "react";
 import useTrainInstruction from "../../../Hooks/useTrainInstruction";
@@ -10,9 +10,10 @@ import Nest from "../Nest/Nest";
 import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";
 import { customMaterials } from "../../../Materials/customMaterials";
 import { moveElementToFloorLevel } from "../../../Utilities/utilities";
+import { LegoBlock } from "../../../PartsLists/SteamLocomotive7722Parts/SetLegoBlockTypes";
 
 type PartProps = {
-  partInfo: PartInfo;
+  partInfo: LegoBlock;
 };
 
 const LegoPart = (props: PartProps) => {

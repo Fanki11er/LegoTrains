@@ -1,5 +1,7 @@
+import { Object3D, Object3DEventMap } from "three";
 import { Phase } from "./Phase";
 import { TrainInstruction } from "./TrainInstruction";
+import { PartInfo } from "../Types/PartInfo";
 
 export class Model {
   private phases: Phase[] = [];
@@ -32,13 +34,13 @@ export class Model {
     this.modelMarkersPath = path;
   };
 
-  getModelPartsList = () => {
-    return this.phases
-      .map((phase) => {
-        return phase.getPhasePartsList();
-      })
-      .flat();
-  };
+  // getModelPartsList = () => {
+  //   return this.phases
+  //     .map((phase) => {
+  //       return phase.getPhasePartsList();
+  //     })
+  //     .flat();
+  // };
 
   private findFirstPhaseNumber = () => {
     const firstPhaseNumber = Math.min(
@@ -56,20 +58,44 @@ export class Model {
       }) || this.phases[0];
     return firstPhase;
   };
-
-  getMarkersForSelectedPart = (partId: string) => {
+  //!! Check if part is needed
+  getMarkersForSelectedPart = (partType: string) => {
+    const listOfValidSlotsToConnectSelectedPart: Object3D<Object3DEventMap>[] =
+      [];
     if (this.activePhase) {
-      const isPartNeededInActivePhase =
-        this.activePhase.checkIfPartIsNeededInPhase(partId);
+      const listOfPartsNeededInPhase =
+        this.activePhase.checkIfPartTypeIsNeededInPhase(partType);
 
-      if (isPartNeededInActivePhase) {
+      if (listOfPartsNeededInPhase.length) {
         const markers = this.instruction.getMarkers();
-        return markers.filter((marker) => {
-          return marker.userData.forPartId === partId;
+
+        listOfPartsNeededInPhase.forEach((part) => {
+          if (!part.depends.length) {
+            const marker = this.findMarkerByPartType(part, markers);
+
+            if (marker) {
+              listOfValidSlotsToConnectSelectedPart.push(marker);
+            }
+          } else {
+            for (let i = 0; i < part.depends.length; i++) {
+              const marker = markers.find((marker) => {
+                return marker.userData.name === part.depends[i];
+              });
+
+              if (marker) {
+                return;
+              }
+            }
+            const marker = this.findMarkerByPartType(part, markers);
+
+            if (marker) {
+              listOfValidSlotsToConnectSelectedPart.push(marker);
+            }
+          }
         });
       }
     }
-    return [];
+    return listOfValidSlotsToConnectSelectedPart;
   };
 
   updateNeededPartList = (partId: string) => {
@@ -89,5 +115,14 @@ export class Model {
         this.activePhase = this.phases[newPhaseIndex];
       }
     }
+  };
+
+  findMarkerByPartType = (
+    part: PartInfo,
+    markers: Object3D<Object3DEventMap>[]
+  ) => {
+    return markers.find((marker) => {
+      return marker.userData.name === part.slotId;
+    });
   };
 }

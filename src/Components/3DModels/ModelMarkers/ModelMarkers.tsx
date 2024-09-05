@@ -1,10 +1,10 @@
 import { useGLTF } from "@react-three/drei";
 import { useEffect, useMemo, useRef } from "react";
-import { Object3D } from "three";
-import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";
-
+import { Object3D} from "three";
+import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";               
 import useSelectModel from "../../../Hooks/useSelectModel";
 import { moveElementToFloorLevel } from "../../../Utilities/utilities";
+  
 
 type Props = {
   modelPath: string;
@@ -17,7 +17,6 @@ const ModelMarkers = (props: Props) => {
   const model = useMemo(() => {
     return scene.children[0];
   }, [scene]);
-  console.log(model)
 
   const modelRef = useRef<Object3D>(null!);
 
@@ -26,6 +25,7 @@ const ModelMarkers = (props: Props) => {
   const handleMoveElementToFloorLevel = () => {
     if (modelRef.current) {
       moveElementToFloorLevel(modelRef.current);
+
     }
   };
 
@@ -34,6 +34,7 @@ const ModelMarkers = (props: Props) => {
     if (model) {
       model.addEventListener("childadded", handleMoveElementToFloorLevel);
       model.addEventListener("childremoved", handleMoveElementToFloorLevel);
+     
     }
 
     return () => {

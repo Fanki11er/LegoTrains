@@ -1,12 +1,14 @@
-import { PartInfo } from "../../../../Types/PartInfo";
+//import { PartInfo } from "../../../../Types/PartInfo";
 import useTrainInstruction from "../../../../Hooks/useTrainInstruction";
-import { useMemo } from "react";
+import {  useMemo } from "react";
 import LegoPart from "../../LegoPart/LegoPart";
 import ModelMarkers from "../../ModelMarkers/ModelMarkers";
 import Instruction from "../../Instruction/Instruction";
+import { LegoBlock } from "../../../../PartsLists/SteamLocomotive7722Parts/SetLegoBlockTypes";
 
 const SteamLocomotive_7722 = () => {
   console.log("Rerender Locomotive");
+
   const { handleGetPartsList, handleGetModelMarkersPath } =
     useTrainInstruction();
 
@@ -16,9 +18,9 @@ const SteamLocomotive_7722 = () => {
 
   const modelMarkersPath = handleGetModelMarkersPath();
 
-  const renderLegoParts = (partsList: PartInfo[]) => {
-    return partsList.map((part, index) => {
-      return <LegoPart partInfo={part} key={index} />;
+  const renderLegoParts = (partsList: LegoBlock[]) => {
+    return partsList.map((block, index) => {
+      return <LegoPart partInfo={block} key={index} />;
     });
   };
 

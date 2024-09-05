@@ -1,14 +1,24 @@
 import { Object3D, Scene } from "three";
 import { Model } from "./Model";
+import { SetLegoBlocks } from "../PartsLists/SteamLocomotive7722Parts/SetLegoBlockTypes";
 
 export class TrainInstruction {
   private models: Model[] = [];
   private scene: Scene | null = null;
   private activeModel: Model | null = null;
+  private setLegoBlocks!: SetLegoBlocks;
+
+  addSetLegoBlocks = (setLegoBlocks: SetLegoBlocks) => {
+    this.setLegoBlocks = setLegoBlocks;
+  };
+
+  getSetLegoBlocks = () => {
+    return this.setLegoBlocks;
+  };
 
   getActiveModelPartsList = () => {
-    if (this.activeModel) {
-      return this.activeModel.getModelPartsList();
+    if (this.setLegoBlocks) {
+      return this.setLegoBlocks.getSetLegoBlocks();
     }
     return [];
   };
@@ -60,6 +70,6 @@ export class TrainInstruction {
   finishPartConnection = (marker: Object3D) => {
     marker.removeFromParent();
     if (this.activeModel && this.activeModel.getActivePhase())
-      this.activeModel.updateNeededPartList(marker.userData.forPartId);
+      this.activeModel.updateNeededPartList(marker.userData.name);
   };
 }
