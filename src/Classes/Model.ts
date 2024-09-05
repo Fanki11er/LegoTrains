@@ -34,14 +34,6 @@ export class Model {
     this.modelMarkersPath = path;
   };
 
-  // getModelPartsList = () => {
-  //   return this.phases
-  //     .map((phase) => {
-  //       return phase.getPhasePartsList();
-  //     })
-  //     .flat();
-  // };
-
   private findFirstPhaseNumber = () => {
     const firstPhaseNumber = Math.min(
       ...this.phases.map((phase) => {
@@ -58,7 +50,7 @@ export class Model {
       }) || this.phases[0];
     return firstPhase;
   };
-  //!! Check if part is needed
+
   getMarkersForSelectedPart = (partType: string) => {
     const listOfValidSlotsToConnectSelectedPart: Object3D<Object3DEventMap>[] =
       [];
@@ -78,11 +70,9 @@ export class Model {
             }
           } else {
             for (let i = 0; i < part.depends.length; i++) {
-              const marker = markers.find((marker) => {
-                return marker.userData.name === part.depends[i];
-              });
-
-              if (marker) {
+              if (
+                !this.instruction.checkIfMarkerWasMarkerUsed(part.depends[i])
+              ) {
                 return;
               }
             }

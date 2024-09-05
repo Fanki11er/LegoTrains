@@ -2,14 +2,14 @@
 // @ts-nocheck
 import roundOpenStud_3062b_model from "../../assets/3D/RoundOpenStud_3062b/RoundOpenStud_3062b.glb";
 import trainBase_4178_model from "../../assets/3D/TrainBase_4178/TrainBase_4178.glb";
-// import plate_x461b from "../../assets/3D/Plate_x461b/Plate_x461b.glb";
-// import plate_3023 from "../../assets/3D/Plate_3023/Plate_3023.glb";
-// import electricEngine_x469b from "../../assets/3D/ElectricEngine_x469b/ElectricEngine_x469b.glb";
-// import magnetCylindrical_73092 from "../../assets/3D/MagnetCylindrical_73092/MagnetCylindrical_73092.glb";
-// import trainCoupling_4023 from "../../assets/3D/TrainCoupling_4023/TrainCoupling_4023.glb";
-// import slope_3040 from "../../assets/3D/Slope_3040/Slope_3040.glb";
-// import plate_With_Ladder_4175 from "../../assets/3D/4175_Plate_With_Ladder/4175_Plate_With_Ladder.glb";
-// import brick_3003 from "../../assets/3D/3003_Brick/3003_Brick.glb";
+import plate_x461b_model from "../../assets/3D/Plate_x461b/Plate_x461b.glb";
+import plate_3023_model from "../../assets/3D/Plate_3023/Plate_3023.glb";
+import electricEngine_x469b_model from "../../assets/3D/ElectricEngine_x469b/ElectricEngine_x469b.glb";
+import magnetCylindrical_73092_model from "../../assets/3D/MagnetCylindrical_73092/MagnetCylindrical_73092.glb";
+import trainCoupling_4023_model from "../../assets/3D/TrainCoupling_4023/TrainCoupling_4023.glb";
+import slope_3040_model from "../../assets/3D/Slope_3040/Slope_3040.glb";
+import plate_With_Ladder_4175_model from "../../assets/3D/4175_Plate_With_Ladder/4175_Plate_With_Ladder.glb";
+import brick_3003_model from "../../assets/3D/3003_Brick/3003_Brick.glb";
 // import brick_4070 from "../../assets/3D/Brick_4070/Brick_4070.glb";
 // import electric_Wire_766c28 from "../../assets/3D/ElectricWire_766c28/Electric_Wire_766c28.glb";
 // import round_Plate_4073 from "../../assets/3D/Round_Plate_4073/Round_Plate_4073.glb";
@@ -44,14 +44,14 @@ import trainBase_4178_model from "../../assets/3D/TrainBase_4178/TrainBase_4178.
 
 export const roundOpenStud_3062b = roundOpenStud_3062b_model;
 export const trainBase_4178 = trainBase_4178_model;
-// export const plate_x461b;
-// export const plate_3023;
-// export const electricEngine_x469b;
-// export const magnetCylindrical_73092;
-// export const trainCoupling_4023;
-// export const slope_3040;
-// export const plate_With_Ladder_4175;
-// export const brick_3003;
+export const plate_x461b = plate_x461b_model;
+export const plate_3023 = plate_3023_model;
+export const electricEngine_x469b = electricEngine_x469b_model;
+export const magnetCylindrical_73092 = magnetCylindrical_73092_model;
+export const trainCoupling_4023 = trainCoupling_4023_model;
+export const slope_3040 = slope_3040_model;
+export const plate_With_Ladder_4175 = plate_With_Ladder_4175_model;
+export const brick_3003 = brick_3003_model;
 // export const brick_4070;
 // export const electric_Wire_766c28;
 // export const round_Plate_4073;

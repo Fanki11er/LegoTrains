@@ -1,49 +1,39 @@
-//import { Vector3 } from "three";
 import { PartInfo } from "../../Types/PartInfo";
 
-export const phase3: PartInfo[] = [
-  // {
-  //   partPath: electricEngine_x469b,
-  //   partStartPosition: new Vector3(0, 0, -80),
-  //   partId: "x469b",
-  //   partPriority: 2,
-  // },
-  // {
-  //   partPath: plate_3023,
-  //   partStartPosition: new Vector3(100, 0, 100),
-  //   partId: "3023",
-  //   partPriority: 2,
-  //   materialId: "blackPlasticMaterial",
-  // },
-  // {
-  //   partPath: plate_3023,
-  //   partStartPosition: new Vector3(120, 0, 100),
-  //   partId: "3023",
-  //   partPriority: 2,
-  //   materialId: "blackPlasticMaterial",
-  // },
-  // {
-  //   partPath: trainCoupling_4023,
-  //   partStartPosition: new Vector3(120, 0, 45),
-  //   partId: "4023",
-  //   partPriority: 1,
-  // },
-  // {
-  //   partPath: trainCoupling_4023,
-  //   partStartPosition: new Vector3(120, 0, 65),
-  //   partId: "4023",
-  //   partPriority: 1,
-  // },
-  // {
-  //   partPath: magnetCylindrical_73092,
-  //   partStartPosition: new Vector3(110, 0, 85),
-  //   partId: "73092",
-  //   partPriority: 2,
-  // },
-  // {
-  //   partPath: magnetCylindrical_73092,
-  //   partStartPosition: new Vector3(125, 0, 85),
-  //   partId: "73092",
-  //   partPriority: 2,
-  // },
+export const steamLocomotive7722LocomotiveModelPhase3: PartInfo[] = [
+  {
+    partType: "x469b",
+    slotId: "ModelMarker.010",
+    depends: [],
+  },
+  {
+    partType: "3023",
+    slotId: "ModelMarker.011",
+    depends: [],
+  },
+  {
+    partType: "3023",
+    slotId: "ModelMarker.012",
+    depends: [],
+  },
+  {
+    partType: "4023",
+    slotId: "ModelMarker.013",
+    depends: [],
+  },
+  {
+    partType: "4023",
+    slotId: "ModelMarker.015",
+    depends: [],
+  },
+  {
+    partType: "73092",
+    slotId: "ModelMarker.014",
+    depends: ["ModelMarker.013"],
+  },
+  {
+    partType: "73092",
+    slotId: "ModelMarker.016",
+    depends: ["ModelMarker.015"],
+  },
 ];

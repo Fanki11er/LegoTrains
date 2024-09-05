@@ -7,6 +7,7 @@ export class TrainInstruction {
   private scene: Scene | null = null;
   private activeModel: Model | null = null;
   private setLegoBlocks!: SetLegoBlocks;
+  private connectedMarkersIds: string[] = [];
 
   addSetLegoBlocks = (setLegoBlocks: SetLegoBlocks) => {
     this.setLegoBlocks = setLegoBlocks;
@@ -67,9 +68,18 @@ export class TrainInstruction {
     return this.activeModel;
   };
 
+  checkIfMarkerWasMarkerUsed = (markerId: string) => {
+    const result = this.connectedMarkersIds.find((id) => {
+      return id === markerId;
+    });
+
+    return !!result;
+  };
+
   finishPartConnection = (marker: Object3D) => {
     marker.removeFromParent();
     if (this.activeModel && this.activeModel.getActivePhase())
       this.activeModel.updateNeededPartList(marker.userData.name);
+    this.connectedMarkersIds.push(marker.userData.name);
   };
 }

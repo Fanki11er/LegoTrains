@@ -1,7 +1,6 @@
 import { useGLTF } from "@react-three/drei";
 import { Mesh, Object3D, Object3DEventMap } from "three";
 import { ThreeEvent } from "@react-three/fiber";
-//import { PartInfo } from "../../../Types/PartInfo";
 import { PartUserData } from "../../../Types/PartUserData";
 import { useEffect, useMemo, useRef, useState } from "react";
 import useTrainInstruction from "../../../Hooks/useTrainInstruction";
@@ -44,11 +43,11 @@ const LegoPart = (props: PartProps) => {
       }
       
       modelRef.current.userData = {
-        partId: partInfo.partId,
+        partId: partInfo.partType,
         isConnected: false,
       } as PartUserData;
 
-      modelRef.current.name = partInfo.partId;
+      modelRef.current.name = partInfo.partType;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

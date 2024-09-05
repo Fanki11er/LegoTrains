@@ -1,4 +1,4 @@
-//import { PartInfo } from "../../../../Types/PartInfo";
+
 import useTrainInstruction from "../../../../Hooks/useTrainInstruction";
 import {  useMemo } from "react";
 import LegoPart from "../../LegoPart/LegoPart";
