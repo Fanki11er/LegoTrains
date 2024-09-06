@@ -1,13 +1,24 @@
 import { Vector3 } from "three";
 import {
+  brick_1x4_3010,
+  brick_1x6_3009,
+  brick_2x3_3002,
   brick_3003,
+  brick_4070,
+  electric_Wire_766c28,
   electricEngine_x469b,
+  hose_Flexible_8p5_73590c01a,
   magnetCylindrical_73092,
+  plate_1x6_3666,
   plate_3023,
   plate_With_Ladder_4175,
   plate_x461b,
+  round_Plate_4073,
   roundOpenStud_3062b,
   slope_3040,
+  slope_Brick_45_2x2_With_Gauges_And_Knobs_3039px6,
+  slope_Brick_Inverted_2x2_3660,
+  slope_Brick_Inverted_3665,
   trainBase_4178,
   trainCoupling_4023,
 } from "./PartsImports";
@@ -155,6 +166,198 @@ const setLegoBlockTypes: LegoBlockType[] = [
     partStartPosition: new Vector3(120, 0, 115),
     partType: "3023",
     materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: brick_1x6_3009,
+    partStartPosition: new Vector3(180, 0, 115),
+    partType: "3009",
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: brick_1x6_3009,
+    partStartPosition: new Vector3(180, 0, 130),
+    partType: "3009",
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: brick_4070,
+    partStartPosition: new Vector3(180, 0, 85),
+    partType: "4070",
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: brick_4070,
+    partStartPosition: new Vector3(195, 0, 85),
+    partType: "4070",
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: brick_4070,
+    partStartPosition: new Vector3(180, 0, 100),
+    partType: "4070",
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: brick_4070,
+    partStartPosition: new Vector3(195, 0, 100),
+    partType: "4070",
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: electric_Wire_766c28,
+    partStartPosition: new Vector3(180, 0, -20),
+    partType: "766c28",
+    canNotBeRotated: true,
+    noAutomaticMoveToGroundLevel: true,
+  },
+  {
+    partPath: round_Plate_4073,
+    partStartPosition: new Vector3(195, 0, 70),
+    partType: "4073",
+    materialId: "whiteTransparentMaterial",
+  },
+  {
+    partPath: round_Plate_4073,
+    partStartPosition: new Vector3(195, 0, 55),
+    partType: "4073",
+    materialId: "whiteTransparentMaterial",
+  },
+  {
+    partPath: round_Plate_4073,
+    partStartPosition: new Vector3(180, 0, 55),
+    partType: "4073",
+    materialId: "redTransparentMaterial",
+  },
+  {
+    partPath: round_Plate_4073,
+    partStartPosition: new Vector3(180, 0, 70),
+    partType: "4073",
+    materialId: "redTransparentMaterial",
+  },
+  {
+    partPath: brick_1x4_3010,
+    partStartPosition: new Vector3(230, 0, 115),
+    partType: "3010",
+
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: brick_2x3_3002,
+    partStartPosition: new Vector3(-55, 0, 115),
+    partType: "3002",
+
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: brick_2x3_3002,
+    partStartPosition: new Vector3(-55, 0, 140),
+    partType: "3002",
+
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: brick_2x3_3002,
+    partStartPosition: new Vector3(-55, 0, 165),
+    partType: "3002",
+
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: brick_2x3_3002,
+    partStartPosition: new Vector3(-55, 0, 190),
+    partType: "3002",
+
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: plate_1x6_3666,
+    partStartPosition: new Vector3(0, 0, 145),
+    partType: "3666",
+
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: slope_Brick_Inverted_3665,
+    partStartPosition: new Vector3(230, 0, 95),
+    partType: "3665",
+
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: slope_Brick_Inverted_3665,
+    partStartPosition: new Vector3(250, 0, 95),
+    partType: "3665",
+
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: slope_Brick_Inverted_2x2_3660,
+    partStartPosition: new Vector3(220, 0, 70),
+    partType: "3660",
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: slope_Brick_Inverted_2x2_3660,
+    partStartPosition: new Vector3(245, 0, 70),
+    partType: "3660",
+
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: slope_Brick_45_2x2_With_Gauges_And_Knobs_3039px6,
+    partStartPosition: new Vector3(145, 0, 30),
+    partType: "3039px6",
+  },
+  {
+    partPath: brick_1x4_3010,
+    partStartPosition: new Vector3(230, 0, 130),
+    partType: "3010",
+
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: brick_1x4_3010,
+    partStartPosition: new Vector3(230, 0, 145),
+    partType: "3010",
+
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: brick_1x6_3009,
+    partStartPosition: new Vector3(180, 0, 145),
+    partType: "3009",
+
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: brick_4070,
+    partStartPosition: new Vector3(210, 0, 85),
+    partType: "4070",
+
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: brick_4070,
+    partStartPosition: new Vector3(210, 0, 100),
+    partType: "4070",
+
+    materialId: "blackPlasticMaterial",
+  },
+  {
+    partPath: hose_Flexible_8p5_73590c01a,
+    partStartPosition: new Vector3(275, 0, 70),
+    partType: "73590c01a",
+
+    materialId: "blackPlasticMaterial",
+    canNotBeRotated: false,
+  },
+  {
+    partPath: hose_Flexible_8p5_73590c01a,
+    partStartPosition: new Vector3(315, 0, 70),
+    partType: "73590c01a",
+
+    materialId: "blackPlasticMaterial",
+    canNotBeRotated: false,
   },
 ];
 
