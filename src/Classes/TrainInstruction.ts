@@ -6,11 +6,15 @@ export class TrainInstruction {
   private models: Model[] = [];
   private scene: Scene | null = null;
   private activeModel: Model | null = null;
-  private setLegoBlocks!: SetLegoBlocks;
+  private setLegoBlocks: SetLegoBlocks | null = null;
   private connectedMarkersIds: string[] = [];
 
   addSetLegoBlocks = (setLegoBlocks: SetLegoBlocks) => {
     this.setLegoBlocks = setLegoBlocks;
+  };
+
+  getModels = () => {
+    return this.models;
   };
 
   getSetLegoBlocks = () => {

@@ -2,18 +2,25 @@ import { Object3D, Object3DEventMap } from "three";
 import { Phase } from "./Phase";
 import { TrainInstruction } from "./TrainInstruction";
 import { PartInfo } from "../Types/PartInfo";
+import { LegoBlock } from "../Types/LegoBlock";
 
 export class Model {
+  private modelName: string;
   private phases: Phase[] = [];
   private activePhase: Phase | null = null;
   private instruction: TrainInstruction;
   private modelMarkersPath: string | null = null;
 
-  constructor(instruction: TrainInstruction) {
+  constructor(modelName: string, instruction: TrainInstruction) {
     this.instruction = instruction;
+    this.modelName = modelName;
   }
   getActivePhase = () => {
     return this.activePhase;
+  };
+
+  getModelName = () => {
+    return this.modelName;
   };
 
   getModelMarkersPath = () => {
@@ -23,8 +30,18 @@ export class Model {
     return this.modelMarkersPath;
   };
 
-  addPhases = (phasesList: Phase[]) => {
-    this.phases = phasesList;
+  addPhase = (phaseNumber: number, legoBlocks: LegoBlock[]) => {
+    const phase = this.phases.find((phase) => {
+      return phaseNumber === phase.getPhaseNumber();
+    });
+
+    const partsInfo = this.mapBlockToPartsInfo(legoBlocks);
+
+    if (phase) {
+      phase.addPartsToPhase(partsInfo);
+    } else {
+      this.phases.push(new Phase(phaseNumber, partsInfo));
+    }
     if (!this.activePhase) {
       this.activePhase = this.findFirstPhase();
     }
@@ -32,6 +49,16 @@ export class Model {
 
   addModelMarkersPath = (path: string) => {
     this.modelMarkersPath = path;
+  };
+
+  private mapBlockToPartsInfo = (legoBlocks: LegoBlock[]) => {
+    return legoBlocks.map((block) => {
+      return {
+        partType: block.partType,
+        slotId: block.slotId,
+        depends: block.depends,
+      };
+    });
   };
 
   private findFirstPhaseNumber = () => {
