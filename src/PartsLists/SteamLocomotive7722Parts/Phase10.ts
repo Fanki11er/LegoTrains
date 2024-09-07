@@ -1,111 +1,79 @@
-//import { Vector3 } from "three";
 import { PartInfo } from "../../Types/PartInfo";
 
-export const phase10: PartInfo[] = [
-  // {
-  //   partPath: brick_1x1_3005,
-  //   partStartPosition: new Vector3(-80, 0, 165),
-  //   partId: "3005",
-  //   partPriority: 1,
-  //   materialId: "blackPlasticMaterial",
-  // },
-  // {
-  //   partPath: brick_1x1_3005,
-  //   partStartPosition: new Vector3(-95, 0, 165),
-  //   partId: "3005",
-  //   partPriority: 1,
-  //   materialId: "blackPlasticMaterial",
-  // },
-  // {
-  //   partPath: train_Door_1x4x5_Left_4181,
-  //   partStartPosition: new Vector3(350, 0, 165),
-  //   partId: "4181",
-  //   partPriority: 1,
-  //   materialId: "blackPlasticMaterial",
-  //   noAutomaticMoveToGroundLevel: true,
-  //   canNotBeRotated: false,
-  // },
-  // {
-  //   partPath: train_Door_1x4x5_Right_4182,
-  //   partStartPosition: new Vector3(390, 0, 165),
-  //   partId: "4182",
-  //   partPriority: 1,
-  //   materialId: "blackPlasticMaterial",
-  //   noAutomaticMoveToGroundLevel: true,
-  //   canNotBeRotated: false,
-  // },
-  // {
-  //   partPath: train_Window_1x2x3_4035,
-  //   partStartPosition: new Vector3(340, 0, 130),
-  //   partId: "4035",
-  //   partPriority: 1,
-  //   materialId: "blackPlasticMaterial",
-  // },
-  // {
-  //   partPath: train_Window_1x2x3_4035,
-  //   partStartPosition: new Vector3(370, 0, 130),
-  //   partId: "4035",
-  //   partPriority: 1,
-  //   materialId: "blackPlasticMaterial",
-  // },
-  // {
-  //   partPath: plate_Specialty_1x2_With_Up_Arm_4623,
-  //   partStartPosition: new Vector3(300, 0, 25),
-  //   partId: "4623",
-  //   partPriority: 1,
-  //   materialId: "blackPlasticMaterial",
-  //   canNotBeRotated: false,
-  // },
-  // {
-  //   partPath: plate_Specialty_1x2_With_One_Stud_On_Center_3794,
-  //   partStartPosition: new Vector3(330, 0, 25),
-  //   partId: "3794",
-  //   partPriority: 1,
-  //   materialId: "blackPlasticMaterial",
-  // },
-  // {
-  //   partPath: plate_Specialty_1x2_With_One_Stud_On_Center_3794,
-  //   partStartPosition: new Vector3(330, 0, 5),
-  //   partId: "3794",
-  //   partPriority: 1,
-  //   materialId: "blackPlasticMaterial",
-  // },
-  // {
-  //   partPath: plate_3023,
-  //   partStartPosition: new Vector3(120, 0, 130),
-  //   partId: "3023",
-  //   partPriority: 2,
-  //   materialId: "blackPlasticMaterial",
-  // },
-  // {
-  //   partPath: plate_3023,
-  //   partStartPosition: new Vector3(100, 0, 130),
-  //   partId: "3023",
-  //   partPriority: 2,
-  //   materialId: "blackPlasticMaterial",
-  // },
-  // {
-  //   partPath: glass_For_Train_Door_4183,
-  //   partStartPosition: new Vector3(-120, 0, 150),
-  //   partId: "4183",
-  //   partPriority: 2,
-  // },
-  // {
-  //   partPath: glass_For_Train_Door_4183,
-  //   partStartPosition: new Vector3(-145, 0, 150),
-  //   partId: "4183",
-  //   partPriority: 2,
-  // },
-  // {
-  //   partPath: glass_For_Train_Window_1x2x3_4036,
-  //   partStartPosition: new Vector3(-120, 0, 180),
-  //   partId: "4036",
-  //   partPriority: 2,
-  // },
-  // {
-  //   partPath: glass_For_Train_Window_1x2x3_4036,
-  //   partStartPosition: new Vector3(-145, 0, 180),
-  //   partId: "4036",
-  //   partPriority: 2,
-  // },
+export const steamLocomotive7722LocomotiveModelPhase10: PartInfo[] = [
+  {
+    partType: "3005",
+    slotId: "ModelMarker.072",
+    depends: [],
+  },
+  {
+    partType: "3005",
+    slotId: "ModelMarker.073",
+    depends: [],
+  },
+  {
+    partType: "4181",
+    slotId: "ModelMarker.068",
+    depends: [],
+  },
+  {
+    partType: "4182",
+    slotId: "ModelMarker.069",
+    depends: [],
+  },
+  {
+    partType: "4035",
+    slotId: "ModelMarker.070",
+    depends: [],
+  },
+  {
+    partType: "4035",
+    slotId: "ModelMarker.071",
+    depends: [],
+  },
+  {
+    partType: "4623",
+    slotId: "ModelMarker.074",
+    depends: [],
+  },
+  {
+    partType: "3794",
+    slotId: "ModelMarker.077",
+    depends: [],
+  },
+  {
+    partType: "3794",
+    slotId: "ModelMarker.078",
+    depends: [],
+  },
+  {
+    partType: "3023",
+    slotId: "ModelMarker.075",
+    depends: ["ModelMarker.074"],
+  },
+  {
+    partType: "3023",
+    slotId: "ModelMarker.076",
+    depends: ["ModelMarker.075"],
+  },
+  {
+    partType: "4183",
+    slotId: "ModelMarker.079",
+    depends: ["ModelMarker.068"],
+  },
+  {
+    partType: "4183",
+    slotId: "ModelMarker.080",
+    depends: ["ModelMarker.069"],
+  },
+  {
+    partType: "4036",
+    slotId: "ModelMarker.081",
+    depends: ["ModelMarker.070"],
+  },
+  {
+    partType: "4036",
+    slotId: "ModelMarker.082",
+    depends: ["ModelMarker.071"],
+  },
 ];

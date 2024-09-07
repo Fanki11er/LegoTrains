@@ -1,75 +1,54 @@
-//import { Vector3 } from "three";
 import { PartInfo } from "../../Types/PartInfo";
 
-export const phase12: PartInfo[] = [
-  // {
-  //   partPath: tile_2x2_With_Grove_3068b,
-  //   partStartPosition: new Vector3(-215, 0, 160),
-  //   partId: "3068b",
-  //   partPriority: 2,
-  //   materialId: "blackPlasticMaterial",
-  // },
-  // {
-  //   partPath: tile_2x2_With_Grove_3068b,
-  //   partStartPosition: new Vector3(-240, 0, 160),
-  //   partId: "3068b",
-  //   partPriority: 2,
-  //   materialId: "blackPlasticMaterial",
-  // },
-  // {
-  //   partPath: cone_1x1_4589,
-  //   partStartPosition: new Vector3(360, 0, 25),
-  //   partId: "4589",
-  //   partPriority: 1,
-  //   materialId: "yellowPLasticMaterial",
-  // },
-  // {
-  //   partPath: train_Roof_6x6_4509,
-  //   partStartPosition: new Vector3(360, 0, 300),
-  //   partId: "4509",
-  //   partPriority: 1,
-  //   materialId: "blackPlasticMaterial",
-  // },
-  // {
-  //   partPath: roundOpenStud_3062b,
-  //   partStartPosition: new Vector3(400, 0, 25),
-  //   partId: "3062b",
-  //   partPriority: 1,
-  //   materialId: "blackPlasticMaterial",
-  // },
-  // {
-  //   partPath: dish_4_x_4_Round_Inverted_3960,
-  //   partStartPosition: new Vector3(400, 0, -100),
-  //   partId: "3960",
-  //   partPriority: 1,
-  //   materialId: "blackPlasticMaterial",
-  // },
-  // {
-  //   partPath: train_Wheel_Spoked_2ac02,
-  //   partStartPosition: new Vector3(400, 0, -170),
-  //   partId: "2ac02",
-  //   partPriority: 1,
-  //   canNotBeRotated: true,
-  // },
-  // {
-  //   partPath: train_Wheel_Spoked_2ac02,
-  //   partStartPosition: new Vector3(440, 0, -170),
-  //   partId: "2ac02",
-  //   partPriority: 1,
-  //   canNotBeRotated: true,
-  // },
-  // {
-  //   partPath: train_Wheel_Spoked_2ac02,
-  //   partStartPosition: new Vector3(400, 0, -140),
-  //   partId: "2ac02",
-  //   partPriority: 1,
-  //   canNotBeRotated: true,
-  // },
-  // {
-  //   partPath: train_Wheel_Spoked_2ac02,
-  //   partStartPosition: new Vector3(440, 0, -140),
-  //   partId: "2ac02",
-  //   partPriority: 1,
-  //   canNotBeRotated: true,
-  // },
+export const steamLocomotive7722LocomotiveModelPhase12: PartInfo[] = [
+  {
+    partType: "3068b",
+    slotId: "ModelMarker.091",
+    depends: ["ModelMarker.094"],
+  },
+  {
+    partType: "3068b",
+    slotId: "ModelMarker.092",
+    depends: [],
+  },
+  {
+    partType: "4589",
+    slotId: "ModelMarker.093",
+    depends: [],
+  },
+  {
+    partType: "4509",
+    slotId: "ModelMarker.094",
+    depends: [],
+  },
+  {
+    partType: "3062b",
+    slotId: "ModelMarker.090",
+    depends: [],
+  },
+  {
+    partType: "3960",
+    slotId: "ModelMarker.095",
+    depends: [],
+  },
+  {
+    partType: "2ac02",
+    slotId: "ModelMarker.098",
+    depends: [],
+  },
+  {
+    partType: "2ac02",
+    slotId: "ModelMarker.099",
+    depends: [],
+  },
+  {
+    partType: "2ac02",
+    slotId: "ModelMarker.097",
+    depends: [],
+  },
+  {
+    partType: "2ac02",
+    slotId: "ModelMarker.096",
+    depends: [],
+  },
 ];
