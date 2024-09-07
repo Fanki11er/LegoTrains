@@ -4,7 +4,8 @@ import {  useMemo } from "react";
 import LegoPart from "../../LegoPart/LegoPart";
 import ModelMarkers from "../../ModelMarkers/ModelMarkers";
 import Instruction from "../../Instruction/Instruction";
-import { LegoBlock } from "../../../../PartsLists/SteamLocomotive7722Parts/SetLegoBlockTypes";
+import { LegoBlock } from "../../../../Types/LegoBlock";
+
 
 const SteamLocomotive_7722 = () => {
   console.log("Rerender Locomotive");

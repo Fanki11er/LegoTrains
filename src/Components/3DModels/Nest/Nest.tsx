@@ -35,7 +35,8 @@ const Nest = (props: NestProps) => {
         name="Nest"
         geometry={mesh.geometry.clone()}
         material={nestMaterial.clone()}
-        material-color={isHovered ? "green" : "blue"}
+        material-opacity={isHovered? 0.5: 0}
+        material-color="blue"
         position={marker.position}
         quaternion={marker.quaternion}
         userData={{ markerId: marker.id } as NestElementUserData}

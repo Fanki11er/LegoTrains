@@ -9,7 +9,8 @@ import Nest from "../Nest/Nest";
 import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";
 import { customMaterials } from "../../../Materials/customMaterials";
 import { moveElementToFloorLevel } from "../../../Utilities/utilities";
-import { LegoBlock } from "../../../PartsLists/SteamLocomotive7722Parts/SetLegoBlockTypes";
+import { LegoBlock } from "../../../Types/LegoBlock";
+
 
 type PartProps = {
   partInfo: LegoBlock;
@@ -52,7 +53,7 @@ const LegoPart = (props: PartProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { isSelected, originalMaterial, handleSelect, handleUnselect } =
+  const { isSelected, handleSelect, handleUnselect } =
     useSelectModel();
 
   const renderNests = (markersList: Object3D<Object3DEventMap>[]) => {
@@ -66,11 +67,7 @@ const LegoPart = (props: PartProps) => {
       <primitive
         ref={modelRef}
         object={model}
-        material={
-          isSelected
-            ? customMaterials.selectedElementMaterial
-            : originalMaterial.current[model.uuid]
-        }
+      
         onClick={(e: ThreeEvent<Event>) => {
           if (!modelRef.current.userData.isConnected) {
             e.stopPropagation();
@@ -81,7 +78,7 @@ const LegoPart = (props: PartProps) => {
               modelRef.current.userData.partId
             );
             setMarkersList(list);
-            handleSelect(modelRef.current);
+            handleSelect(modelRef.current, !!list.length);
           }
         }}
         onPointerMissed={() => {
