@@ -1,6 +1,7 @@
 import { Object3D, Scene } from "three";
 import { Model } from "./Model";
 import { SetLegoBlocks } from "../PartsLists/SteamLocomotive7722Parts/SetLegoBlockTypes";
+import { ModelPersistanceData, PersistanceModule } from "./PersistanceModule";
 
 export class TrainInstruction {
   private models: Model[] = [];
@@ -8,9 +9,21 @@ export class TrainInstruction {
   private activeModel: Model | null = null;
   private setLegoBlocks: SetLegoBlocks | null = null;
   private connectedMarkersIds: string[] = [];
+  private persistanceModule: PersistanceModule;
+
+  constructor() {
+    this.persistanceModule = new PersistanceModule(this);
+  }
 
   addSetLegoBlocks = (setLegoBlocks: SetLegoBlocks) => {
     this.setLegoBlocks = setLegoBlocks;
+  };
+
+  getModelRootMarkerByName = (rootMarkerName: string) => {
+    if (this.scene) {
+      return this.scene.getObjectByName(rootMarkerName);
+    }
+    return undefined;
   };
 
   getModels = () => {
@@ -32,6 +45,25 @@ export class TrainInstruction {
     return !!this.scene;
   };
 
+  getActiveModelName = () => {
+    if (this.activeModel) {
+      return this.activeModel.getModelName();
+    }
+    return "";
+  };
+
+  getPersistanceModule = () => {
+    return this.persistanceModule;
+  };
+
+  getConnectedMarkersIds = () => {
+    return this.connectedMarkersIds;
+  };
+
+  getActivePhaseId = () => {
+    return this.activeModel?.getActivePhase()?.getPhaseNumber();
+  };
+
   addModel = (model: Model) => {
     this.models.push(model);
     if (!this.activeModel) {
@@ -45,9 +77,10 @@ export class TrainInstruction {
     }
   };
 
-  getMarkers = () => {
+  getMarkersForActivePhase = () => {
     if (this.scene) {
-      const rootModelMarker = this.scene.getObjectByName("ModelRootMarker");
+      const rootModelMarker = this.getActiveModelMarkers();
+
       if (rootModelMarker && this.activeModel) {
         const activePhase = this.activeModel.getActivePhase();
         return rootModelMarker.children.filter((marker) => {
@@ -56,6 +89,13 @@ export class TrainInstruction {
       }
     }
     return [];
+  };
+
+  getActiveModelMarkers = () => {
+    if (this.activeModel && this.scene) {
+      const rootModelMarkerId = this.activeModel.getRootModelMarkerId();
+      return this.scene.getObjectByName(rootModelMarkerId);
+    }
   };
 
   getMarkerById = (id: number) => {
@@ -72,7 +112,7 @@ export class TrainInstruction {
     return this.activeModel;
   };
 
-  checkIfMarkerWasMarkerUsed = (markerId: string) => {
+  checkIfWasMarkerUsed = (markerId: string) => {
     const result = this.connectedMarkersIds.find((id) => {
       return id === markerId;
     });
@@ -81,9 +121,33 @@ export class TrainInstruction {
   };
 
   finishPartConnection = (marker: Object3D) => {
+    let isPhaseFinished = false;
     marker.removeFromParent();
-    if (this.activeModel && this.activeModel.getActivePhase())
-      this.activeModel.updateNeededPartList(marker.userData.name);
-    this.connectedMarkersIds.push(marker.userData.name);
+    if (this.activeModel && this.activeModel.getActivePhase()) {
+      isPhaseFinished = this.activeModel.updateNeededPartList(
+        marker.userData.name
+      );
+      this.connectedMarkersIds.push(marker.userData.name);
+    }
+    return isPhaseFinished;
+  };
+
+  prepareDataToSaveAfterPhaseEnd = () => {
+    return this.persistanceModule.prepareDataToSaveAfterPhaseEnd();
+  };
+
+  usePersistanceData = (data: ModelPersistanceData[]) => {
+    this.models.forEach((model) => {
+      const foundModel = data.find((modelData) => {
+        return modelData.modelName === model.getModelName();
+      });
+      if (foundModel) {
+        const phase = model.findPhaseByNumber(foundModel.activePhaseId);
+
+        if (phase) {
+          model.setActivePhase(phase);
+        }
+      }
+    });
   };
 }

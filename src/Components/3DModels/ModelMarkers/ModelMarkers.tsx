@@ -4,15 +4,18 @@ import { Object3D} from "three";
 import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";               
 import useSelectModel from "../../../Hooks/useSelectModel";
 import { moveElementToFloorLevel } from "../../../Utilities/utilities";
+import { ModelMarkersInfo } from "../../../Classes/Model";
+import { ModelMarkerPersistanceData } from "../../../Classes/PersistanceModule";
   
 
 type Props = {
-  modelPath: string;
+  modelMarkersInfo: ModelMarkersInfo
+  persistanceData: ModelMarkerPersistanceData | undefined
 };
 
 const ModelMarkers = (props: Props) => {
-  const { modelPath } = props;
-  const { scene } = useGLTF(modelPath);
+  const { modelMarkersInfo } = props;
+  const { scene } = useGLTF(modelMarkersInfo.modelMarkersPath);
 
   const model = useMemo(() => {
     return scene.children[0];
@@ -31,6 +34,9 @@ const ModelMarkers = (props: Props) => {
 
   useEffect(() => {
     const model = modelRef.current;
+    console.log(model, "MMMM")
+    model.name = modelMarkersInfo.rootModelMarkerId
+
     if (model) {
       model.addEventListener("childadded", handleMoveElementToFloorLevel);
       model.addEventListener("childremoved", handleMoveElementToFloorLevel);
@@ -41,7 +47,7 @@ const ModelMarkers = (props: Props) => {
       model.removeEventListener("childadded", handleMoveElementToFloorLevel);
       model.removeEventListener("childremoved", handleMoveElementToFloorLevel);
     };
-  }, []);
+  }, [modelMarkersInfo]);
 
   return (
     <>
@@ -50,7 +56,7 @@ const ModelMarkers = (props: Props) => {
         ref={modelRef}
         onClick={() => {
           if (modelRef.current) {
-            handleSelect(modelRef.current);
+            handleSelect(modelRef.current, true);
           }
         }}
         onPointerMissed={() => {

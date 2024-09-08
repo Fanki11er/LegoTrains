@@ -10,16 +10,18 @@ import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMe
 import { customMaterials } from "../../../Materials/customMaterials";
 import { moveElementToFloorLevel } from "../../../Utilities/utilities";
 import { LegoBlock } from "../../../Types/LegoBlock";
+import { PartPersistanceData } from "../../../Classes/PersistanceModule";
 
 
 type PartProps = {
   partInfo: LegoBlock;
+  persistanceData: PartPersistanceData | undefined
 };
 
 const LegoPart = (props: PartProps) => {
-  const { partInfo } = props;
+  const { partInfo, persistanceData } = props;
   const { scene } = useGLTF(partInfo.partPath);
-  const { handleGetMarkersForSelectedPart } = useTrainInstruction();
+  const { handleGetMarkersForSelectedPart, handleGetRootModelMarkerByName } = useTrainInstruction();
   const [markersList, setMarkersList] = useState<Object3D<Object3DEventMap>[]>(
     []
   );
@@ -36,17 +38,39 @@ const LegoPart = (props: PartProps) => {
 
   useEffect(() => {
     if (modelRef.current) {
-      modelRef.current.position.setX(partInfo.partStartPosition.x);
-      modelRef.current.position.setZ(partInfo.partStartPosition.z);
-
-      if(!partInfo.noAutomaticMoveToGroundLevel){
-        moveElementToFloorLevel(modelRef.current);
+      if(!persistanceData){
+        modelRef.current.position.setX(partInfo.partStartPosition.x);
+        modelRef.current.position.setZ(partInfo.partStartPosition.z);
+  
+        if(!partInfo.noAutomaticMoveToGroundLevel){
+          moveElementToFloorLevel(modelRef.current);
+        }
+        
+        modelRef.current.userData = {
+          partId: partInfo.partId,
+          partType: partInfo.partType,
+          isConnected: false,
+        } as PartUserData;
       }
-      
-      modelRef.current.userData = {
-        partId: partInfo.partType,
-        isConnected: false,
-      } as PartUserData;
+      else {
+        
+
+        const rootMarker = handleGetRootModelMarkerByName(persistanceData.userData.modelId!)
+
+       
+        modelRef.current.position.copy(persistanceData.position);
+        modelRef.current.rotation.copy(persistanceData.rotation)
+        //modelRef.current.quaternion.copy(persistanceData.quaternion)
+         modelRef.current.matrix.copy(persistanceData.matrix)
+         modelRef.current.matrixWorld.copy(persistanceData.matrixWorld)
+         modelRef.current.userData = persistanceData.userData
+
+         if(rootMarker){
+          rootMarker.add(modelRef.current)
+        }
+
+        
+      }
 
       modelRef.current.name = partInfo.partType;
     }
@@ -75,7 +99,7 @@ const LegoPart = (props: PartProps) => {
 
           if (modelRef.current && !modelRef.current.userData.isConnected) {
             const list = handleGetMarkersForSelectedPart(
-              modelRef.current.userData.partId
+              modelRef.current.userData.partType
             );
             setMarkersList(list);
             handleSelect(modelRef.current, !!list.length);

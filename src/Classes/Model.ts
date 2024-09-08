@@ -4,16 +4,28 @@ import { TrainInstruction } from "./TrainInstruction";
 import { PartInfo } from "../Types/PartInfo";
 import { LegoBlock } from "../Types/LegoBlock";
 
+export type ModelMarkersInfo = {
+  modelMarkersPath: string;
+  rootModelMarkerId: string;
+};
 export class Model {
   private modelName: string;
   private phases: Phase[] = [];
   private activePhase: Phase | null = null;
   private instruction: TrainInstruction;
-  private modelMarkersPath: string | null = null;
+  private modelMarkersInfo: ModelMarkersInfo;
 
-  constructor(modelName: string, instruction: TrainInstruction) {
+  constructor(
+    modelName: string,
+    modelMarkersPath: string,
+    instruction: TrainInstruction
+  ) {
     this.instruction = instruction;
     this.modelName = modelName;
+    this.modelMarkersInfo = {
+      modelMarkersPath: modelMarkersPath,
+      rootModelMarkerId: `${modelName}_ModelRootMarker`,
+    };
   }
   getActivePhase = () => {
     return this.activePhase;
@@ -24,10 +36,15 @@ export class Model {
   };
 
   getModelMarkersPath = () => {
-    if (!this.modelMarkersPath) {
-      console.error("Model markers missed");
-    }
-    return this.modelMarkersPath;
+    return this.modelMarkersInfo.modelMarkersPath;
+  };
+
+  getRootModelMarkerId = () => {
+    return this.modelMarkersInfo.rootModelMarkerId;
+  };
+
+  getModelMarkersInfo = () => {
+    return this.modelMarkersInfo;
   };
 
   addPhase = (phaseNumber: number, legoBlocks: LegoBlock[]) => {
@@ -45,10 +62,6 @@ export class Model {
     if (!this.activePhase) {
       this.activePhase = this.findFirstPhase();
     }
-  };
-
-  addModelMarkersPath = (path: string) => {
-    this.modelMarkersPath = path;
   };
 
   private mapBlockToPartsInfo = (legoBlocks: LegoBlock[]) => {
@@ -86,7 +99,7 @@ export class Model {
         this.activePhase.checkIfPartTypeIsNeededInPhase(partType);
 
       if (listOfPartsNeededInPhase.length) {
-        const markers = this.instruction.getMarkers();
+        const markers = this.instruction.getMarkersForActivePhase();
 
         listOfPartsNeededInPhase.forEach((part) => {
           if (!part.depends.length) {
@@ -97,9 +110,7 @@ export class Model {
             }
           } else {
             for (let i = 0; i < part.depends.length; i++) {
-              if (
-                !this.instruction.checkIfMarkerWasMarkerUsed(part.depends[i])
-              ) {
+              if (!this.instruction.checkIfWasMarkerUsed(part.depends[i])) {
                 return;
               }
             }
@@ -115,13 +126,15 @@ export class Model {
     return listOfValidSlotsToConnectSelectedPart;
   };
 
-  updateNeededPartList = (partId: string) => {
+  updateNeededPartList = (partType: string) => {
     if (this.activePhase) {
-      const partsLeft = this.activePhase.updateNeededPartList(partId);
+      const partsLeft = this.activePhase.updateNeededPartList(partType);
       if (!partsLeft) {
         this.incrementActivePhase();
+        return true;
       }
     }
+    return false;
   };
 
   incrementActivePhase = () => {
@@ -132,6 +145,7 @@ export class Model {
         this.activePhase = this.phases[newPhaseIndex];
       }
     }
+    //!! Finish model
   };
 
   findMarkerByPartType = (
@@ -141,5 +155,15 @@ export class Model {
     return markers.find((marker) => {
       return marker.userData.name === part.slotId;
     });
+  };
+
+  findPhaseByNumber = (phaseNumber: number) => {
+    return this.phases.find((phase) => {
+      return phase.getPhaseNumber() === phaseNumber;
+    });
+  };
+
+  setActivePhase = (phase: Phase) => {
+    this.activePhase = phase;
   };
 }

@@ -9,7 +9,10 @@ import { TrainInstruction } from "../Classes/TrainInstruction";
 //import { PartInfo } from "../Types/PartInfo";
 import { useThree } from "@react-three/fiber";
 import { Object3D, Object3DEventMap } from "three";
-import { LegoBlock } from "../PartsLists/SteamLocomotive7722Parts/SetLegoBlockTypes";
+import { ModelMarkersInfo } from "../Classes/Model";
+import { LegoBlock } from "../Types/LegoBlock";
+import { ModelPersistanceData } from "../Classes/PersistanceModule";
+import axios from "../Api/axios";
 
 export const TrainInstructionContext = createContext({
   handleGetPartsList: (): LegoBlock[] => [],
@@ -20,8 +23,13 @@ export const TrainInstructionContext = createContext({
   handleGetMarkerById: (_id: number) =>
     undefined as Object3D<Object3DEventMap> | undefined,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handleFinishPartConnection: (_marker: Object3D) => {},
-  handleGetModelMarkersPath: () => null as string | null,
+  handleFinishPartConnection: (_marker: Object3D): boolean => false,
+  handleGetModelMarkersInfo: () => null as ModelMarkersInfo | null,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  handleGetRootModelMarkerByName: (_rootMarkerName:string) => undefined as Object3D<Object3DEventMap> | undefined,
+  handleSaveModelDataToDatabase: ()=> {},
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  updateInstructionWithPersistanceData: (_data: ModelPersistanceData[])=>{}
 });
 
 type InstructionData = {
@@ -57,10 +65,10 @@ const TrainInstructionProvider = (
   }, []);
 
   const handleGetMarkersForSelectedPart = useCallback(
-    (partId: string): Object3D<Object3DEventMap>[] => {
+    (partType: string): Object3D<Object3DEventMap>[] => {
       const activeModel = trainInstruction.current.getActiveModel();
       if (activeModel) {
-        return activeModel.getMarkersForSelectedPart(partId);
+        return activeModel.getMarkersForSelectedPart(partType);
       }
       return [];
     },
@@ -68,23 +76,67 @@ const TrainInstructionProvider = (
   );
 
   const handleFinishPartConnection = useCallback((marker: Object3D) => {
-    trainInstruction.current.finishPartConnection(marker);
+   const isPhaseEnded =  trainInstruction.current.finishPartConnection(marker);
+   return isPhaseEnded
   }, []);
 
-  const handleGetModelMarkersPath = useCallback(() => {
+  const handleGetModelMarkersInfo = useCallback(() => {
     const activeModel = trainInstruction.current.getActiveModel();
     if (activeModel) {
-      return activeModel.getModelMarkersPath();
+      return activeModel.getModelMarkersInfo();
     }
     return null;
   }, []);
+
+  const handleGetRootModelMarkerByName = (rootMarkerName:string)=> {
+    if(trainInstruction.current){
+      return trainInstruction.current.getModelRootMarkerByName(rootMarkerName)
+    }
+    return undefined
+  }
+
+  const handleSaveModelDataToDatabase = ( ) => {
+    if(trainInstruction.current){
+      const data = trainInstruction.current.prepareDataToSaveAfterPhaseEnd()
+      if(data){
+        sendDataToDatabase(data)
+      }
+    }
+   
+  }
+
+  const sendDataToDatabase = async (data: ModelPersistanceData)=> {
+    const savedModels = await axios.get<{modelName: string, id: string}[]>("/modelsList")
+    const foundModel = savedModels.data.find(model=> {
+      
+      return model.modelName === data.modelName
+     
+    })
+
+    if(foundModel){
+     axios.patch(`/models/${foundModel.id}`,data)
+    }
+    else {
+      const info = await axios.post("/models", data);
+      await axios.post("/modelsList", {modelName:data.modelName, id: info.data.id })
+    }
+  }
+
+  const updateInstructionWithPersistanceData = (data: ModelPersistanceData[])=> {
+    if(trainInstruction.current){
+      trainInstruction.current.usePersistanceData(data)
+    }
+  }
 
   const context = {
     handleGetPartsList,
     handleGetMarkersForSelectedPart,
     handleGetMarkerById,
     handleFinishPartConnection,
-    handleGetModelMarkersPath,
+    handleGetModelMarkersInfo,
+    handleGetRootModelMarkerByName,
+    handleSaveModelDataToDatabase,
+    updateInstructionWithPersistanceData
   };
 
   return (

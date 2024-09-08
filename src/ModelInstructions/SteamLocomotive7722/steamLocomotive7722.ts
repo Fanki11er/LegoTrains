@@ -15,89 +15,88 @@ import { steamLocomotive7722LocomotiveModelPhase9 } from "../../PartsLists/Steam
 import { SetLegoBlocks } from "../../PartsLists/SteamLocomotive7722Parts/SetLegoBlockTypes";
 
 // @ts-expect-error Not a type
-import modelMarkers from "../../assets/3D/ModelsMarkers/SteamLocomotive7722/Markers.glb";
+import set7722LocomotiveModelMarkers from "../../assets/3D/ModelsMarkers/SteamLocomotive7722/Markers.glb";
 
 export const set7722Instruction = new TrainInstruction();
 
 const steamLocomotive7722Model = new Model(
-  "steamLocomotive7722Model",
+  "SteamLocomotive7722Model",
+  set7722LocomotiveModelMarkers,
   set7722Instruction
 );
 const set7722LegoBlocks = new SetLegoBlocks(set7722Instruction);
-
-steamLocomotive7722Model.addModelMarkersPath(modelMarkers);
 
 set7722Instruction.addModel(steamLocomotive7722Model);
 set7722Instruction.addSetLegoBlocks(set7722LegoBlocks);
 
 set7722LegoBlocks.addForModelPhaseBlocks(
-  "steamLocomotive7722Model",
+  "SteamLocomotive7722Model",
   1,
   steamLocomotive7722LocomotiveModelPhase1
 );
 
 set7722LegoBlocks.addForModelPhaseBlocks(
-  "steamLocomotive7722Model",
+  "SteamLocomotive7722Model",
   2,
   steamLocomotive7722LocomotiveModelPhase2
 );
 
 set7722LegoBlocks.addForModelPhaseBlocks(
-  "steamLocomotive7722Model",
+  "SteamLocomotive7722Model",
   3,
   steamLocomotive7722LocomotiveModelPhase3
 );
 
 set7722LegoBlocks.addForModelPhaseBlocks(
-  "steamLocomotive7722Model",
+  "SteamLocomotive7722Model",
   4,
   steamLocomotive7722LocomotiveModelPhase4
 );
 
 set7722LegoBlocks.addForModelPhaseBlocks(
-  "steamLocomotive7722Model",
+  "SteamLocomotive7722Model",
   5,
   steamLocomotive7722LocomotiveModelPhase5
 );
 
 set7722LegoBlocks.addForModelPhaseBlocks(
-  "steamLocomotive7722Model",
+  "SteamLocomotive7722Model",
   6,
   steamLocomotive7722LocomotiveModelPhase6
 );
 
 set7722LegoBlocks.addForModelPhaseBlocks(
-  "steamLocomotive7722Model",
+  "SteamLocomotive7722Model",
   7,
   steamLocomotive7722LocomotiveModelPhase7
 );
 
 set7722LegoBlocks.addForModelPhaseBlocks(
-  "steamLocomotive7722Model",
+  "SteamLocomotive7722Model",
   8,
   steamLocomotive7722LocomotiveModelPhase8
 );
 
 set7722LegoBlocks.addForModelPhaseBlocks(
-  "steamLocomotive7722Model",
+  "SteamLocomotive7722Model",
   9,
   steamLocomotive7722LocomotiveModelPhase9
 );
 
 set7722LegoBlocks.addForModelPhaseBlocks(
-  "steamLocomotive7722Model",
+  "SteamLocomotive7722Model",
   10,
   steamLocomotive7722LocomotiveModelPhase10
 );
 
 set7722LegoBlocks.addForModelPhaseBlocks(
-  "steamLocomotive7722Model",
+  "SteamLocomotive7722Model",
   11,
   steamLocomotive7722LocomotiveModelPhase11
 );
 
 set7722LegoBlocks.addForModelPhaseBlocks(
-  "steamLocomotive7722Model",
+  "SteamLocomotive7722Model",
   12,
   steamLocomotive7722LocomotiveModelPhase12
 );

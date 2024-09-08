@@ -10,7 +10,6 @@ const useSelectModel = () => {
 
   const handleSelect = useCallback(
     (modelRef: Mesh | Object3D, isNeeded: boolean) => {
-      console.log(isNeeded);
       setIsSelected((prevState) => {
         if (prevState === false && modelRef) {
           const newMaterial = isNeeded
