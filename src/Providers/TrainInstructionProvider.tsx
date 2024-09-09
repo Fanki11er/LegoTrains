@@ -26,10 +26,11 @@ export const TrainInstructionContext = createContext({
   handleFinishPartConnection: (_marker: Object3D): boolean => false,
   handleGetModelMarkersInfo: () => null as ModelMarkersInfo | null,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handleGetRootModelMarkerByName: (_rootMarkerName:string) => undefined as Object3D<Object3DEventMap> | undefined,
-  handleSaveModelDataToDatabase: ()=> {},
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  updateInstructionWithPersistanceData: (_data: ModelPersistanceData[])=>{}
+  handleGetRootModelMarkerByName: (_rootMarkerName: string) =>
+    undefined as Object3D<Object3DEventMap> | undefined,
+  handleSaveModelDataToDatabase: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  updateInstructionWithPersistanceData: (_data: ModelPersistanceData[]) => {},
 });
 
 type InstructionData = {
@@ -76,8 +77,8 @@ const TrainInstructionProvider = (
   );
 
   const handleFinishPartConnection = useCallback((marker: Object3D) => {
-   const isPhaseEnded =  trainInstruction.current.finishPartConnection(marker);
-   return isPhaseEnded
+    const isPhaseEnded = trainInstruction.current.finishPartConnection(marker);
+    return isPhaseEnded;
   }, []);
 
   const handleGetModelMarkersInfo = useCallback(() => {
@@ -88,45 +89,48 @@ const TrainInstructionProvider = (
     return null;
   }, []);
 
-  const handleGetRootModelMarkerByName = (rootMarkerName:string)=> {
-    if(trainInstruction.current){
-      return trainInstruction.current.getModelRootMarkerByName(rootMarkerName)
+  const handleGetRootModelMarkerByName = (rootMarkerName: string) => {
+    if (trainInstruction.current) {
+      return trainInstruction.current.getModelRootMarkerByName(rootMarkerName);
     }
-    return undefined
-  }
+    return undefined;
+  };
 
-  const handleSaveModelDataToDatabase = ( ) => {
-    if(trainInstruction.current){
-      const data = trainInstruction.current.prepareDataToSaveAfterPhaseEnd()
-      if(data){
-        sendDataToDatabase(data)
+  const handleSaveModelDataToDatabase = () => {
+    if (trainInstruction.current) {
+      const data = trainInstruction.current.prepareDataToSaveAfterPhaseEnd();
+      if (data) {
+        sendDataToDatabase(data);
       }
     }
-   
-  }
+  };
 
-  const sendDataToDatabase = async (data: ModelPersistanceData)=> {
-    const savedModels = await axios.get<{modelName: string, id: string}[]>("/modelsList")
-    const foundModel = savedModels.data.find(model=> {
-      
-      return model.modelName === data.modelName
-     
-    })
+  const sendDataToDatabase = async (data: ModelPersistanceData) => {
+    const savedModels = await axios.get<{ modelName: string; id: string }[]>(
+      "/modelsList"
+    );
+    const foundModel = savedModels.data.find((model) => {
+      return model.modelName === data.modelName;
+    });
 
-    if(foundModel){
-     axios.patch(`/models/${foundModel.id}`,data)
-    }
-    else {
+    if (foundModel) {
+      axios.patch(`/models/${foundModel.id}`, data);
+    } else {
       const info = await axios.post("/models", data);
-      await axios.post("/modelsList", {modelName:data.modelName, id: info.data.id })
+      await axios.post("/modelsList", {
+        modelName: data.modelName,
+        id: info.data.id,
+      });
     }
-  }
+  };
 
-  const updateInstructionWithPersistanceData = (data: ModelPersistanceData[])=> {
-    if(trainInstruction.current){
-      trainInstruction.current.usePersistanceData(data)
+  const updateInstructionWithPersistanceData = (
+    data: ModelPersistanceData[]
+  ) => {
+    if (trainInstruction.current) {
+      trainInstruction.current.usePersistanceData(data);
     }
-  }
+  };
 
   const context = {
     handleGetPartsList,
@@ -136,7 +140,7 @@ const TrainInstructionProvider = (
     handleGetModelMarkersInfo,
     handleGetRootModelMarkerByName,
     handleSaveModelDataToDatabase,
-    updateInstructionWithPersistanceData
+    updateInstructionWithPersistanceData,
   };
 
   return (

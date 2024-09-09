@@ -1,20 +1,19 @@
 import { useGLTF } from "@react-three/drei";
 import { useEffect, useMemo, useRef } from "react";
-import { Object3D} from "three";
-import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";               
+import { Object3D } from "three";
+import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";
 import useSelectModel from "../../../Hooks/useSelectModel";
 import { moveElementToFloorLevel } from "../../../Utilities/utilities";
 import { ModelMarkersInfo } from "../../../Classes/Model";
 import { ModelMarkerPersistanceData } from "../../../Classes/PersistanceModule";
-  
 
 type Props = {
-  modelMarkersInfo: ModelMarkersInfo
-  persistanceData: ModelMarkerPersistanceData | undefined
+  modelMarkersInfo: ModelMarkersInfo;
+  persistanceData: ModelMarkerPersistanceData | undefined;
 };
 
 const ModelMarkers = (props: Props) => {
-  const { modelMarkersInfo } = props;
+  const { modelMarkersInfo, persistanceData } = props;
   const { scene } = useGLTF(modelMarkersInfo.modelMarkersPath);
 
   const model = useMemo(() => {
@@ -28,19 +27,16 @@ const ModelMarkers = (props: Props) => {
   const handleMoveElementToFloorLevel = () => {
     if (modelRef.current) {
       moveElementToFloorLevel(modelRef.current);
-
     }
   };
 
   useEffect(() => {
     const model = modelRef.current;
-    console.log(model, "MMMM")
-    model.name = modelMarkersInfo.rootModelMarkerId
+    model.name = modelMarkersInfo.rootModelMarkerId;
 
     if (model) {
       model.addEventListener("childadded", handleMoveElementToFloorLevel);
       model.addEventListener("childremoved", handleMoveElementToFloorLevel);
-     
     }
 
     return () => {
@@ -48,6 +44,15 @@ const ModelMarkers = (props: Props) => {
       model.removeEventListener("childremoved", handleMoveElementToFloorLevel);
     };
   }, [modelMarkersInfo]);
+
+  useEffect(() => {
+    if (model && persistanceData) {
+      model.position.copy(persistanceData.position);
+      model.rotation.copy(persistanceData.rotation);
+      // model.matrix.copy(persistanceData.matrix);
+      // model.matrixWorld.copy(persistanceData.matrixWorld);
+    }
+  }, [model, persistanceData]);
 
   return (
     <>

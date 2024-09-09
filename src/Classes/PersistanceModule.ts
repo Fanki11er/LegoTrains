@@ -1,19 +1,11 @@
-import {
-  Euler,
-  Matrix4,
-  Object3D,
-  Object3DEventMap,
-  Quaternion,
-  Vector3,
-} from "three";
+import { Euler, Object3D, Object3DEventMap, Vector3 } from "three";
 import { TrainInstruction } from "./TrainInstruction";
 import { PartUserData } from "../Types/PartUserData";
 
 type ObjectPersistanceData = {
-  matrix: Matrix4;
-  matrixWorld: Matrix4;
+  //matrix: Matrix4;
+  //matrixWorld: Matrix4;
   position: Vector3;
-  quaternion: Quaternion;
   rotation: Euler;
 };
 export type ModelMarkerPersistanceData = ObjectPersistanceData & {
@@ -28,8 +20,7 @@ export type ModelPersistanceData = {
   markersData: ModelMarkerPersistanceData;
   usedPartsData: PartPersistanceData[];
   connectedMarkersIds: string[];
-  activePhaseId: number;
-  //!! Remove needed parts in Phases
+  activePhaseId: number | null;
 };
 
 export class PersistanceModule {
@@ -41,7 +32,8 @@ export class PersistanceModule {
 
   prepareDataToSaveAfterPhaseEnd = (): ModelPersistanceData | undefined => {
     const modelName = this.trainInstruction.getActiveModelName();
-    if (!modelName) {
+    const isModelFinished = this.trainInstruction.getIsActiveModelFinished();
+    if (!modelName || isModelFinished === null) {
       return undefined;
     }
 
@@ -49,11 +41,12 @@ export class PersistanceModule {
     if (!markers) {
       return undefined;
     }
-    const activePhaseId = this.trainInstruction.getActivePhaseId();
 
-    if (!activePhaseId) {
+    const activePhaseId = this.trainInstruction.getActivePhaseId();
+    if (!activePhaseId && !isModelFinished) {
       return undefined;
     }
+
     const preparedMarkerData = this.prepareModelMarkerDataToSave(markers);
     const partsPreparedToSave = this.prepareModelPartsDataToSave(markers);
 
@@ -73,10 +66,9 @@ export class PersistanceModule {
   ): ModelMarkerPersistanceData => {
     return {
       name: modelMarkers.name,
-      matrix: modelMarkers.matrix,
-      matrixWorld: modelMarkers.matrixWorld,
+      // matrix: modelMarkers.matrix,
+      // matrixWorld: modelMarkers.matrixWorld,
       position: modelMarkers.position,
-      quaternion: modelMarkers.quaternion,
       rotation: modelMarkers.rotation,
     };
   };
@@ -85,17 +77,16 @@ export class PersistanceModule {
     modelMarkers: Object3D<Object3DEventMap>
   ) => {
     const parts = modelMarkers.children.filter((child) => {
-      return child.type === "Mesh";
+      return child.type === "Mesh" || child.type === "Group";
     });
 
     const partsPreparedToSave: PartPersistanceData[] = parts.map((part) => {
       const data = part.userData as PartUserData;
       data.modelId = modelMarkers.name;
       return {
-        matrix: part.matrix,
-        matrixWorld: part.matrixWorld,
+        // matrix: part.matrix,
+        // matrixWorld: part.matrixWorld,
         position: part.position,
-        quaternion: part.quaternion,
         rotation: part.rotation,
         userData: data,
       };

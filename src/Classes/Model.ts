@@ -10,6 +10,7 @@ export type ModelMarkersInfo = {
 };
 export class Model {
   private modelName: string;
+  private isFinished: boolean = false;
   private phases: Phase[] = [];
   private activePhase: Phase | null = null;
   private instruction: TrainInstruction;
@@ -45,6 +46,10 @@ export class Model {
 
   getModelMarkersInfo = () => {
     return this.modelMarkersInfo;
+  };
+
+  getIsModelFinished = () => {
+    return this.isFinished;
   };
 
   addPhase = (phaseNumber: number, legoBlocks: LegoBlock[]) => {
@@ -141,8 +146,12 @@ export class Model {
     if (this.activePhase) {
       const currentPhaseIndex = this.phases.indexOf(this.activePhase);
       const newPhaseIndex = currentPhaseIndex + 1;
-      if (newPhaseIndex <= this.phases.length) {
+      if (newPhaseIndex < this.phases.length) {
         this.activePhase = this.phases[newPhaseIndex];
+      } else {
+        this.activePhase = null;
+        this.isFinished = true;
+        console.log("Model Finished");
       }
     }
     //!! Finish model

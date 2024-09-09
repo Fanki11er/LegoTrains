@@ -52,6 +52,13 @@ export class TrainInstruction {
     return "";
   };
 
+  getIsActiveModelFinished = () => {
+    if (this.activeModel) {
+      return this.activeModel.getIsModelFinished();
+    }
+    return null;
+  };
+
   getPersistanceModule = () => {
     return this.persistanceModule;
   };
@@ -61,7 +68,14 @@ export class TrainInstruction {
   };
 
   getActivePhaseId = () => {
-    return this.activeModel?.getActivePhase()?.getPhaseNumber();
+    if (this.activeModel) {
+      const activePhase = this.activeModel.getActivePhase();
+
+      if (activePhase) {
+        return activePhase.getPhaseNumber();
+      }
+    }
+    return null;
   };
 
   addModel = (model: Model) => {
@@ -127,6 +141,7 @@ export class TrainInstruction {
       isPhaseFinished = this.activeModel.updateNeededPartList(
         marker.userData.name
       );
+
       this.connectedMarkersIds.push(marker.userData.name);
     }
     return isPhaseFinished;
@@ -138,16 +153,21 @@ export class TrainInstruction {
 
   usePersistanceData = (data: ModelPersistanceData[]) => {
     this.models.forEach((model) => {
-      const foundModel = data.find((modelData) => {
-        return modelData.modelName === model.getModelName();
-      });
-      if (foundModel) {
-        const phase = model.findPhaseByNumber(foundModel.activePhaseId);
+      if (!model.getIsModelFinished()) {
+        const foundModel = data.find((modelData) => {
+          return modelData.modelName === model.getModelName();
+        });
+        if (foundModel && foundModel.activePhaseId) {
+          const phase = model.findPhaseByNumber(foundModel.activePhaseId);
 
-        if (phase) {
-          model.setActivePhase(phase);
+          if (phase) {
+            model.setActivePhase(phase);
+            //!! Clear phases before
+          }
         }
       }
+
+      //!!Clear all phases
     });
   };
 }

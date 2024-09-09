@@ -1,8 +1,2041 @@
 {
   "modelsList": [
-   
+    {
+      "id": "e3ff",
+      "modelName": "SteamLocomotive7722Model"
+    }
   ],
   "models": [
-   
+    {
+      "id": "e3ff",
+      "modelName": "SteamLocomotive7722Model",
+      "markersData": {
+        "name": "SteamLocomotive7722Model_ModelRootMarker",
+        "position": {
+          "x": 0,
+          "y": 23.442646409512427,
+          "z": 0
+        },
+        "rotation": {
+          "isEuler": true,
+          "_x": 8.881784197001252e-16,
+          "_y": 0,
+          "_z": 0,
+          "_order": "XYZ"
+        }
+      },
+      "usedPartsData": [
+        {
+          "position": {
+            "x": 0,
+            "y": -1.221096396446228,
+            "z": 0
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 1,
+            "partType": "4178",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 4.005932807922363,
+            "y": -2.814596176147461,
+            "z": 20.01087188720703
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 2,
+            "partType": "3062b",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -4.03289794921875,
+            "y": -2.814591407775879,
+            "z": 19.990497589111328
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 3,
+            "partType": "3062b",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -3.9845008850097656,
+            "y": -2.814596652984619,
+            "z": -20.000003814697266
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 4,
+            "partType": "3062b",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 4.033337593078613,
+            "y": -2.814591884613037,
+            "z": -20.000003814697266
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 5,
+            "partType": "3062b",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 0.02442169189453125,
+            "y": -9.083869934082031,
+            "z": -20.000003814697266
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 6,
+            "partType": "3023",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -0.01348114013671875,
+            "y": -9.276220321655273,
+            "z": 20.000686645507812
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 7,
+            "partType": "3023",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -48.01240539550781,
+            "y": -3.1935672760009766,
+            "z": 23.56085777282715
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 3.141592653589793,
+            "_y": -8.742277657347596e-8,
+            "_z": 3.141592653589793,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 8,
+            "partType": "x461b",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -48.018707275390625,
+            "y": -3.1935672760009766,
+            "z": -23.570293426513672
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 9,
+            "partType": "x461b",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 10,
+            "partType": "x469b",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 32.07002258300781,
+            "y": 6.713066101074219,
+            "z": 19.95001220703125
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 11,
+            "partType": "3023",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 32.07002258300781,
+            "y": 6.713066101074219,
+            "z": -19.95001220703125
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 12,
+            "partType": "3023",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 64.84324645996094,
+            "y": -5.554261684417725,
+            "z": 0
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 13,
+            "partType": "4023",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -64.83244323730469,
+            "y": -5.554261684417725,
+            "z": 0
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 3.141592653589793,
+            "_y": -8.742277657347596e-8,
+            "_z": 3.141592653589793,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 14,
+            "partType": "4023",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -74.29844665527344,
+            "y": -5.523123264312744,
+            "z": 0
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": -3.141592609878408,
+            "_y": -4.371139708344615e-8,
+            "_z": -1.570796461153735,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 15,
+            "partType": "73092",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 74.30924987792969,
+            "y": -5.523123264312744,
+            "z": 0
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": -1.570796461153735,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 16,
+            "partType": "73092",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -51.94996643066406,
+            "y": 9.089021682739258,
+            "z": -16.000011444091797
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 3.141592653589793,
+            "_y": -8.742277657347596e-8,
+            "_z": 3.141592653589793,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 17,
+            "partType": "3040",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -51.94996643066406,
+            "y": 9.089025497436523,
+            "z": 16.00001335144043
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 18,
+            "partType": "3040",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 48.01153564453125,
+            "y": 3.3588449954986572,
+            "z": 22.24287986755371
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 19,
+            "partType": "4175",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 47.95849609375,
+            "y": 3.358841896057129,
+            "z": -22.243793487548828
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 3.141592653589793,
+            "_y": -8.742277657347596e-8,
+            "_z": 3.141592653589793,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 20,
+            "partType": "4175",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -7.84661865234375,
+            "y": 46.28902053833008,
+            "z": 0.09998703002929688
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 21,
+            "partType": "3003",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 59.95001220703125,
+            "y": 6.713066101074219,
+            "z": -16.000015258789062
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 22,
+            "partType": "3023",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 59.95001220703125,
+            "y": 6.713066101074219,
+            "z": 16.000011444091797
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 23,
+            "partType": "3023",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 0.1700286865234375,
+            "y": 10.154569625854492,
+            "z": 19.949342727661133
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 24,
+            "partType": "3009",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 0.1700286865234375,
+            "y": 10.154569625854492,
+            "z": -19.950681686401367
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 25,
+            "partType": "3009",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 59.7833251953125,
+            "y": 12.915409088134766,
+            "z": 20.000009536743164
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 26,
+            "partType": "4070",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 59.7833251953125,
+            "y": 12.915409088134766,
+            "z": -20.000011444091797
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 27,
+            "partType": "4070",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -59.78334045410156,
+            "y": 9.715409278869629,
+            "z": 20.000015258789062
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": -1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 28,
+            "partType": "4070",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -59.78334045410156,
+            "y": 9.715409278869629,
+            "z": -20.000011444091797
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": -1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 29,
+            "partType": "4070",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 64.34999084472656,
+            "y": 13.189022064208984,
+            "z": 20.00000762939453
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": -1.570796461153735,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 30,
+            "partType": "4073",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 64.34999084472656,
+            "y": 13.189022064208984,
+            "z": -20.000011444091797
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": -1.570796461153735,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 31,
+            "partType": "4073",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -64.35002136230469,
+            "y": 9.934903144836426,
+            "z": -20.17218780517578
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 1.570796461153735,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 32,
+            "partType": "4073",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -64.35002136230469,
+            "y": 9.934903144836426,
+            "z": 20.000015258789062
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 1.570796461153735,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 33,
+            "partType": "4073",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 48.564208984375,
+            "y": -5.364717483520508,
+            "z": 17.448883056640625
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": -3.061291888349574,
+            "_y": -1.44393351492064,
+            "_z": 0.0809499672245521,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 34,
+            "partType": "766c28",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 59.94984436035156,
+            "y": 13.385092735290527,
+            "z": -0.1000150665640831
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 35,
+            "partType": "3010",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -11.83026123046875,
+            "y": 21.501514434814453,
+            "z": 16.00001335144043
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 36,
+            "partType": "3002",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 12.16973876953125,
+            "y": 21.501514434814453,
+            "z": 16.00001335144043
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 37,
+            "partType": "3002",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -11.83026123046875,
+            "y": 21.501514434814453,
+            "z": -16.00001335144043
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 38,
+            "partType": "3002",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 12.16973876953125,
+            "y": 21.501514434814453,
+            "z": -16.00001335144043
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 39,
+            "partType": "3002",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 20.120025634765625,
+            "y": 25.860780715942383,
+            "z": -0.0000133514404296875
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 40,
+            "partType": "3666",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -44.05000305175781,
+            "y": 20.04033660888672,
+            "z": 7.399223327636719
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 41,
+            "partType": "3665",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -44.05000305175781,
+            "y": 20.040340423583984,
+            "z": -7.401029586791992
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 3.141592653589793,
+            "_y": -8.742277657347596e-8,
+            "_z": 3.141592653589793,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 42,
+            "partType": "3665",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -32.03086853027344,
+            "y": 20.00298309326172,
+            "z": 7.858837127685547
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 43,
+            "partType": "3660",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -32.03086853027344,
+            "y": 20.00298309326172,
+            "z": -7.860644340515137
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 3.141592653589793,
+            "_y": -8.742277657347596e-8,
+            "_z": 3.141592653589793,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 44,
+            "partType": "3660",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 22.303604125976562,
+            "y": 31.954437255859375,
+            "z": -0.0000133514404296875
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 45,
+            "partType": "3039px6",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -51.95014953613281,
+            "y": 19.785091400146484,
+            "z": -0.000012934207916259766
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 46,
+            "partType": "3010",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 12.10321044921875,
+            "y": 29.385089874267578,
+            "z": -0.000012926757335662842
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 47,
+            "partType": "3010",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 60.04933166503906,
+            "y": 22.954570770263672,
+            "z": 0.00000762939453125
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 48,
+            "partType": "3009",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 12.370040893554688,
+            "y": 28.915407180786133,
+            "z": -20.000011444091797
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": -1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 49,
+            "partType": "4070",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 12.370040893554688,
+            "y": 28.915407180786133,
+            "z": 20.000015258789062
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": -1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 50,
+            "partType": "4070",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -22.839279174804688,
+            "y": 28.626747131347656,
+            "z": 19.99020004272461
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 1.570796461153735,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 51,
+            "partType": "73590c01a",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -19.22662353515625,
+            "y": 24.89333152770996,
+            "z": -20.005830764770508
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 1.570796461153735,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 52,
+            "partType": "73590c01a",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 60.05000305175781,
+            "y": 31.48902130126953,
+            "z": 19.950008392333984
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 53,
+            "partType": "3005",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 60.05000305175781,
+            "y": 31.489023208618164,
+            "z": -19.949989318847656
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 54,
+            "partType": "3005",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -23.999984741210938,
+            "y": 28.28902244567871,
+            "z": 11.949987411499023
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 55,
+            "partType": "3008",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -23.999984741210938,
+            "y": 28.28902244567871,
+            "z": -11.950011253356934
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 56,
+            "partType": "3008",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -51.94996643066406,
+            "y": 28.289020538330078,
+            "z": -0.0000133514404296875
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 57,
+            "partType": "3700",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 60.05000305175781,
+            "y": 41.089019775390625,
+            "z": 19.950008392333984
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 58,
+            "partType": "3005",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 60.05000305175781,
+            "y": 50.68901824951172,
+            "z": 19.950008392333984
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 59,
+            "partType": "3005",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 20.120025634765625,
+            "y": 41.08901596069336,
+            "z": -0.0000133514404296875
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 60,
+            "partType": "3004",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -52.79994201660156,
+            "y": 29.08902359008789,
+            "z": -0.0000133514404296875
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 1.570796461153735,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 61,
+            "partType": "4274",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 4.15338134765625,
+            "y": 38.5063362121582,
+            "z": 6.9059834480285645
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 62,
+            "partType": "3038",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -19.899978637695312,
+            "y": 38.5063362121582,
+            "z": 6.905982971191406
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 63,
+            "partType": "3038",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -43.99998474121094,
+            "y": 38.5063362121582,
+            "z": 6.905982971191406
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 64,
+            "partType": "3038",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 4.1533966064453125,
+            "y": 38.5063362121582,
+            "z": -6.906009674072266
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 3.141592653589793,
+            "_y": -8.742277657347596e-8,
+            "_z": 3.141592653589793,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 65,
+            "partType": "3038",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -19.899978637695312,
+            "y": 38.50634002685547,
+            "z": -6.906009674072266
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 3.141592653589793,
+            "_y": -8.742277657347596e-8,
+            "_z": 3.141592653589793,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 66,
+            "partType": "3038",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -43.99998474121094,
+            "y": 38.50634002685547,
+            "z": -6.906009674072266
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 3.141592653589793,
+            "_y": -8.742277657347596e-8,
+            "_z": 3.141592653589793,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 67,
+            "partType": "3038",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 60.05000305175781,
+            "y": 41.089019775390625,
+            "z": -19.949989318847656
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 68,
+            "partType": "3005",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 60.05000305175781,
+            "y": 50.68901824951172,
+            "z": -19.949989318847656
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 69,
+            "partType": "3005",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 40.07002258300781,
+            "y": 31.48902702331543,
+            "z": 23.20001220703125
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 70,
+            "partType": "4181",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 40.07002258300781,
+            "y": 31.48902702331543,
+            "z": -23.200008392333984
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 3.141592653589793,
+            "_y": -8.742277657347596e-8,
+            "_z": 3.141592653589793,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 71,
+            "partType": "4182",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 20.003372192382812,
+            "y": 41.089019775390625,
+            "z": 16.000015258789062
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": -1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 72,
+            "partType": "4035",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 20.003372192382812,
+            "y": 41.089019775390625,
+            "z": -16.00001335144043
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": -1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 73,
+            "partType": "4035",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 13.762222290039062,
+            "y": 48.136375427246094,
+            "z": -0.000012874603271484375
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": -1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 74,
+            "partType": "4623",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -51.94996643066406,
+            "y": 44.28902053833008,
+            "z": 0.09998703002929688
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 75,
+            "partType": "3794",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -36.05000305175781,
+            "y": 44.28901672363281,
+            "z": 0.09998679161071777
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 76,
+            "partType": "3794",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 20.120025634765625,
+            "y": 54.71305847167969,
+            "z": -0.000013828277587890625
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 77,
+            "partType": "3023",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 20.120025634765625,
+            "y": 51.513057708740234,
+            "z": -0.000013381242752075195
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 78,
+            "partType": "3023",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 40.470062255859375,
+            "y": 40.9890251159668,
+            "z": 21.400009155273438
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": -1.570796461153735,
+            "_y": -4.371139708344615e-8,
+            "_z": -3.141592609878408,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 79,
+            "partType": "4183",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 40.470062255859375,
+            "y": 40.9890251159668,
+            "z": -21.400009155273438
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": -1.570796461153735,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 80,
+            "partType": "4183",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 18.453384399414062,
+            "y": 41.40570831298828,
+            "z": 16.000009536743164
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": -1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 81,
+            "partType": "4036",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 18.453369140625,
+            "y": 41.40570831298828,
+            "z": -16.000019073486328
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": -1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 82,
+            "partType": "4036",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 40.100006103515625,
+            "y": 57.86077880859375,
+            "z": 20.05000877380371
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 83,
+            "partType": "3666",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 40.100006103515625,
+            "y": 57.86077880859375,
+            "z": -19.949989318847656
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 84,
+            "partType": "3666",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -47.99998474121094,
+            "y": 7.889021396636963,
+            "z": 0.000011444091796875
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 85,
+            "partType": "3003",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -51.94996643066406,
+            "y": 50.63902282714844,
+            "z": 0.09998703002929688
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 86,
+            "partType": "4073",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -51.94996643066406,
+            "y": 47.839019775390625,
+            "z": 0.09998703002929688
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 87,
+            "partType": "4073",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 20.120025634765625,
+            "y": 59.589019775390625,
+            "z": 0.10000991821289062
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 1.5707963267948966,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 88,
+            "partType": "3710",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -36.05000305175781,
+            "y": 51.589019775390625,
+            "z": 0.09998703002929688
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 89,
+            "partType": "3626b",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 23.708969116210938,
+            "y": -12.242643356323242,
+            "z": 16.59909439086914
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 1.570796461153735,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 98,
+            "partType": "2ac02",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -23.774703979492188,
+            "y": -12.242643356323242,
+            "z": 16.59909439086914
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 1.570796461153735,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 96,
+            "partType": "2ac02",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 23.708969116210938,
+            "y": -12.242643356323242,
+            "z": -16.600906372070312
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 1.570796461153735,
+            "_y": -4.371139708344615e-8,
+            "_z": 3.141592609878408,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 99,
+            "partType": "2ac02",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -23.774688720703125,
+            "y": -12.242643356323242,
+            "z": -16.600906372070312
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 1.570796461153735,
+            "_y": -4.371139708344615e-8,
+            "_z": 3.141592609878408,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 97,
+            "partType": "2ac02",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -51.94996643066406,
+            "y": 57.19026184082031,
+            "z": 0.09998679161071777
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 94,
+            "partType": "3062b",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -57.49998474121094,
+            "y": 29.08902359008789,
+            "z": -0.0000133514404296875
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 1.570796461153735,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 95,
+            "partType": "3960",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 11.339279174804688,
+            "y": 55.65827178955078,
+            "z": -0.000013828277587890625
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 92,
+            "partType": "4589",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 40.09999084472656,
+            "y": 64.38902282714844,
+            "z": 0.10001182556152344
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 93,
+            "partType": "4509",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": -7.84661865234375,
+            "y": 53.88901901245117,
+            "z": 0.09998703002929688
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 90,
+            "partType": "3068b",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        },
+        {
+          "position": {
+            "x": 40.09999084472656,
+            "y": 69.88902282714844,
+            "z": 0.10001182556152344
+          },
+          "rotation": {
+            "isEuler": true,
+            "_x": 0,
+            "_y": 0,
+            "_z": 0,
+            "_order": "XYZ"
+          },
+          "userData": {
+            "partId": 91,
+            "partType": "3068b",
+            "isConnected": true,
+            "modelId": "SteamLocomotive7722Model_ModelRootMarker"
+          }
+        }
+      ],
+      "connectedMarkersIds": [
+        "ModelMarker.099",
+        "ModelMarker.098",
+        "ModelMarker.096",
+        "ModelMarker.097",
+        "ModelMarker.090",
+        "ModelMarker.095",
+        "ModelMarker.093",
+        "ModelMarker.094",
+        "ModelMarker.092",
+        "ModelMarker.091"
+      ],
+      "activePhaseId": null
+    }
   ]
 }

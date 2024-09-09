@@ -12,16 +12,16 @@ import { moveElementToFloorLevel } from "../../../Utilities/utilities";
 import { LegoBlock } from "../../../Types/LegoBlock";
 import { PartPersistanceData } from "../../../Classes/PersistanceModule";
 
-
 type PartProps = {
   partInfo: LegoBlock;
-  persistanceData: PartPersistanceData | undefined
+  persistanceData: PartPersistanceData | undefined;
 };
 
 const LegoPart = (props: PartProps) => {
   const { partInfo, persistanceData } = props;
   const { scene } = useGLTF(partInfo.partPath);
-  const { handleGetMarkersForSelectedPart, handleGetRootModelMarkerByName } = useTrainInstruction();
+  const { handleGetMarkersForSelectedPart, handleGetRootModelMarkerByName } =
+    useTrainInstruction();
   const [markersList, setMarkersList] = useState<Object3D<Object3DEventMap>[]>(
     []
   );
@@ -38,38 +38,33 @@ const LegoPart = (props: PartProps) => {
 
   useEffect(() => {
     if (modelRef.current) {
-      if(!persistanceData){
+      if (!persistanceData) {
         modelRef.current.position.setX(partInfo.partStartPosition.x);
         modelRef.current.position.setZ(partInfo.partStartPosition.z);
-  
-        if(!partInfo.noAutomaticMoveToGroundLevel){
+
+        if (!partInfo.noAutomaticMoveToGroundLevel) {
           moveElementToFloorLevel(modelRef.current);
         }
-        
+
         modelRef.current.userData = {
           partId: partInfo.partId,
           partType: partInfo.partType,
           isConnected: false,
         } as PartUserData;
-      }
-      else {
-        
+      } else {
+        const rootMarker = handleGetRootModelMarkerByName(
+          persistanceData.userData.modelId!
+        );
 
-        const rootMarker = handleGetRootModelMarkerByName(persistanceData.userData.modelId!)
-
-       
         modelRef.current.position.copy(persistanceData.position);
-        modelRef.current.rotation.copy(persistanceData.rotation)
-        //modelRef.current.quaternion.copy(persistanceData.quaternion)
-         modelRef.current.matrix.copy(persistanceData.matrix)
-         modelRef.current.matrixWorld.copy(persistanceData.matrixWorld)
-         modelRef.current.userData = persistanceData.userData
+        modelRef.current.rotation.copy(persistanceData.rotation);
+        //modelRef.current.matrix.copy(persistanceData.matrix);
+        //modelRef.current.matrixWorld.copy(persistanceData.matrixWorld);
+        modelRef.current.userData = persistanceData.userData;
 
-         if(rootMarker){
-          rootMarker.add(modelRef.current)
+        if (rootMarker) {
+          rootMarker.add(modelRef.current);
         }
-
-        
       }
 
       modelRef.current.name = partInfo.partType;
@@ -77,8 +72,7 @@ const LegoPart = (props: PartProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { isSelected, handleSelect, handleUnselect } =
-    useSelectModel();
+  const { isSelected, handleSelect, handleUnselect } = useSelectModel();
 
   const renderNests = (markersList: Object3D<Object3DEventMap>[]) => {
     return markersList.map((marker) => {
@@ -91,7 +85,6 @@ const LegoPart = (props: PartProps) => {
       <primitive
         ref={modelRef}
         object={model}
-      
         onClick={(e: ThreeEvent<Event>) => {
           if (!modelRef.current.userData.isConnected) {
             e.stopPropagation();
