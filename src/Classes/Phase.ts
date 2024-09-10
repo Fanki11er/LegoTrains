@@ -37,4 +37,8 @@ export class Phase {
       this.phasePartsList.push(partInfo);
     });
   };
+
+  clearPhasePartsList = () => {
+    this.phasePartsList = [];
+  };
 }

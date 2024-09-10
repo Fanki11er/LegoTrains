@@ -162,12 +162,36 @@ export class TrainInstruction {
 
           if (phase) {
             model.setActivePhase(phase);
-            //!! Clear phases before
+            this.clearNeededPartsInModelPhasesBeforePhaseId(
+              model,
+              phase.getPhaseNumber()
+            );
           }
         }
+      } else {
+        this.clearNeededPartsListInAllModelPhases(model);
       }
+    });
+  };
 
-      //!!Clear all phases
+  private clearNeededPartsInModelPhasesBeforePhaseId = (
+    model: Model,
+    phaseId: number
+  ) => {
+    const phases = model.getPhases();
+
+    phases.forEach((phase) => {
+      if (phase.getPhaseNumber() < phaseId) {
+        phase.clearPhasePartsList();
+      }
+    });
+  };
+
+  private clearNeededPartsListInAllModelPhases = (model: Model) => {
+    const phases = model.getPhases();
+
+    phases.forEach((phase) => {
+      phase.clearPhasePartsList();
     });
   };
 }

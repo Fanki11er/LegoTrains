@@ -52,6 +52,10 @@ export class Model {
     return this.isFinished;
   };
 
+  getPhases = () => {
+    return this.phases;
+  };
+
   addPhase = (phaseNumber: number, legoBlocks: LegoBlock[]) => {
     const phase = this.phases.find((phase) => {
       return phaseNumber === phase.getPhaseNumber();
@@ -154,7 +158,8 @@ export class Model {
         console.log("Model Finished");
       }
     }
-    //!! Finish model
+    //!! change active model next model
+    //!! move model to set
   };
 
   findMarkerByPartType = (

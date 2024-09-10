@@ -79,7 +79,7 @@ const Nest = (props: NestProps) => {
             marker.parent.add(mesh);
             mesh.userData.isConnected = true;
             const isPhaseFinished = handleFinishPartConnection(marker);
-            console.log(isPhaseFinished, "IS");
+
             if (isPhaseFinished) {
               handleSaveModelDataToDatabase();
             }
