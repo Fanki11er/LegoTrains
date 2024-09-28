@@ -13,11 +13,16 @@ import { steamLocomotive7722LocomotiveModelPhase7 } from "../../PartsLists/Steam
 import { steamLocomotive7722LocomotiveModelPhase8 } from "../../PartsLists/SteamLocomotive7722Parts/Phase8";
 import { steamLocomotive7722LocomotiveModelPhase9 } from "../../PartsLists/SteamLocomotive7722Parts/Phase9";
 import { SetLegoBlocks } from "../../PartsLists/SteamLocomotive7722Parts/SetLegoBlockTypes";
+// @ts-expect-error Not a type
+import set7722SceneMarkersWithTracks from "../../assets/3D/Set_7722_V1/SceneMarkers/Set_7722_Scene_Markers_With_Tracks.glb";
 
 // @ts-expect-error Not a type
 import set7722LocomotiveModelMarkers from "../../assets/3D/ModelsMarkers/SteamLocomotive7722/Markers.glb";
 
-export const set7722Instruction = new TrainInstruction();
+export const set7722Instruction = new TrainInstruction(
+  "7722",
+  set7722SceneMarkersWithTracks
+);
 
 const steamLocomotive7722Model = new Model(
   "SteamLocomotive7722Model",

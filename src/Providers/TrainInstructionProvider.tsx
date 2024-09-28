@@ -9,7 +9,7 @@ import { TrainInstruction } from "../Classes/TrainInstruction";
 //import { PartInfo } from "../Types/PartInfo";
 import { useThree } from "@react-three/fiber";
 import { Object3D, Object3DEventMap } from "three";
-import { ModelMarkersInfo } from "../Classes/Model";
+import { MarkersInfo } from "../Classes/Model";
 import { LegoBlock } from "../Types/LegoBlock";
 import { ModelPersistanceData } from "../Classes/PersistanceModule";
 import axios from "../Api/axios";
@@ -24,7 +24,8 @@ export const TrainInstructionContext = createContext({
     undefined as Object3D<Object3DEventMap> | undefined,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleFinishPartConnection: (_marker: Object3D): boolean => false,
-  handleGetModelMarkersInfo: () => null as ModelMarkersInfo | null,
+  handleGetModelMarkersInfo: () => null as MarkersInfo | null,
+  handleGetSceneMarkersInfo: () => null as MarkersInfo | null,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleGetRootModelMarkerByName: (_rootMarkerName: string) =>
     undefined as Object3D<Object3DEventMap> | undefined,
@@ -89,6 +90,10 @@ const TrainInstructionProvider = (
     return null;
   }, []);
 
+  const handleGetSceneMarkersInfo = useCallback(() => {
+    return trainInstruction.current.getSceneMarkersInfo();
+  }, []);
+
   const handleGetRootModelMarkerByName = (rootMarkerName: string) => {
     if (trainInstruction.current) {
       return trainInstruction.current.getModelRootMarkerByName(rootMarkerName);
@@ -138,6 +143,7 @@ const TrainInstructionProvider = (
     handleGetMarkerById,
     handleFinishPartConnection,
     handleGetModelMarkersInfo,
+    handleGetSceneMarkersInfo,
     handleGetRootModelMarkerByName,
     handleSaveModelDataToDatabase,
     updateInstructionWithPersistanceData,

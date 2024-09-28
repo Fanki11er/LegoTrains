@@ -15,7 +15,7 @@ function App() {
     <SceneSection>
       <StyledCanvas
         shadows
-        camera={{ near: 1, far: 1000, position: [0, 50, 250] }}
+        camera={{ near: 1, far: 2000, position: [0, 50, 250] }}
       >
         <Suspense fallback={<Loader />}>
           <directionalLight position={[0, 50, 5]} intensity={7} />

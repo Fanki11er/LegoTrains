@@ -4,9 +4,9 @@ import { TrainInstruction } from "./TrainInstruction";
 import { PartInfo } from "../Types/PartInfo";
 import { LegoBlock } from "../Types/LegoBlock";
 
-export type ModelMarkersInfo = {
-  modelMarkersPath: string;
-  rootModelMarkerId: string;
+export type MarkersInfo = {
+  markersPath: string;
+  rootMarkerId: string;
 };
 export class Model {
   private modelName: string;
@@ -14,7 +14,7 @@ export class Model {
   private phases: Phase[] = [];
   private activePhase: Phase | null = null;
   private instruction: TrainInstruction;
-  private modelMarkersInfo: ModelMarkersInfo;
+  private modelMarkersInfo: MarkersInfo;
 
   constructor(
     modelName: string,
@@ -24,8 +24,8 @@ export class Model {
     this.instruction = instruction;
     this.modelName = modelName;
     this.modelMarkersInfo = {
-      modelMarkersPath: modelMarkersPath,
-      rootModelMarkerId: `${modelName}_ModelRootMarker`,
+      markersPath: modelMarkersPath,
+      rootMarkerId: `${modelName}_ModelRootMarker`,
     };
   }
   getActivePhase = () => {
@@ -37,11 +37,11 @@ export class Model {
   };
 
   getModelMarkersPath = () => {
-    return this.modelMarkersInfo.modelMarkersPath;
+    return this.modelMarkersInfo.markersPath;
   };
 
   getRootModelMarkerId = () => {
-    return this.modelMarkersInfo.rootModelMarkerId;
+    return this.modelMarkersInfo.rootMarkerId;
   };
 
   getModelMarkersInfo = () => {

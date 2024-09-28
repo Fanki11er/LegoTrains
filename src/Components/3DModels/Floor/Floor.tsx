@@ -5,8 +5,8 @@ const Floor = () => {
     <mesh
       name={"Floor"}
       material={customMaterials.blueFloorMaterial}
-      position={[0, 0, 0]}
-      scale={[1000, 1000, 1000]}
+      position={[0, 0, -500]}
+      scale={[2000, 2000, 1]}
       rotation={[-Math.PI / 2, 0, 0]}
       receiveShadow
     >

@@ -1,5 +1,5 @@
 import { Object3D, Scene } from "three";
-import { Model } from "./Model";
+import { MarkersInfo, Model } from "./Model";
 import { SetLegoBlocks } from "../PartsLists/SteamLocomotive7722Parts/SetLegoBlockTypes";
 import { ModelPersistanceData, PersistanceModule } from "./PersistanceModule";
 
@@ -10,13 +10,23 @@ export class TrainInstruction {
   private setLegoBlocks: SetLegoBlocks | null = null;
   private connectedMarkersIds: string[] = [];
   private persistanceModule: PersistanceModule;
+  private sceneMarkersInfo: MarkersInfo;
 
-  constructor() {
+  constructor(setName: string, modelMarkersPath: string) {
+    this.sceneMarkersInfo = {
+      markersPath: modelMarkersPath,
+      rootMarkerId: `${setName}_SceneRootMarker`,
+    };
+
     this.persistanceModule = new PersistanceModule(this);
   }
 
   addSetLegoBlocks = (setLegoBlocks: SetLegoBlocks) => {
     this.setLegoBlocks = setLegoBlocks;
+  };
+
+  getSceneMarkersInfo = () => {
+    return this.sceneMarkersInfo;
   };
 
   getModelRootMarkerByName = (rootMarkerName: string) => {

@@ -10,6 +10,7 @@ import {
 } from "../../../../Classes/PersistanceModule";
 import axios from "../../../../Api/axios";
 import { AxiosError } from "axios";
+import SceneMarkers from "../../SceneMarkers/SceneMarkers";
 type ApiStatus = "Ready" | "Loading" | "Error" | "Idle";
 
 const SteamLocomotive_7722 = () => {
@@ -24,6 +25,7 @@ const SteamLocomotive_7722 = () => {
     handleGetPartsList,
     handleGetModelMarkersInfo,
     updateInstructionWithPersistanceData,
+    handleGetSceneMarkersInfo,
   } = useTrainInstruction();
 
   const partsList = useMemo(() => {
@@ -50,6 +52,7 @@ const SteamLocomotive_7722 = () => {
   }, []);
 
   const modelMarkersInfo = handleGetModelMarkersInfo();
+  const sceneMarkersInfo = handleGetSceneMarkersInfo();
 
   const renderLegoParts = (
     partsList: LegoBlock[],
@@ -85,6 +88,10 @@ const SteamLocomotive_7722 = () => {
 
   return (
     <>
+      <SceneMarkers
+        sceneMarkersInfo={sceneMarkersInfo!}
+        position={[0, 0.1, -550]}
+      />
       {status === "Ready" && (
         <>
           {modelMarkersInfo && (

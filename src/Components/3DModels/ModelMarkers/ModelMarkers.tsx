@@ -4,17 +4,17 @@ import { Object3D } from "three";
 import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";
 import useSelectModel from "../../../Hooks/useSelectModel";
 import { moveElementToFloorLevel } from "../../../Utilities/utilities";
-import { ModelMarkersInfo } from "../../../Classes/Model";
+import { MarkersInfo } from "../../../Classes/Model";
 import { ModelMarkerPersistanceData } from "../../../Classes/PersistanceModule";
 
 type Props = {
-  modelMarkersInfo: ModelMarkersInfo;
+  modelMarkersInfo: MarkersInfo;
   persistanceData: ModelMarkerPersistanceData | undefined;
 };
 
 const ModelMarkers = (props: Props) => {
   const { modelMarkersInfo, persistanceData } = props;
-  const { scene } = useGLTF(modelMarkersInfo.modelMarkersPath);
+  const { scene } = useGLTF(modelMarkersInfo.markersPath);
 
   const model = useMemo(() => {
     return scene.children[0];
@@ -32,7 +32,7 @@ const ModelMarkers = (props: Props) => {
 
   useEffect(() => {
     const model = modelRef.current;
-    model.name = modelMarkersInfo.rootModelMarkerId;
+    model.name = modelMarkersInfo.rootMarkerId;
 
     if (model) {
       model.addEventListener("childadded", handleMoveElementToFloorLevel);
