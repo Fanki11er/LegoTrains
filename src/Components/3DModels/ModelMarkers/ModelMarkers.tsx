@@ -1,20 +1,23 @@
 import { useGLTF } from "@react-three/drei";
-import { useEffect, useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { Object3D } from "three";
-import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";
+import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu/SelectedElementContextMenu";
 import useSelectModel from "../../../Hooks/useSelectModel";
 import { moveElementToFloorLevel } from "../../../Utilities/utilities";
-import { MarkersInfo } from "../../../Classes/Model";
-import { ModelMarkerPersistanceData } from "../../../Classes/PersistanceModule";
+import { ModelPersistanceData } from "../../../Classes/PersistanceModule";
+import { Model } from "../../../Classes/Model";
+import FinishedModelContextMenu from "../../Organisms/FinishedModelContextMenu/FinishedModelContextMenu";
+import useTrainInstruction from "../../../Hooks/useTrainInstruction";
 
 type Props = {
-  modelMarkersInfo: MarkersInfo;
-  persistanceData: ModelMarkerPersistanceData | undefined;
+  modelDataObject: Model;
+  persistanceData: ModelPersistanceData | undefined;
 };
 
 const ModelMarkers = (props: Props) => {
-  const { modelMarkersInfo, persistanceData } = props;
-  const { scene } = useGLTF(modelMarkersInfo.markersPath);
+  const { persistanceData, modelDataObject } = props;
+  const { scene } = useGLTF(modelDataObject.getModelMarkersPath());
+  const { handleGetSetRootMarker } = useTrainInstruction();
 
   const model = useMemo(() => {
     return scene.children[0];
@@ -22,17 +25,21 @@ const ModelMarkers = (props: Props) => {
 
   const modelRef = useRef<Object3D>(null!);
 
+  useEffect(() => {
+    moveElementToFloorLevel(model);
+  }, [model]);
+
   const { isSelected, handleSelect, handleUnselect } = useSelectModel();
 
-  const handleMoveElementToFloorLevel = () => {
-    if (modelRef.current) {
+  const handleMoveElementToFloorLevel = useCallback(() => {
+    if (modelRef.current && !modelDataObject.getIsModelArranged()) {
       moveElementToFloorLevel(modelRef.current);
     }
-  };
+  }, [modelDataObject]);
 
   useEffect(() => {
     const model = modelRef.current;
-    model.name = modelMarkersInfo.rootMarkerId;
+    model.name = modelDataObject.getRootModelMarkerId();
 
     if (model) {
       model.addEventListener("childadded", handleMoveElementToFloorLevel);
@@ -43,16 +50,21 @@ const ModelMarkers = (props: Props) => {
       model.removeEventListener("childadded", handleMoveElementToFloorLevel);
       model.removeEventListener("childremoved", handleMoveElementToFloorLevel);
     };
-  }, [modelMarkersInfo]);
+  }, [modelDataObject, handleMoveElementToFloorLevel]);
 
   useEffect(() => {
     if (model && persistanceData) {
-      model.position.copy(persistanceData.position);
-      model.rotation.copy(persistanceData.rotation);
-      // model.matrix.copy(persistanceData.matrix);
-      // model.matrixWorld.copy(persistanceData.matrixWorld);
+      const setRootMarker = handleGetSetRootMarker();
+      if (setRootMarker) {
+        model.position.copy(persistanceData.markersData.position);
+        model.rotation.copy(persistanceData.markersData.rotation);
+
+        if (persistanceData.isModelArranged) {
+          setRootMarker.add(model);
+        }
+      }
     }
-  }, [model, persistanceData]);
+  }, [model, persistanceData, handleGetSetRootMarker]);
 
   return (
     <>
@@ -60,7 +72,7 @@ const ModelMarkers = (props: Props) => {
         object={model}
         ref={modelRef}
         onClick={() => {
-          if (modelRef.current) {
+          if (modelRef.current && !modelDataObject.getIsModelArranged()) {
             handleSelect(modelRef.current, true);
           }
         }}
@@ -68,9 +80,14 @@ const ModelMarkers = (props: Props) => {
           handleUnselect(modelRef.current);
         }}
       />
-      {isSelected && modelRef.current && (
-        <SelectedElementContextMenu mesh={modelRef.current} />
-      )}
+      {modelRef.current &&
+        isSelected &&
+        !modelDataObject.getIsModelFinished() && (
+          <SelectedElementContextMenu mesh={modelRef.current} />
+        )}
+      {modelRef.current &&
+        isSelected &&
+        modelDataObject.getIsModelFinished() && <FinishedModelContextMenu />}
     </>
   );
 };

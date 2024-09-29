@@ -3,8 +3,6 @@ import { TrainInstruction } from "./TrainInstruction";
 import { PartUserData } from "../Types/PartUserData";
 
 type ObjectPersistanceData = {
-  //matrix: Matrix4;
-  //matrixWorld: Matrix4;
   position: Vector3;
   rotation: Euler;
 };
@@ -21,6 +19,8 @@ export type ModelPersistanceData = {
   usedPartsData: PartPersistanceData[];
   connectedMarkersIds: string[];
   activePhaseId: number | null;
+  isModelFinished: boolean;
+  isModelArranged: boolean;
 };
 
 export class PersistanceModule {
@@ -33,7 +33,9 @@ export class PersistanceModule {
   prepareDataToSaveAfterPhaseEnd = (): ModelPersistanceData | undefined => {
     const modelName = this.trainInstruction.getActiveModelName();
     const isModelFinished = this.trainInstruction.getIsActiveModelFinished();
-    if (!modelName || isModelFinished === null) {
+    const isModelArranged = this.trainInstruction.getIsActiveModelArranged();
+
+    if (!modelName || isModelFinished === null || isModelArranged === null) {
       return undefined;
     }
 
@@ -58,6 +60,8 @@ export class PersistanceModule {
       usedPartsData: partsPreparedToSave,
       connectedMarkersIds: connectedMarkersIds,
       activePhaseId: activePhaseId,
+      isModelFinished: isModelFinished,
+      isModelArranged: isModelArranged,
     };
   };
 
@@ -66,8 +70,6 @@ export class PersistanceModule {
   ): ModelMarkerPersistanceData => {
     return {
       name: modelMarkers.name,
-      // matrix: modelMarkers.matrix,
-      // matrixWorld: modelMarkers.matrixWorld,
       position: modelMarkers.position,
       rotation: modelMarkers.rotation,
     };
@@ -84,8 +86,6 @@ export class PersistanceModule {
       const data = part.userData as PartUserData;
       data.modelId = modelMarkers.name;
       return {
-        // matrix: part.matrix,
-        // matrixWorld: part.matrixWorld,
         position: part.position,
         rotation: part.rotation,
         userData: data,

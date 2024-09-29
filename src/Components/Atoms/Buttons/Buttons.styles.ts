@@ -6,6 +6,9 @@ const BaseButton = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: 10px;
+  border: 2px solid transparent;
+  transition: all 0.5s;
+  font-weight: 700;
 `;
 
 export const RotateElementContextMenuButton = styled(BaseButton)`
@@ -18,4 +21,16 @@ export const ElementContextMenuButton = styled(BaseButton)`
   width: 130px;
   height: 35px;
   background-color: yellow;
+`;
+
+export const FinishModelButton = styled(BaseButton)`
+  width: 130px;
+  height: 35px;
+  background-color: #22469e;
+  border: 2px solid #22469e;
+
+  &:focus,
+  &:hover {
+    border: 2px solid #fcec20;
+  }
 `;

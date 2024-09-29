@@ -6,7 +6,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import useTrainInstruction from "../../../Hooks/useTrainInstruction";
 import useSelectModel from "../../../Hooks/useSelectModel";
 import Nest from "../Nest/Nest";
-import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";
+import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu/SelectedElementContextMenu";
 import { customMaterials } from "../../../Materials/customMaterials";
 import { moveElementToFloorLevel } from "../../../Utilities/utilities";
 import { LegoBlock } from "../../../Types/LegoBlock";
@@ -58,8 +58,6 @@ const LegoPart = (props: PartProps) => {
 
         modelRef.current.position.copy(persistanceData.position);
         modelRef.current.rotation.copy(persistanceData.rotation);
-        //modelRef.current.matrix.copy(persistanceData.matrix);
-        //modelRef.current.matrixWorld.copy(persistanceData.matrixWorld);
         modelRef.current.userData = persistanceData.userData;
 
         if (rootMarker) {

@@ -1,11 +1,11 @@
-import { RotateElementContextMenuButton } from "../Atoms/Buttons/Buttons.styles";
+import { RotateElementContextMenuButton } from "../../Atoms/Buttons/Buttons.styles";
 import {
   SelectedElementContextMenuWrapper,
   SelectedElementMenuSection,
   SelectedElementMenuSectionHeader,
   SelectedElementMenuSectionHorizontalWrapper,
 } from "./SelectedElementContextMenu.styles";
-import { rotateElementUp } from "../../Utilities/utilities";
+import { rotateElementUp } from "../../../Utilities/utilities";
 import { Html } from "@react-three/drei";
 import { Mesh, Object3D } from "three";
 type Props = {

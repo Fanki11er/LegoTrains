@@ -12,10 +12,10 @@ export class TrainInstruction {
   private persistanceModule: PersistanceModule;
   private sceneMarkersInfo: MarkersInfo;
 
-  constructor(setName: string, modelMarkersPath: string) {
+  constructor(modelMarkersPath: string, markersId: string = "SceneRootMarker") {
     this.sceneMarkersInfo = {
       markersPath: modelMarkersPath,
-      rootMarkerId: `${setName}_SceneRootMarker`,
+      rootMarkerId: markersId,
     };
 
     this.persistanceModule = new PersistanceModule(this);
@@ -36,8 +36,23 @@ export class TrainInstruction {
     return undefined;
   };
 
+  getSetRootMarker = () => {
+    return this.getModelRootMarkerByName(this.sceneMarkersInfo.rootMarkerId);
+  };
+
   getModels = () => {
     return this.models;
+  };
+
+  getModelsReadyToRender = () => {
+    const arrangedModels = this.models.filter((model) => {
+      return model.getIsModelArranged();
+    });
+
+    if (this.activeModel) {
+      return [...arrangedModels, this.activeModel];
+    }
+    return arrangedModels;
   };
 
   getSetLegoBlocks = () => {
@@ -69,6 +84,13 @@ export class TrainInstruction {
     return null;
   };
 
+  getIsActiveModelArranged = () => {
+    if (this.activeModel) {
+      return this.activeModel.getIsModelArranged();
+    }
+    return null;
+  };
+
   getPersistanceModule = () => {
     return this.persistanceModule;
   };
@@ -91,15 +113,15 @@ export class TrainInstruction {
   addModel = (model: Model) => {
     this.models.push(model);
     if (!this.activeModel) {
-      this.activeModel = model;
+      this.changeToNextActiveModel();
     }
   };
 
-  setActiveModel = (index: number) => {
-    if (this.models.length > index) {
-      this.activeModel = this.models[index];
-    }
-  };
+  // setActiveModel = (index: number) => {
+  //   if (this.models.length > index) {
+  //     this.activeModel = this.models[index];
+  //   }
+  // };
 
   getMarkersForActivePhase = () => {
     if (this.scene) {
@@ -163,11 +185,18 @@ export class TrainInstruction {
 
   usePersistanceData = (data: ModelPersistanceData[]) => {
     this.models.forEach((model) => {
-      if (!model.getIsModelFinished()) {
-        const foundModel = data.find((modelData) => {
-          return modelData.modelName === model.getModelName();
-        });
-        if (foundModel && foundModel.activePhaseId) {
+      const foundModel = data.find((modelData) => {
+        return modelData.modelName === model.getModelName();
+      });
+
+      if (!foundModel) {
+        //Todo: Errors
+        console.log("Error, no model found");
+        return;
+      }
+
+      if (!foundModel.isModelFinished) {
+        if (foundModel.activePhaseId) {
           const phase = model.findPhaseByNumber(foundModel.activePhaseId);
 
           if (phase) {
@@ -180,8 +209,46 @@ export class TrainInstruction {
         }
       } else {
         this.clearNeededPartsListInAllModelPhases(model);
+        model.setIsModelFinished(foundModel.isModelFinished);
+        model.setIsModelArranged(foundModel.isModelArranged);
       }
     });
+    this.changeToNextActiveModel();
+  };
+
+  moveReadyModelToSetArrangement = () => {
+    if (this.activeModel && this.scene) {
+      const modelName = this.activeModel.getModelName();
+      const modelRootMarkerId = this.activeModel.getRootModelMarkerId();
+      const modelRootMarker = this.getModelRootMarkerByName(modelRootMarkerId);
+      const sceneRootMarker = this.getModelRootMarkerByName(
+        this.sceneMarkersInfo.rootMarkerId
+      );
+
+      if (modelRootMarker && sceneRootMarker) {
+        const destinationMarker = sceneRootMarker.children.find((child) => {
+          return child.userData && child.userData.forModelId === modelName;
+        });
+
+        if (!destinationMarker) {
+          //Todo: Error
+          console.log("Error, destination marker not found");
+          return false;
+        }
+
+        modelRootMarker.position.copy(destinationMarker.position);
+        modelRootMarker.quaternion.copy(destinationMarker.quaternion);
+        sceneRootMarker.add(modelRootMarker);
+        this.activeModel.setIsModelArranged(true);
+        this.changeToNextActiveModel();
+        return true;
+      } else {
+        //Todo: Error
+        console.log("Error, markers not found");
+        return false;
+      }
+    }
+    return false;
   };
 
   private clearNeededPartsInModelPhasesBeforePhaseId = (
@@ -203,5 +270,17 @@ export class TrainInstruction {
     phases.forEach((phase) => {
       phase.clearPhasePartsList();
     });
+  };
+
+  private changeToNextActiveModel = () => {
+    let newActiveModel: Model | null = null;
+
+    for (let i = 0; i < this.models.length; i++) {
+      if (!this.models[i].getIsModelArranged()) {
+        newActiveModel = this.models[i];
+        break;
+      }
+    }
+    this.activeModel = newActiveModel;
   };
 }

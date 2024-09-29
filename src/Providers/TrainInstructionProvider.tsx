@@ -6,10 +6,9 @@ import {
   useRef,
 } from "react";
 import { TrainInstruction } from "../Classes/TrainInstruction";
-//import { PartInfo } from "../Types/PartInfo";
 import { useThree } from "@react-three/fiber";
 import { Object3D, Object3DEventMap } from "three";
-import { MarkersInfo } from "../Classes/Model";
+import { MarkersInfo, Model } from "../Classes/Model";
 import { LegoBlock } from "../Types/LegoBlock";
 import { ModelPersistanceData } from "../Classes/PersistanceModule";
 import axios from "../Api/axios";
@@ -24,7 +23,7 @@ export const TrainInstructionContext = createContext({
     undefined as Object3D<Object3DEventMap> | undefined,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleFinishPartConnection: (_marker: Object3D): boolean => false,
-  handleGetModelMarkersInfo: () => null as MarkersInfo | null,
+  handleGetSetModelsToRenderList: (): Model[] => [],
   handleGetSceneMarkersInfo: () => null as MarkersInfo | null,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleGetRootModelMarkerByName: (_rootMarkerName: string) =>
@@ -32,6 +31,9 @@ export const TrainInstructionContext = createContext({
   handleSaveModelDataToDatabase: () => {},
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   updateInstructionWithPersistanceData: (_data: ModelPersistanceData[]) => {},
+  handleMoveReadyModelToSetArrangement: () => {},
+  handleGetSetRootMarker: () =>
+    undefined as Object3D<Object3DEventMap> | undefined,
 });
 
 type InstructionData = {
@@ -82,35 +84,23 @@ const TrainInstructionProvider = (
     return isPhaseEnded;
   }, []);
 
-  const handleGetModelMarkersInfo = useCallback(() => {
-    const activeModel = trainInstruction.current.getActiveModel();
-    if (activeModel) {
-      return activeModel.getModelMarkersInfo();
-    }
-    return null;
-  }, []);
-
   const handleGetSceneMarkersInfo = useCallback(() => {
     return trainInstruction.current.getSceneMarkersInfo();
   }, []);
 
-  const handleGetRootModelMarkerByName = (rootMarkerName: string) => {
-    if (trainInstruction.current) {
-      return trainInstruction.current.getModelRootMarkerByName(rootMarkerName);
-    }
-    return undefined;
-  };
-
-  const handleSaveModelDataToDatabase = () => {
-    if (trainInstruction.current) {
-      const data = trainInstruction.current.prepareDataToSaveAfterPhaseEnd();
-      if (data) {
-        sendDataToDatabase(data);
+  const handleGetRootModelMarkerByName = useCallback(
+    (rootMarkerName: string) => {
+      if (trainInstruction.current) {
+        return trainInstruction.current.getModelRootMarkerByName(
+          rootMarkerName
+        );
       }
-    }
-  };
+      return undefined;
+    },
+    []
+  );
 
-  const sendDataToDatabase = async (data: ModelPersistanceData) => {
+  const sendDataToDatabase = useCallback(async (data: ModelPersistanceData) => {
     const savedModels = await axios.get<{ modelName: string; id: string }[]>(
       "/modelsList"
     );
@@ -127,26 +117,54 @@ const TrainInstructionProvider = (
         id: info.data.id,
       });
     }
-  };
+  }, []);
 
-  const updateInstructionWithPersistanceData = (
-    data: ModelPersistanceData[]
-  ) => {
+  const handleSaveModelDataToDatabase = useCallback(() => {
     if (trainInstruction.current) {
-      trainInstruction.current.usePersistanceData(data);
+      const data = trainInstruction.current.prepareDataToSaveAfterPhaseEnd();
+      if (data) {
+        sendDataToDatabase(data);
+      }
     }
-  };
+  }, [sendDataToDatabase]);
+
+  const updateInstructionWithPersistanceData = useCallback(
+    (data: ModelPersistanceData[]) => {
+      if (trainInstruction.current) {
+        trainInstruction.current.usePersistanceData(data);
+      }
+    },
+    []
+  );
+
+  const handleGetSetModelsToRenderList = useCallback(() => {
+    return instruction.getModelsReadyToRender();
+  }, [instruction]);
+
+  const handleMoveReadyModelToSetArrangement = useCallback(() => {
+    const result = instruction.moveReadyModelToSetArrangement();
+    if (result) {
+      handleSaveModelDataToDatabase();
+    }
+    //Todo: Make arrangement of model
+  }, [handleSaveModelDataToDatabase, instruction]);
+
+  const handleGetSetRootMarker = useCallback(() => {
+    return instruction.getSetRootMarker();
+  }, [instruction]);
 
   const context = {
     handleGetPartsList,
     handleGetMarkersForSelectedPart,
     handleGetMarkerById,
     handleFinishPartConnection,
-    handleGetModelMarkersInfo,
+    handleGetSetModelsToRenderList,
     handleGetSceneMarkersInfo,
     handleGetRootModelMarkerByName,
     handleSaveModelDataToDatabase,
     updateInstructionWithPersistanceData,
+    handleMoveReadyModelToSetArrangement,
+    handleGetSetRootMarker,
   };
 
   return (

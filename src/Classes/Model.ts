@@ -11,6 +11,7 @@ export type MarkersInfo = {
 export class Model {
   private modelName: string;
   private isFinished: boolean = false;
+  private isModelArranged: boolean = false;
   private phases: Phase[] = [];
   private activePhase: Phase | null = null;
   private instruction: TrainInstruction;
@@ -30,6 +31,10 @@ export class Model {
   }
   getActivePhase = () => {
     return this.activePhase;
+  };
+
+  getIsModelArranged = () => {
+    return this.isModelArranged;
   };
 
   getModelName = () => {
@@ -54,6 +59,14 @@ export class Model {
 
   getPhases = () => {
     return this.phases;
+  };
+
+  setIsModelFinished = (isFinished: boolean) => {
+    this.isFinished = isFinished;
+  };
+
+  setIsModelArranged = (isModelArranged: boolean) => {
+    this.isModelArranged = isModelArranged;
   };
 
   addPhase = (phaseNumber: number, legoBlocks: LegoBlock[]) => {
@@ -155,11 +168,8 @@ export class Model {
       } else {
         this.activePhase = null;
         this.isFinished = true;
-        console.log("Model Finished");
       }
     }
-    //!! change active model next model
-    //!! move model to set
   };
 
   findMarkerByPartType = (

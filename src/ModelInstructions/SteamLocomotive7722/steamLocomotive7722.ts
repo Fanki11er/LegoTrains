@@ -20,7 +20,6 @@ import set7722SceneMarkersWithTracks from "../../assets/3D/Set_7722_V1/SceneMark
 import set7722LocomotiveModelMarkers from "../../assets/3D/ModelsMarkers/SteamLocomotive7722/Markers.glb";
 
 export const set7722Instruction = new TrainInstruction(
-  "7722",
   set7722SceneMarkersWithTracks
 );
 
@@ -32,6 +31,7 @@ const steamLocomotive7722Model = new Model(
 const set7722LegoBlocks = new SetLegoBlocks(set7722Instruction);
 
 set7722Instruction.addModel(steamLocomotive7722Model);
+
 set7722Instruction.addSetLegoBlocks(set7722LegoBlocks);
 
 set7722LegoBlocks.addForModelPhaseBlocks(

@@ -1,5 +1,5 @@
 import useTrainInstruction from "../../../../Hooks/useTrainInstruction";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import LegoPart from "../../LegoPart/LegoPart";
 import ModelMarkers from "../../ModelMarkers/ModelMarkers";
 import Instruction from "../../Instruction/Instruction";
@@ -11,6 +11,7 @@ import {
 import axios from "../../../../Api/axios";
 import { AxiosError } from "axios";
 import SceneMarkers from "../../SceneMarkers/SceneMarkers";
+import { Model } from "../../../../Classes/Model";
 type ApiStatus = "Ready" | "Loading" | "Error" | "Idle";
 
 const SteamLocomotive_7722 = () => {
@@ -23,16 +24,16 @@ const SteamLocomotive_7722 = () => {
 
   const {
     handleGetPartsList,
-    handleGetModelMarkersInfo,
     updateInstructionWithPersistanceData,
     handleGetSceneMarkersInfo,
+    handleGetSetModelsToRenderList,
   } = useTrainInstruction();
 
   const partsList = useMemo(() => {
     return handleGetPartsList();
   }, [handleGetPartsList]);
 
-  const loadModelsPersistanceData = async () => {
+  const loadModelsPersistanceData = useCallback(async () => {
     setStatus("Loading");
     try {
       const result = await axios.get<ModelPersistanceData[]>("/models");
@@ -41,17 +42,31 @@ const SteamLocomotive_7722 = () => {
       setStatus("Ready");
     } catch (err) {
       const error = err as AxiosError;
+      //Todo: Error
       console.log(error.message);
       setStatus("Error");
     }
-  };
+  }, [updateInstructionWithPersistanceData]);
 
   useEffect(() => {
     loadModelsPersistanceData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [loadModelsPersistanceData]);
 
-  const modelMarkersInfo = handleGetModelMarkersInfo();
+  const renderModels = (models: Model[]) => {
+    return models.map((model) => {
+      return (
+        <ModelMarkers
+          modelDataObject={model}
+          key={model.getModelName()}
+          persistanceData={getPersistanceDataForModel(
+            modelPersistanceData,
+            model.getModelName()
+          )}
+        />
+      );
+    });
+  };
+
   const sceneMarkersInfo = handleGetSceneMarkersInfo();
 
   const renderLegoParts = (
@@ -90,21 +105,11 @@ const SteamLocomotive_7722 = () => {
     <>
       <SceneMarkers
         sceneMarkersInfo={sceneMarkersInfo!}
-        position={[0, 0.1, -550]}
+        position={[0, 4, -550]}
       />
       {status === "Ready" && (
         <>
-          {modelMarkersInfo && (
-            <ModelMarkers
-              modelMarkersInfo={modelMarkersInfo}
-              persistanceData={
-                getPersistanceDataForModel(
-                  modelPersistanceData,
-                  "SteamLocomotive7722Model"
-                )?.markersData
-              }
-            />
-          )}
+          {renderModels(handleGetSetModelsToRenderList())}
           <group name={"LeftBlocks"}>
             {renderLegoParts(
               partsList,
