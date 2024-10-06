@@ -11,7 +11,7 @@ import { Object3D, Object3DEventMap } from "three";
 import { MarkersInfo, Model } from "../Classes/Model";
 import { LegoBlock } from "../Types/LegoBlock";
 import { ModelPersistanceData } from "../Classes/PersistanceModule";
-import axios from "../Api/axios";
+import usePersistanceDataProvider from "../Hooks/usePersistanceDataProvider";
 
 export const TrainInstructionContext = createContext({
   handleGetPartsList: (): LegoBlock[] => [],
@@ -28,7 +28,6 @@ export const TrainInstructionContext = createContext({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleGetRootModelMarkerByName: (_rootMarkerName: string) =>
     undefined as Object3D<Object3DEventMap> | undefined,
-  handleSaveModelDataToDatabase: () => {},
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   updateInstructionWithPersistanceData: (_data: ModelPersistanceData[]) => {},
   handleMoveReadyModelToSetArrangement: () => {},
@@ -43,8 +42,10 @@ type InstructionData = {
 const TrainInstructionProvider = (
   props: PropsWithChildren & InstructionData
 ) => {
+  console.log("RenderInstructionProvider");
   const { children, instruction } = props;
   const { scene } = useThree();
+  const { handleSaveModelDataToDatabase } = usePersistanceDataProvider();
 
   const trainInstruction = useRef(instruction);
 
@@ -100,34 +101,6 @@ const TrainInstructionProvider = (
     []
   );
 
-  const sendDataToDatabase = useCallback(async (data: ModelPersistanceData) => {
-    const savedModels = await axios.get<{ modelName: string; id: string }[]>(
-      "/modelsList"
-    );
-    const foundModel = savedModels.data.find((model) => {
-      return model.modelName === data.modelName;
-    });
-
-    if (foundModel) {
-      axios.patch(`/models/${foundModel.id}`, data);
-    } else {
-      const info = await axios.post("/models", data);
-      await axios.post("/modelsList", {
-        modelName: data.modelName,
-        id: info.data.id,
-      });
-    }
-  }, []);
-
-  const handleSaveModelDataToDatabase = useCallback(() => {
-    if (trainInstruction.current) {
-      const data = trainInstruction.current.prepareDataToSaveAfterPhaseEnd();
-      if (data) {
-        sendDataToDatabase(data);
-      }
-    }
-  }, [sendDataToDatabase]);
-
   const updateInstructionWithPersistanceData = useCallback(
     (data: ModelPersistanceData[]) => {
       if (trainInstruction.current) {
@@ -161,7 +134,6 @@ const TrainInstructionProvider = (
     handleGetSetModelsToRenderList,
     handleGetSceneMarkersInfo,
     handleGetRootModelMarkerByName,
-    handleSaveModelDataToDatabase,
     updateInstructionWithPersistanceData,
     handleMoveReadyModelToSetArrangement,
     handleGetSetRootMarker,

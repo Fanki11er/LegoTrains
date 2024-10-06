@@ -1,0 +1,91 @@
+import { Vector3 } from "three";
+import { LegoBlockType } from "../../../Types/LegoBlockType";
+import {
+  brick_1x1_3005,
+  brick_1x2_3004,
+  slope_Brick_45_2x3_3038,
+  technic_Pin_Half_Length_4274,
+} from "../PartsImports";
+
+export const steamLocomotive7722LocomotiveModelPhase9: LegoBlockType[] = [
+  {
+    partPath: brick_1x1_3005,
+    partStartPosition: new Vector3(-80, 0, 150),
+    partType: "3005",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.060",
+    depends: [],
+  },
+  {
+    partPath: brick_1x1_3005,
+    partStartPosition: new Vector3(-95, 0, 150),
+    partType: "3005",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.061",
+    depends: [],
+  },
+  {
+    partPath: brick_1x2_3004,
+    partStartPosition: new Vector3(300, 0, 100),
+    partType: "3004",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.059",
+    depends: [],
+  },
+  {
+    partPath: technic_Pin_Half_Length_4274,
+    partStartPosition: new Vector3(280, 0, 25),
+    partType: "4274",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.058",
+    depends: [],
+  },
+  {
+    partPath: slope_Brick_45_2x3_3038,
+    partStartPosition: new Vector3(280, 0, 0),
+    partType: "3038",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.064",
+    depends: [],
+  },
+  {
+    partPath: slope_Brick_45_2x3_3038,
+    partStartPosition: new Vector3(280, 0, -25),
+    partType: "3038",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.063",
+    depends: [],
+  },
+  {
+    partPath: slope_Brick_45_2x3_3038,
+    partStartPosition: new Vector3(280, 0, -50),
+    partType: "3038",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.062",
+    depends: [],
+  },
+  {
+    partPath: slope_Brick_45_2x3_3038,
+    partStartPosition: new Vector3(280, 0, -75),
+    partType: "3038",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.067",
+    depends: [],
+  },
+  {
+    partPath: slope_Brick_45_2x3_3038,
+    partStartPosition: new Vector3(280, 0, -100),
+    partType: "3038",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.066",
+    depends: [],
+  },
+  {
+    partPath: slope_Brick_45_2x3_3038,
+    partStartPosition: new Vector3(280, 0, -125),
+    partType: "3038",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.065",
+    depends: [],
+  },
+];

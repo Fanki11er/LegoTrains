@@ -23,6 +23,24 @@ export type ModelPersistanceData = {
   isModelArranged: boolean;
 };
 
+export type ExistingDataInfo = {
+  id: string;
+  name: string;
+};
+
+export type SetPersistanceData = {
+  setName: string;
+  modelsList: string[];
+  models: ModelPersistanceData[];
+  allModelsNumber: number;
+  finishedModelsNumber: number;
+};
+
+export type User = {
+  userName: string;
+  userSetsList: ExistingDataInfo[];
+};
+
 export class PersistanceModule {
   private trainInstruction: TrainInstruction;
 

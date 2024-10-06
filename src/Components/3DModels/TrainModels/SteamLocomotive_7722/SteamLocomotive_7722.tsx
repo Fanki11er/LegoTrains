@@ -1,5 +1,5 @@
 import useTrainInstruction from "../../../../Hooks/useTrainInstruction";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import LegoPart from "../../LegoPart/LegoPart";
 import ModelMarkers from "../../ModelMarkers/ModelMarkers";
 import Instruction from "../../Instruction/Instruction";
@@ -8,19 +8,12 @@ import {
   ModelPersistanceData,
   PartPersistanceData,
 } from "../../../../Classes/PersistanceModule";
-import axios from "../../../../Api/axios";
-import { AxiosError } from "axios";
 import SceneMarkers from "../../SceneMarkers/SceneMarkers";
 import { Model } from "../../../../Classes/Model";
-type ApiStatus = "Ready" | "Loading" | "Error" | "Idle";
+import usePersistanceDataProvider from "../../../../Hooks/usePersistanceDataProvider";
 
 const SteamLocomotive_7722 = () => {
   console.log("Rerender Locomotive");
-
-  const [modelPersistanceData, setModelPersistanceData] = useState<
-    ModelPersistanceData[] | undefined
-  >(undefined);
-  const [status, setStatus] = useState<ApiStatus>("Idle");
 
   const {
     handleGetPartsList,
@@ -29,30 +22,20 @@ const SteamLocomotive_7722 = () => {
     handleGetSetModelsToRenderList,
   } = useTrainInstruction();
 
+  const { setData, isLoading, isError, error } = usePersistanceDataProvider();
+
   const partsList = useMemo(() => {
     return handleGetPartsList();
   }, [handleGetPartsList]);
 
-  const loadModelsPersistanceData = useCallback(async () => {
-    setStatus("Loading");
-    try {
-      const result = await axios.get<ModelPersistanceData[]>("/models");
-      setModelPersistanceData(result.data);
-      updateInstructionWithPersistanceData(result.data);
-      setStatus("Ready");
-    } catch (err) {
-      const error = err as AxiosError;
-      //Todo: Error
-      console.log(error.message);
-      setStatus("Error");
-    }
-  }, [updateInstructionWithPersistanceData]);
-
   useEffect(() => {
-    loadModelsPersistanceData();
-  }, [loadModelsPersistanceData]);
+    setData && updateInstructionWithPersistanceData(setData.models);
+  }, [setData, updateInstructionWithPersistanceData]);
 
-  const renderModels = (models: Model[]) => {
+  const renderModels = (
+    models: Model[],
+    modelPersistanceData: ModelPersistanceData[] | undefined
+  ) => {
     return models.map((model) => {
       return (
         <ModelMarkers
@@ -103,25 +86,31 @@ const SteamLocomotive_7722 = () => {
 
   return (
     <>
-      <SceneMarkers
-        sceneMarkersInfo={sceneMarkersInfo!}
-        position={[0, 4, -550]}
-      />
-      {status === "Ready" && (
+      {isLoading && <div>ListLoading</div>}
+      {isError && <div>{error!.message}</div>}
+      {setData && (
         <>
-          {renderModels(handleGetSetModelsToRenderList())}
-          <group name={"LeftBlocks"}>
-            {renderLegoParts(
-              partsList,
-              getPersistanceDataForModel(
-                modelPersistanceData,
-                "SteamLocomotive7722Model"
-              )?.usedPartsData
-            )}
-          </group>
+          <SceneMarkers
+            sceneMarkersInfo={sceneMarkersInfo!}
+            position={[0, 4, -550]}
+          />
+
+          <>
+            {renderModels(handleGetSetModelsToRenderList(), setData.models)}
+            <group name={"LeftBlocks"}>
+              {renderLegoParts(
+                partsList,
+                getPersistanceDataForModel(
+                  setData.models,
+                  "SteamLocomotive7722Model"
+                )?.usedPartsData
+              )}
+            </group>
+          </>
+
+          <Instruction position={[-170, 0.1, 0]} />
         </>
       )}
-      <Instruction position={[-170, 0.1, 0]} />
     </>
   );
 };

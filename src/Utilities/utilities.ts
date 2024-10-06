@@ -1,4 +1,6 @@
 import { Box3, Mesh, Object3D, SRGBColorSpace, Texture } from "three";
+import { SetLegoBlocks } from "../LegoSets/Set7722V1/SteamLocomotive7722Parts/SetLegoBlockTypes";
+import { ModelBlock } from "../Types/ModelBlock";
 
 export const rotateElementUp = (
   element: Mesh | Object3D,
@@ -34,4 +36,18 @@ export const moveElementToFloorLevel = (model: Mesh | Object3D) => {
 export const setTextureOptions = (texture: Texture) => {
   texture.flipY = false;
   texture.colorSpace = SRGBColorSpace;
+};
+
+export const addForModelPhaseBlocks = (
+  setLegoBlocks: SetLegoBlocks,
+  modelName: string,
+  blocks: ModelBlock[]
+) => {
+  blocks.forEach((block) => {
+    setLegoBlocks.addForModelPhaseBlocks(
+      modelName,
+      block.phaseId,
+      block.legoBlockTypes
+    );
+  });
 };

@@ -1,6 +1,6 @@
 import { Object3D, Scene } from "three";
 import { MarkersInfo, Model } from "./Model";
-import { SetLegoBlocks } from "../PartsLists/SteamLocomotive7722Parts/SetLegoBlockTypes";
+import { SetLegoBlocks } from "../LegoSets/Set7722V1/SteamLocomotive7722Parts/SetLegoBlockTypes";
 import { ModelPersistanceData, PersistanceModule } from "./PersistanceModule";
 
 export class TrainInstruction {
@@ -190,8 +190,6 @@ export class TrainInstruction {
       });
 
       if (!foundModel) {
-        //Todo: Errors
-        console.log("Error, no model found");
         return;
       }
 
