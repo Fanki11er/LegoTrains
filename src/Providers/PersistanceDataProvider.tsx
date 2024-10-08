@@ -1,17 +1,24 @@
 import { createContext, PropsWithChildren, useCallback } from "react";
 import { TrainInstruction } from "../Classes/TrainInstruction";
-import { getSetDataFromDatabase } from "../firebase/readFromDbFunctions";
+import {
+  getSetDataFromDatabase,
+  getSetModelsDataFromDatabase,
+} from "../firebase/readFromDbFunctions";
 import { useQuery } from "@tanstack/react-query";
 import {
   ModelPersistanceData,
   SetPersistanceData,
 } from "../Classes/PersistanceModule";
-import { SET_DATA } from "../Api/queryKeys";
-import { createNewModelData } from "../firebase/writeToDbFuncions";
+import { MODELS_DATA, SET_DATA } from "../Api/queryKeys";
+import {
+  createNewModelData,
+  updateModelInDatabase,
+} from "../firebase/writeToDbFuncions";
 
 export const PersistanceDataContext = createContext({
   handleSaveModelDataToDatabase: () => {},
   setData: undefined as SetPersistanceData | undefined,
+  modelsData: undefined as ModelPersistanceData[] | undefined,
   isLoading: false,
   isError: false,
   error: null as Error | null,
@@ -28,6 +35,7 @@ const PersistanceDataProvider = ({
   legoSetId,
 }: PropsWithChildren & Props) => {
   console.log("RenderPersistanceProvider");
+
   const {
     data: setData,
     isLoading: isSetDataLoading,
@@ -39,58 +47,44 @@ const PersistanceDataProvider = ({
     staleTime: Infinity,
   });
 
-  //!!!!!!
-  // const sendDataToDatabase = useCallback(async (data: ModelPersistanceData) => {
-  //   const savedModels = await axios.get<{ modelName: string; id: string }[]>(
-  //     "/modelsList"
-  //   );
-  //   const foundModel = savedModels.data.find((model) => {
-  //     return model.modelName === data.modelName;
-  //   });
+  const {
+    data: modelsData,
+    isLoading: isModelsDataLoading,
+    isError: isModelsError,
+    error: modelsDataError,
+  } = useQuery<ModelPersistanceData[] | undefined>({
+    queryKey: [MODELS_DATA, legoSetId],
+    queryFn: () => getSetModelsDataFromDatabase(legoSetId),
+    staleTime: Infinity,
+  });
 
-  //   if (foundModel) {
-  //     axios.patch(`/models/${foundModel.id}`, data);
-  //   } else {
-  //     const info = await axios.post("/models", data);
-  //     await axios.post("/modelsList", {
-  //       modelName: data.modelName,
-  //       id: info.data.id,
-  //     });
-  //   }
-  // }, []);
-
-  const sendDataToDatabase = useCallback(
+  const sendModelDataToDatabase = useCallback(
     async (data: ModelPersistanceData, modelsList: string[]) => {
       const foundModel = modelsList.find((model) => {
         return model === data.modelName;
       });
       if (foundModel) {
-        //axios.patch(`/models/${foundModel.id}`, data);
+        updateModelInDatabase(legoSetId, data);
       } else {
         createNewModelData(legoSetId, data);
-        // const info = await axios.post("/models", data);
-        // await axios.post("/modelsList", {
-        //   modelName: data.modelName,
-        //   id: info.data.id,
-        // });
       }
     },
     [legoSetId]
   );
 
   const handleSaveModelDataToDatabase = useCallback(() => {
-    console.log("SEND");
     if (instruction) {
       const data = instruction.prepareDataToSaveAfterPhaseEnd();
       if (data && setData) {
-        sendDataToDatabase(data, setData?.modelsList);
+        sendModelDataToDatabase(data, setData?.modelsList);
       }
     }
-  }, [sendDataToDatabase, instruction, setData]);
+  }, [sendModelDataToDatabase, instruction, setData]);
 
   const context = {
     handleSaveModelDataToDatabase,
     setData,
+    modelsData,
     isLoading: isSetDataLoading,
     isError: isSetDataError,
     error: setDataError,
@@ -98,7 +92,7 @@ const PersistanceDataProvider = ({
 
   return (
     <PersistanceDataContext.Provider value={context}>
-      {setData && children}
+      {children}
     </PersistanceDataContext.Provider>
   );
 };

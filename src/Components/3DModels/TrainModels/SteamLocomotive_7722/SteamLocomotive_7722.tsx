@@ -22,15 +22,16 @@ const SteamLocomotive_7722 = () => {
     handleGetSetModelsToRenderList,
   } = useTrainInstruction();
 
-  const { setData, isLoading, isError, error } = usePersistanceDataProvider();
+  const { modelsData, isLoading, isError, error } =
+    usePersistanceDataProvider();
 
   const partsList = useMemo(() => {
     return handleGetPartsList();
   }, [handleGetPartsList]);
 
   useEffect(() => {
-    setData && updateInstructionWithPersistanceData(setData.models);
-  }, [setData, updateInstructionWithPersistanceData]);
+    modelsData && updateInstructionWithPersistanceData(modelsData);
+  }, [modelsData, updateInstructionWithPersistanceData]);
 
   const renderModels = (
     models: Model[],
@@ -86,9 +87,9 @@ const SteamLocomotive_7722 = () => {
 
   return (
     <>
-      {isLoading && <div>ListLoading</div>}
-      {isError && <div>{error!.message}</div>}
-      {setData && (
+      {/* {isLoading && <div>ListLoading</div>}
+      {isError && <div>{error!.message}</div>} */}
+      {modelsData && (
         <>
           <SceneMarkers
             sceneMarkersInfo={sceneMarkersInfo!}
@@ -96,12 +97,13 @@ const SteamLocomotive_7722 = () => {
           />
 
           <>
-            {renderModels(handleGetSetModelsToRenderList(), setData.models)}
+            {renderModels(handleGetSetModelsToRenderList(), modelsData)}
             <group name={"LeftBlocks"}>
+              {/*!!Fix this (problem when there will be many models) */}
               {renderLegoParts(
                 partsList,
                 getPersistanceDataForModel(
-                  setData.models,
+                  modelsData,
                   "SteamLocomotive7722Model"
                 )?.usedPartsData
               )}

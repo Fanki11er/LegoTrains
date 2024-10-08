@@ -20,7 +20,7 @@ const LegoSet = () => {
     error: setsListError,
   } = useQuery<ExistingDataInfo[]>({
     queryKey: [USER_SETS_LIST],
-    queryFn: () => getUserSetsListFromDatabase("qE9MdqEzRq6z3p2kWnWJ"),
+    queryFn: () => getUserSetsListFromDatabase(),
     staleTime: Infinity,
   });
 
@@ -34,16 +34,16 @@ const LegoSet = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [USER_SETS_LIST] });
     },
-    mutationFn: () => createNewUserSet("qE9MdqEzRq6z3p2kWnWJ", "Set_7722_V1"),
+    mutationFn: () => createNewUserSet("Set_7722_V1"),
   });
 
   useEffect(() => {
     if (id && setsList) {
       const foundSet = setsList.find((set) => {
-        return set.name === id;
+        return set === id;
       });
       if (foundSet) {
-        setLegoSetId(foundSet.id);
+        setLegoSetId(foundSet);
       } else {
         createNewSet();
       }
@@ -51,6 +51,7 @@ const LegoSet = () => {
   }, [setsList, id, createNewSet]);
 
   return (
+    //Todo To fix
     <>
       {isSetsListLoading && <div>ListLoading</div>}
       {isSetsListError && <div>{setsListError.message}</div>}

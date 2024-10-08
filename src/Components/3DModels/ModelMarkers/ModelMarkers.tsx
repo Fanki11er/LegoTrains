@@ -3,7 +3,11 @@ import { useCallback, useEffect, useMemo, useRef } from "react";
 import { Object3D } from "three";
 import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu/SelectedElementContextMenu";
 import useSelectModel from "../../../Hooks/useSelectModel";
-import { moveElementToFloorLevel } from "../../../Utilities/utilities";
+import {
+  convertToEuler,
+  convertToVector3,
+  moveElementToFloorLevel,
+} from "../../../Utilities/utilities";
 import { ModelPersistanceData } from "../../../Classes/PersistanceModule";
 import { Model } from "../../../Classes/Model";
 import FinishedModelContextMenu from "../../Organisms/FinishedModelContextMenu/FinishedModelContextMenu";
@@ -56,8 +60,12 @@ const ModelMarkers = (props: Props) => {
     if (model && persistanceData) {
       const setRootMarker = handleGetSetRootMarker();
       if (setRootMarker) {
-        model.position.copy(persistanceData.markersData.position);
-        model.rotation.copy(persistanceData.markersData.rotation);
+        model.position.copy(
+          convertToVector3(persistanceData.markersData.position)
+        );
+        model.rotation.copy(
+          convertToEuler(persistanceData.markersData.rotation)
+        );
 
         if (persistanceData.isModelArranged) {
           setRootMarker.add(model);

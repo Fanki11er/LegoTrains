@@ -1,11 +1,12 @@
-import { Euler, Object3D, Object3DEventMap, Vector3 } from "three";
+import { Object3D, Object3DEventMap } from "three";
 import { TrainInstruction } from "./TrainInstruction";
 import { PartUserData } from "../Types/PartUserData";
 
 type ObjectPersistanceData = {
-  position: Vector3;
-  rotation: Euler;
+  position: number[];
+  rotation: number[];
 };
+
 export type ModelMarkerPersistanceData = ObjectPersistanceData & {
   name: string;
 };
@@ -23,15 +24,12 @@ export type ModelPersistanceData = {
   isModelArranged: boolean;
 };
 
-export type ExistingDataInfo = {
-  id: string;
-  name: string;
-};
+export type ExistingDataInfo = string;
 
 export type SetPersistanceData = {
   setName: string;
   modelsList: string[];
-  models: ModelPersistanceData[];
+  //models: ModelPersistanceData[];
   allModelsNumber: number;
   finishedModelsNumber: number;
 };
@@ -86,10 +84,15 @@ export class PersistanceModule {
   private prepareModelMarkerDataToSave = (
     modelMarkers: Object3D<Object3DEventMap>
   ): ModelMarkerPersistanceData => {
+    const rotation: number[] = [];
+    const position: number[] = [];
+    modelMarkers.rotation.toArray(rotation);
+    modelMarkers.position.toArray(position);
+
     return {
       name: modelMarkers.name,
-      position: modelMarkers.position,
-      rotation: modelMarkers.rotation,
+      position,
+      rotation,
     };
   };
 
@@ -103,9 +106,13 @@ export class PersistanceModule {
     const partsPreparedToSave: PartPersistanceData[] = parts.map((part) => {
       const data = part.userData as PartUserData;
       data.modelId = modelMarkers.name;
+      const rotation: number[] = [];
+      const position: number[] = [];
+      part.rotation.toArray(rotation);
+      part.position.toArray(position);
       return {
-        position: part.position,
-        rotation: part.rotation,
+        position,
+        rotation,
         userData: data,
       };
     });

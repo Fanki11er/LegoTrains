@@ -8,7 +8,11 @@ import useSelectModel from "../../../Hooks/useSelectModel";
 import Nest from "../Nest/Nest";
 import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu/SelectedElementContextMenu";
 import { customMaterials } from "../../../Materials/customMaterials";
-import { moveElementToFloorLevel } from "../../../Utilities/utilities";
+import {
+  convertToEuler,
+  convertToVector3,
+  moveElementToFloorLevel,
+} from "../../../Utilities/utilities";
 import { LegoBlock } from "../../../Types/LegoBlock";
 import { PartPersistanceData } from "../../../Classes/PersistanceModule";
 
@@ -56,13 +60,17 @@ const LegoPart = (props: PartProps) => {
           persistanceData.userData.modelId!
         );
 
-        modelRef.current.position.copy(persistanceData.position);
-        modelRef.current.rotation.copy(persistanceData.rotation);
-        modelRef.current.userData = persistanceData.userData;
+        modelRef.current.position.copy(
+          convertToVector3(persistanceData.position)
+        );
+        modelRef.current.rotation.copy(
+          convertToEuler(persistanceData.rotation)
+        );
 
         if (rootMarker) {
           rootMarker.add(modelRef.current);
         }
+        modelRef.current.userData = persistanceData.userData;
       }
 
       modelRef.current.name = partInfo.partType;

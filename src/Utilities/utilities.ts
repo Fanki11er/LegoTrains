@@ -1,4 +1,12 @@
-import { Box3, Mesh, Object3D, SRGBColorSpace, Texture } from "three";
+import {
+  Box3,
+  Euler,
+  Mesh,
+  Object3D,
+  SRGBColorSpace,
+  Texture,
+  Vector3,
+} from "three";
 import { SetLegoBlocks } from "../LegoSets/Set7722V1/SteamLocomotive7722Parts/SetLegoBlockTypes";
 import { ModelBlock } from "../Types/ModelBlock";
 
@@ -50,4 +58,12 @@ export const addForModelPhaseBlocks = (
       block.legoBlockTypes
     );
   });
+};
+
+export const convertToVector3 = (numbers: number[]) => {
+  return new Vector3().fromArray(numbers);
+};
+
+export const convertToEuler = (numbers: number[]) => {
+  return new Euler(numbers[0], numbers[1], numbers[2]);
 };
