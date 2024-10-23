@@ -1,7 +1,8 @@
 export const paths = {
+  accountRegistrationPath: "/AccountRegistration",
+  loginPath: "/Login",
   userDashboardRouterPath: "/User",
   legoSetRouterPath: "/Set/:id",
-  accountRegistrationPath: "/AccountRegistration",
 };
 
 export const legoSetRouterNavigationPath = (id: string) => {

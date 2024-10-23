@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { BaseButton } from "../../Atoms/Buttons/Buttons.styles";
 import { Link } from "react-router-dom";
 
-export const StyledAccountRegistrationForm = styled(Form)`
+export const StyledFormikForm = styled(Form)`
   display: flex;
   align-items: center;
   justify-content: center;

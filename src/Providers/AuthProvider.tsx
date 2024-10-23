@@ -17,9 +17,13 @@ export const AuthContext = createContext({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _userName: string
   ) => {},
-  loginUserAnonymously: () => {},
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  loginUserWithEmailAndPassword: (_email: string, _password: string) => {},
+  loginUserAnonymously: async () => {},
+  loginUserWithEmailAndPassword: async (
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _email: string,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _password: string
+  ) => {},
   currentUser: null as User | null,
   authError: "",
 });
@@ -43,7 +47,7 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
   ) => {
     setAuthError("");
 
-    createUserWithEmailAndPassword(auth, email, password)
+    await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
         const userId = userCredentials.user.uid;
         if (userId) {
@@ -59,9 +63,18 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
 
   const loginUserAnonymously = async () => {
     setAuthError("");
-    signInAnonymously(auth).catch((err) => {
-      setAuthError(err.message);
-    });
+    await signInAnonymously(auth)
+      .then((userCredentials) => {
+        const userId = userCredentials.user.uid;
+        if (userId) {
+          createUserData(userId);
+        } else {
+          setAuthError("Account not created");
+        }
+      })
+      .catch((err) => {
+        setAuthError(err.message);
+      });
   };
 
   const loginUserWithEmailAndPassword = async (
@@ -70,7 +83,7 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
   ) => {
     setAuthError("");
 
-    signInWithEmailAndPassword(auth, email, password).catch((err) => {
+    await signInWithEmailAndPassword(auth, email, password).catch((err) => {
       setAuthError(err.message);
     });
   };

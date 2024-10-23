@@ -1,16 +1,19 @@
 import { Formik } from "formik";
-import {
-  FormRedirectionLink,
-  StyledAccountRegistrationForm,
-  StyledAccountRegistrationFormHeader,
-  StyledInputsWrapper,
-  StyledSubmitButton,
-} from "./AccountRegistrationForm.styles";
 import FormInput from "../FormInput/FormInput";
 import * as Yup from "yup";
 import { FormError } from "../../Atoms/FormError/FormError.styles";
 import useAuth from "../../../Hooks/useAuth";
 import SubmitIndicator from "../SubmitIndicator/SubmitIndicator";
+import FormikForm from "../Form/FormikForm";
+import {
+  FormRedirectionLink,
+  StyledInputsWrapper,
+  StyledSubmitButton,
+} from "../Form/FormikForm.styles";
+import { paths } from "../../../router/routerPaths";
+import { useNavigate } from "react-router-dom";
+
+const { userDashboardRouterPath, loginPath } = paths;
 const NAME_FIELD = "name";
 const EMAIL_FIELD = "email";
 const PASSWORD_FIELD = "password";
@@ -41,6 +44,7 @@ const yupRegistrationValidationShape = Yup.object({
 
 const AccountRegistrationForm = () => {
   const { signUpWithEmailAndPassword, authError } = useAuth();
+  const navigate = useNavigate();
   const initialValues = {
     [NAME_FIELD]: "",
     [EMAIL_FIELD]: "",
@@ -60,13 +64,15 @@ const AccountRegistrationForm = () => {
     <Formik<FormValues>
       initialValues={initialValues}
       validationSchema={yupRegistrationValidationShape}
-      onSubmit={async (values) => await onSubmit(values)}
+      onSubmit={async (values, { resetForm }) =>
+        onSubmit(values).then(() => {
+          resetForm();
+          navigate(userDashboardRouterPath);
+        })
+      }
     >
       {({ isSubmitting }) => (
-        <StyledAccountRegistrationForm noValidate>
-          <StyledAccountRegistrationFormHeader>
-            Registration
-          </StyledAccountRegistrationFormHeader>
+        <FormikForm header={"Registration"}>
           {authError && <FormError>{authError}</FormError>}
           <StyledInputsWrapper>
             <FormInput name={NAME_FIELD} labelText={"Name"} />
@@ -88,10 +94,10 @@ const AccountRegistrationForm = () => {
             <StyledSubmitButton type={"submit"}>Register</StyledSubmitButton>
           )}
           <div>
-            Already have account? //!! Redirect
-            <FormRedirectionLink to={""}>Sign In</FormRedirectionLink>{" "}
+            Already have account?
+            <FormRedirectionLink to={loginPath}>Login</FormRedirectionLink>
           </div>
-        </StyledAccountRegistrationForm>
+        </FormikForm>
       )}
     </Formik>
   );
