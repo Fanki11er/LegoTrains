@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-const BaseButton = styled.button`
+export const BaseButton = styled.button`
   display: flex;
   outline: none;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  border: 2px solid transparent;
+  border: 2px solid ${({ theme }) => theme.colors.transparent};
   transition: all 0.5s;
   font-weight: 700;
 `;

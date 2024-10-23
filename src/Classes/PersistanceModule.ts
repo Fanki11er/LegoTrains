@@ -29,7 +29,6 @@ export type ExistingDataInfo = string;
 export type SetPersistanceData = {
   setName: string;
   modelsList: string[];
-  //models: ModelPersistanceData[];
   allModelsNumber: number;
   finishedModelsNumber: number;
 };

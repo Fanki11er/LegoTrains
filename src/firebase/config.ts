@@ -12,9 +12,9 @@ const firebaseConfig = {
   messagingSenderId: "84338623840",
   appId: "1:84338623840:web:c0812b98549557ff2f4a05",
 };
-initializeApp(firebaseConfig);
-const auth = getAuth();
-export const db = getFirestore();
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
 
 if (location.hostname === "localhost") {
   connectFirestoreEmulator(db, "127.0.0.1", 8080);

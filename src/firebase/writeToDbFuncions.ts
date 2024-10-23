@@ -3,6 +3,7 @@ import {
   collection,
   doc,
   increment,
+  setDoc,
   writeBatch,
 } from "firebase/firestore";
 import { db } from "./config";
@@ -115,6 +116,14 @@ export const updateModelInDatabase = async (
     }
 
     await bath.commit();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const createUserData = async (userId: string, userName: string) => {
+  try {
+    setDoc(doc(db, usersCollection, userId), { userName });
   } catch (err) {
     console.log(err);
   }
