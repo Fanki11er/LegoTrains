@@ -13,7 +13,7 @@ import { MODELS_DATA, SET_DATA } from "../Api/queryKeys";
 import {
   createNewModelData,
   updateModelInDatabase,
-} from "../firebase/writeToDbFuncions";
+} from "../firebase/writeToDbFunctions";
 
 export const PersistanceDataContext = createContext({
   handleSaveModelDataToDatabase: () => {},

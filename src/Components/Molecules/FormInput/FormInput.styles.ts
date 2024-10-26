@@ -12,23 +12,18 @@ export const StyledFormInput = styled(Field)<Props>`
   background-color: ${({ theme }) => theme.colors.lightBlack};
   border: 2px solid
     ${({ theme, $error }) =>
-      $error ? theme.colors.lightRed : theme.colors.transparent};
+      $error ? theme.colors.red : theme.colors.transparent};
   transition: all 0.5s;
   border-radius: 15px;
   color: ${({ theme, $error }) =>
     $error ? theme.colors.red : theme.colors.white};
-  box-shadow: 0 0 0 2px
-    ${({ theme, $error }) =>
-      $error ? theme.colors.transparentRed : theme.colors.transparent};
 
   &:hover,
   &:focus {
     border: 2px solid
       ${({ theme, $error }) =>
-        $error ? theme.colors.lightRed : theme.colors.purple};
-    box-shadow: 0 0 0 2px
-      ${({ theme, $error }) =>
-        $error ? theme.colors.transparentRed : theme.colors.transparentPurple};
+        $error ? theme.colors.red : theme.colors.purple};
+
     color: ${({ theme, $error }) =>
       $error ? theme.colors.red : theme.colors.purple};
     font-weight: 700;
@@ -49,8 +44,7 @@ export const StyledFormInputError = styled.span`
   width: 100%;
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.red};
-  border: 2px solid ${({ theme }) => theme.colors.lightRed};
-  box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.transparentRed};
+  border: 2px solid ${({ theme }) => theme.colors.red};
   font-size: ${({ theme }) => theme.fontSizes.S};
   padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;

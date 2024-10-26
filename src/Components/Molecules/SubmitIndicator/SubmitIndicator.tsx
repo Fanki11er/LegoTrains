@@ -1,11 +1,16 @@
 import workingIndicatorSVG from "../../../assets/svg/WorkingIndicator.svg";
 import { SubmitIndicatorImg } from "./SubmitIndicator.styles";
+type Props = {
+  size?: number;
+};
 
-const SubmitIndicator = () => {
+const SubmitIndicator = ({ size }: Props) => {
   return (
-    <>
-      <SubmitIndicatorImg src={workingIndicatorSVG} alt={"Submit indicator"} />
-    </>
+    <SubmitIndicatorImg
+      src={workingIndicatorSVG}
+      $size={size}
+      alt={"Submit indicator"}
+    />
   );
 };
 

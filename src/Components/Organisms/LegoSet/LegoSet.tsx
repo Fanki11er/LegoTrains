@@ -5,7 +5,7 @@ import { getUserSetsListFromDatabase } from "../../../firebase/readFromDbFunctio
 import { ExistingDataInfo } from "../../../Classes/PersistanceModule";
 import { USER_SETS_LIST } from "../../../Api/queryKeys";
 import { useEffect, useState } from "react";
-import { createNewUserSet } from "../../../firebase/writeToDbFuncions";
+import { createNewUserSet } from "../../../firebase/writeToDbFunctions";
 
 const LegoSet = () => {
   const { id } = useParams();

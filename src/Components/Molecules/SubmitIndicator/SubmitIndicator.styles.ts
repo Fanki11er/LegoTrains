@@ -1,7 +1,11 @@
 import styled from "styled-components";
-export const SubmitIndicatorImg = styled.img`
-  width: 70px;
-  height: 70px;
+type Props = {
+  $size?: number;
+};
+
+export const SubmitIndicatorImg = styled.img<Props>`
+  width: ${({ $size }) => ($size ? `${$size}px` : "70px")};
+  height: ${({ $size }) => ($size ? `${$size}px` : "70px")};
   animation-name: rotating;
   animation-duration: 3s;
   animation-iteration-count: infinite;

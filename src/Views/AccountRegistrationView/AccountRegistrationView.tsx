@@ -1,11 +1,11 @@
+import { FullCenterWrapper } from "../../Components/Atoms/FullCenterWrapper/FullCenterWrapper.styles";
 import AccountRegistrationForm from "../../Components/Molecules/AccountRegistrationForm/AccountRegistrationForm";
-import { AccountRegistrationViewWrapper } from "./AccountRegistrationView.styles";
 
 const AccountRegistrationView = () => {
   return (
-    <AccountRegistrationViewWrapper>
+    <FullCenterWrapper>
       <AccountRegistrationForm />
-    </AccountRegistrationViewWrapper>
+    </FullCenterWrapper>
   );
 };
 

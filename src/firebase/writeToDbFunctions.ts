@@ -121,10 +121,7 @@ export const updateModelInDatabase = async (
   }
 };
 
-export const createUserData = async (
-  userId: string,
-  userName: string = "Anonymous"
-) => {
+export const createUserData = async (userId: string, userName: string) => {
   try {
     setDoc(doc(db, usersCollection, userId), { userName });
   } catch (err) {

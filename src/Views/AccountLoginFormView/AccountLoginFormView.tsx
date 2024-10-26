@@ -1,11 +1,11 @@
+import { FullCenterWrapper } from "../../Components/Atoms/FullCenterWrapper/FullCenterWrapper.styles";
 import AccountLoginForm from "../../Components/Molecules/AccountLoginForm/AccountLoginForm";
-import { AccountLoginFormViewWrapper } from "./AccountLoginFormView.styles";
 
 const AccountLoginFormView = () => {
   return (
-    <AccountLoginFormViewWrapper>
+    <FullCenterWrapper>
       <AccountLoginForm />
-    </AccountLoginFormViewWrapper>
+    </FullCenterWrapper>
   );
 };
 

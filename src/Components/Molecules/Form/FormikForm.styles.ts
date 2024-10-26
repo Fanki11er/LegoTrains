@@ -54,3 +54,16 @@ export const FormRedirectionLink = styled(Link)`
     border: 2px solid ${({ theme }) => theme.colors.purple};
   }
 `;
+
+export const FormChoicesWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const FormPaddingSpan = styled.span`
+  padding: 0.25rem;
+`;

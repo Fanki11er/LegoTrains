@@ -4,100 +4,103 @@ import {
   signInAnonymously,
   signInWithEmailAndPassword,
   User,
+  UserCredential,
+  sendPasswordResetEmail,
+  linkWithCredential,
 } from "firebase/auth";
 import { auth } from "../firebase/config";
-import { createUserData } from "../firebase/writeToDbFuncions";
+import SubmitIndicator from "../Components/Molecules/SubmitIndicator/SubmitIndicator";
+import { FullCenterWrapper } from "../Components/Atoms/FullCenterWrapper/FullCenterWrapper.styles";
+import { EmailAuthProvider } from "firebase/auth/web-extension";
 
 export const AuthContext = createContext({
-  signUpWithEmailAndPassword: async (
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    _email: string,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    _password: string,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    _userName: string
-  ) => {},
-  loginUserAnonymously: async () => {},
-  loginUserWithEmailAndPassword: async (
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    _email: string,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    _password: string
-  ) => {},
+  signUpWithEmailAndPassword: (
+    email: string,
+    password: string
+  ): Promise<UserCredential> =>
+    new Promise(() => {
+      email;
+      password;
+    }),
+
+  loginUserAnonymously: (): Promise<UserCredential> => new Promise(() => {}),
+
+  loginUserWithEmailAndPassword: (
+    email: string,
+    password: string
+  ): Promise<UserCredential> =>
+    new Promise(() => {
+      email;
+      password;
+    }),
+
+  resetPassword: (email: string): Promise<void> =>
+    new Promise(() => {
+      email;
+    }),
+
+  upgradeAccount: (email: string, password: string): Promise<UserCredential> =>
+    new Promise(() => {
+      email;
+      password;
+    }),
+
   currentUser: null as User | null,
-  authError: "",
 });
 
 const AuthProvider = ({ children }: PropsWithChildren) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [authError, setAuthError] = useState("");
+  const [isAuthenticating, setIsAuthenticating] = useState(true);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
+      setIsAuthenticating(false);
     });
 
     return unsubscribe;
   }, []);
 
-  const signUpWithEmailAndPassword = async (
-    email: string,
-    password: string,
-    userName: string
-  ) => {
-    setAuthError("");
-
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredentials) => {
-        const userId = userCredentials.user.uid;
-        if (userId) {
-          createUserData(userId, userName);
-        } else {
-          setAuthError("Account not created");
-        }
-      })
-      .catch((err) => {
-        setAuthError(err.message);
-      });
+  const signUpWithEmailAndPassword = (email: string, password: string) => {
+    return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const loginUserAnonymously = async () => {
-    setAuthError("");
-    await signInAnonymously(auth)
-      .then((userCredentials) => {
-        const userId = userCredentials.user.uid;
-        if (userId) {
-          createUserData(userId);
-        } else {
-          setAuthError("Account not created");
-        }
-      })
-      .catch((err) => {
-        setAuthError(err.message);
-      });
+  const loginUserAnonymously = () => {
+    return signInAnonymously(auth);
   };
 
-  const loginUserWithEmailAndPassword = async (
-    email: string,
-    password: string
-  ) => {
-    setAuthError("");
+  const loginUserWithEmailAndPassword = (email: string, password: string) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
-    await signInWithEmailAndPassword(auth, email, password).catch((err) => {
-      setAuthError(err.message);
-    });
+  const resetPassword = (email: string) => {
+    return sendPasswordResetEmail(auth, email);
+  };
+
+  const upgradeAccount = (email: string, password: string) => {
+    const credential = EmailAuthProvider.credential(email, password);
+    return linkWithCredential(auth.currentUser!, credential);
   };
 
   const context = {
     signUpWithEmailAndPassword,
     loginUserWithEmailAndPassword,
     loginUserAnonymously,
+    resetPassword,
+    upgradeAccount,
     currentUser,
-    authError,
   };
 
   return (
-    <AuthContext.Provider value={context}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={context}>
+      {!isAuthenticating ? (
+        children
+      ) : (
+        <FullCenterWrapper>
+          <SubmitIndicator size={150} />
+        </FullCenterWrapper>
+      )}
+    </AuthContext.Provider>
   );
 };
 

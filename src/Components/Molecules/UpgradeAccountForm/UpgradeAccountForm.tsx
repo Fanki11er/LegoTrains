@@ -1,18 +1,18 @@
 import { Formik } from "formik";
+import useAuth from "../../../Hooks/useAuth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import FormInput from "../FormInput/FormInput";
-import { FormError } from "../../Atoms/FormError/FormError.styles";
-import useAuth from "../../../Hooks/useAuth";
-import SubmitIndicator from "../SubmitIndicator/SubmitIndicator";
+import { paths } from "../../../router/routerPaths";
+import { createUserData } from "../../../firebase/writeToDbFunctions";
 import FormikForm from "../Form/FormikForm";
+import { FormError } from "../../Atoms/FormError/FormError.styles";
 import {
   FormRedirectionLink,
   StyledInputsWrapper,
   StyledSubmitButton,
 } from "../Form/FormikForm.styles";
-import { paths } from "../../../router/routerPaths";
-import { createUserData } from "../../../firebase/writeToDbFunctions";
+import FormInput from "../FormInput/FormInput";
+import SubmitIndicator from "../SubmitIndicator/SubmitIndicator";
 import {
   EMAIL_FIELD,
   NAME_FIELD,
@@ -21,7 +21,7 @@ import {
 } from "../../../Constants/constants";
 import { yupRegistrationValidationShape } from "../../../Utilities/validators/validators";
 
-const { userDashboardRouterPath, loginPath } = paths;
+const { userDashboardRouterPath } = paths;
 
 type FormValues = {
   [NAME_FIELD]: string;
@@ -30,10 +30,11 @@ type FormValues = {
   [REPEAT_PASSWORD_FIELD]: string;
 };
 
-const AccountRegistrationForm = () => {
-  const { signUpWithEmailAndPassword } = useAuth();
+const UpgradeAccountForm = () => {
+  const { upgradeAccount } = useAuth();
   const [authError, setAuthError] = useState("");
   const navigate = useNavigate();
+
   const initialValues = {
     [NAME_FIELD]: "",
     [EMAIL_FIELD]: "",
@@ -47,7 +48,7 @@ const AccountRegistrationForm = () => {
       validationSchema={yupRegistrationValidationShape}
       onSubmit={(values, { resetForm, setSubmitting }) => {
         setAuthError("");
-        signUpWithEmailAndPassword(values[EMAIL_FIELD], values[PASSWORD_FIELD])
+        upgradeAccount(values[EMAIL_FIELD], values[PASSWORD_FIELD])
           .then(async (userCredentials) => {
             await createUserData(userCredentials.user.uid, values[NAME_FIELD]);
             resetForm();
@@ -61,7 +62,7 @@ const AccountRegistrationForm = () => {
       }}
     >
       {({ isSubmitting }) => (
-        <FormikForm header={"Registration"}>
+        <FormikForm header={"Upgrade account"}>
           {authError && <FormError>{authError}</FormError>}
           <StyledInputsWrapper>
             <FormInput name={NAME_FIELD} labelText={"Name"} />
@@ -80,16 +81,15 @@ const AccountRegistrationForm = () => {
           {isSubmitting ? (
             <SubmitIndicator />
           ) : (
-            <StyledSubmitButton type={"submit"}>Register</StyledSubmitButton>
+            <StyledSubmitButton type={"submit"}>Upgrade</StyledSubmitButton>
           )}
-          <div>
-            Already have account?
-            <FormRedirectionLink to={loginPath}>Login</FormRedirectionLink>
-          </div>
+          <FormRedirectionLink to={userDashboardRouterPath}>
+            Back to dashboard
+          </FormRedirectionLink>
         </FormikForm>
       )}
     </Formik>
   );
 };
 
-export default AccountRegistrationForm;
+export default UpgradeAccountForm;

@@ -1,20 +1,24 @@
+import { useState } from "react";
 import { Formik } from "formik";
 import useAuth from "../../../Hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 import FormikForm from "../Form/FormikForm";
 import { FormError } from "../../Atoms/FormError/FormError.styles";
 import {
+  FormChoicesWrapper,
+  FormPaddingSpan,
   FormRedirectionLink,
   StyledInputsWrapper,
   StyledSubmitButton,
 } from "../Form/FormikForm.styles";
 import FormInput from "../FormInput/FormInput";
 import SubmitIndicator from "../SubmitIndicator/SubmitIndicator";
-import { useNavigate } from "react-router-dom";
 import { paths } from "../../../router/routerPaths";
-const { userDashboardRouterPath, accountRegistrationPath } = paths;
+import { EMAIL_FIELD, PASSWORD_FIELD } from "../../../Constants/constants";
+import { yupEmailValidationShape } from "../../../Utilities/validators/validators";
 
-const EMAIL_FIELD = "email";
-const PASSWORD_FIELD = "password";
+const { userDashboardRouterPath, accountRegistrationPath, resetPasswordPath } =
+  paths;
 
 type FormValues = {
   [EMAIL_FIELD]: string;
@@ -22,8 +26,8 @@ type FormValues = {
 };
 
 const AccountLoginForm = () => {
-  const { loginUserWithEmailAndPassword, loginUserAnonymously, authError } =
-    useAuth();
+  const { loginUserWithEmailAndPassword, loginUserAnonymously } = useAuth();
+  const [authError, setAuthError] = useState("");
   const navigate = useNavigate();
 
   const initialValues = {
@@ -31,19 +35,26 @@ const AccountLoginForm = () => {
     [PASSWORD_FIELD]: "",
   };
 
-  const onSubmit = async (values: FormValues) => {
-    loginUserWithEmailAndPassword(values[EMAIL_FIELD], values[PASSWORD_FIELD]);
-  };
-
   return (
     <Formik<FormValues>
       initialValues={initialValues}
-      onSubmit={async (values, { resetForm }) =>
-        onSubmit(values).then(() => {
-          resetForm();
-          navigate(userDashboardRouterPath);
-        })
-      }
+      validationSchema={yupEmailValidationShape}
+      onSubmit={async (values, { resetForm, setSubmitting }) => {
+        setAuthError("");
+        loginUserWithEmailAndPassword(
+          values[EMAIL_FIELD],
+          values[PASSWORD_FIELD]
+        )
+          .then(() => {
+            resetForm();
+            setSubmitting(false);
+            navigate(userDashboardRouterPath);
+          })
+          .catch((err) => {
+            setAuthError(err.message);
+            setSubmitting(false);
+          });
+      }}
     >
       {({ isSubmitting, setSubmitting, resetForm }) => (
         <FormikForm header={"Login"}>
@@ -61,32 +72,39 @@ const AccountLoginForm = () => {
           ) : (
             <>
               <StyledSubmitButton type={"submit"}>Login</StyledSubmitButton>
-              <div>or</div>
-              {isSubmitting ? (
-                <SubmitIndicator />
-              ) : (
-                <StyledSubmitButton
-                  type={"button"}
-                  onClick={async () => {
-                    setSubmitting(true);
-                    await loginUserAnonymously().then(() => {
-                      resetForm();
-                      navigate(userDashboardRouterPath);
-                    });
-                    setSubmitting(false);
-                  }}
-                >
-                  Login anonymously
-                </StyledSubmitButton>
-              )}
             </>
           )}
-          <div>
-            Don't have account?
-            <FormRedirectionLink to={accountRegistrationPath}>
-              Register
-            </FormRedirectionLink>
-          </div>
+          <FormChoicesWrapper>
+            <span>
+              Don't have account?
+              <FormRedirectionLink to={accountRegistrationPath}>
+                Register
+              </FormRedirectionLink>
+            </span>
+            <FormPaddingSpan>or</FormPaddingSpan>
+            <StyledSubmitButton
+              type={"button"}
+              onClick={async () => {
+                setAuthError("");
+                setSubmitting(true);
+                loginUserAnonymously()
+                  .then(() => {
+                    resetForm();
+                    navigate(userDashboardRouterPath);
+                    setSubmitting(false);
+                  })
+                  .catch((err) => {
+                    setAuthError(err.message);
+                    setSubmitting(false);
+                  });
+              }}
+            >
+              Login anonymously
+            </StyledSubmitButton>
+          </FormChoicesWrapper>
+          <FormRedirectionLink to={resetPasswordPath}>
+            Forgot password?
+          </FormRedirectionLink>
         </FormikForm>
       )}
     </Formik>
