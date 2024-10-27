@@ -12,7 +12,6 @@ import {
   StyledSubmitButton,
 } from "../Form/FormikForm.styles";
 import { paths } from "../../../router/routerPaths";
-import { createUserData } from "../../../firebase/writeToDbFunctions";
 import {
   EMAIL_FIELD,
   NAME_FIELD,
@@ -31,7 +30,7 @@ type FormValues = {
 };
 
 const AccountRegistrationForm = () => {
-  const { signUpWithEmailAndPassword } = useAuth();
+  const { signUpWithEmailAndPassword, setUsername } = useAuth();
   const [authError, setAuthError] = useState("");
   const navigate = useNavigate();
   const initialValues = {
@@ -49,7 +48,11 @@ const AccountRegistrationForm = () => {
         setAuthError("");
         signUpWithEmailAndPassword(values[EMAIL_FIELD], values[PASSWORD_FIELD])
           .then(async (userCredentials) => {
-            await createUserData(userCredentials.user.uid, values[NAME_FIELD]);
+            await setUsername(userCredentials.user, values[NAME_FIELD]).catch(
+              (err) => {
+                setAuthError(err.message);
+              }
+            );
             resetForm();
             setSubmitting(false);
             navigate(userDashboardRouterPath);

@@ -18,6 +18,7 @@ export const theme: Theme = {
   defaultFontFamily: "Inter, sans-serif",
 
   fontSizes: {
+    XS: "0.5rem",
     S: "0.8rem",
     M: "1.5rem",
     L: "2.rem",
@@ -51,6 +52,7 @@ export type Theme = {
   };
 
   fontSizes: {
+    XS: string;
     S: string;
     M: string;
     L: string;

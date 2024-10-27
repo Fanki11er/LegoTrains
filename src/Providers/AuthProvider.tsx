@@ -7,6 +7,8 @@ import {
   UserCredential,
   sendPasswordResetEmail,
   linkWithCredential,
+  updateProfile,
+  signOut,
 } from "firebase/auth";
 import { auth } from "../firebase/config";
 import SubmitIndicator from "../Components/Molecules/SubmitIndicator/SubmitIndicator";
@@ -45,6 +47,14 @@ export const AuthContext = createContext({
       password;
     }),
 
+  setUsername: (user: User, name: string): Promise<void> =>
+    new Promise(() => {
+      user;
+      name;
+    }),
+
+  logOutUser: (): Promise<void> => new Promise(() => {}),
+
   currentUser: null as User | null,
 });
 
@@ -82,12 +92,24 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
     return linkWithCredential(auth.currentUser!, credential);
   };
 
+  const setUsername = (user: User, name: string) => {
+    return updateProfile(user, {
+      displayName: name,
+    });
+  };
+
+  const logOutUser = () => {
+    return signOut(auth);
+  };
+
   const context = {
     signUpWithEmailAndPassword,
     loginUserWithEmailAndPassword,
     loginUserAnonymously,
     resetPassword,
     upgradeAccount,
+    setUsername,
+    logOutUser,
     currentUser,
   };
 

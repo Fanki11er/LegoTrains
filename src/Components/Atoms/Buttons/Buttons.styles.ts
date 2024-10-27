@@ -34,3 +34,14 @@ export const FinishModelButton = styled(BaseButton)`
     border: 2px solid #fcec20;
   }
 `;
+
+export const LogoutButton = styled(BaseButton)`
+  background-color: ${({ theme }) => theme.colors.transparentPurple};
+  width: fit-content;
+  padding: 0.6rem 3rem;
+  color: ${({ theme }) => theme.colors.white};
+  &:focus,
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.purple};
+  }
+`;

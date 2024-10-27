@@ -3,7 +3,7 @@ export const paths = {
   loginPath: "/Login",
   resetPasswordPath: "/Reset",
   upgradeAccountPath: "/Upgrade",
-  userDashboardRouterPath: "/User",
+  userDashboardRouterPath: "/Dashboard",
   legoSetRouterPath: "/Set/:id",
 };
 

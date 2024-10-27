@@ -3,7 +3,6 @@ import useAuth from "../../../Hooks/useAuth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { paths } from "../../../router/routerPaths";
-import { createUserData } from "../../../firebase/writeToDbFunctions";
 import FormikForm from "../Form/FormikForm";
 import { FormError } from "../../Atoms/FormError/FormError.styles";
 import {
@@ -31,7 +30,7 @@ type FormValues = {
 };
 
 const UpgradeAccountForm = () => {
-  const { upgradeAccount } = useAuth();
+  const { upgradeAccount, setUsername } = useAuth();
   const [authError, setAuthError] = useState("");
   const navigate = useNavigate();
 
@@ -50,7 +49,11 @@ const UpgradeAccountForm = () => {
         setAuthError("");
         upgradeAccount(values[EMAIL_FIELD], values[PASSWORD_FIELD])
           .then(async (userCredentials) => {
-            await createUserData(userCredentials.user.uid, values[NAME_FIELD]);
+            await setUsername(userCredentials.user, values[NAME_FIELD]).catch(
+              (err) => {
+                setAuthError(err.message);
+              }
+            );
             resetForm();
             setSubmitting(false);
             navigate(userDashboardRouterPath);
