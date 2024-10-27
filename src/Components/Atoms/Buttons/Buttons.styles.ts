@@ -39,6 +39,7 @@ export const LogoutButton = styled(BaseButton)`
   background-color: ${({ theme }) => theme.colors.transparentPurple};
   width: fit-content;
   padding: 0.6rem 3rem;
+  font-size: ${({ theme }) => theme.fontSizes.S};
   color: ${({ theme }) => theme.colors.white};
   &:focus,
   &:hover {

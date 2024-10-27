@@ -19,4 +19,5 @@ export const UserDashboardTopNavigationUserInfo = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 700;
 `;
