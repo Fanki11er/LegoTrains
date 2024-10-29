@@ -29,8 +29,8 @@ const Router = () => {
         <Route path={resetPasswordPath} element={<ResetPasswordView />} />
         <Route element={<AuthComponent />}>
           <Route path={userDashboardRouterPath} element={<UserDashboard />} />
-          <Route path={legoSetRouterPath} element={<LegoSet />} />
           <Route path={upgradeAccountPath} element={<UpgradeAccountView />} />
+          <Route path={legoSetRouterPath} element={<LegoSet />} />
         </Route>
         <Route path="*" element={<Navigate to={accountRegistrationPath} />} />
       </Routes>

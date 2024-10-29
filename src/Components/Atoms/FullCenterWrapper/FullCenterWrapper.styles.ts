@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const FullCenterWrapper = styled.div`
-  width: 100%;
+  grid-template-columns: 1fr;
   min-height: 100dvh;
-  display: flex;
+  display: grid;
+  grid-template-rows: 1fr 80px;
   align-items: center;
-  justify-content: center;
+  justify-items: center;
 `;

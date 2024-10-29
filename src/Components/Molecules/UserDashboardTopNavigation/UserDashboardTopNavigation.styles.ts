@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const UserDashboardTopNavigationWrapper = styled.nav`
   width: 100%;
   display: flex;
+  flex-flow: wrap row;
   justify-content: space-between;
   padding: 2rem;
 `;
