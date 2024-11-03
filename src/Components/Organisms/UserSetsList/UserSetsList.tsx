@@ -1,55 +1,49 @@
 import {
+  DashboardFutureSetInformationData,
   DashboardSetInformationData,
-  SetInformationDTO,
 } from "../../../Types/DashboardSetInformationData";
 import DashboardSetInformation from "../../Molecules/DashboardSetInformation/DashboardSetInformation";
 import { UserSetsListWrapper } from "./UserSetsList.styles";
-import set_7722_image from "../../../assets/SetsDashboardImages/SET_7722.jpg";
-import set_4552_image from "../../../assets/SetsDashboardImages/SET_4552.jpg";
 import { legoSetRouterNavigationPath } from "../../../router/routerPaths";
 import { Link } from "react-router-dom";
-
-const allSetsInformationData: DashboardSetInformationData[] = [
-  {
-    setId: "Set_7722_V1",
-    setName: "LEGO 7722 Steam Cargo Train",
-    setVersion: 1,
-    allModels: 2,
-    imagePath: set_7722_image,
-  },
-  {
-    setId: "Set_4552-V1",
-    setName: "LEGO 4552 Cargo Crain",
-    setVersion: 1,
-    allModels: 2,
-    imagePath: set_4552_image,
-  },
-];
-
-const data: SetInformationDTO[] = [
-  { setId: "Set_7722_V1", isCompleted: true, completedModels: 2 },
-];
-
-//Todo Future sets list
+import { useQuery } from "@tanstack/react-query";
+import { SetPersistanceData } from "../../../Classes/PersistanceModule";
+import { getAllSetsPersistanceData } from "../../../firebase/readFromDbFunctions";
+import { All_SETS_DATA } from "../../../Api/queryKeys";
+import SubmitIndicator from "../../Molecules/SubmitIndicator/SubmitIndicator";
+import {
+  ALL_READY_SETS_INFORMATION_DATA,
+  FUTURE_SETS_INFORMATION_DATA,
+} from "../../../LegoSets/allSetsDashboardInformation";
+import DashboardFutureSetsInformation from "../../Molecules/DashboardFutureSetsInformation/DashboardFutureSetsInformation";
+import ErrorIndicator from "../../Molecules/ErrorIndicator/ErrorIndicator";
 
 const matchSets = (
-  setsInformation: SetInformationDTO[],
+  setsInformation: SetPersistanceData[],
   setData: DashboardSetInformationData
 ) => {
   return setsInformation.find((setInformation) => {
-    return setInformation.setId === setData.setId;
+    return setInformation.setName === setData.setId;
   });
 };
 
 const UserSetsList = () => {
+  const { data, isLoading, isError, error } = useQuery<
+    SetPersistanceData[] | null
+  >({
+    queryKey: [All_SETS_DATA],
+    queryFn: () => getAllSetsPersistanceData(),
+    staleTime: Infinity,
+  });
+
   const renderSetsInformation = (
-    setsInformation: SetInformationDTO[],
+    setsInformation: SetPersistanceData[],
     allSetsData: DashboardSetInformationData[]
   ) => {
     return allSetsData.map((setData) => {
       const matchedSet = matchSets(setsInformation, setData);
       return (
-        <li>
+        <li key={setData.setId}>
           <Link to={legoSetRouterNavigationPath(setData.setId)}>
             <DashboardSetInformation
               dashboardSetInformationData={setData}
@@ -61,10 +55,31 @@ const UserSetsList = () => {
     });
   };
 
+  const renderFutureSetsInformation = (
+    futureSets: DashboardFutureSetInformationData[]
+  ) => {
+    return futureSets.map((set) => {
+      return (
+        <li key={set.setId}>
+          <DashboardFutureSetsInformation
+            dashboardFutureSetInformationData={set}
+          />
+        </li>
+      );
+    });
+  };
+
   return (
-    <UserSetsListWrapper>
-      {data && renderSetsInformation(data, allSetsInformationData)}
-    </UserSetsListWrapper>
+    <>
+      {isLoading && <SubmitIndicator size={150} />}
+      {isError && <ErrorIndicator message={error.message} />}
+      {!isLoading && !isError && (
+        <UserSetsListWrapper>
+          {renderSetsInformation(data || [], ALL_READY_SETS_INFORMATION_DATA)}
+          {renderFutureSetsInformation(FUTURE_SETS_INFORMATION_DATA)}
+        </UserSetsListWrapper>
+      )}
+    </>
   );
 };
 

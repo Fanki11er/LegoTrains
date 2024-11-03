@@ -1,7 +1,7 @@
 import { Html } from "@react-three/drei";
 import { FinishedModelContextMenuWrapper } from "./FinishedModelContextMenu.styles";
-import { FinishModelButton } from "../../Atoms/Buttons/Buttons.styles";
 import useTrainInstruction from "../../../Hooks/useTrainInstruction";
+import { InSceneFinishModelButton } from "../../Atoms/InSceneButtons/InSceneButtons.styles";
 
 const FinishedModelContextMenu = () => {
   const { handleMoveReadyModelToSetArrangement } = useTrainInstruction();
@@ -9,9 +9,11 @@ const FinishedModelContextMenu = () => {
   return (
     <Html>
       <FinishedModelContextMenuWrapper>
-        <FinishModelButton onClick={handleMoveReadyModelToSetArrangement}>
+        <InSceneFinishModelButton
+          onClick={handleMoveReadyModelToSetArrangement}
+        >
           Finish
-        </FinishModelButton>
+        </InSceneFinishModelButton>
       </FinishedModelContextMenuWrapper>
     </Html>
   );

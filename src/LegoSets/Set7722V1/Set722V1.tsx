@@ -4,20 +4,23 @@ import Scene from "../../Components/Organisms/Scene/Scene";
 import TrainInstructionProvider from "../../Providers/TrainInstructionProvider";
 import { createInstruction } from "./setInstruction";
 import PersistanceDataProvider from "../../Providers/PersistanceDataProvider";
+import { useMemo } from "react";
 
-const set7722Instruction = createInstruction();
 type Props = {
   legoSetId: string;
 };
 const Set722V1 = ({ legoSetId }: Props) => {
+  const instruction = useMemo(() => {
+    return createInstruction();
+  }, []);
   return (
     <>
       <Scene>
         <PersistanceDataProvider
-          instruction={set7722Instruction}
+          instruction={instruction}
           legoSetId={legoSetId}
         >
-          <TrainInstructionProvider instruction={set7722Instruction}>
+          <TrainInstructionProvider instruction={instruction}>
             <Floor />
             <SteamLocomotive_7722 />
           </TrainInstructionProvider>

@@ -6,17 +6,25 @@ import { ExistingDataInfo } from "../../../Classes/PersistanceModule";
 import { USER_SETS_LIST } from "../../../Api/queryKeys";
 import { useEffect, useState } from "react";
 import { createNewUserSet } from "../../../firebase/writeToDbFunctions";
+import ErrorIndicator from "../../Molecules/ErrorIndicator/ErrorIndicator";
+import SubmitIndicator from "../../Molecules/SubmitIndicator/SubmitIndicator";
+import useAuth from "../../../Hooks/useAuth";
+import { FullCenterWrapper } from "../../Atoms/FullCenterWrapper/FullCenterWrapper.styles";
+import {
+  checkIfIsErrors,
+  checkIfIsLoading,
+} from "../../../Utilities/utilities";
 
 const LegoSet = () => {
   const { id } = useParams();
-  const [legoSetId, setLegoSetId] = useState("");
+  const { currentUser } = useAuth();
+  const [legoSetId, setLegoSetId] = useState<string | null>(null);
 
   const queryClient = useQueryClient();
 
   const {
     data: setsList,
     isLoading: isSetsListLoading,
-    isError: isSetsListError,
     error: setsListError,
   } = useQuery<ExistingDataInfo[]>({
     queryKey: [USER_SETS_LIST],
@@ -26,7 +34,6 @@ const LegoSet = () => {
 
   const {
     mutate: createNewSet,
-    isError: isMutationError,
     isPending: isMutating,
     error: mutationError,
   } = useMutation({
@@ -38,7 +45,7 @@ const LegoSet = () => {
   });
 
   useEffect(() => {
-    if (id && setsList) {
+    if (id && setsList && !currentUser?.isAnonymous) {
       const foundSet = setsList.find((set) => {
         return set === id;
       });
@@ -47,18 +54,30 @@ const LegoSet = () => {
       } else {
         createNewSet();
       }
+    } else {
+      setLegoSetId("");
     }
-  }, [setsList, id, createNewSet]);
+  }, [setsList, id, createNewSet, currentUser]);
+
+  const isLoading = checkIfIsLoading([isSetsListLoading, isMutating]);
+  const error = checkIfIsErrors([setsListError, mutationError]);
 
   return (
-    //Todo To fix
     <>
-      {isSetsListLoading && <div>ListLoading</div>}
-      {isSetsListError && <div>{setsListError.message}</div>}
-      {isMutating && <div>ListLoading</div>}
-      {isMutationError && <div>{mutationError.message}</div>}
+      {isLoading && (
+        <FullCenterWrapper>
+          <SubmitIndicator size={150} />
+        </FullCenterWrapper>
+      )}
+      {error && (
+        <FullCenterWrapper>
+          <ErrorIndicator message={error.message} />
+        </FullCenterWrapper>
+      )}
 
-      {id === "Set_7722_V1" && legoSetId && <Set722V1 legoSetId={legoSetId} />}
+      {legoSetId !== null && id === "Set_7722_V1" && (
+        <Set722V1 legoSetId={legoSetId} />
+      )}
     </>
   );
 };

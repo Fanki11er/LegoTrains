@@ -19,6 +19,7 @@ import {
   REPEAT_PASSWORD_FIELD,
 } from "../../../Constants/constants";
 import { yupRegistrationValidationShape } from "../../../Utilities/validators/validators";
+import { createUserData } from "../../../firebase/writeToDbFunctions";
 
 const { userDashboardRouterPath } = paths;
 
@@ -54,6 +55,7 @@ const UpgradeAccountForm = () => {
                 setAuthError(err.message);
               }
             );
+            await createUserData();
             resetForm();
             setSubmitting(false);
             navigate(userDashboardRouterPath);

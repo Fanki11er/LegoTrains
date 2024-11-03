@@ -67,3 +67,13 @@ export const convertToVector3 = (numbers: number[]) => {
 export const convertToEuler = (numbers: number[]) => {
   return new Euler(numbers[0], numbers[1], numbers[2]);
 };
+
+export const checkIfIsLoading = (loaders: boolean[]) => {
+  return loaders.includes(true);
+};
+
+export const checkIfIsErrors = (errors: (Error | null)[]) => {
+  return errors.find((e) => {
+    e !== null;
+  });
+};

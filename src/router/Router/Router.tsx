@@ -32,7 +32,7 @@ const Router = () => {
           <Route path={upgradeAccountPath} element={<UpgradeAccountView />} />
           <Route path={legoSetRouterPath} element={<LegoSet />} />
         </Route>
-        <Route path="*" element={<Navigate to={accountRegistrationPath} />} />
+        <Route path="*" element={<Navigate to={loginPath} />} />
       </Routes>
     </BrowserRouter>
   );

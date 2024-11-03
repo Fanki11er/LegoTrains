@@ -75,6 +75,9 @@ const LegoPart = (props: PartProps) => {
 
       modelRef.current.name = partInfo.partType;
     }
+    return () => {
+      useGLTF.clear(partInfo.partPath);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

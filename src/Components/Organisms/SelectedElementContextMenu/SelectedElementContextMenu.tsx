@@ -1,4 +1,3 @@
-import { RotateElementContextMenuButton } from "../../Atoms/Buttons/Buttons.styles";
 import {
   SelectedElementContextMenuWrapper,
   SelectedElementMenuSection,
@@ -8,6 +7,7 @@ import {
 import { rotateElementUp } from "../../../Utilities/utilities";
 import { Html } from "@react-three/drei";
 import { Mesh, Object3D } from "three";
+import { InSceneRotateElementContextMenuButton } from "../../Atoms/InSceneButtons/InSceneButtons.styles";
 type Props = {
   mesh: Object3D | Mesh;
 };
@@ -22,38 +22,38 @@ const SelectedElementContextMenu = (props: Props) => {
             Rotate
           </SelectedElementMenuSectionHeader>
           <SelectedElementMenuSectionHorizontalWrapper>
-            <RotateElementContextMenuButton
+            <InSceneRotateElementContextMenuButton
               onClick={(e) => {
                 e.stopPropagation();
                 rotateElementUp(mesh, "x", -90);
               }}
             >
               Up
-            </RotateElementContextMenuButton>
-            <RotateElementContextMenuButton
+            </InSceneRotateElementContextMenuButton>
+            <InSceneRotateElementContextMenuButton
               onClick={(e) => {
                 e.stopPropagation();
                 rotateElementUp(mesh, "y", -90);
               }}
             >
               Left
-            </RotateElementContextMenuButton>
-            <RotateElementContextMenuButton
+            </InSceneRotateElementContextMenuButton>
+            <InSceneRotateElementContextMenuButton
               onClick={(e) => {
                 e.stopPropagation();
                 rotateElementUp(mesh, "y", 90);
               }}
             >
               Right
-            </RotateElementContextMenuButton>
-            <RotateElementContextMenuButton
+            </InSceneRotateElementContextMenuButton>
+            <InSceneRotateElementContextMenuButton
               onClick={(e) => {
                 e.stopPropagation();
                 rotateElementUp(mesh, "x", 90);
               }}
             >
               Down
-            </RotateElementContextMenuButton>
+            </InSceneRotateElementContextMenuButton>
           </SelectedElementMenuSectionHorizontalWrapper>
         </SelectedElementMenuSection>
       </SelectedElementContextMenuWrapper>

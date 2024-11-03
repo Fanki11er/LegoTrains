@@ -5,7 +5,8 @@ import { ModelPersistanceData, PersistanceModule } from "./PersistanceModule";
 
 export class TrainInstruction {
   private models: Model[] = [];
-  private scene: Scene | null = null;
+  //scene: Scene | null = null;
+  sceneLoader!: () => Scene;
   private activeModel: Model | null = null;
   private setLegoBlocks: SetLegoBlocks | null = null;
   private connectedMarkersIds: string[] = [];
@@ -30,10 +31,10 @@ export class TrainInstruction {
   };
 
   getModelRootMarkerByName = (rootMarkerName: string) => {
-    if (this.scene) {
-      return this.scene.getObjectByName(rootMarkerName);
-    }
-    return undefined;
+    const scene = this.sceneLoader();
+    return scene.getObjectByName(rootMarkerName);
+    // }
+    //return undefined;
   };
 
   getSetRootMarker = () => {
@@ -66,9 +67,9 @@ export class TrainInstruction {
     return [];
   };
 
-  getIsSceneLoaded = () => {
-    return !!this.scene;
-  };
+  // getIsSceneLoaded = () => {
+  //   return !!this.scene;
+  // };
 
   getActiveModelName = () => {
     if (this.activeModel) {
@@ -124,35 +125,35 @@ export class TrainInstruction {
   // };
 
   getMarkersForActivePhase = () => {
-    if (this.scene) {
-      const rootModelMarker = this.getActiveModelMarkers();
+    const rootModelMarker = this.getActiveModelMarkers();
 
-      if (rootModelMarker && this.activeModel) {
-        const activePhase = this.activeModel.getActivePhase();
-        return rootModelMarker.children.filter((marker) => {
-          return marker.userData.phaseId === activePhase?.getPhaseNumber();
-        });
-      }
+    if (rootModelMarker && this.activeModel) {
+      const activePhase = this.activeModel.getActivePhase();
+      return rootModelMarker.children.filter((marker) => {
+        return marker.userData.phaseId === activePhase?.getPhaseNumber();
+      });
     }
     return [];
   };
 
   getActiveModelMarkers = () => {
-    if (this.activeModel && this.scene) {
+    const scene = this.sceneLoader();
+
+    if (this.activeModel) {
       const rootModelMarkerId = this.activeModel.getRootModelMarkerId();
-      return this.scene.getObjectByName(rootModelMarkerId);
+      return scene.getObjectByName(rootModelMarkerId);
     }
   };
 
   getMarkerById = (id: number) => {
-    if (this.scene) {
-      return this.scene.getObjectById(id);
-    }
+    const scene = this.sceneLoader();
+
+    return scene.getObjectById(id);
   };
 
-  loadScene = (scene: Scene) => {
-    this.scene = scene;
-  };
+  // loadScene = (scene: Scene) => {
+  //   this.scene = scene;
+  // };
 
   getActiveModel = () => {
     return this.activeModel;
@@ -215,7 +216,7 @@ export class TrainInstruction {
   };
 
   moveReadyModelToSetArrangement = () => {
-    if (this.activeModel && this.scene) {
+    if (this.activeModel) {
       const modelName = this.activeModel.getModelName();
       const modelRootMarkerId = this.activeModel.getRootModelMarkerId();
       const modelRootMarker = this.getModelRootMarkerByName(modelRootMarkerId);
@@ -280,5 +281,8 @@ export class TrainInstruction {
       }
     }
     this.activeModel = newActiveModel;
+  };
+  getSceneLoader = (fn: () => Scene) => {
+    this.sceneLoader = fn;
   };
 }

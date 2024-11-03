@@ -22,8 +22,7 @@ const SteamLocomotive_7722 = () => {
     handleGetSetModelsToRenderList,
   } = useTrainInstruction();
 
-  const { modelsData, isLoading, isError, error } =
-    usePersistanceDataProvider();
+  const { modelsData } = usePersistanceDataProvider();
 
   const partsList = useMemo(() => {
     return handleGetPartsList();
@@ -35,7 +34,7 @@ const SteamLocomotive_7722 = () => {
 
   const renderModels = (
     models: Model[],
-    modelPersistanceData: ModelPersistanceData[] | undefined
+    modelPersistanceData: ModelPersistanceData[] | null
   ) => {
     return models.map((model) => {
       return (
@@ -55,7 +54,7 @@ const SteamLocomotive_7722 = () => {
 
   const renderLegoParts = (
     partsList: LegoBlock[],
-    persistentData: PartPersistanceData[] | undefined
+    persistentData: PartPersistanceData[] | null | undefined
   ) => {
     return partsList.map((block) => {
       const savedData = persistentData?.find((part) => {
@@ -73,42 +72,38 @@ const SteamLocomotive_7722 = () => {
   };
 
   const getPersistanceDataForModel = (
-    modelPersistanceData: ModelPersistanceData[] | undefined,
+    modelPersistanceData: ModelPersistanceData[] | null,
     modelMarkerId: string | undefined
   ) => {
     if (modelPersistanceData && modelMarkerId) {
-      const modelData = modelPersistanceData.find((data) => {
-        return data.modelName === modelMarkerId;
-      });
+      const modelData =
+        modelPersistanceData.find((data) => {
+          return data.modelName === modelMarkerId;
+        }) || null;
 
       return modelData;
     }
+    return null;
   };
-
+  //Todo Fix
   return (
     <>
-      {/* {isLoading && <div>ListLoading</div>}
-      {isError && <div>{error!.message}</div>} */}
-      {modelsData && (
+      {modelsData && sceneMarkersInfo && (
         <>
           <SceneMarkers
-            sceneMarkersInfo={sceneMarkersInfo!}
+            sceneMarkersInfo={sceneMarkersInfo}
             position={[0, 4, -550]}
           />
 
-          <>
-            {renderModels(handleGetSetModelsToRenderList(), modelsData)}
-            <group name={"LeftBlocks"}>
-              {/*!!Fix this (problem when there will be many models) */}
-              {renderLegoParts(
-                partsList,
-                getPersistanceDataForModel(
-                  modelsData,
-                  "SteamLocomotive7722Model"
-                )?.usedPartsData
-              )}
-            </group>
-          </>
+          {renderModels(handleGetSetModelsToRenderList(), modelsData)}
+          <group name={"LeftBlocks"}>
+            {/*!!Fix this (problem when there will be many models) */}
+            {renderLegoParts(
+              partsList,
+              getPersistanceDataForModel(modelsData, "SteamLocomotive7722Model")
+                ?.usedPartsData
+            )}
+          </group>
 
           <Instruction position={[-170, 0.1, 0]} />
         </>

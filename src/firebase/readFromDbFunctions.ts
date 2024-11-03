@@ -1,10 +1,10 @@
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query } from "firebase/firestore";
 import {
   ExistingDataInfo,
   ModelPersistanceData,
   SetPersistanceData,
 } from "../Classes/PersistanceModule";
-import { db } from "./config";
+import { auth, db } from "./config";
 import {
   modelsCollection,
   setsCollection,
@@ -23,45 +23,84 @@ import {
 // };
 
 export const getUserSetsListFromDatabase = async () => {
-  const userDocRef = doc(db, usersCollection, "DGvg6QLY5DMdOwTfeeEH");
+  const user = auth.currentUser;
 
-  const user = await getDoc(userDocRef);
-  if (user.exists()) {
-    return user.data().userSetsList as ExistingDataInfo[];
+  if (!user) {
+    throw new Error("No logged user");
   }
 
+  if (!user.isAnonymous) {
+    const userId = user.uid;
+    const userDocRef = doc(db, usersCollection, userId);
+
+    const userData = await getDoc(userDocRef);
+    if (userData.exists()) {
+      return userData.data().userSetsList as ExistingDataInfo[];
+    }
+  }
   return [];
 };
 
 export const getSetDataFromDatabase = async (setId: string) => {
-  const setDataRef = doc(
-    db,
-    usersCollection,
-    "DGvg6QLY5DMdOwTfeeEH",
-    setsCollection,
-    setId
-  );
-  const set = await getDoc(setDataRef);
-  if (set.exists()) {
-    return set.data() as SetPersistanceData;
+  const user = auth.currentUser;
+
+  if (!user) {
+    throw new Error("No logged user");
   }
-  return undefined;
+
+  if (user && !user.isAnonymous) {
+    const userId = user.uid;
+    const setDataRef = doc(db, usersCollection, userId, setsCollection, setId);
+    const set = await getDoc(setDataRef);
+    if (set.exists()) {
+      return set.data() as SetPersistanceData;
+    }
+  }
+  return null;
+};
+
+export const getAllSetsPersistanceData = async () => {
+  const user = auth.currentUser;
+
+  if (!user) {
+    throw new Error("No logged user");
+  }
+
+  if (!user.isAnonymous) {
+    const userId = user.uid;
+    const q = query(collection(db, usersCollection, userId!, setsCollection));
+
+    const allUserSets = await getDocs(q);
+    return allUserSets.docs.map((doc) => {
+      return doc.data() as SetPersistanceData;
+    });
+  }
+  return [];
 };
 
 export const getSetModelsDataFromDatabase = async (setId: string) => {
-  const data = await getDocs(
-    collection(
-      db,
-      usersCollection,
-      "DGvg6QLY5DMdOwTfeeEH",
-      setsCollection,
-      setId,
-      modelsCollection
-    )
-  );
-  const modelsData = data.docs.map((doc) => {
-    return doc.data() as ModelPersistanceData;
-  });
+  const user = auth.currentUser;
 
-  return modelsData;
+  if (!user) {
+    throw new Error("No logged user");
+  }
+
+  if (!user.isAnonymous) {
+    const userId = user.uid;
+    const data = await getDocs(
+      collection(
+        db,
+        usersCollection,
+        userId,
+        setsCollection,
+        setId,
+        modelsCollection
+      )
+    );
+    const modelsData = data.docs.map((doc) => {
+      return doc.data() as ModelPersistanceData;
+    });
+    return modelsData;
+  }
+  return null;
 };

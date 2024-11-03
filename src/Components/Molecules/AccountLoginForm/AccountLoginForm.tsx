@@ -39,8 +39,9 @@ const AccountLoginForm = () => {
     <Formik<FormValues>
       initialValues={initialValues}
       validationSchema={yupEmailValidationShape}
-      onSubmit={async (values, { resetForm, setSubmitting }) => {
+      onSubmit={(values, { resetForm, setSubmitting }) => {
         setAuthError("");
+        setSubmitting(true);
         loginUserWithEmailAndPassword(
           values[EMAIL_FIELD],
           values[PASSWORD_FIELD]
@@ -84,7 +85,7 @@ const AccountLoginForm = () => {
             <FormPaddingSpan>or</FormPaddingSpan>
             <StyledSubmitButton
               type={"button"}
-              onClick={async () => {
+              onClick={() => {
                 setAuthError("");
                 setSubmitting(true);
                 loginUserAnonymously()

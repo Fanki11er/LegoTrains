@@ -4,7 +4,7 @@ import {
   getSetDataFromDatabase,
   getSetModelsDataFromDatabase,
 } from "../firebase/readFromDbFunctions";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   ModelPersistanceData,
   SetPersistanceData,
@@ -14,14 +14,15 @@ import {
   createNewModelData,
   updateModelInDatabase,
 } from "../firebase/writeToDbFunctions";
+import { checkIfIsErrors, checkIfIsLoading } from "../Utilities/utilities";
+import { Html } from "@react-three/drei";
+import SubmitIndicator from "../Components/Molecules/SubmitIndicator/SubmitIndicator";
+import ErrorIndicator from "../Components/Molecules/ErrorIndicator/ErrorIndicator";
 
 export const PersistanceDataContext = createContext({
   handleSaveModelDataToDatabase: () => {},
-  setData: undefined as SetPersistanceData | undefined,
-  modelsData: undefined as ModelPersistanceData[] | undefined,
-  isLoading: false,
-  isError: false,
-  error: null as Error | null,
+  setData: null as SetPersistanceData | null | undefined,
+  modelsData: null as ModelPersistanceData[] | null | undefined,
 });
 
 type Props = {
@@ -34,14 +35,13 @@ const PersistanceDataProvider = ({
   instruction,
   legoSetId,
 }: PropsWithChildren & Props) => {
-  console.log("RenderPersistanceProvider");
+  const queryClient = useQueryClient();
 
   const {
     data: setData,
     isLoading: isSetDataLoading,
-    isError: isSetDataError,
     error: setDataError,
-  } = useQuery<SetPersistanceData | undefined>({
+  } = useQuery<SetPersistanceData | null>({
     queryKey: [SET_DATA, legoSetId],
     queryFn: () => getSetDataFromDatabase(legoSetId),
     staleTime: Infinity,
@@ -50,9 +50,8 @@ const PersistanceDataProvider = ({
   const {
     data: modelsData,
     isLoading: isModelsDataLoading,
-    isError: isModelsError,
     error: modelsDataError,
-  } = useQuery<ModelPersistanceData[] | undefined>({
+  } = useQuery<ModelPersistanceData[] | null>({
     queryKey: [MODELS_DATA, legoSetId],
     queryFn: () => getSetModelsDataFromDatabase(legoSetId),
     staleTime: Infinity,
@@ -64,19 +63,26 @@ const PersistanceDataProvider = ({
         return model === data.modelName;
       });
       if (foundModel) {
-        updateModelInDatabase(legoSetId, data);
+        updateModelInDatabase(legoSetId, data).then(() => {
+          queryClient.invalidateQueries({
+            queryKey: [MODELS_DATA, legoSetId],
+          });
+          queryClient.invalidateQueries({
+            queryKey: [SET_DATA, legoSetId],
+          });
+        });
       } else {
         createNewModelData(legoSetId, data);
       }
     },
-    [legoSetId]
+    [legoSetId, queryClient]
   );
 
   const handleSaveModelDataToDatabase = useCallback(() => {
     if (instruction) {
       const data = instruction.prepareDataToSaveAfterPhaseEnd();
       if (data && setData) {
-        sendModelDataToDatabase(data, setData?.modelsList);
+        sendModelDataToDatabase(data, setData?.modelsList || []);
       }
     }
   }, [sendModelDataToDatabase, instruction, setData]);
@@ -85,14 +91,25 @@ const PersistanceDataProvider = ({
     handleSaveModelDataToDatabase,
     setData,
     modelsData,
-    isLoading: isSetDataLoading,
-    isError: isSetDataError,
-    error: setDataError,
   };
 
+  const isLoading = checkIfIsLoading([isModelsDataLoading, isSetDataLoading]);
+  const error = checkIfIsErrors([modelsDataError, setDataError]);
+  //Todo fix loaders
   return (
     <PersistanceDataContext.Provider value={context}>
-      {children}
+      {isLoading && (
+        <Html>
+          <SubmitIndicator size={150} />
+        </Html>
+      )}
+      {error && (
+        <Html>
+          <ErrorIndicator message={error.message} />
+        </Html>
+      )}
+
+      {!isLoading && !error && children}
     </PersistanceDataContext.Provider>
   );
 };

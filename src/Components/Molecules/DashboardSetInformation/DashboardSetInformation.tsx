@@ -1,14 +1,12 @@
-import {
-  DashboardSetInformationData,
-  SetInformationDTO,
-} from "../../../Types/DashboardSetInformationData";
+import { SetPersistanceData } from "../../../Classes/PersistanceModule";
+import { DashboardSetInformationData } from "../../../Types/DashboardSetInformationData";
 import {
   DashboardSetInformationImage,
   DashboardSetInformationWrapper,
 } from "./DashboardSetInformation.styles";
 type Props = {
   dashboardSetInformationData: DashboardSetInformationData;
-  setInformationDTO?: SetInformationDTO;
+  setInformationDTO?: SetPersistanceData;
 };
 
 const DashboardSetInformation = ({
@@ -20,13 +18,17 @@ const DashboardSetInformation = ({
 
   return (
     <DashboardSetInformationWrapper
-      $isCompleted={setInformationDTO ? setInformationDTO.isCompleted : false}
+      $isCompleted={
+        setInformationDTO
+          ? setInformationDTO.finishedModelsNumber === allModels
+          : false
+      }
     >
       <h3>{setName}</h3>
       <span>{`Set version: ${setVersion}`}</span>
       <DashboardSetInformationImage src={imagePath} alt={"Cover image"} />
       <span>{`Completed models: ${
-        setInformationDTO ? setInformationDTO.completedModels : 0
+        setInformationDTO ? setInformationDTO.finishedModelsNumber : 0
       }/${allModels}`}</span>
     </DashboardSetInformationWrapper>
   );

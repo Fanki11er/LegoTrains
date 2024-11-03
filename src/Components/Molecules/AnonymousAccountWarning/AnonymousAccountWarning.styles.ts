@@ -26,3 +26,7 @@ export const UpgradeAccountLink = styled(Link)`
     background-color: ${({ theme }) => theme.colors.purple};
   }
 `;
+
+export const AnonymousAccountWarningPlaceholder = styled.span`
+  visibility: hidden;
+`;

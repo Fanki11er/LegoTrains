@@ -15,7 +15,7 @@ import useTrainInstruction from "../../../Hooks/useTrainInstruction";
 
 type Props = {
   modelDataObject: Model;
-  persistanceData: ModelPersistanceData | undefined;
+  persistanceData: ModelPersistanceData | undefined | null;
 };
 
 const ModelMarkers = (props: Props) => {
@@ -29,32 +29,32 @@ const ModelMarkers = (props: Props) => {
 
   const modelRef = useRef<Object3D>(null!);
 
-  useEffect(() => {
-    moveElementToFloorLevel(model);
-  }, [model]);
-
   const { isSelected, handleSelect, handleUnselect } = useSelectModel();
 
   const handleMoveElementToFloorLevel = useCallback(() => {
-    if (modelRef.current && !modelDataObject.getIsModelArranged()) {
-      moveElementToFloorLevel(modelRef.current);
+    if (model && !modelDataObject.getIsModelArranged()) {
+      moveElementToFloorLevel(model);
     }
-  }, [modelDataObject]);
+  }, [modelDataObject, model]);
 
   useEffect(() => {
-    const model = modelRef.current;
-    model.name = modelDataObject.getRootModelMarkerId();
-
     if (model) {
+      model.name = modelDataObject.getRootModelMarkerId();
       model.addEventListener("childadded", handleMoveElementToFloorLevel);
       model.addEventListener("childremoved", handleMoveElementToFloorLevel);
     }
 
     return () => {
-      model.removeEventListener("childadded", handleMoveElementToFloorLevel);
-      model.removeEventListener("childremoved", handleMoveElementToFloorLevel);
+      model &&
+        model.removeEventListener("childadded", handleMoveElementToFloorLevel);
+      model &&
+        model.removeEventListener(
+          "childremoved",
+          handleMoveElementToFloorLevel
+        );
+      useGLTF.clear(modelDataObject.getModelMarkersPath());
     };
-  }, [modelDataObject, handleMoveElementToFloorLevel]);
+  }, [modelDataObject, handleMoveElementToFloorLevel, model]);
 
   useEffect(() => {
     if (model && persistanceData) {
@@ -74,28 +74,36 @@ const ModelMarkers = (props: Props) => {
     }
   }, [model, persistanceData, handleGetSetRootMarker]);
 
+  useEffect(() => {
+    if (model) {
+      moveElementToFloorLevel(model);
+    }
+  }, [model]);
+
   return (
     <>
-      <primitive
-        object={model}
-        ref={modelRef}
-        onClick={() => {
-          if (modelRef.current && !modelDataObject.getIsModelArranged()) {
-            handleSelect(modelRef.current, true);
-          }
-        }}
-        onPointerMissed={() => {
-          handleUnselect(modelRef.current);
-        }}
-      />
-      {modelRef.current &&
-        isSelected &&
-        !modelDataObject.getIsModelFinished() && (
-          <SelectedElementContextMenu mesh={modelRef.current} />
-        )}
-      {modelRef.current &&
-        isSelected &&
-        modelDataObject.getIsModelFinished() && <FinishedModelContextMenu />}
+      <>
+        <primitive
+          object={model}
+          ref={modelRef}
+          onClick={() => {
+            if (modelRef.current && !modelDataObject.getIsModelArranged()) {
+              handleSelect(modelRef.current, true);
+            }
+          }}
+          onPointerMissed={() => {
+            handleUnselect(modelRef.current);
+          }}
+        />
+        {modelRef.current &&
+          isSelected &&
+          !modelDataObject.getIsModelFinished() && (
+            <SelectedElementContextMenu mesh={modelRef.current} />
+          )}
+        {modelRef.current &&
+          isSelected &&
+          modelDataObject.getIsModelFinished() && <FinishedModelContextMenu />}
+      </>
     </>
   );
 };

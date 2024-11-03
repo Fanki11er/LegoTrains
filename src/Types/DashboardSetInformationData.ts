@@ -11,3 +11,8 @@ export type SetInformationDTO = {
   isCompleted: boolean;
   completedModels: number;
 };
+
+export type DashboardFutureSetInformationData = Omit<
+  DashboardSetInformationData,
+  "allModels"
+>;

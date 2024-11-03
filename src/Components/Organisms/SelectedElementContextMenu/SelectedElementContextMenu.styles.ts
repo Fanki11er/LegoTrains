@@ -8,10 +8,11 @@ export const SelectedElementContextMenuWrapper = styled.menu`
   top: 50px;
   position: absolute;
   background-color: gray;
-  opacity: 0.5;
+  opacity: 0.8;
   z-index: 10;
   margin: 0;
   padding: 15px;
+  color: black;
 `;
 export const SelectedElementMenuSectionHeader = styled.h2`
   margin: 5px 0;
