@@ -16,6 +16,7 @@ export const theme: Theme = {
     orange: "rgba(253, 119, 77, 1)",
     greenGray: "rgba(64, 79, 67, 1)",
     purpleGray: "rgba(39, 53, 76, 1)",
+    transparentBlack: "rgba(0, 0, 0, 0.8)",
   },
 
   defaultFontFamily: "Inter, sans-serif",
@@ -55,6 +56,7 @@ export type Theme = {
     orange: string;
     greenGray: string;
     purpleGray: string;
+    transparentBlack: string;
   };
 
   fontSizes: {

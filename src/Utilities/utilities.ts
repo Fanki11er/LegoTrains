@@ -73,7 +73,8 @@ export const checkIfIsLoading = (loaders: boolean[]) => {
 };
 
 export const checkIfIsErrors = (errors: (Error | null)[]) => {
-  return errors.find((e) => {
-    e !== null;
+  const err = errors.find((e) => {
+    return e !== null;
   });
+  return err;
 };

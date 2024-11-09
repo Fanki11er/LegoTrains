@@ -55,7 +55,11 @@ const UpgradeAccountForm = () => {
                 setAuthError(err.message);
               }
             );
-            await createUserData();
+
+            createUserData().catch((err) => {
+              setAuthError(err.message);
+            });
+
             resetForm();
             setSubmitting(false);
             navigate(userDashboardRouterPath);

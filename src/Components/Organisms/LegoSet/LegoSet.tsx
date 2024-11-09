@@ -37,11 +37,10 @@ const LegoSet = () => {
     isPending: isMutating,
     error: mutationError,
   } = useMutation({
-    onError: (err) => console.log(err.message),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [USER_SETS_LIST] });
     },
-    mutationFn: () => createNewUserSet("Set_7722_V1"),
+    mutationFn: () => createNewUserSet(id),
   });
 
   useEffect(() => {
@@ -71,12 +70,11 @@ const LegoSet = () => {
       )}
       {error && (
         <FullCenterWrapper>
-          <ErrorIndicator message={error.message} />
+          <ErrorIndicator message={error.name} />
         </FullCenterWrapper>
       )}
-
-      {legoSetId !== null && id === "Set_7722_V1" && (
-        <Set722V1 legoSetId={legoSetId} />
+      {legoSetId !== null && !isLoading && !error && (
+        <>{id === "Set_7722_V1" && <Set722V1 legoSetId={legoSetId} />}</>
       )}
     </>
   );

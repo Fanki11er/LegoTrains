@@ -104,3 +104,22 @@ export const getSetModelsDataFromDatabase = async (setId: string) => {
   }
   return null;
 };
+
+export const getSetModelsList = async (setId: string) => {
+  const user = auth.currentUser;
+
+  if (!user) {
+    throw new Error("No logged user");
+  }
+
+  if (!user.isAnonymous) {
+    const userId = user.uid;
+
+    const setDocRef = doc(db, usersCollection, userId, setsCollection, setId);
+    const data = await getDoc(setDocRef);
+    if (data.exists()) {
+      return data.data().modelsList as string[];
+    }
+    return [];
+  }
+};

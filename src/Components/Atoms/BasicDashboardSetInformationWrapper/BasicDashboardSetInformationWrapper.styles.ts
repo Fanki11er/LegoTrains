@@ -3,10 +3,10 @@ import { show } from "../../../Theme/helpers";
 
 export const BasicDashboardSetInformationWrapper = styled.div`
   display: flex;
-  width: 350px;
-  height: 380px;
+  width: 370px;
+  height: 440px;
   gap: 1rem;
-  padding: 2rem 1rem;
+  padding: 2.5rem 1rem 2rem 1rem;
   flex-direction: column;
   align-items: center;
   border-radius: 1rem;

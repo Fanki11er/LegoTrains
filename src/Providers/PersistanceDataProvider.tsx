@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useCallback } from "react";
+import { createContext, PropsWithChildren, useCallback, useState } from "react";
 import { TrainInstruction } from "../Classes/TrainInstruction";
 import {
   getSetDataFromDatabase,
@@ -15,9 +15,11 @@ import {
   updateModelInDatabase,
 } from "../firebase/writeToDbFunctions";
 import { checkIfIsErrors, checkIfIsLoading } from "../Utilities/utilities";
-import { Html } from "@react-three/drei";
 import SubmitIndicator from "../Components/Molecules/SubmitIndicator/SubmitIndicator";
 import ErrorIndicator from "../Components/Molecules/ErrorIndicator/ErrorIndicator";
+import { InSceneProceedStatus } from "../Components/Atoms/InSceneProceedStatus/InSceneProceedStatus.styles";
+import { OperationStatus } from "../Types/OperationStatus";
+import { FullCenterWrapper } from "../Components/Atoms/FullCenterWrapper/FullCenterWrapper.styles";
 
 export const PersistanceDataContext = createContext({
   handleSaveModelDataToDatabase: () => {},
@@ -35,6 +37,7 @@ const PersistanceDataProvider = ({
   instruction,
   legoSetId,
 }: PropsWithChildren & Props) => {
+  const [status, setStatus] = useState<OperationStatus | null>(null);
   const queryClient = useQueryClient();
 
   const {
@@ -44,7 +47,6 @@ const PersistanceDataProvider = ({
   } = useQuery<SetPersistanceData | null>({
     queryKey: [SET_DATA, legoSetId],
     queryFn: () => getSetDataFromDatabase(legoSetId),
-    staleTime: Infinity,
   });
 
   const {
@@ -54,25 +56,50 @@ const PersistanceDataProvider = ({
   } = useQuery<ModelPersistanceData[] | null>({
     queryKey: [MODELS_DATA, legoSetId],
     queryFn: () => getSetModelsDataFromDatabase(legoSetId),
-    staleTime: Infinity,
   });
 
   const sendModelDataToDatabase = useCallback(
-    async (data: ModelPersistanceData, modelsList: string[]) => {
+    (data: ModelPersistanceData, modelsList: string[]) => {
       const foundModel = modelsList.find((model) => {
         return model === data.modelName;
       });
+      setStatus({ message: "Saving progress...", status: "proceed" });
       if (foundModel) {
-        updateModelInDatabase(legoSetId, data).then(() => {
-          queryClient.invalidateQueries({
-            queryKey: [MODELS_DATA, legoSetId],
+        updateModelInDatabase(legoSetId, data)
+          .then(() => {
+            queryClient.invalidateQueries({
+              queryKey: [MODELS_DATA, legoSetId],
+            });
+            queryClient.invalidateQueries({
+              queryKey: [SET_DATA, legoSetId],
+            });
+            setStatus(null);
+          })
+          .catch((err) => {
+            setStatus({ message: err.message, status: "error" });
+            setTimeout(() => {
+              setStatus(null);
+            }, 2000);
+            //!! Set to logs
           });
-          queryClient.invalidateQueries({
-            queryKey: [SET_DATA, legoSetId],
-          });
-        });
       } else {
-        createNewModelData(legoSetId, data);
+        createNewModelData(legoSetId, data)
+          .then(() => {
+            queryClient.invalidateQueries({
+              queryKey: [MODELS_DATA, legoSetId],
+            });
+            queryClient.invalidateQueries({
+              queryKey: [SET_DATA, legoSetId],
+            });
+            setStatus(null);
+          })
+          .catch((err) => {
+            setStatus({ message: err.message, status: "error" });
+            setTimeout(() => {
+              setStatus(null);
+            }, 2000);
+            //!! Set to logs
+          });
       }
     },
     [legoSetId, queryClient]
@@ -95,21 +122,23 @@ const PersistanceDataProvider = ({
 
   const isLoading = checkIfIsLoading([isModelsDataLoading, isSetDataLoading]);
   const error = checkIfIsErrors([modelsDataError, setDataError]);
-  //Todo fix loaders
+  //!! Add return button
   return (
     <PersistanceDataContext.Provider value={context}>
       {isLoading && (
-        <Html>
+        <FullCenterWrapper>
           <SubmitIndicator size={150} />
-        </Html>
+        </FullCenterWrapper>
       )}
       {error && (
-        <Html>
+        <FullCenterWrapper>
           <ErrorIndicator message={error.message} />
-        </Html>
+        </FullCenterWrapper>
       )}
-
       {!isLoading && !error && children}
+      <InSceneProceedStatus $show={!!status}>
+        {status?.message}
+      </InSceneProceedStatus>
     </PersistanceDataContext.Provider>
   );
 };

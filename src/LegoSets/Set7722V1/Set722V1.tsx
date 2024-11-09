@@ -14,19 +14,14 @@ const Set722V1 = ({ legoSetId }: Props) => {
     return createInstruction();
   }, []);
   return (
-    <>
+    <PersistanceDataProvider instruction={instruction} legoSetId={legoSetId}>
       <Scene>
-        <PersistanceDataProvider
-          instruction={instruction}
-          legoSetId={legoSetId}
-        >
-          <TrainInstructionProvider instruction={instruction}>
-            <Floor />
-            <SteamLocomotive_7722 />
-          </TrainInstructionProvider>
-        </PersistanceDataProvider>
+        <TrainInstructionProvider instruction={instruction}>
+          <Floor />
+          <SteamLocomotive_7722 />
+        </TrainInstructionProvider>
       </Scene>
-    </>
+    </PersistanceDataProvider>
   );
 };
 

@@ -16,54 +16,51 @@ import {
   setsCollection,
   usersCollection,
 } from "./collectionNames";
+import { getSetModelsList } from "./readFromDbFunctions";
 
 export const createUserData = async () => {
   const user = auth.currentUser;
   if (!user) {
     throw new Error("No logged user");
   }
+
   if (!user.isAnonymous) {
     setDoc(doc(db, usersCollection, user.uid), {
       userSetsList: [],
-    }).catch((err) => {
-      console.log(err);
     });
   }
 };
 
-export const createNewUserSet = async (setName: string) => {
+export const createNewUserSet = async (setName: string | undefined) => {
   const user = auth.currentUser;
   if (!user) {
     throw new Error("No logged user");
   }
 
-  if (!user.isAnonymous) {
+  if (!user.isAnonymous && setName) {
     const userId = user.uid;
-    try {
-      const newSet: SetPersistanceData = {
-        setName,
-        modelsList: [],
-        allModelsNumber: 0,
-        finishedModelsNumber: 0,
-      };
-      const bath = writeBatch(db);
 
-      const userDocRef = doc(db, usersCollection, userId);
-      const setsRef = doc(
-        collection(db, usersCollection, userId, setsCollection),
-        setName
-      );
+    const newSet: SetPersistanceData = {
+      setName,
+      modelsList: [],
+      allModelsNumber: 0,
+      finishedModelsNumber: 0,
+    };
+    const bath = writeBatch(db);
 
-      bath.set(setsRef, newSet);
+    const userDocRef = doc(db, usersCollection, userId);
+    const setsRef = doc(
+      collection(db, usersCollection, userId, setsCollection),
+      setName
+    );
 
-      bath.update(userDocRef, {
-        userSetsList: arrayUnion(setName),
-      });
+    bath.set(setsRef, newSet);
 
-      await bath.commit();
-    } catch (err) {
-      console.log(err);
-    }
+    bath.update(userDocRef, {
+      userSetsList: arrayUnion(setName),
+    });
+
+    return bath.commit();
   }
 };
 
@@ -79,31 +76,28 @@ export const createNewModelData = async (
 
   if (!user.isAnonymous) {
     const userId = user.uid;
-    try {
-      const bath = writeBatch(db);
-      const setRef = doc(
-        collection(
-          db,
-          usersCollection,
-          userId,
-          setsCollection,
-          setId,
-          modelsCollection
-        ),
-        data.modelName
-      );
-      bath.set(setRef, data);
 
-      const setDocRef = doc(db, usersCollection, userId, setsCollection, setId);
+    const bath = writeBatch(db);
+    const setRef = doc(
+      collection(
+        db,
+        usersCollection,
+        userId,
+        setsCollection,
+        setId,
+        modelsCollection
+      ),
+      data.modelName
+    );
+    bath.set(setRef, data);
 
-      bath.update(setDocRef, {
-        modelsList: arrayUnion(data.modelName),
-      });
+    const setDocRef = doc(db, usersCollection, userId, setsCollection, setId);
 
-      await bath.commit();
-    } catch (err) {
-      console.log(err);
-    }
+    bath.update(setDocRef, {
+      modelsList: arrayUnion(data.modelName),
+    });
+
+    return bath.commit();
   }
 };
 
@@ -119,38 +113,78 @@ export const updateModelInDatabase = async (
 
   if (!user.isAnonymous) {
     const userId = user.uid;
-    try {
-      const bath = writeBatch(db);
-      const setRef = doc(
-        collection(
-          db,
-          usersCollection,
-          userId,
-          setsCollection,
-          setId,
-          modelsCollection
-        ),
-        data.modelName
-      );
-      bath.set(setRef, data);
 
-      if (data.isModelArranged) {
-        const setDocRef = doc(
-          db,
-          usersCollection,
-          userId,
-          setsCollection,
-          setId
+    const bath = writeBatch(db);
+    const setRef = doc(
+      collection(
+        db,
+        usersCollection,
+        userId,
+        setsCollection,
+        setId,
+        modelsCollection
+      ),
+      data.modelName
+    );
+    bath.set(setRef, data);
+
+    if (data.isModelFinished) {
+      const setDocRef = doc(db, usersCollection, userId, setsCollection, setId);
+
+      bath.update(setDocRef, {
+        finishedModelsNumber: increment(1),
+      });
+    }
+
+    return bath.commit();
+  }
+};
+
+export const resetSet = async (setName: string) => {
+  const user = auth.currentUser;
+
+  if (!user) {
+    throw new Error("No logged user");
+  }
+
+  if (!user.isAnonymous) {
+    const userId = user.uid;
+
+    const emptySet: SetPersistanceData = {
+      setName,
+      modelsList: [],
+      allModelsNumber: 0,
+      finishedModelsNumber: 0,
+    };
+    const bath = writeBatch(db);
+
+    const modelsList = await getSetModelsList(setName);
+
+    if (modelsList) {
+      modelsList.forEach((model) => {
+        const modelsRef = doc(
+          collection(
+            db,
+            usersCollection,
+            userId,
+            setsCollection,
+            setName,
+            modelsCollection
+          ),
+          model
         );
 
-        bath.update(setDocRef, {
-          finishedModelsNumber: increment(1),
-        });
-      }
-
-      await bath.commit();
-    } catch (err) {
-      console.log(err);
+        bath.set(modelsRef, {});
+      });
     }
+
+    const setsRef = doc(
+      collection(db, usersCollection, userId, setsCollection),
+      setName
+    );
+
+    bath.set(setsRef, emptySet);
+
+    return bath.commit();
   }
 };

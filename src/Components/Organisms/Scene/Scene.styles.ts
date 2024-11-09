@@ -6,6 +6,7 @@ export const SceneSection = styled.section`
   height: 100vh;
   background-color: black;
   position: relative;
+  overflow: hidden;
 `;
 
 export const StyledCanvas = styled(Canvas)`

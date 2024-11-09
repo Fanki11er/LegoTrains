@@ -11,7 +11,15 @@ const GlobalStyle = createGlobalStyle`
 body {
     font-family: ${theme.defaultFontFamily} ;
     background-color: ${theme.colors.lightBlack};
-    color:${theme.colors.white}; ;
+    color:${theme.colors.white}; 
+    width: 100vw;
+    min-height: 100dvh;
+    overflow: hidden;
+}
+html{
+    width: 100vw;
+    min-height: 100dvh;
+    overflow: hidden;
 }
 
 
@@ -54,7 +62,9 @@ input {
 #root{
     display: flex ;
     flex-direction: column ;
+    width: 100vw;
     min-height: 100dvh;
+    overflow: hidden;
 }
 `;
 
