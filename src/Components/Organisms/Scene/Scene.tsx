@@ -5,6 +5,7 @@ import Loader from "../../Molecules/Loader/Loader";
 
 const Scene = ({ children }: PropsWithChildren) => {
   //Todo Fix scene colors and light
+
   return (
     <SceneSection>
       <StyledCanvas

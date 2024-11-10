@@ -1,5 +1,11 @@
 import { useGLTF } from "@react-three/drei";
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import {
+  useCallback,
+  useDeferredValue,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
 import { Object3D } from "three";
 import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu/SelectedElementContextMenu";
 import useSelectModel from "../../../Hooks/useSelectModel";
@@ -20,7 +26,8 @@ type Props = {
 
 const ModelMarkers = (props: Props) => {
   const { persistanceData, modelDataObject } = props;
-  const { scene } = useGLTF(modelDataObject.getModelMarkersPath());
+  const markersPath = useDeferredValue(modelDataObject.getModelMarkersPath());
+  const { scene } = useGLTF(markersPath);
   const { handleGetSetRootMarker } = useTrainInstruction();
 
   const model = useMemo(() => {
@@ -83,18 +90,20 @@ const ModelMarkers = (props: Props) => {
   return (
     <>
       <>
-        <primitive
-          object={model}
-          ref={modelRef}
-          onClick={() => {
-            if (modelRef.current && !modelDataObject.getIsModelArranged()) {
-              handleSelect(modelRef.current, true);
-            }
-          }}
-          onPointerMissed={() => {
-            handleUnselect(modelRef.current);
-          }}
-        />
+        {model && (
+          <primitive
+            object={model}
+            ref={modelRef}
+            onClick={() => {
+              if (modelRef.current && !modelDataObject.getIsModelArranged()) {
+                handleSelect(modelRef.current, true);
+              }
+            }}
+            onPointerMissed={() => {
+              handleUnselect(modelRef.current);
+            }}
+          />
+        )}
         {modelRef.current &&
           isSelected &&
           !modelDataObject.getIsModelFinished() && (

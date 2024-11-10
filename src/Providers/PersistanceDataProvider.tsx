@@ -63,7 +63,9 @@ const PersistanceDataProvider = ({
       const foundModel = modelsList.find((model) => {
         return model === data.modelName;
       });
+      let timeout: null | NodeJS.Timeout = null;
       setStatus({ message: "Saving progress...", status: "proceed" });
+
       if (foundModel) {
         updateModelInDatabase(legoSetId, data)
           .then(() => {
@@ -73,11 +75,14 @@ const PersistanceDataProvider = ({
             queryClient.invalidateQueries({
               queryKey: [SET_DATA, legoSetId],
             });
-            setStatus(null);
+
+            timeout = setTimeout(() => {
+              setStatus(null);
+            }, 2000);
           })
           .catch((err) => {
             setStatus({ message: err.message, status: "error" });
-            setTimeout(() => {
+            timeout = setTimeout(() => {
               setStatus(null);
             }, 2000);
             //!! Set to logs
@@ -91,16 +96,22 @@ const PersistanceDataProvider = ({
             queryClient.invalidateQueries({
               queryKey: [SET_DATA, legoSetId],
             });
-            setStatus(null);
+
+            timeout = setTimeout(() => {
+              setStatus(null);
+            }, 2000);
           })
           .catch((err) => {
             setStatus({ message: err.message, status: "error" });
-            setTimeout(() => {
+            timeout = setTimeout(() => {
               setStatus(null);
             }, 2000);
             //!! Set to logs
           });
       }
+      return () => {
+        if (timeout) window.clearTimeout(timeout);
+      };
     },
     [legoSetId, queryClient]
   );

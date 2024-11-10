@@ -1,8 +1,8 @@
 import { useGLTF, useTexture } from "@react-three/drei";
-import { useMemo, useRef, useState } from "react";
+import { useDeferredValue, useMemo, useRef, useState } from "react";
 import { Group, MeshStandardMaterial, Object3DEventMap } from "three";
 // @ts-expect-error Not a type
-import instructionPage from "../../../assets/3D/InstructionPage/InstructionPage.glb";
+import instructionPagePath from "../../../assets/3D/InstructionPage/InstructionPage.glb";
 import { InstructionPageTextures } from "../../../Types/InstructionPageTextures";
 import { setTextureOptions } from "../../../Utilities/utilities";
 import { useSpring, animated } from "@react-spring/three";
@@ -20,7 +20,7 @@ const InstructionPage = (props: Props) => {
   const [isPageTurning, setIsPageTurning] = useState(false);
 
   const pageRef = useRef<Group<Object3DEventMap>>(null);
-
+  const instructionPage = useDeferredValue(instructionPagePath);
   const { nodes } = useGLTF(instructionPage);
 
   const { x: pageStartXPosition, z: pageStartZPosition } =

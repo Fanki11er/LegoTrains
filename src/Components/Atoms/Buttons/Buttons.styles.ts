@@ -22,3 +22,21 @@ export const LogoutButton = styled(BaseButton)`
     background-color: ${({ theme }) => theme.colors.purple};
   }
 `;
+
+export const ReturnButton = styled(BaseButton)`
+  position: absolute;
+  opacity: 0.5;
+  top: 1rem;
+  left: 1rem;
+  width: 130px;
+  height: 35px;
+  background-color: ${({ theme }) => theme.colors.purpleGray};
+  border: 2px solid ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.white};
+
+  &:focus,
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.purple};
+    opacity: 1;
+  }
+`;

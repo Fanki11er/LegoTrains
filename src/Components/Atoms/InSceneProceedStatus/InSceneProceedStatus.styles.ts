@@ -4,15 +4,21 @@ type Props = {
 };
 
 export const InSceneProceedStatus = styled.span<Props>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: fit-content;
+  min-width: 150px;
   position: absolute;
   padding: 2rem;
   background-color: ${({ theme }) => theme.colors.green};
   border-radius: 1rem;
   top: 30px;
   left: 50%;
+  transform-origin: 50% 50%;
   margin: 0 auto;
-  transition: all 1s;
-  transform: ${({ $show }) => ($show ? "translateY(0)" : "translateY(-150%)")}
-    translateX(-50%);
+  transition: all 0.8s;
+  transform: translateX(-50%)
+    ${({ $show }) =>
+      $show ? "scaleX(1) translateY(0)" : "scaleX(0.5) translateY(-150%)"};
 `;

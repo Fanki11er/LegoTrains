@@ -5,11 +5,15 @@ import TrainInstructionProvider from "../../Providers/TrainInstructionProvider";
 import { createInstruction } from "./setInstruction";
 import PersistanceDataProvider from "../../Providers/PersistanceDataProvider";
 import { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+import { ReturnButton } from "../../Components/Atoms/Buttons/Buttons.styles";
+import { paths } from "../../router/routerPaths";
 
 type Props = {
   legoSetId: string;
 };
 const Set722V1 = ({ legoSetId }: Props) => {
+  const navigate = useNavigate();
   const instruction = useMemo(() => {
     return createInstruction();
   }, []);
@@ -21,6 +25,9 @@ const Set722V1 = ({ legoSetId }: Props) => {
           <SteamLocomotive_7722 />
         </TrainInstructionProvider>
       </Scene>
+      <ReturnButton onClick={() => navigate(paths.userDashboardRouterPath)}>
+        Return
+      </ReturnButton>
     </PersistanceDataProvider>
   );
 };

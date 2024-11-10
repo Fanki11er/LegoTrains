@@ -2,7 +2,7 @@ import { useGLTF } from "@react-three/drei";
 import { Mesh, Object3D, Object3DEventMap } from "three";
 import { ThreeEvent } from "@react-three/fiber";
 import { PartUserData } from "../../../Types/PartUserData";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import useTrainInstruction from "../../../Hooks/useTrainInstruction";
 import useSelectModel from "../../../Hooks/useSelectModel";
 import Nest from "../Nest/Nest";
@@ -23,7 +23,8 @@ type PartProps = {
 
 const LegoPart = (props: PartProps) => {
   const { partInfo, persistanceData } = props;
-  const { scene } = useGLTF(partInfo.partPath);
+  const partPath = useDeferredValue(partInfo.partPath);
+  const { scene } = useGLTF(partPath);
   const { handleGetMarkersForSelectedPart, handleGetRootModelMarkerByName } =
     useTrainInstruction();
   const [markersList, setMarkersList] = useState<Object3D<Object3DEventMap>[]>(
