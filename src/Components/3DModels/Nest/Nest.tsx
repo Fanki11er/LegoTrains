@@ -35,7 +35,7 @@ const Nest = (props: NestProps) => {
       <mesh
         key={mesh.uuid}
         name="Nest"
-        geometry={mesh.geometry.clone()}
+        geometry={mesh.geometry}
         material={nestMaterial.clone()}
         material-opacity={isHovered ? 0.5 : 0}
         material-color="blue"
@@ -80,7 +80,6 @@ const Nest = (props: NestProps) => {
             marker.parent.add(mesh);
             mesh.userData.isConnected = true;
             const isPhaseFinished = handleFinishPartConnection(marker);
-
             if (isPhaseFinished) {
               handleSaveModelDataToDatabase();
             }

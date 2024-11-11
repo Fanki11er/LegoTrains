@@ -16,6 +16,7 @@ import {
 } from "../../../Utilities/utilities";
 import ErrorBoundary from "../../Molecules/ErrorBoundary/ErrorBoundary";
 import ErrorFallback from "../../Molecules/ErrorFallback/ErrorFallback";
+import { ERROR_FALLBACK_TEXT } from "../../../Constants/constants";
 
 const LegoSet = () => {
   const { id } = useParams();
@@ -65,7 +66,7 @@ const LegoSet = () => {
 
   return (
     <ErrorBoundary
-      fallback={<ErrorFallback message="Sorry, something went wrong" />}
+      fallback={<ErrorFallback message={ERROR_FALLBACK_TEXT} />}
       save
     >
       {isLoading && (

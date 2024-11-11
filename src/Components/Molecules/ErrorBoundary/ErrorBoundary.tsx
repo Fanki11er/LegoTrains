@@ -8,10 +8,6 @@ type Props = {
 class ErrorBoundary extends Component<PropsWithChildren & Props> {
   state = { hasError: false };
 
-  // static getDerivedStateFromError () {
-  // return {hasError: true}
-  // }
-
   componentDidCatch(err: Error) {
     this.setState({ hasError: true });
     if (this.props.save) {

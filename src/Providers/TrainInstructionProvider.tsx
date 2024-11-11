@@ -36,7 +36,6 @@ type InstructionData = {
 const TrainInstructionProvider = (
   props: PropsWithChildren & InstructionData
 ) => {
-  console.log("RenderInstructionProvider");
   const { children, instruction } = props;
   const { scene } = useThree();
   const { handleSaveModelDataToDatabase } = usePersistanceDataProvider();

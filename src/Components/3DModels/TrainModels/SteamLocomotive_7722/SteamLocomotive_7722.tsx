@@ -1,5 +1,5 @@
 import useTrainInstruction from "../../../../Hooks/useTrainInstruction";
-import { useEffect, useMemo } from "react";
+import { memo, useEffect, useMemo } from "react";
 import LegoPart from "../../LegoPart/LegoPart";
 import ModelMarkers from "../../ModelMarkers/ModelMarkers";
 import Instruction from "../../Instruction/Instruction";
@@ -12,7 +12,7 @@ import SceneMarkers from "../../SceneMarkers/SceneMarkers";
 import { Model } from "../../../../Classes/Model";
 import usePersistanceDataProvider from "../../../../Hooks/usePersistanceDataProvider";
 
-const SteamLocomotive_7722 = () => {
+const SteamLocomotive_7722 = memo(() => {
   console.log("Rerender Locomotive");
 
   const {
@@ -110,6 +110,6 @@ const SteamLocomotive_7722 = () => {
       )}
     </>
   );
-};
+});
 
 export default SteamLocomotive_7722;

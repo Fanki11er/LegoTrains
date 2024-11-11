@@ -20,6 +20,7 @@ const InstructionPage = (props: Props) => {
   const [isPageTurning, setIsPageTurning] = useState(false);
 
   const pageRef = useRef<Group<Object3DEventMap>>(null);
+
   const instructionPage = useDeferredValue(instructionPagePath);
   const { nodes } = useGLTF(instructionPage);
 
@@ -94,14 +95,14 @@ const InstructionPage = (props: Props) => {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.PageFront.geometry.clone()}
+        geometry={nodes.PageFront.geometry}
         material={pageMaterials.frontPageMaterial}
         position={[72.05, 0.05, 0]}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.PageBack.geometry.clone()}
+        geometry={nodes.PageBack.geometry}
         material={pageMaterials.backPageMaterial}
         position={[72.05, -0.05, 0]}
         rotation={[0, 0, Math.PI]}

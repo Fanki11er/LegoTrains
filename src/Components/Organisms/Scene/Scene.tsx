@@ -6,7 +6,6 @@ import { Perf } from "r3f-perf";
 
 const Scene = ({ children }: PropsWithChildren) => {
   //Todo Fix scene colors and light
-
   return (
     <SceneSection>
       <StyledCanvas
