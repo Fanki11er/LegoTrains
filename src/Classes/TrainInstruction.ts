@@ -2,10 +2,10 @@ import { Object3D, Scene } from "three";
 import { MarkersInfo, Model } from "./Model";
 import { SetLegoBlocks } from "../LegoSets/Set7722V1/SteamLocomotive7722Parts/SetLegoBlockTypes";
 import { ModelPersistanceData, PersistanceModule } from "./PersistanceModule";
+import { saveErrorLog } from "../firebase/writeToDbFunctions";
 
 export class TrainInstruction {
   private models: Model[] = [];
-  //scene: Scene | null = null;
   sceneLoader!: () => Scene;
   private activeModel: Model | null = null;
   private setLegoBlocks: SetLegoBlocks | null = null;
@@ -33,8 +33,6 @@ export class TrainInstruction {
   getModelRootMarkerByName = (rootMarkerName: string) => {
     const scene = this.sceneLoader();
     return scene.getObjectByName(rootMarkerName);
-    // }
-    //return undefined;
   };
 
   getSetRootMarker = () => {
@@ -66,10 +64,6 @@ export class TrainInstruction {
     }
     return [];
   };
-
-  // getIsSceneLoaded = () => {
-  //   return !!this.scene;
-  // };
 
   getActiveModelName = () => {
     if (this.activeModel) {
@@ -118,12 +112,6 @@ export class TrainInstruction {
     }
   };
 
-  // setActiveModel = (index: number) => {
-  //   if (this.models.length > index) {
-  //     this.activeModel = this.models[index];
-  //   }
-  // };
-
   getMarkersForActivePhase = () => {
     const rootModelMarker = this.getActiveModelMarkers();
 
@@ -150,10 +138,6 @@ export class TrainInstruction {
 
     return scene.getObjectById(id);
   };
-
-  // loadScene = (scene: Scene) => {
-  //   this.scene = scene;
-  // };
 
   getActiveModel = () => {
     return this.activeModel;
@@ -230,8 +214,10 @@ export class TrainInstruction {
         });
 
         if (!destinationMarker) {
-          //Todo: Error
-          console.log("Error, destination marker not found");
+          saveErrorLog(
+            "Error, destination marker not found",
+            sceneRootMarker.name
+          );
           return false;
         }
 
@@ -242,8 +228,10 @@ export class TrainInstruction {
         this.changeToNextActiveModel();
         return true;
       } else {
-        //Todo: Error
-        console.log("Error, markers not found");
+        saveErrorLog(
+          "Error, markers not found",
+          this.activeModel.getModelName()
+        );
         return false;
       }
     }
