@@ -12,7 +12,7 @@ export const ResetSetModalWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.transparentBlack};
   z-index: 10;
   animation: ${show};
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
 `;
 

@@ -14,6 +14,8 @@ import {
   checkIfIsErrors,
   checkIfIsLoading,
 } from "../../../Utilities/utilities";
+import ErrorBoundary from "../../Molecules/ErrorBoundary/ErrorBoundary";
+import ErrorFallback from "../../Molecules/ErrorFallback/ErrorFallback";
 
 const LegoSet = () => {
   const { id } = useParams();
@@ -62,7 +64,10 @@ const LegoSet = () => {
   const error = checkIfIsErrors([setsListError, mutationError]);
 
   return (
-    <>
+    <ErrorBoundary
+      fallback={<ErrorFallback message="Sorry, something went wrong" />}
+      save
+    >
       {isLoading && (
         <FullCenterWrapper>
           <SubmitIndicator size={150} />
@@ -76,7 +81,7 @@ const LegoSet = () => {
       {legoSetId !== null && !isLoading && !error && (
         <>{id === "Set_7722_V1" && <Set722V1 legoSetId={legoSetId} />}</>
       )}
-    </>
+    </ErrorBoundary>
   );
 };
 

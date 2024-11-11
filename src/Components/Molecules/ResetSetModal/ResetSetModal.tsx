@@ -8,7 +8,7 @@ import {
   ResetSetModalWrapper,
 } from "./ResetSetModal.styles";
 import warningIcon from "../../../assets/svg/WarningIcon.svg";
-import { resetSet } from "../../../firebase/writeToDbFunctions";
+import { resetSet, saveErrorLog } from "../../../firebase/writeToDbFunctions";
 import { useState } from "react";
 import { OkStatus } from "../../Atoms/OkStatus/OkStatus.styles";
 import { FormError } from "../../Atoms/FormError/FormError.styles";
@@ -26,13 +26,17 @@ const ResetSetModal = ({ setId, handleToggleModal }: Props) => {
   return (
     <ResetSetModalWrapper>
       <ResetSetModalContent>
-        <ResetSetModalWarningIcon src={warningIcon} alt={"Warning icon"} />
+        {status !== "ok" && (
+          <ResetSetModalWarningIcon src={warningIcon} alt={"Warning icon"} />
+        )}
         {status === "ok" && <OkStatus>Reseated</OkStatus>}
         {status === "error" && <FormError>Error</FormError>}
-        <ResetSetModalWarningText>
-          Click Reset button if you want to reset your progress on this set (all
-          models in this set will be reseated)
-        </ResetSetModalWarningText>
+        {status !== "ok" && (
+          <ResetSetModalWarningText>
+            Click Reset button if you want to reset your progress on this set
+            (all models in this set will be reseated)
+          </ResetSetModalWarningText>
+        )}
         {status === "submitting" && <SubmitIndicator />}
         {status !== "submitting" && (
           <ResetSetModalButtonsWrapper>
@@ -50,7 +54,10 @@ const ResetSetModal = ({ setId, handleToggleModal }: Props) => {
                         queryKey: [SET_DATA, setId],
                       });
                     })
-                    .catch(() => setStatus("error"));
+                    .catch((err) => {
+                      setStatus("error");
+                      saveErrorLog(err.message, setId);
+                    });
                 }}
               >
                 Reset

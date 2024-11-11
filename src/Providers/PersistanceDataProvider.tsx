@@ -12,6 +12,7 @@ import {
 import { MODELS_DATA, SET_DATA } from "../Api/queryKeys";
 import {
   createNewModelData,
+  saveErrorLog,
   updateModelInDatabase,
 } from "../firebase/writeToDbFunctions";
 import { checkIfIsErrors, checkIfIsLoading } from "../Utilities/utilities";
@@ -81,11 +82,11 @@ const PersistanceDataProvider = ({
             }, 2000);
           })
           .catch((err) => {
-            setStatus({ message: err.message, status: "error" });
+            setStatus({ message: err.name, status: "error" });
+            saveErrorLog(err.message, legoSetId);
             timeout = setTimeout(() => {
               setStatus(null);
             }, 2000);
-            //!! Set to logs
           });
       } else {
         createNewModelData(legoSetId, data)
@@ -102,11 +103,11 @@ const PersistanceDataProvider = ({
             }, 2000);
           })
           .catch((err) => {
-            setStatus({ message: err.message, status: "error" });
+            setStatus({ message: err.name, status: "error" });
+            saveErrorLog(err.message, legoSetId);
             timeout = setTimeout(() => {
               setStatus(null);
             }, 2000);
-            //!! Set to logs
           });
       }
       return () => {
@@ -133,7 +134,7 @@ const PersistanceDataProvider = ({
 
   const isLoading = checkIfIsLoading([isModelsDataLoading, isSetDataLoading]);
   const error = checkIfIsErrors([modelsDataError, setDataError]);
-  //!! Add return button
+
   return (
     <PersistanceDataContext.Provider value={context}>
       {isLoading && (
@@ -143,7 +144,7 @@ const PersistanceDataProvider = ({
       )}
       {error && (
         <FullCenterWrapper>
-          <ErrorIndicator message={error.message} />
+          <ErrorIndicator message={error.name} />
         </FullCenterWrapper>
       )}
       {!isLoading && !error && children}

@@ -1,8 +1,10 @@
 import {
+  addDoc,
   arrayUnion,
   collection,
   doc,
   increment,
+  serverTimestamp,
   setDoc,
   writeBatch,
 } from "firebase/firestore";
@@ -12,11 +14,13 @@ import {
   SetPersistanceData,
 } from "../Classes/PersistanceModule";
 import {
+  errorLogsCollection,
   modelsCollection,
   setsCollection,
   usersCollection,
 } from "./collectionNames";
 import { getSetModelsList } from "./readFromDbFunctions";
+import { DatabaseErrorLog } from "../Types/DatabaseErrorLog";
 
 export const createUserData = async () => {
   const user = auth.currentUser;
@@ -187,4 +191,26 @@ export const resetSet = async (setName: string) => {
 
     return bath.commit();
   }
+};
+
+export const saveErrorLog = async (
+  errorMessage: string,
+  setId: string = "Unknown"
+) => {
+  const user = auth.currentUser;
+
+  if (!user) {
+    throw new Error("No logged user");
+  }
+
+  const errorLog: DatabaseErrorLog = {
+    userId: user.uid,
+    setId,
+    errorMessage,
+    timesStamp: serverTimestamp(),
+  };
+
+  addDoc(collection(db, errorLogsCollection), errorLog).catch(() => {
+    throw new Error("Sorry, something went wrong");
+  });
 };

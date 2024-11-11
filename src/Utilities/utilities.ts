@@ -9,6 +9,7 @@ import {
 } from "three";
 import { SetLegoBlocks } from "../LegoSets/Set7722V1/SteamLocomotive7722Parts/SetLegoBlockTypes";
 import { ModelBlock } from "../Types/ModelBlock";
+import { saveErrorLog } from "../firebase/writeToDbFunctions";
 
 export const rotateElementUp = (
   element: Mesh | Object3D,
@@ -76,5 +77,8 @@ export const checkIfIsErrors = (errors: (Error | null)[]) => {
   const err = errors.find((e) => {
     return e !== null;
   });
+  if (err) {
+    saveErrorLog(err.message);
+  }
   return err;
 };

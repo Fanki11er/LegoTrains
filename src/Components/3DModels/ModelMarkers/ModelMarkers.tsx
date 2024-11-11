@@ -39,10 +39,10 @@ const ModelMarkers = (props: Props) => {
   const { isSelected, handleSelect, handleUnselect } = useSelectModel();
 
   const handleMoveElementToFloorLevel = useCallback(() => {
-    if (model && !modelDataObject.getIsModelArranged()) {
-      moveElementToFloorLevel(model);
+    if (modelRef && !modelDataObject.getIsModelArranged()) {
+      moveElementToFloorLevel(modelRef.current);
     }
-  }, [modelDataObject, model]);
+  }, [modelDataObject, modelRef]);
 
   useEffect(() => {
     if (model) {
@@ -82,37 +82,34 @@ const ModelMarkers = (props: Props) => {
   }, [model, persistanceData, handleGetSetRootMarker]);
 
   useEffect(() => {
-    if (model) {
-      moveElementToFloorLevel(model);
+    if (modelRef.current) {
+      moveElementToFloorLevel(modelRef.current);
     }
-  }, [model]);
+  }, [modelRef]);
 
   return (
     <>
-      <>
-        {model && (
-          <primitive
-            object={model}
-            ref={modelRef}
-            onClick={() => {
-              if (modelRef.current && !modelDataObject.getIsModelArranged()) {
-                handleSelect(modelRef.current, true);
-              }
-            }}
-            onPointerMissed={() => {
-              handleUnselect(modelRef.current);
-            }}
-          />
+      <primitive
+        object={model}
+        ref={modelRef}
+        onClick={() => {
+          if (modelRef.current && !modelDataObject.getIsModelArranged()) {
+            handleSelect(modelRef.current, true);
+          }
+        }}
+        onPointerMissed={() => {
+          handleUnselect(modelRef.current);
+        }}
+      />
+
+      {modelRef.current &&
+        isSelected &&
+        !modelDataObject.getIsModelFinished() && (
+          <SelectedElementContextMenu mesh={modelRef.current} />
         )}
-        {modelRef.current &&
-          isSelected &&
-          !modelDataObject.getIsModelFinished() && (
-            <SelectedElementContextMenu mesh={modelRef.current} />
-          )}
-        {modelRef.current &&
-          isSelected &&
-          modelDataObject.getIsModelFinished() && <FinishedModelContextMenu />}
-      </>
+      {modelRef.current &&
+        isSelected &&
+        modelDataObject.getIsModelFinished() && <FinishedModelContextMenu />}
     </>
   );
 };
