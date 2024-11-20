@@ -1,7 +1,7 @@
 import { Object3D, Scene } from "three";
 import { MarkersInfo, Model } from "./Model";
 import { SetLegoBlocks } from "../LegoSets/Set7722V1/SteamLocomotive7722Parts/SetLegoBlockTypes";
-import { ModelPersistanceData, PersistanceModule } from "./PersistenceModule";
+import { ModelPersistenceData, PersistenceModule } from "./PersistenceModule";
 import { saveErrorLog } from "../firebase/writeToDbFunctions";
 
 export class TrainInstruction {
@@ -10,7 +10,7 @@ export class TrainInstruction {
   private activeModel: Model | null = null;
   private setLegoBlocks: SetLegoBlocks | null = null;
   private connectedMarkersIds: string[] = [];
-  private persistanceModule: PersistanceModule;
+  private persistenceModule: PersistenceModule;
   private sceneMarkersInfo: MarkersInfo;
 
   constructor(modelMarkersPath: string, markersId: string = "SceneRootMarker") {
@@ -19,7 +19,7 @@ export class TrainInstruction {
       rootMarkerId: markersId,
     };
 
-    this.persistanceModule = new PersistanceModule(this);
+    this.persistenceModule = new PersistenceModule(this);
   }
 
   addSetLegoBlocks = (setLegoBlocks: SetLegoBlocks) => {
@@ -86,8 +86,8 @@ export class TrainInstruction {
     return null;
   };
 
-  getPersistanceModule = () => {
-    return this.persistanceModule;
+  getPersistenceModule = () => {
+    return this.persistenceModule;
   };
 
   getConnectedMarkersIds = () => {
@@ -165,10 +165,10 @@ export class TrainInstruction {
   };
 
   prepareDataToSaveAfterPhaseEnd = () => {
-    return this.persistanceModule.prepareDataToSaveAfterPhaseEnd();
+    return this.persistenceModule.prepareDataToSaveAfterPhaseEnd();
   };
 
-  usePersistanceData = (data: ModelPersistanceData[]) => {
+  usePersistenceData = (data: ModelPersistenceData[]) => {
     this.models.forEach((model) => {
       const foundModel = data.find((modelData) => {
         return modelData.modelName === model.getModelName();

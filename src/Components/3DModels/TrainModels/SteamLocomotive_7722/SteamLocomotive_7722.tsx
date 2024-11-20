@@ -5,44 +5,44 @@ import ModelMarkers from "../../ModelMarkers/ModelMarkers";
 import Instruction from "../../Instruction/Instruction";
 import { LegoBlock } from "../../../../Types/LegoBlock";
 import {
-  ModelPersistanceData,
-  PartPersistanceData,
+  ModelPersistenceData,
+  PartPersistenceData,
 } from "../../../../Classes/PersistenceModule";
 import SceneMarkers from "../../SceneMarkers/SceneMarkers";
 import { Model } from "../../../../Classes/Model";
-import usePersistanceDataProvider from "../../../../Hooks/usePersistanceDataProvider";
+import usePersistenceDataProvider from "../../../../Hooks/usePersistenceDataProvider";
 
 const SteamLocomotive_7722 = memo(() => {
   console.log("Rerender Locomotive");
 
   const {
     handleGetPartsList,
-    updateInstructionWithPersistanceData,
+    updateInstructionWithPersistenceData,
     handleGetSceneMarkersInfo,
     handleGetSetModelsToRenderList,
   } = useTrainInstruction();
 
-  const { modelsData } = usePersistanceDataProvider();
+  const { modelsData } = usePersistenceDataProvider();
 
   const partsList = useMemo(() => {
     return handleGetPartsList();
   }, [handleGetPartsList]);
 
   useEffect(() => {
-    modelsData && updateInstructionWithPersistanceData(modelsData);
-  }, [modelsData, updateInstructionWithPersistanceData]);
+    modelsData && updateInstructionWithPersistenceData(modelsData);
+  }, [modelsData, updateInstructionWithPersistenceData]);
 
   const renderModels = (
     models: Model[],
-    modelPersistanceData: ModelPersistanceData[] | null
+    modelPersistenceData: ModelPersistenceData[] | null
   ) => {
     return models.map((model) => {
       return (
         <ModelMarkers
           modelDataObject={model}
           key={model.getModelName()}
-          persistanceData={getPersistanceDataForModel(
-            modelPersistanceData,
+          persistenceData={getPersistenceDataForModel(
+            modelPersistenceData,
             model.getModelName()
           )}
         />
@@ -54,7 +54,7 @@ const SteamLocomotive_7722 = memo(() => {
 
   const renderLegoParts = (
     partsList: LegoBlock[],
-    persistentData: PartPersistanceData[] | null | undefined
+    persistentData: PartPersistenceData[] | null | undefined
   ) => {
     return partsList.map((block) => {
       const savedData = persistentData?.find((part) => {
@@ -65,19 +65,19 @@ const SteamLocomotive_7722 = memo(() => {
         <LegoPart
           partInfo={block}
           key={block.partId}
-          persistanceData={savedData}
+          persistenceData={savedData}
         />
       );
     });
   };
 
-  const getPersistanceDataForModel = (
-    modelPersistanceData: ModelPersistanceData[] | null,
+  const getPersistenceDataForModel = (
+    modelPersistenceData: ModelPersistenceData[] | null,
     modelMarkerId: string | undefined
   ) => {
-    if (modelPersistanceData && modelMarkerId) {
+    if (modelPersistenceData && modelMarkerId) {
       const modelData =
-        modelPersistanceData.find((data) => {
+        modelPersistenceData.find((data) => {
           return data.modelName === modelMarkerId;
         }) || null;
 
@@ -100,7 +100,7 @@ const SteamLocomotive_7722 = memo(() => {
             {/*!!Fix this (problem when there will be many models) */}
             {renderLegoParts(
               partsList,
-              getPersistanceDataForModel(modelsData, "SteamLocomotive7722Model")
+              getPersistenceDataForModel(modelsData, "SteamLocomotive7722Model")
                 ?.usedPartsData
             )}
           </group>

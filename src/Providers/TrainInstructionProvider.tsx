@@ -4,8 +4,8 @@ import { useThree } from "@react-three/fiber";
 import { Object3D, Object3DEventMap } from "three";
 import { MarkersInfo, Model } from "../Classes/Model";
 import { LegoBlock } from "../Types/LegoBlock";
-import { ModelPersistanceData } from "../Classes/PersistenceModule";
-import usePersistanceDataProvider from "../Hooks/usePersistanceDataProvider";
+import { ModelPersistenceData } from "../Classes/PersistenceModule";
+import usePersistenceDataProvider from "../Hooks/usePersistenceDataProvider";
 
 export const TrainInstructionContext = createContext({
   handleGetPartsList: (): LegoBlock[] => [],
@@ -23,7 +23,7 @@ export const TrainInstructionContext = createContext({
   handleGetRootModelMarkerByName: (_rootMarkerName: string) =>
     undefined as Object3D<Object3DEventMap> | undefined,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  updateInstructionWithPersistanceData: (_data: ModelPersistanceData[]) => {},
+  updateInstructionWithPersistenceData: (_data: ModelPersistenceData[]) => {},
   handleMoveReadyModelToSetArrangement: () => {},
   handleGetSetRootMarker: () =>
     undefined as Object3D<Object3DEventMap> | undefined,
@@ -38,7 +38,7 @@ const TrainInstructionProvider = (
 ) => {
   const { children, instruction } = props;
   const { scene } = useThree();
-  const { handleSaveModelDataToDatabase } = usePersistanceDataProvider();
+  const { handleSaveModelDataToDatabase } = usePersistenceDataProvider();
 
   const getScene = () => {
     return scene;
@@ -97,10 +97,10 @@ const TrainInstructionProvider = (
     [trainInstruction]
   );
 
-  const updateInstructionWithPersistanceData = useCallback(
-    (data: ModelPersistanceData[]) => {
+  const updateInstructionWithPersistenceData = useCallback(
+    (data: ModelPersistenceData[]) => {
       if (trainInstruction) {
-        trainInstruction.usePersistanceData(data);
+        trainInstruction.usePersistenceData(data);
       }
     },
     [trainInstruction]
@@ -130,7 +130,7 @@ const TrainInstructionProvider = (
     handleGetSetModelsToRenderList,
     handleGetSceneMarkersInfo,
     handleGetRootModelMarkerByName,
-    updateInstructionWithPersistanceData,
+    updateInstructionWithPersistenceData,
     handleMoveReadyModelToSetArrangement,
     handleGetSetRootMarker,
   };

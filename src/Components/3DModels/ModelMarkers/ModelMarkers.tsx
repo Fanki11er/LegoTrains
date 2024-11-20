@@ -14,18 +14,18 @@ import {
   convertToVector3,
   moveElementToFloorLevel,
 } from "../../../Utilities/utilities";
-import { ModelPersistanceData } from "../../../Classes/PersistenceModule";
+import { ModelPersistenceData } from "../../../Classes/PersistenceModule";
 import { Model } from "../../../Classes/Model";
 import FinishedModelContextMenu from "../../Organisms/FinishedModelContextMenu/FinishedModelContextMenu";
 import useTrainInstruction from "../../../Hooks/useTrainInstruction";
 
 type Props = {
   modelDataObject: Model;
-  persistanceData: ModelPersistanceData | undefined | null;
+  persistenceData: ModelPersistenceData | undefined | null;
 };
 
 const ModelMarkers = (props: Props) => {
-  const { persistanceData, modelDataObject } = props;
+  const { persistenceData, modelDataObject } = props;
   const markersPath = useDeferredValue(modelDataObject.getModelMarkersPath());
   const { scene } = useGLTF(markersPath);
   const { handleGetSetRootMarker } = useTrainInstruction();
@@ -64,22 +64,22 @@ const ModelMarkers = (props: Props) => {
   }, [modelDataObject, handleMoveElementToFloorLevel, model]);
 
   useEffect(() => {
-    if (model && persistanceData) {
+    if (model && persistenceData) {
       const setRootMarker = handleGetSetRootMarker();
       if (setRootMarker) {
         model.position.copy(
-          convertToVector3(persistanceData.markersData.position)
+          convertToVector3(persistenceData.markersData.position)
         );
         model.rotation.copy(
-          convertToEuler(persistanceData.markersData.rotation)
+          convertToEuler(persistenceData.markersData.rotation)
         );
 
-        if (persistanceData.isModelArranged) {
+        if (persistenceData.isModelArranged) {
           setRootMarker.add(model);
         }
       }
     }
-  }, [model, persistanceData, handleGetSetRootMarker]);
+  }, [model, persistenceData, handleGetSetRootMarker]);
 
   useEffect(() => {
     if (modelRef.current) {

@@ -14,15 +14,15 @@ import {
   moveElementToFloorLevel,
 } from "../../../Utilities/utilities";
 import { LegoBlock } from "../../../Types/LegoBlock";
-import { PartPersistanceData } from "../../../Classes/PersistenceModule";
+import { PartPersistenceData } from "../../../Classes/PersistenceModule";
 
 type PartProps = {
   partInfo: LegoBlock;
-  persistanceData: PartPersistanceData | undefined;
+  persistenceData: PartPersistenceData | undefined;
 };
 
 const LegoPart = (props: PartProps) => {
-  const { partInfo, persistanceData } = props;
+  const { partInfo, persistenceData } = props;
   const partPath = useDeferredValue(partInfo.partPath);
   const { scene } = useGLTF(partPath);
   const { handleGetMarkersForSelectedPart, handleGetRootModelMarkerByName } =
@@ -43,7 +43,7 @@ const LegoPart = (props: PartProps) => {
 
   useEffect(() => {
     if (modelRef.current) {
-      if (!persistanceData) {
+      if (!persistenceData) {
         modelRef.current.position.setX(partInfo.partStartPosition.x);
         modelRef.current.position.setZ(partInfo.partStartPosition.z);
 
@@ -58,20 +58,20 @@ const LegoPart = (props: PartProps) => {
         } as PartUserData;
       } else {
         const rootMarker = handleGetRootModelMarkerByName(
-          persistanceData.userData.modelId!
+          persistenceData.userData.modelId!
         );
 
         modelRef.current.position.copy(
-          convertToVector3(persistanceData.position)
+          convertToVector3(persistenceData.position)
         );
         modelRef.current.rotation.copy(
-          convertToEuler(persistanceData.rotation)
+          convertToEuler(persistenceData.rotation)
         );
 
         if (rootMarker) {
           rootMarker.add(modelRef.current);
         }
-        modelRef.current.userData = persistanceData.userData;
+        modelRef.current.userData = persistenceData.userData;
       }
 
       modelRef.current.name = partInfo.partType;
