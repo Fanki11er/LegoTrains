@@ -2,22 +2,22 @@ import { Object3D, Object3DEventMap } from "three";
 import { TrainInstruction } from "./TrainInstruction";
 import { PartUserData } from "../Types/PartUserData";
 
-type ObjectPersistanceData = {
+type ObjectPersistenceData = {
   position: number[];
   rotation: number[];
 };
 
-export type ModelMarkerPersistanceData = ObjectPersistanceData & {
+export type ModelMarkerPersistenceData = ObjectPersistenceData & {
   name: string;
 };
-export type PartPersistanceData = ObjectPersistanceData & {
+export type PartPersistenceData = ObjectPersistenceData & {
   userData: PartUserData;
 };
 
-export type ModelPersistanceData = {
+export type ModelPersistenceData = {
   modelName: string;
-  markersData: ModelMarkerPersistanceData;
-  usedPartsData: PartPersistanceData[];
+  markersData: ModelMarkerPersistenceData;
+  usedPartsData: PartPersistenceData[];
   connectedMarkersIds: string[];
   activePhaseId: number | null;
   isModelFinished: boolean;
@@ -26,7 +26,7 @@ export type ModelPersistanceData = {
 
 export type ExistingDataInfo = string;
 
-export type SetPersistanceData = {
+export type SetPersistenceData = {
   setName: string;
   modelsList: string[];
   allModelsNumber: number;
@@ -37,14 +37,14 @@ export type User = {
   userSetsList: ExistingDataInfo[];
 };
 
-export class PersistanceModule {
+export class PersistenceModule {
   private trainInstruction: TrainInstruction;
 
   constructor(trainInstruction: TrainInstruction) {
     this.trainInstruction = trainInstruction;
   }
 
-  prepareDataToSaveAfterPhaseEnd = (): ModelPersistanceData | undefined => {
+  prepareDataToSaveAfterPhaseEnd = (): ModelPersistenceData | undefined => {
     const modelName = this.trainInstruction.getActiveModelName();
     const isModelFinished = this.trainInstruction.getIsActiveModelFinished();
     const isModelArranged = this.trainInstruction.getIsActiveModelArranged();
@@ -81,7 +81,7 @@ export class PersistanceModule {
 
   private prepareModelMarkerDataToSave = (
     modelMarkers: Object3D<Object3DEventMap>
-  ): ModelMarkerPersistanceData => {
+  ): ModelMarkerPersistenceData => {
     const rotation: number[] = [];
     const position: number[] = [];
     modelMarkers.rotation.toArray(rotation);
@@ -101,7 +101,7 @@ export class PersistanceModule {
       return child.type === "Mesh" || child.type === "Group";
     });
 
-    const partsPreparedToSave: PartPersistanceData[] = parts.map((part) => {
+    const partsPreparedToSave: PartPersistenceData[] = parts.map((part) => {
       const data = part.userData as PartUserData;
       data.modelId = modelMarkers.name;
       const rotation: number[] = [];

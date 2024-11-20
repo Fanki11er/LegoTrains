@@ -14,7 +14,7 @@ import {
   convertToVector3,
   moveElementToFloorLevel,
 } from "../../../Utilities/utilities";
-import { ModelPersistanceData } from "../../../Classes/PersistanceModule";
+import { ModelPersistanceData } from "../../../Classes/PersistenceModule";
 import { Model } from "../../../Classes/Model";
 import FinishedModelContextMenu from "../../Organisms/FinishedModelContextMenu/FinishedModelContextMenu";
 import useTrainInstruction from "../../../Hooks/useTrainInstruction";

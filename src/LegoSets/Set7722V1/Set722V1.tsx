@@ -3,11 +3,12 @@ import SteamLocomotive_7722 from "../../Components/3DModels/TrainModels/SteamLoc
 import Scene from "../../Components/Organisms/Scene/Scene";
 import TrainInstructionProvider from "../../Providers/TrainInstructionProvider";
 import { createInstruction } from "./setInstruction";
-import PersistanceDataProvider from "../../Providers/PersistanceDataProvider";
+import PersistenceDataProvider from "../../Providers/PersistenceDataProvider";
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { ReturnButton } from "../../Components/Atoms/Buttons/Buttons.styles";
 import { paths } from "../../router/routerPaths";
+import { Bvh } from "@react-three/drei";
 
 type Props = {
   legoSetId: string;
@@ -18,17 +19,19 @@ const Set722V1 = ({ legoSetId }: Props) => {
     return createInstruction();
   }, []);
   return (
-    <PersistanceDataProvider instruction={instruction} legoSetId={legoSetId}>
-      <Scene>
-        <TrainInstructionProvider instruction={instruction}>
-          <Floor />
-          <SteamLocomotive_7722 />
-        </TrainInstructionProvider>
-      </Scene>
+    <PersistenceDataProvider instruction={instruction} legoSetId={legoSetId}>
+      <Bvh>
+        <Scene>
+          <TrainInstructionProvider instruction={instruction}>
+            <Floor />
+            <SteamLocomotive_7722 />
+          </TrainInstructionProvider>
+        </Scene>
+      </Bvh>
       <ReturnButton onClick={() => navigate(paths.userDashboardRouterPath)}>
         Return
       </ReturnButton>
-    </PersistanceDataProvider>
+    </PersistenceDataProvider>
   );
 };
 

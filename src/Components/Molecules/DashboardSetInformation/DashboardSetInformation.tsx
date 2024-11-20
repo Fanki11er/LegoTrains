@@ -1,4 +1,4 @@
-import { SetPersistanceData } from "../../../Classes/PersistanceModule";
+import { SetPersistanceData } from "../../../Classes/PersistenceModule";
 import { legoSetRouterNavigationPath } from "../../../router/routerPaths";
 import { DashboardSetInformationData } from "../../../Types/DashboardSetInformationData";
 import { DashboardSetStatus } from "../../../Types/DashboardSetStatus";

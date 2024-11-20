@@ -4,7 +4,7 @@ import { useThree } from "@react-three/fiber";
 import { Object3D, Object3DEventMap } from "three";
 import { MarkersInfo, Model } from "../Classes/Model";
 import { LegoBlock } from "../Types/LegoBlock";
-import { ModelPersistanceData } from "../Classes/PersistanceModule";
+import { ModelPersistanceData } from "../Classes/PersistenceModule";
 import usePersistanceDataProvider from "../Hooks/usePersistanceDataProvider";
 
 export const TrainInstructionContext = createContext({

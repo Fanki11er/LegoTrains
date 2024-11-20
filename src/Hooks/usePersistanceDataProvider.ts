@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { PersistanceDataContext } from "../Providers/PersistanceDataProvider";
+import { PersistenceDataContext } from "../Providers/PersistenceDataProvider";
 
-const usePersistanceDataProvider = () => {
-  return useContext(PersistanceDataContext);
+const usePersistenceDataProvider = () => {
+  return useContext(PersistenceDataContext);
 };
 
-export default usePersistanceDataProvider;
+export default usePersistenceDataProvider;

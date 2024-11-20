@@ -14,7 +14,7 @@ import {
   moveElementToFloorLevel,
 } from "../../../Utilities/utilities";
 import { LegoBlock } from "../../../Types/LegoBlock";
-import { PartPersistanceData } from "../../../Classes/PersistanceModule";
+import { PartPersistanceData } from "../../../Classes/PersistenceModule";
 
 type PartProps = {
   partInfo: LegoBlock;

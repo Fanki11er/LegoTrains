@@ -6,9 +6,9 @@ import {
 } from "../firebase/readFromDbFunctions";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
-  ModelPersistanceData,
-  SetPersistanceData,
-} from "../Classes/PersistanceModule";
+  ModelPersistenceData,
+  SetPersistenceData,
+} from "../Classes/PersistenceModule";
 import { MODELS_DATA, SET_DATA } from "../Api/queryKeys";
 import {
   createNewModelData,
@@ -22,10 +22,10 @@ import { InSceneProceedStatus } from "../Components/Atoms/InSceneProceedStatus/I
 import { OperationStatus } from "../Types/OperationStatus";
 import { FullCenterWrapper } from "../Components/Atoms/FullCenterWrapper/FullCenterWrapper.styles";
 
-export const PersistanceDataContext = createContext({
+export const PersistenceDataContext = createContext({
   handleSaveModelDataToDatabase: () => {},
-  setData: null as SetPersistanceData | null | undefined,
-  modelsData: null as ModelPersistanceData[] | null | undefined,
+  setData: null as SetPersistenceData | null | undefined,
+  modelsData: null as ModelPersistenceData[] | null | undefined,
 });
 
 type Props = {
@@ -33,7 +33,7 @@ type Props = {
   legoSetId: string;
 };
 
-const PersistanceDataProvider = ({
+const PersistenceDataProvider = ({
   children,
   instruction,
   legoSetId,
@@ -45,7 +45,7 @@ const PersistanceDataProvider = ({
     data: setData,
     isLoading: isSetDataLoading,
     error: setDataError,
-  } = useQuery<SetPersistanceData | null>({
+  } = useQuery<SetPersistenceData | null>({
     queryKey: [SET_DATA, legoSetId],
     queryFn: () => getSetDataFromDatabase(legoSetId),
   });
@@ -54,13 +54,13 @@ const PersistanceDataProvider = ({
     data: modelsData,
     isLoading: isModelsDataLoading,
     error: modelsDataError,
-  } = useQuery<ModelPersistanceData[] | null>({
+  } = useQuery<ModelPersistenceData[] | null>({
     queryKey: [MODELS_DATA, legoSetId],
     queryFn: () => getSetModelsDataFromDatabase(legoSetId),
   });
 
   const sendModelDataToDatabase = useCallback(
-    (data: ModelPersistanceData, modelsList: string[]) => {
+    (data: ModelPersistenceData, modelsList: string[]) => {
       const foundModel = modelsList.find((model) => {
         return model === data.modelName;
       });
@@ -136,7 +136,7 @@ const PersistanceDataProvider = ({
   const error = checkIfIsErrors([modelsDataError, setDataError]);
 
   return (
-    <PersistanceDataContext.Provider value={context}>
+    <PersistenceDataContext.Provider value={context}>
       {isLoading && (
         <FullCenterWrapper>
           <SubmitIndicator size={150} />
@@ -151,8 +151,8 @@ const PersistanceDataProvider = ({
       <InSceneProceedStatus $show={!!status}>
         {status?.message}
       </InSceneProceedStatus>
-    </PersistanceDataContext.Provider>
+    </PersistenceDataContext.Provider>
   );
 };
 
-export default PersistanceDataProvider;
+export default PersistenceDataProvider;

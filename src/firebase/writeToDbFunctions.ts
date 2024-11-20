@@ -12,7 +12,7 @@ import { auth, db } from "./config";
 import {
   ModelPersistanceData,
   SetPersistanceData,
-} from "../Classes/PersistanceModule";
+} from "../Classes/PersistenceModule";
 import {
   errorLogsCollection,
   modelsCollection,

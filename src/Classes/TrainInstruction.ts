@@ -1,7 +1,7 @@
 import { Object3D, Scene } from "three";
 import { MarkersInfo, Model } from "./Model";
 import { SetLegoBlocks } from "../LegoSets/Set7722V1/SteamLocomotive7722Parts/SetLegoBlockTypes";
-import { ModelPersistanceData, PersistanceModule } from "./PersistanceModule";
+import { ModelPersistanceData, PersistanceModule } from "./PersistenceModule";
 import { saveErrorLog } from "../firebase/writeToDbFunctions";
 
 export class TrainInstruction {

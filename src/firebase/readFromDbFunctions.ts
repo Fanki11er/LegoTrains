@@ -3,7 +3,7 @@ import {
   ExistingDataInfo,
   ModelPersistanceData,
   SetPersistanceData,
-} from "../Classes/PersistanceModule";
+} from "../Classes/PersistenceModule";
 import { auth, db } from "./config";
 import {
   modelsCollection,

@@ -7,7 +7,7 @@ import { LegoBlock } from "../../../../Types/LegoBlock";
 import {
   ModelPersistanceData,
   PartPersistanceData,
-} from "../../../../Classes/PersistanceModule";
+} from "../../../../Classes/PersistenceModule";
 import SceneMarkers from "../../SceneMarkers/SceneMarkers";
 import { Model } from "../../../../Classes/Model";
 import usePersistanceDataProvider from "../../../../Hooks/usePersistanceDataProvider";

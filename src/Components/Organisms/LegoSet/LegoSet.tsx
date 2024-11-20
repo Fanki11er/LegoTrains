@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import Set722V1 from "../../../LegoSets/Set7722V1/Set722V1";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getUserSetsListFromDatabase } from "../../../firebase/readFromDbFunctions";
-import { ExistingDataInfo } from "../../../Classes/PersistanceModule";
+import { ExistingDataInfo } from "../../../Classes/PersistenceModule";
 import { USER_SETS_LIST } from "../../../Api/queryKeys";
 import { useEffect, useState } from "react";
 import { createNewUserSet } from "../../../firebase/writeToDbFunctions";

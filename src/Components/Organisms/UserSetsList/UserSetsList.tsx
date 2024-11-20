@@ -5,7 +5,7 @@ import {
 import DashboardSetInformation from "../../Molecules/DashboardSetInformation/DashboardSetInformation";
 import { UserSetsListWrapper } from "./UserSetsList.styles";
 import { useQuery } from "@tanstack/react-query";
-import { SetPersistanceData } from "../../../Classes/PersistanceModule";
+import { SetPersistanceData } from "../../../Classes/PersistenceModule";
 import { getAllSetsPersistanceData } from "../../../firebase/readFromDbFunctions";
 import { All_SETS_DATA } from "../../../Api/queryKeys";
 import SubmitIndicator from "../../Molecules/SubmitIndicator/SubmitIndicator";
