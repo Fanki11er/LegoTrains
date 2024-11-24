@@ -73,7 +73,6 @@ const ModelMarkers = (props: Props) => {
         model.rotation.copy(
           convertToEuler(persistenceData.markersData.rotation)
         );
-
         if (persistenceData.isModelArranged) {
           setRootMarker.add(model);
         }

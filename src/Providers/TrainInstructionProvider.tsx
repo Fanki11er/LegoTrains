@@ -38,7 +38,8 @@ const TrainInstructionProvider = (
 ) => {
   const { children, instruction } = props;
   const { scene } = useThree();
-  const { handleSaveModelDataToDatabase } = usePersistenceDataProvider();
+  const { handleSaveArrangedModelDataToDatabase } =
+    usePersistenceDataProvider();
 
   const getScene = () => {
     return scene;
@@ -113,10 +114,10 @@ const TrainInstructionProvider = (
   const handleMoveReadyModelToSetArrangement = useCallback(() => {
     const result = instruction.moveReadyModelToSetArrangement();
     if (result) {
-      handleSaveModelDataToDatabase();
+      handleSaveArrangedModelDataToDatabase(result);
     }
     //Todo: Make arrangement of model
-  }, [handleSaveModelDataToDatabase, instruction]);
+  }, [handleSaveArrangedModelDataToDatabase, instruction]);
 
   const handleGetSetRootMarker = useCallback(() => {
     return instruction.getSetRootMarker();

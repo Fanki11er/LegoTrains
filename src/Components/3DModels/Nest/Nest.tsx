@@ -3,7 +3,7 @@ import { nestMaterial } from "../../../Materials/NestMaterial";
 import { useEffect, useRef, useState } from "react";
 import { NestElementUserData } from "../../../Types/NestElementUserData";
 import useTrainInstruction from "../../../Hooks/useTrainInstruction";
-import usePersistanceDataProvider from "../../../Hooks/usePersistenceDataProvider";
+import usePersistenceDataProvider from "../../../Hooks/usePersistenceDataProvider";
 
 type NestProps = {
   marker: Object3D<Object3DEventMap>;
@@ -15,7 +15,7 @@ const Nest = (props: NestProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const nestRef = useRef<Group>(null!);
   const { handleFinishPartConnection } = useTrainInstruction();
-  const { handleSaveModelDataToDatabase } = usePersistanceDataProvider();
+  const { handleSaveModelDataToDatabase } = usePersistenceDataProvider();
 
   useEffect(() => {
     const nest = nestRef.current;

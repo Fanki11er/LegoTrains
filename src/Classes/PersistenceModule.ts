@@ -1,6 +1,7 @@
 import { Object3D, Object3DEventMap } from "three";
 import { TrainInstruction } from "./TrainInstruction";
 import { PartUserData } from "../Types/PartUserData";
+import { Model } from "./Model";
 
 type ObjectPersistenceData = {
   position: number[];
@@ -19,7 +20,7 @@ export type ModelPersistenceData = {
   markersData: ModelMarkerPersistenceData;
   usedPartsData: PartPersistenceData[];
   connectedMarkersIds: string[];
-  activePhaseId: number | null;
+  activePhaseId: number | null | undefined;
   isModelFinished: boolean;
   isModelArranged: boolean;
 };
@@ -43,6 +44,43 @@ export class PersistenceModule {
   constructor(trainInstruction: TrainInstruction) {
     this.trainInstruction = trainInstruction;
   }
+
+  prepareDataToSaveAfterModelArrangement = (
+    model: Model
+  ): ModelPersistenceData | undefined => {
+    const modelName = model.getModelName();
+    const isModelFinished = model.getIsModelFinished();
+    const isModelArranged = model.getIsModelArranged();
+
+    if (!modelName || isModelFinished === null || isModelArranged === null) {
+      return undefined;
+    }
+
+    const markers = this.trainInstruction.getModelMarkers(model);
+    if (!markers) {
+      return undefined;
+    }
+
+    const activePhaseId = model.getActivePhase()?.getPhaseNumber();
+    if (!activePhaseId && !isModelFinished) {
+      return undefined;
+    }
+
+    const preparedMarkerData = this.prepareModelMarkerDataToSave(markers);
+    const partsPreparedToSave = this.prepareModelPartsDataToSave(markers);
+
+    const connectedMarkersIds = this.trainInstruction.getConnectedMarkersIds();
+
+    return {
+      modelName: modelName,
+      markersData: preparedMarkerData,
+      usedPartsData: partsPreparedToSave,
+      connectedMarkersIds: connectedMarkersIds,
+      activePhaseId: activePhaseId,
+      isModelFinished: isModelFinished,
+      isModelArranged: isModelArranged,
+    };
+  };
 
   prepareDataToSaveAfterPhaseEnd = (): ModelPersistenceData | undefined => {
     const modelName = this.trainInstruction.getActiveModelName();

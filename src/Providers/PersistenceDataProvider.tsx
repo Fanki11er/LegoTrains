@@ -21,9 +21,12 @@ import ErrorIndicator from "../Components/Molecules/ErrorIndicator/ErrorIndicato
 import { InSceneProceedStatus } from "../Components/Atoms/InSceneProceedStatus/InSceneProceedStatus.styles";
 import { OperationStatus } from "../Types/OperationStatus";
 import { FullCenterWrapper } from "../Components/Atoms/FullCenterWrapper/FullCenterWrapper.styles";
+import { Model } from "../Classes/Model";
 
 export const PersistenceDataContext = createContext({
   handleSaveModelDataToDatabase: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  handleSaveArrangedModelDataToDatabase: (_model: Model) => {},
   setData: null as SetPersistenceData | null | undefined,
   modelsData: null as ModelPersistenceData[] | null | undefined,
 });
@@ -126,8 +129,21 @@ const PersistenceDataProvider = ({
     }
   }, [sendModelDataToDatabase, instruction, setData]);
 
+  const handleSaveArrangedModelDataToDatabase = useCallback(
+    (model: Model) => {
+      if (instruction) {
+        const data = instruction.prepareDataToSaveAfterModelArrangement(model);
+        if (data && setData) {
+          sendModelDataToDatabase(data, setData?.modelsList || []);
+        }
+      }
+    },
+    [sendModelDataToDatabase, instruction, setData]
+  );
+
   const context = {
     handleSaveModelDataToDatabase,
+    handleSaveArrangedModelDataToDatabase,
     setData,
     modelsData,
   };

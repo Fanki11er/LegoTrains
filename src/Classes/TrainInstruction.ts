@@ -43,6 +43,12 @@ export class TrainInstruction {
     return this.models;
   };
 
+  getModelByName = (modelName: string) => {
+    return this.models.find((model) => {
+      model.getModelName() === modelName;
+    });
+  };
+
   getModelsReadyToRender = () => {
     const arrangedModels = this.models.filter((model) => {
       return model.getIsModelArranged();
@@ -133,6 +139,12 @@ export class TrainInstruction {
     }
   };
 
+  getModelMarkers = (model: Model) => {
+    const scene = this.sceneLoader();
+    const rootModelMarkerId = model.getRootModelMarkerId();
+    return scene.getObjectByName(rootModelMarkerId);
+  };
+
   getMarkerById = (id: number) => {
     const scene = this.sceneLoader();
 
@@ -168,6 +180,10 @@ export class TrainInstruction {
     return this.persistenceModule.prepareDataToSaveAfterPhaseEnd();
   };
 
+  prepareDataToSaveAfterModelArrangement = (model: Model) => {
+    return this.persistenceModule.prepareDataToSaveAfterModelArrangement(model);
+  };
+
   usePersistenceData = (data: ModelPersistenceData[]) => {
     this.models.forEach((model) => {
       const foundModel = data.find((modelData) => {
@@ -201,6 +217,7 @@ export class TrainInstruction {
 
   moveReadyModelToSetArrangement = () => {
     if (this.activeModel) {
+      const oldModel = this.activeModel;
       const modelName = this.activeModel.getModelName();
       const modelRootMarkerId = this.activeModel.getRootModelMarkerId();
       const modelRootMarker = this.getModelRootMarkerByName(modelRootMarkerId);
@@ -218,7 +235,7 @@ export class TrainInstruction {
             "Error, destination marker not found",
             sceneRootMarker.name
           );
-          return false;
+          return null;
         }
 
         modelRootMarker.position.copy(destinationMarker.position);
@@ -226,16 +243,16 @@ export class TrainInstruction {
         sceneRootMarker.add(modelRootMarker);
         this.activeModel.setIsModelArranged(true);
         this.changeToNextActiveModel();
-        return true;
+        return oldModel;
       } else {
         saveErrorLog(
           "Error, markers not found",
           this.activeModel.getModelName()
         );
-        return false;
+        return null;
       }
     }
-    return false;
+    return null;
   };
 
   private clearNeededPartsInModelPhasesBeforePhaseId = (

@@ -8,7 +8,6 @@ import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { ReturnButton } from "../../Components/Atoms/Buttons/Buttons.styles";
 import { paths } from "../../router/routerPaths";
-//import { Bvh } from "@react-three/drei";
 
 type Props = {
   legoSetId: string;
@@ -18,15 +17,14 @@ const Set722V1 = ({ legoSetId }: Props) => {
   const instruction = useMemo(() => {
     return createInstruction();
   }, []);
+
   return (
     <PersistenceDataProvider instruction={instruction} legoSetId={legoSetId}>
       <Scene>
-        {/* <Bvh> */}
         <TrainInstructionProvider instruction={instruction}>
           <Floor />
           <SteamLocomotive_7722 />
         </TrainInstructionProvider>
-        {/* </Bvh> */}
       </Scene>
       <ReturnButton onClick={() => navigate(paths.userDashboardRouterPath)}>
         Return
