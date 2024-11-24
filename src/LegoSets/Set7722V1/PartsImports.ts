@@ -41,6 +41,10 @@ import cone_1x1_4589_model from "../../assets/3D/Cone_1x1_4589/Cone_1x1_4589.glb
 import train_Roof_6x6_4509_model from "../../assets/3D/Train_Roof_6x6_4509/Train_Roof_6x6_4509.glb";
 import dish_4_x_4_Round_Inverted_3960_model from "../../assets/3D/Dish_4x4_Round_Inverted_3960/Dish_4x4_Round_Inverted_3960.glb";
 import train_Wheel_Spoked_2ac02_model from "../../assets/3D/Train_Wheel_Spoked_2ac02/Train_Wheel_Spoked_2ac02.glb";
+import train_Battery_Box_Car_x488c02_model from "../../assets/3D/Train_Battery_Box_Car_x488c02/Train_Battery_Box_Car_x488c02.glb";
+import battery_Car_Roof_bb54_model from "../../assets/3D/Battery_Car_Roof_bb54/Battery_Car_Roof_bb54.glb";
+import train_Buffer_Single_buffer_model from "../../assets/3D/Train_Buffer_Single_buffer/Train_Buffer_Single_buffer.glb";
+import slope_Brick_3_x_2_33_Degrees_3298_model from "../../assets/3D/Slope_Brick_3_x_2_33_Degrees_3298/Slope_Brick_3_x_2_33_Degrees_3298.glb";
 
 export const roundOpenStud_3062b = roundOpenStud_3062b_model;
 export const trainBase_4178 = trainBase_4178_model;
@@ -91,3 +95,12 @@ export const train_Roof_6x6_4509 = train_Roof_6x6_4509_model;
 export const dish_4_x_4_Round_Inverted_3960 =
   dish_4_x_4_Round_Inverted_3960_model;
 export const train_Wheel_Spoked_2ac02 = train_Wheel_Spoked_2ac02_model;
+
+//? Battery Car
+
+export const train_Battery_Box_Car_x488c02 =
+  train_Battery_Box_Car_x488c02_model;
+export const battery_Car_Roof_bb54 = battery_Car_Roof_bb54_model;
+export const train_Buffer_Single_buffer = train_Buffer_Single_buffer_model;
+export const slope_Brick_3_x_2_33_Degrees_3298 =
+  slope_Brick_3_x_2_33_Degrees_3298_model;

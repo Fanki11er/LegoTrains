@@ -8,6 +8,7 @@ import { whiteTransparentMaterial } from "./WhiteTransparentMaterial";
 import { redTransparentMaterial } from "./RedTransparentMaterial";
 import { yellowPLasticMaterial } from "./YellowPlasticMaterial";
 import { selectedElementMaterialOrange } from "./SelectElementMaterialOrange";
+import { oldGrayPlasticMaterial } from "./OldGrayPlasticMaterial";
 
 type CustomMaterials = {
   [materialId: string]: MeshStandardMaterial | MeshPhysicalMaterial;
@@ -22,4 +23,5 @@ export const customMaterials: CustomMaterials = {
   whiteTransparentMaterial: whiteTransparentMaterial,
   redTransparentMaterial: redTransparentMaterial,
   yellowPLasticMaterial: yellowPLasticMaterial,
+  oldGrayPlasticMaterial: oldGrayPlasticMaterial,
 };

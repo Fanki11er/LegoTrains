@@ -10,8 +10,8 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "./config";
 import {
-  ModelPersistanceData,
-  SetPersistanceData,
+  ModelPersistenceData,
+  SetPersistenceData,
 } from "../Classes/PersistenceModule";
 import {
   errorLogsCollection,
@@ -44,7 +44,7 @@ export const createNewUserSet = async (setName: string | undefined) => {
   if (!user.isAnonymous && setName) {
     const userId = user.uid;
 
-    const newSet: SetPersistanceData = {
+    const newSet: SetPersistenceData = {
       setName,
       modelsList: [],
       allModelsNumber: 0,
@@ -70,7 +70,7 @@ export const createNewUserSet = async (setName: string | undefined) => {
 
 export const createNewModelData = async (
   setId: string,
-  data: ModelPersistanceData
+  data: ModelPersistenceData
 ) => {
   const user = auth.currentUser;
 
@@ -107,7 +107,7 @@ export const createNewModelData = async (
 
 export const updateModelInDatabase = async (
   setId: string,
-  data: ModelPersistanceData
+  data: ModelPersistenceData
 ) => {
   const user = auth.currentUser;
 
@@ -154,7 +154,7 @@ export const resetSet = async (setName: string) => {
   if (!user.isAnonymous) {
     const userId = user.uid;
 
-    const emptySet: SetPersistanceData = {
+    const emptySet: SetPersistenceData = {
       setName,
       modelsList: [],
       allModelsNumber: 0,
