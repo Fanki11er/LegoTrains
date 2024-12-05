@@ -7,7 +7,6 @@ import useTrainInstruction from "../../../Hooks/useTrainInstruction";
 import useSelectModel from "../../../Hooks/useSelectModel";
 import Nest from "../Nest/Nest";
 import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu/SelectedElementContextMenu";
-import { customMaterials } from "../../../Materials/customMaterials";
 import {
   convertToEuler,
   convertToVector3,
@@ -15,6 +14,7 @@ import {
 } from "../../../Utilities/utilities";
 import { LegoBlock } from "../../../Types/LegoBlock";
 import { PartPersistenceData } from "../../../Classes/PersistenceModule";
+import useMaterials from "../../../Hooks/useMaterials";
 
 type PartProps = {
   partInfo: LegoBlock;
@@ -31,13 +31,15 @@ const LegoPart = (props: PartProps) => {
     []
   );
 
+  const { materialsData } = useMaterials();
+
   const model = useMemo(() => {
     const model = scene.children[0].clone() as Mesh;
     if (partInfo.materialId) {
-      model.material = customMaterials[partInfo.materialId];
+      model.material = materialsData[partInfo.materialId];
     }
     return model;
-  }, [scene, partInfo.materialId]);
+  }, [scene, partInfo.materialId, materialsData]);
 
   const modelRef = useRef<Mesh>(null!);
 

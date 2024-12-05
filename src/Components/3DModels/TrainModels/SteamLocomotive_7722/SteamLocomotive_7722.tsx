@@ -1,5 +1,5 @@
 import useTrainInstruction from "../../../../Hooks/useTrainInstruction";
-import { memo, useEffect, useMemo } from "react";
+import { memo, useMemo } from "react";
 import LegoPart from "../../LegoPart/LegoPart";
 import ModelMarkers from "../../ModelMarkers/ModelMarkers";
 import Instruction from "../../Instruction/Instruction";
@@ -11,13 +11,15 @@ import {
 import SceneMarkers from "../../SceneMarkers/SceneMarkers";
 import { Model } from "../../../../Classes/Model";
 import usePersistenceDataProvider from "../../../../Hooks/usePersistenceDataProvider";
+import MaterialsProvider from "../../../../Providers/materialsProvider";
+import Floor from "../../Floor/Floor";
 
 const SteamLocomotive_7722 = memo(() => {
   console.log("Rerender Locomotive");
 
   const {
     handleGetPartsList,
-    updateInstructionWithPersistenceData,
+    //updateInstructionWithPersistenceData,
     handleGetSceneMarkersInfo,
     handleGetSetModelsToRenderList,
   } = useTrainInstruction();
@@ -27,10 +29,6 @@ const SteamLocomotive_7722 = memo(() => {
   const partsList = useMemo(() => {
     return handleGetPartsList();
   }, [handleGetPartsList]);
-
-  useEffect(() => {
-    modelsData && updateInstructionWithPersistenceData(modelsData);
-  }, [modelsData, updateInstructionWithPersistenceData]);
 
   const renderModels = (
     models: Model[],
@@ -86,7 +84,19 @@ const SteamLocomotive_7722 = memo(() => {
     return null;
   };
 
-  //Todo Fix
+  const getPersistenceUsedPartsDataForModel = (
+    modelPersistenceData: ModelPersistenceData[] | null
+  ) => {
+    const usedPartsData: PartPersistenceData[] = [];
+    modelPersistenceData?.forEach((model) => {
+      const data = model.usedPartsData;
+      if (data) {
+        usedPartsData.push(...model.usedPartsData);
+      }
+    });
+    return usedPartsData;
+  };
+
   return (
     <>
       {modelsData && sceneMarkersInfo && (
@@ -95,16 +105,16 @@ const SteamLocomotive_7722 = memo(() => {
             sceneMarkersInfo={sceneMarkersInfo}
             position={[0, 4, -550]}
           />
-
-          {renderModels(handleGetSetModelsToRenderList(), modelsData)}
-          <group name={"LeftBlocks"}>
-            {/*!!Fix this (problem when there will be many models) */}
-            {renderLegoParts(
-              partsList,
-              getPersistenceDataForModel(modelsData, "SteamLocomotive7722Model")
-                ?.usedPartsData
-            )}
-          </group>
+          <MaterialsProvider>
+            <Floor />
+            {renderModels(handleGetSetModelsToRenderList(), modelsData)}
+            <group name={"LeftBlocks"}>
+              {renderLegoParts(
+                partsList,
+                getPersistenceUsedPartsDataForModel(modelsData)
+              )}
+            </group>
+          </MaterialsProvider>
 
           <Instruction position={[-170, 0.1, 0]} />
         </>

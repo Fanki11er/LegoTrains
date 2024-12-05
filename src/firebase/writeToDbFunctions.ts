@@ -198,7 +198,6 @@ export const saveErrorLog = async (
   setId: string = "Unknown"
 ) => {
   const user = auth.currentUser;
-
   if (!user) {
     throw new Error("No logged user");
   }
@@ -210,7 +209,8 @@ export const saveErrorLog = async (
     timesStamp: serverTimestamp(),
   };
 
-  addDoc(collection(db, errorLogsCollection), errorLog).catch(() => {
+  addDoc(collection(db, errorLogsCollection), errorLog).catch((err) => {
+    console.log(err, "Log Error");
     throw new Error("Sorry, something went wrong");
   });
 };

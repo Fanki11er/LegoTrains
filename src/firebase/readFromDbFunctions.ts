@@ -1,8 +1,8 @@
 import { collection, doc, getDoc, getDocs, query } from "firebase/firestore";
 import {
   ExistingDataInfo,
-  ModelPersistanceData,
-  SetPersistanceData,
+  ModelPersistenceData,
+  SetPersistenceData,
 } from "../Classes/PersistenceModule";
 import { auth, db } from "./config";
 import {
@@ -53,13 +53,13 @@ export const getSetDataFromDatabase = async (setId: string) => {
     const setDataRef = doc(db, usersCollection, userId, setsCollection, setId);
     const set = await getDoc(setDataRef);
     if (set.exists()) {
-      return set.data() as SetPersistanceData;
+      return set.data() as SetPersistenceData;
     }
   }
   return null;
 };
 
-export const getAllSetsPersistanceData = async () => {
+export const getAllSetsPersistenceData = async () => {
   const user = auth.currentUser;
 
   if (!user) {
@@ -72,7 +72,7 @@ export const getAllSetsPersistanceData = async () => {
 
     const allUserSets = await getDocs(q);
     return allUserSets.docs.map((doc) => {
-      return doc.data() as SetPersistanceData;
+      return doc.data() as SetPersistenceData;
     });
   }
   return [];
@@ -97,9 +97,13 @@ export const getSetModelsDataFromDatabase = async (setId: string) => {
         modelsCollection
       )
     );
-    const modelsData = data.docs.map((doc) => {
-      return doc.data() as ModelPersistanceData;
-    });
+    const modelsData = data.docs
+      .filter((doc) => {
+        return Object.keys(doc.data()).length;
+      })
+      .map((doc) => {
+        return doc.data() as ModelPersistenceData;
+      });
     return modelsData;
   }
   return null;

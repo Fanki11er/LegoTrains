@@ -5,8 +5,8 @@ import {
 import DashboardSetInformation from "../../Molecules/DashboardSetInformation/DashboardSetInformation";
 import { UserSetsListWrapper } from "./UserSetsList.styles";
 import { useQuery } from "@tanstack/react-query";
-import { SetPersistanceData } from "../../../Classes/PersistenceModule";
-import { getAllSetsPersistanceData } from "../../../firebase/readFromDbFunctions";
+import { SetPersistenceData } from "../../../Classes/PersistenceModule";
+import { getAllSetsPersistenceData } from "../../../firebase/readFromDbFunctions";
 import { All_SETS_DATA } from "../../../Api/queryKeys";
 import SubmitIndicator from "../../Molecules/SubmitIndicator/SubmitIndicator";
 import {
@@ -19,7 +19,7 @@ import ResetSetModal from "../../Molecules/ResetSetModal/ResetSetModal";
 import { useCallback, useState } from "react";
 
 const matchSets = (
-  setsInformation: SetPersistanceData[],
+  setsInformation: SetPersistenceData[],
   setData: DashboardSetInformationData
 ) => {
   return setsInformation.find((setInformation) => {
@@ -30,10 +30,10 @@ const matchSets = (
 const UserSetsList = () => {
   const [setToReset, setSetToReset] = useState("");
   const { data, isLoading, isError, error } = useQuery<
-    SetPersistanceData[] | null
+    SetPersistenceData[] | null
   >({
     queryKey: [All_SETS_DATA],
-    queryFn: () => getAllSetsPersistanceData(),
+    queryFn: () => getAllSetsPersistenceData(),
   });
 
   const handleToggleModal = useCallback(
@@ -48,7 +48,7 @@ const UserSetsList = () => {
   );
 
   const renderSetsInformation = (
-    setsInformation: SetPersistanceData[],
+    setsInformation: SetPersistenceData[],
     allSetsData: DashboardSetInformationData[]
   ) => {
     return allSetsData.map((setData) => {

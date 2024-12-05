@@ -12,6 +12,7 @@ export class TrainInstruction {
   private connectedMarkersIds: string[] = [];
   private persistenceModule: PersistenceModule;
   private sceneMarkersInfo: MarkersInfo;
+  private isPersistenceDataLoaded: boolean = false;
 
   constructor(modelMarkersPath: string, markersId: string = "SceneRootMarker") {
     this.sceneMarkersInfo = {
@@ -53,7 +54,6 @@ export class TrainInstruction {
     const arrangedModels = this.models.filter((model) => {
       return model.getIsModelArranged();
     });
-
     if (this.activeModel) {
       return [...arrangedModels, this.activeModel];
     }
@@ -111,6 +111,14 @@ export class TrainInstruction {
     return null;
   };
 
+  getIsPersistenceDataLoaded = () => {
+    return this.isPersistenceDataLoaded;
+  };
+
+  setIsPersistenceDataLoaded = (isPersistenceDataLoaded: boolean) => {
+    this.isPersistenceDataLoaded = isPersistenceDataLoaded;
+  };
+
   addModel = (model: Model) => {
     this.models.push(model);
     if (!this.activeModel) {
@@ -132,7 +140,6 @@ export class TrainInstruction {
 
   getActiveModelMarkers = () => {
     const scene = this.sceneLoader();
-
     if (this.activeModel) {
       const rootModelMarkerId = this.activeModel.getRootModelMarkerId();
       return scene.getObjectByName(rootModelMarkerId);
@@ -213,6 +220,7 @@ export class TrainInstruction {
       }
     });
     this.changeToNextActiveModel();
+    this.isPersistenceDataLoaded = true;
   };
 
   moveReadyModelToSetArrangement = () => {
@@ -285,6 +293,7 @@ export class TrainInstruction {
         break;
       }
     }
+
     this.activeModel = newActiveModel;
   };
   getSceneLoader = (fn: () => Scene) => {

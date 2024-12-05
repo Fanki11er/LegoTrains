@@ -1,4 +1,10 @@
-import { PropsWithChildren, createContext, useCallback, useMemo } from "react";
+import {
+  PropsWithChildren,
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+} from "react";
 import { TrainInstruction } from "../Classes/TrainInstruction";
 import { useThree } from "@react-three/fiber";
 import { Object3D, Object3DEventMap } from "three";
@@ -51,6 +57,25 @@ const TrainInstructionProvider = (
 
   trainInstruction.getSceneLoader(getScene);
 
+  const { modelsData } = usePersistenceDataProvider();
+
+  const updateInstructionWithPersistenceData = useCallback(
+    (data: ModelPersistenceData[]) => {
+      if (trainInstruction) {
+        trainInstruction.usePersistenceData(data);
+      }
+    },
+    [trainInstruction]
+  );
+
+  useEffect(() => {
+    if (modelsData?.length) {
+      updateInstructionWithPersistenceData(modelsData);
+    } else {
+      instruction.setIsPersistenceDataLoaded(true);
+    }
+  }, [modelsData, updateInstructionWithPersistenceData, instruction]);
+
   const handleGetPartsList = useCallback(() => {
     if (trainInstruction) {
       return trainInstruction.getActiveModelPartsList();
@@ -98,15 +123,6 @@ const TrainInstructionProvider = (
     [trainInstruction]
   );
 
-  const updateInstructionWithPersistenceData = useCallback(
-    (data: ModelPersistenceData[]) => {
-      if (trainInstruction) {
-        trainInstruction.usePersistenceData(data);
-      }
-    },
-    [trainInstruction]
-  );
-
   const handleGetSetModelsToRenderList = useCallback(() => {
     return instruction.getModelsReadyToRender();
   }, [instruction]);
@@ -138,7 +154,7 @@ const TrainInstructionProvider = (
 
   return (
     <TrainInstructionContext.Provider value={context}>
-      {children}
+      {instruction.getIsPersistenceDataLoaded() && children}
     </TrainInstructionContext.Provider>
   );
 };

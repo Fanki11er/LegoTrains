@@ -87,6 +87,8 @@ const PersistenceDataProvider = ({
           .catch((err) => {
             setStatus({ message: err.name, status: "error" });
             saveErrorLog(err.message, legoSetId);
+            //!!!
+            console.log(err);
             timeout = setTimeout(() => {
               setStatus(null);
             }, 2000);
@@ -107,6 +109,7 @@ const PersistenceDataProvider = ({
           })
           .catch((err) => {
             setStatus({ message: err.name, status: "error" });
+
             saveErrorLog(err.message, legoSetId);
             timeout = setTimeout(() => {
               setStatus(null);

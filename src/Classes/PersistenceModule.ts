@@ -76,7 +76,7 @@ export class PersistenceModule {
       markersData: preparedMarkerData,
       usedPartsData: partsPreparedToSave,
       connectedMarkersIds: connectedMarkersIds,
-      activePhaseId: activePhaseId,
+      activePhaseId: activePhaseId || null,
       isModelFinished: isModelFinished,
       isModelArranged: isModelArranged,
     };

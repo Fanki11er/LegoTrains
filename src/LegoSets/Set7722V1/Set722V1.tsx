@@ -1,4 +1,3 @@
-import Floor from "../../Components/3DModels/Floor/Floor";
 import SteamLocomotive_7722 from "../../Components/3DModels/TrainModels/SteamLocomotive_7722/SteamLocomotive_7722";
 import Scene from "../../Components/Organisms/Scene/Scene";
 import TrainInstructionProvider from "../../Providers/TrainInstructionProvider";
@@ -22,7 +21,6 @@ const Set722V1 = ({ legoSetId }: Props) => {
     <PersistenceDataProvider instruction={instruction} legoSetId={legoSetId}>
       <Scene>
         <TrainInstructionProvider instruction={instruction}>
-          <Floor />
           <SteamLocomotive_7722 />
         </TrainInstructionProvider>
       </Scene>
