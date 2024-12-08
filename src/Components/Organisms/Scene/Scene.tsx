@@ -14,8 +14,8 @@ const Scene = ({ children }: PropsWithChildren) => {
       >
         <Suspense fallback={<Loader />}>
           <Perf position={"bottom-right"} />
-          <directionalLight position={[0, 50, 5]} intensity={7} />
-          <ambientLight intensity={0.5} />
+          <directionalLight position={[0, 50, 5]} intensity={6} />
+          <ambientLight intensity={1} />
           <OrbitControls
             enableDamping
             minPolarAngle={0}

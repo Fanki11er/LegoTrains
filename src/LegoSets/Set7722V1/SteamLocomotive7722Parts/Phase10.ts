@@ -31,7 +31,7 @@ export const steamLocomotive7722LocomotiveModelPhase10: LegoBlockType[] = [
   },
   {
     partPath: train_Door_1x4x5_Left_4181,
-    partStartPosition: new Vector3(350, 0, 165),
+    partStartPosition: new Vector3(330, 0, 165),
     partType: "4181",
     materialId: "blackPlasticMaterial",
     noAutomaticMoveToGroundLevel: true,
@@ -41,7 +41,7 @@ export const steamLocomotive7722LocomotiveModelPhase10: LegoBlockType[] = [
   },
   {
     partPath: train_Door_1x4x5_Right_4182,
-    partStartPosition: new Vector3(390, 0, 165),
+    partStartPosition: new Vector3(400, 0, 165),
     partType: "4182",
     materialId: "blackPlasticMaterial",
     noAutomaticMoveToGroundLevel: true,
