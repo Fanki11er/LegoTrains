@@ -19,7 +19,6 @@ const SteamLocomotive_7722 = memo(() => {
 
   const {
     handleGetPartsList,
-    //updateInstructionWithPersistenceData,
     handleGetSceneMarkersInfo,
     handleGetSetModelsToRenderList,
   } = useTrainInstruction();

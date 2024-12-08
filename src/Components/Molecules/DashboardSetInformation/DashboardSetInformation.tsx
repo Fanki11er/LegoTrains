@@ -1,4 +1,4 @@
-import { SetPersistanceData } from "../../../Classes/PersistenceModule";
+import { SetPersistenceData } from "../../../Classes/PersistenceModule";
 import { legoSetRouterNavigationPath } from "../../../router/routerPaths";
 import { DashboardSetInformationData } from "../../../Types/DashboardSetInformationData";
 import { DashboardSetStatus } from "../../../Types/DashboardSetStatus";
@@ -15,8 +15,7 @@ import {
 } from "./DashboardSetInformation.styles";
 type Props = {
   dashboardSetInformationData: DashboardSetInformationData;
-  setInformationDTO?: SetPersistanceData;
-  //setId: string;
+  setInformationDTO?: SetPersistenceData;
   handleToggleResetModal: (setId: string) => void;
 };
 
@@ -29,7 +28,7 @@ const DashboardSetInformation = ({
     dashboardSetInformationData;
 
   const setStatus = (
-    setInformationDTO: SetPersistanceData | undefined,
+    setInformationDTO: SetPersistenceData | undefined,
     allModels: number
   ): DashboardSetStatus => {
     if (!setInformationDTO) {

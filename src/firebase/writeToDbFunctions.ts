@@ -132,7 +132,7 @@ export const updateModelInDatabase = async (
     );
     bath.set(setRef, data);
 
-    if (data.isModelFinished) {
+    if (data.isModelArranged) {
       const setDocRef = doc(db, usersCollection, userId, setsCollection, setId);
 
       bath.update(setDocRef, {
