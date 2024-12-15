@@ -5,11 +5,14 @@ import set7722SceneMarkersWithTracks from "../../assets/3D/Set_7722_V1/SceneMark
 import set7722LocomotiveModelMarkers from "../../assets/3D/ModelsMarkers/SteamLocomotive7722/Markers.glb";
 // @ts-expect-error Not a type
 import set7722BatteryCarModelMarkers from "../../assets/3D/ModelsMarkers/BatteryCar7722/Markers.glb";
+// @ts-expect-error Not a type
+import set7722PlatformCarModelMarkers from "../../assets/3D/ModelsMarkers/PlatformCar7722/Markers.glb";
 import { Model } from "../../Classes/Model";
 import { SetLegoBlocks } from "./SteamLocomotive7722Parts/SetLegoBlockTypes";
 import { addForModelPhaseBlocks } from "../../Utilities/utilities";
 import { steamLocomotive7722LocomotiveModelBlocks } from "./steamLocomotive7722";
 import { steamLocomotive7722BatteryCarModelBlocks } from "./batteryCar7722";
+import { steamLocomotive7722PlatformCarModelBlocks } from "./platformCar7722";
 
 export const createInstruction = () => {
   const set7722Instruction = new TrainInstruction(
@@ -28,10 +31,17 @@ export const createInstruction = () => {
     set7722Instruction
   );
 
+  const platformCar7722Model = new Model(
+    "PlatformCar7722Model",
+    set7722PlatformCarModelMarkers,
+    set7722Instruction
+  );
+
   const set7722LegoBlocks = new SetLegoBlocks(set7722Instruction);
 
   set7722Instruction.addModel(steamLocomotive7722Model);
   set7722Instruction.addModel(batteryCar7722Model);
+  set7722Instruction.addModel(platformCar7722Model);
 
   addForModelPhaseBlocks(
     set7722LegoBlocks,
@@ -43,6 +53,12 @@ export const createInstruction = () => {
     set7722LegoBlocks,
     "BatteryCar7722Model",
     steamLocomotive7722BatteryCarModelBlocks
+  );
+
+  addForModelPhaseBlocks(
+    set7722LegoBlocks,
+    "PlatformCar7722Model",
+    steamLocomotive7722PlatformCarModelBlocks
   );
 
   set7722Instruction.addSetLegoBlocks(set7722LegoBlocks);

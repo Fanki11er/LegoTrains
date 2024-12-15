@@ -45,6 +45,12 @@ import train_Battery_Box_Car_x488c02_model from "../../assets/3D/Train_Battery_B
 import battery_Car_Roof_bb54_model from "../../assets/3D/Battery_Car_Roof_bb54/Battery_Car_Roof_bb54.glb";
 import train_Buffer_Single_buffer_model from "../../assets/3D/Train_Buffer_Single_buffer/Train_Buffer_Single_buffer.glb";
 import slope_Brick_3_x_2_33_Degrees_3298_model from "../../assets/3D/Slope_Brick_3_x_2_33_Degrees_3298/Slope_Brick_3_x_2_33_Degrees_3298.glb";
+import plate_6_x_16_3027_model from "../../assets/3D/Plate_6_x_16_3027/Plate_6_x_16_3027.glb";
+import plate_2_x_10_3832_model from "../../assets/3D/Plate_2_x_10_3832/Plate_2_x_10_3832.glb";
+import train_Buffer_Beam_4022_model from "../../assets/3D/Train_Buffer_Beam_4022/Train_Buffer_Beam_4022.glb";
+import plate_2_x_6_3795_model from "../../assets/3D/Plate_2_x_6_3795/Plate_2_x_6_3795.glb";
+import plate_2_x_2_3022_model from "../../assets/3D/Plate_2_x_2_3022/Plate_2_x_2_3022.glb";
+import brick_Specialty_2_x_4_with_Black_Spoked_Train_Wheels_4180c01_model from "../../assets/3D/Brick_Specialty_2_x_4_with_Black_Spoked_Train_Wheels_4180c01/Brick_Specialty_2_x_4_with_Black_Spoked_Train_Wheels_4180c01.glb";
 
 export const roundOpenStud_3062b = roundOpenStud_3062b_model;
 export const trainBase_4178 = trainBase_4178_model;
@@ -104,3 +110,13 @@ export const battery_Car_Roof_bb54 = battery_Car_Roof_bb54_model;
 export const train_Buffer_Single_buffer = train_Buffer_Single_buffer_model;
 export const slope_Brick_3_x_2_33_Degrees_3298 =
   slope_Brick_3_x_2_33_Degrees_3298_model;
+
+//? Platform Car
+
+export const plate_6_x_16_3027 = plate_6_x_16_3027_model;
+export const plate_2_x_10_3832 = plate_2_x_10_3832_model;
+export const train_Buffer_Beam_4022 = train_Buffer_Beam_4022_model;
+export const plate_2_x_6_3795 = plate_2_x_6_3795_model;
+export const plate_2_x_2_3022 = plate_2_x_2_3022_model;
+export const brick_Specialty_2_x_4_with_Black_Spoked_Train_Wheels_4180c01 =
+  brick_Specialty_2_x_4_with_Black_Spoked_Train_Wheels_4180c01_model;
