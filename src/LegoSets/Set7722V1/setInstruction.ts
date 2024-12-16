@@ -19,17 +19,17 @@ export const createInstruction = () => {
     set7722SceneMarkersWithTracks
   );
 
-  const steamLocomotive7722Model = new Model(
-    "SteamLocomotive7722Model",
-    set7722LocomotiveModelMarkers,
-    set7722Instruction
-  );
+  // const steamLocomotive7722Model = new Model(
+  //   "SteamLocomotive7722Model",
+  //   set7722LocomotiveModelMarkers,
+  //   set7722Instruction
+  // );
 
-  const batteryCar7722Model = new Model(
-    "BatteryCar7722Model",
-    set7722BatteryCarModelMarkers,
-    set7722Instruction
-  );
+  // const batteryCar7722Model = new Model(
+  //   "BatteryCar7722Model",
+  //   set7722BatteryCarModelMarkers,
+  //   set7722Instruction
+  // );
 
   const platformCar7722Model = new Model(
     "PlatformCar7722Model",
@@ -39,8 +39,8 @@ export const createInstruction = () => {
 
   const set7722LegoBlocks = new SetLegoBlocks(set7722Instruction);
 
-  set7722Instruction.addModel(steamLocomotive7722Model);
-  set7722Instruction.addModel(batteryCar7722Model);
+  // set7722Instruction.addModel(steamLocomotive7722Model);
+  // set7722Instruction.addModel(batteryCar7722Model);
   set7722Instruction.addModel(platformCar7722Model);
 
   addForModelPhaseBlocks(

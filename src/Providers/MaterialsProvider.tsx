@@ -34,6 +34,7 @@ const MaterialsProvider = ({ children }: PropsWithChildren) => {
       oldGrayPlasticMaterial:
         materials.GlossyDirtyGrayPlastic || missingMaterial,
       yellowPLasticMaterial: materials.GlossyYellowPlastic || missingMaterial,
+      whitePlasticMaterial: materials.GlossyWhitePlastic || missingMaterial,
       nestMaterial: nestMaterial,
       blueFloorMaterial: blueFloorMaterial,
       selectedElementMaterial: selectedElementMaterial,

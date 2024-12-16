@@ -51,6 +51,10 @@ import train_Buffer_Beam_4022_model from "../../assets/3D/Train_Buffer_Beam_4022
 import plate_2_x_6_3795_model from "../../assets/3D/Plate_2_x_6_3795/Plate_2_x_6_3795.glb";
 import plate_2_x_2_3022_model from "../../assets/3D/Plate_2_x_2_3022/Plate_2_x_2_3022.glb";
 import brick_Specialty_2_x_4_with_Black_Spoked_Train_Wheels_4180c01_model from "../../assets/3D/Brick_Specialty_2_x_4_with_Black_Spoked_Train_Wheels_4180c01/Brick_Specialty_2_x_4_with_Black_Spoked_Train_Wheels_4180c01.glb";
+import fence_1_x_4_x_1_3633_model from "../../assets/3D/Fence_1_x_4_x_1_3633/Fence_1_x_4_x_1_3633.glb";
+import plate_4_x_6_3032_model from "../../assets/3D/Plate_4_x_6_3032/Plate_4_x_6_3032.glb";
+import brick_Specialty_2_x_2_Round_3941_model from "../../assets/3D/Brick_Specialty_2_x_2_Round_3941/Brick_Specialty_2_x_2_Round_3941.glb";
+import plate_Specialty_2_x_2_Round_with_Axle_Hole_4032_model from "../../assets/3D/Plate_Specialty_2_x_2_Round_with_Axle_Hole_4032/Plate_Specialty_2_x_2_Round_with_Axle_Hole_4032.glb";
 
 export const roundOpenStud_3062b = roundOpenStud_3062b_model;
 export const trainBase_4178 = trainBase_4178_model;
@@ -120,3 +124,9 @@ export const plate_2_x_6_3795 = plate_2_x_6_3795_model;
 export const plate_2_x_2_3022 = plate_2_x_2_3022_model;
 export const brick_Specialty_2_x_4_with_Black_Spoked_Train_Wheels_4180c01 =
   brick_Specialty_2_x_4_with_Black_Spoked_Train_Wheels_4180c01_model;
+export const fence_1_x_4_x_1_3633 = fence_1_x_4_x_1_3633_model;
+export const plate_4_x_6_3032 = plate_4_x_6_3032_model;
+export const brick_Specialty_2_x_2_Round_3941 =
+  brick_Specialty_2_x_2_Round_3941_model;
+export const plate_Specialty_2_x_2_Round_with_Axle_Hole_4032 =
+  plate_Specialty_2_x_2_Round_with_Axle_Hole_4032_model;
