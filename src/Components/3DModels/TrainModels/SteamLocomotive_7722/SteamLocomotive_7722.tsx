@@ -13,6 +13,12 @@ import { Model } from "../../../../Classes/Model";
 import usePersistenceDataProvider from "../../../../Hooks/usePersistenceDataProvider";
 import MaterialsProvider from "../../../../Providers/materialsProvider";
 import Floor from "../../Floor/Floor";
+import Tracks from "../../Tracks/Tracks";
+import {
+  straight_Track_Old,
+  curved_Track_Old,
+  tracksMarkers_7722,
+} from "../../../../LegoSets/Set7722V1/PartsImports";
 
 const SteamLocomotive_7722 = memo(() => {
   console.log("Rerender Locomotive");
@@ -102,8 +108,14 @@ const SteamLocomotive_7722 = memo(() => {
         <>
           <SceneMarkers
             sceneMarkersInfo={sceneMarkersInfo}
-            position={[0, 4, -550]}
+            position={[0, 0, -550]}
           />
+          <Tracks
+            tracksMarkersFilePath={tracksMarkers_7722}
+            straightTrackFilePath={straight_Track_Old}
+            curvedTrackFilePath={curved_Track_Old}
+          />
+
           <MaterialsProvider>
             <Floor />
             {renderModels(handleGetSetModelsToRenderList(), modelsData)}

@@ -10,13 +10,12 @@ type Props = {
 const SceneMarkers = (props: Props) => {
   const { sceneMarkersInfo, position } = props;
   const { scene } = useGLTF(sceneMarkersInfo.markersPath);
-
   useEffect(() => {
     return () => {
       useGLTF.clear(sceneMarkersInfo.markersPath);
     };
-  }, [sceneMarkersInfo]);
-  return <primitive object={scene} position={position} />;
+  }, [sceneMarkersInfo, scene]);
+  return <primitive object={scene.children[0]} position={position} />;
 };
 
 export default SceneMarkers;

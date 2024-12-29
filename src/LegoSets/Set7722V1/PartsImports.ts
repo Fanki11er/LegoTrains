@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
+import tracksMarkers_7722_model from "../../assets/3D/ModelsMarkers/Tracks7722/Markers.glb";
 import roundOpenStud_3062b_model from "../../assets/3D/RoundOpenStud_3062b/RoundOpenStud_3062b.glb";
 import trainBase_4178_model from "../../assets/3D/TrainBase_4178/TrainBase_4178.glb";
 import plate_x461b_model from "../../assets/3D/Plate_x461b/Plate_x461b.glb";
@@ -55,7 +56,17 @@ import fence_1_x_4_x_1_3633_model from "../../assets/3D/Fence_1_x_4_x_1_3633/Fen
 import plate_4_x_6_3032_model from "../../assets/3D/Plate_4_x_6_3032/Plate_4_x_6_3032.glb";
 import brick_Specialty_2_x_2_Round_3941_model from "../../assets/3D/Brick_Specialty_2_x_2_Round_3941/Brick_Specialty_2_x_2_Round_3941.glb";
 import plate_Specialty_2_x_2_Round_with_Axle_Hole_4032_model from "../../assets/3D/Plate_Specialty_2_x_2_Round_with_Axle_Hole_4032/Plate_Specialty_2_x_2_Round_with_Axle_Hole_4032.glb";
+import straight_Track_Old_model from "../../assets/3D/Straight_Track_Old_Model/Straight_Track_Old_Model.glb";
+import curved_Track_Old_model from "../../assets/3D/Curved_Track_Old_Model/Curved_Track_Old_Model.glb";
+import plate_4_x_4_3031_model from "../../assets/3D/Plate_4_x_4_3031/Plate_4_x_4_3031.glb";
+import plate_Specialty_1_x_8_with_Door_Rail_4510_model from "../../assets/3D/Plate_Specialty_1_x_8_with_Door_Rail_4510/Plate_Specialty_1_x_8_with_Door_Rail_4510.glb";
 
+//?? Tracks
+export const tracksMarkers_7722 = tracksMarkers_7722_model;
+export const straight_Track_Old = straight_Track_Old_model;
+export const curved_Track_Old = curved_Track_Old_model;
+
+//?? Steam locomotive
 export const roundOpenStud_3062b = roundOpenStud_3062b_model;
 export const trainBase_4178 = trainBase_4178_model;
 export const plate_x461b = plate_x461b_model;
@@ -130,3 +141,9 @@ export const brick_Specialty_2_x_2_Round_3941 =
   brick_Specialty_2_x_2_Round_3941_model;
 export const plate_Specialty_2_x_2_Round_with_Axle_Hole_4032 =
   plate_Specialty_2_x_2_Round_with_Axle_Hole_4032_model;
+
+//? Post Car
+
+export const plate_4_x_4_3031 = plate_4_x_4_3031_model;
+export const plate_Specialty_1_x_8_with_Door_Rail_4510 =
+  plate_Specialty_1_x_8_with_Door_Rail_4510_model;
