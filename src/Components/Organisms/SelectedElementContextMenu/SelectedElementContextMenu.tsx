@@ -56,6 +56,13 @@ const SelectedElementContextMenu = (props: Props) => {
             </InSceneRotateElementContextMenuButton>
           </SelectedElementMenuSectionHorizontalWrapper>
         </SelectedElementMenuSection>
+        {/* //!!Position helper*/}
+        <SelectedElementMenuSection>
+          <SelectedElementMenuSectionHeader>
+            Position
+          </SelectedElementMenuSectionHeader>
+          <span>{`X: ${mesh.position.x} Z: ${mesh.position.z}`}</span>
+        </SelectedElementMenuSection>
       </SelectedElementContextMenuWrapper>
     </Html>
   );

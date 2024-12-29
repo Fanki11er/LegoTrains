@@ -60,6 +60,8 @@ import straight_Track_Old_model from "../../assets/3D/Straight_Track_Old_Model/S
 import curved_Track_Old_model from "../../assets/3D/Curved_Track_Old_Model/Curved_Track_Old_Model.glb";
 import plate_4_x_4_3031_model from "../../assets/3D/Plate_4_x_4_3031/Plate_4_x_4_3031.glb";
 import plate_Specialty_1_x_8_with_Door_Rail_4510_model from "../../assets/3D/Plate_Specialty_1_x_8_with_Door_Rail_4510/Plate_Specialty_1_x_8_with_Door_Rail_4510.glb";
+import plate_1_x_8_3460_model from "../../assets/3D/Plate_1_x_8_3460/Plate_1_x_8_3460.glb";
+import turntable_2_x_2_Plate_Black_3680c01_model from "../../assets/3D/Turntable_2_x_2_Plate_Black_3680c01/Turntable_2_x_2_Plate_Black_3680c01.glb";
 
 //?? Tracks
 export const tracksMarkers_7722 = tracksMarkers_7722_model;
@@ -147,3 +149,6 @@ export const plate_Specialty_2_x_2_Round_with_Axle_Hole_4032 =
 export const plate_4_x_4_3031 = plate_4_x_4_3031_model;
 export const plate_Specialty_1_x_8_with_Door_Rail_4510 =
   plate_Specialty_1_x_8_with_Door_Rail_4510_model;
+export const plate_1_x_8_3460 = plate_1_x_8_3460_model;
+export const turntable_2_x_2_Plate_Black_3680c01 =
+  turntable_2_x_2_Plate_Black_3680c01_model;
