@@ -62,6 +62,8 @@ import plate_4_x_4_3031_model from "../../assets/3D/Plate_4_x_4_3031/Plate_4_x_4
 import plate_Specialty_1_x_8_with_Door_Rail_4510_model from "../../assets/3D/Plate_Specialty_1_x_8_with_Door_Rail_4510/Plate_Specialty_1_x_8_with_Door_Rail_4510.glb";
 import plate_1_x_8_3460_model from "../../assets/3D/Plate_1_x_8_3460/Plate_1_x_8_3460.glb";
 import turntable_2_x_2_Plate_Black_3680c01_model from "../../assets/3D/Turntable_2_x_2_Plate_Black_3680c01/Turntable_2_x_2_Plate_Black_3680c01.glb";
+import minifig_Accessory_Seat_2x2_4079_model from "../../assets/3D/Minifig_Accessory_Seat_2x2_4079/Minifig_Accessory_Seat_2x2_4079.glb";
+import tile_1x2_with_Mail_Envelope_3069p01_model from "../../assets/3D/Tile_1x2_with_Mail_Envelope_3069p01/Tile_1x2_with_Mail_Envelope_3069p01.glb";
 
 //?? Tracks
 export const tracksMarkers_7722 = tracksMarkers_7722_model;
@@ -152,3 +154,8 @@ export const plate_Specialty_1_x_8_with_Door_Rail_4510 =
 export const plate_1_x_8_3460 = plate_1_x_8_3460_model;
 export const turntable_2_x_2_Plate_Black_3680c01 =
   turntable_2_x_2_Plate_Black_3680c01_model;
+export const minifig_Accessory_Seat_2x2_4079 =
+  minifig_Accessory_Seat_2x2_4079_model;
+
+export const tile_1x2_with_Mail_Envelope_3069p01 =
+  tile_1x2_with_Mail_Envelope_3069p01_model;
