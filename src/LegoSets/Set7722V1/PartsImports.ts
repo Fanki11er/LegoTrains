@@ -64,6 +64,8 @@ import plate_1_x_8_3460_model from "../../assets/3D/Plate_1_x_8_3460/Plate_1_x_8
 import turntable_2_x_2_Plate_Black_3680c01_model from "../../assets/3D/Turntable_2_x_2_Plate_Black_3680c01/Turntable_2_x_2_Plate_Black_3680c01.glb";
 import minifig_Accessory_Seat_2x2_4079_model from "../../assets/3D/Minifig_Accessory_Seat_2x2_4079/Minifig_Accessory_Seat_2x2_4079.glb";
 import tile_1x2_with_Mail_Envelope_3069p01_model from "../../assets/3D/Tile_1x2_with_Mail_Envelope_3069p01/Tile_1x2_with_Mail_Envelope_3069p01.glb";
+import train_Door_1x4x5_Left_Red_Yellow_4181_model from "../../assets/3D//Train_Door_1x4x5_Left_Red_Yellow_4181/Train_Door_1x4x5_Left_Red_Yellow_4181.glb";
+import train_Door_1x4x5_Right_Red_Yellow_4182_model from "../../assets/3D/Train_Door_1x4x5_Right_Red_Yellow_4182/Train_Door_1x4x5_Right_Red_Yellow_4182.glb";
 
 //?? Tracks
 export const tracksMarkers_7722 = tracksMarkers_7722_model;
@@ -159,3 +161,8 @@ export const minifig_Accessory_Seat_2x2_4079 =
 
 export const tile_1x2_with_Mail_Envelope_3069p01 =
   tile_1x2_with_Mail_Envelope_3069p01_model;
+export const train_Door_1x4x5_Left_Red_Yellow_4181 =
+  train_Door_1x4x5_Left_Red_Yellow_4181_model;
+
+export const train_Door_1x4x5_Right_Red_Yellow_4182 =
+  train_Door_1x4x5_Right_Red_Yellow_4182_model;

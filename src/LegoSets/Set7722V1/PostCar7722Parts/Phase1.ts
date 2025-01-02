@@ -13,7 +13,7 @@ export const steamLocomotive7722PostCarPhase1: LegoBlockType[] = [
   },
   {
     partPath: plate_2_x_10_3832,
-    partStartPosition: new Vector3(250, 0, 230),
+    partStartPosition: new Vector3(250, 0, 330),
     partType: "3082",
     materialId: "blackPlasticMaterial",
     slotId: "ModelMarker.002",
