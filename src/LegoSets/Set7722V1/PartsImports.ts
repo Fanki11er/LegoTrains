@@ -66,6 +66,7 @@ import minifig_Accessory_Seat_2x2_4079_model from "../../assets/3D/Minifig_Acces
 import tile_1x2_with_Mail_Envelope_3069p01_model from "../../assets/3D/Tile_1x2_with_Mail_Envelope_3069p01/Tile_1x2_with_Mail_Envelope_3069p01.glb";
 import train_Door_1x4x5_Left_Red_Yellow_4181_model from "../../assets/3D//Train_Door_1x4x5_Left_Red_Yellow_4181/Train_Door_1x4x5_Left_Red_Yellow_4181.glb";
 import train_Door_1x4x5_Right_Red_Yellow_4182_model from "../../assets/3D/Train_Door_1x4x5_Right_Red_Yellow_4182/Train_Door_1x4x5_Right_Red_Yellow_4182.glb";
+import door_Sliding_with_Vertical_Lines_4511_model from "../../assets/3D/Door_Sliding_with_Vertical_Lines_4511/Door_Sliding_with_Vertical_Lines_4511.glb";
 
 //?? Tracks
 export const tracksMarkers_7722 = tracksMarkers_7722_model;
@@ -163,6 +164,7 @@ export const tile_1x2_with_Mail_Envelope_3069p01 =
   tile_1x2_with_Mail_Envelope_3069p01_model;
 export const train_Door_1x4x5_Left_Red_Yellow_4181 =
   train_Door_1x4x5_Left_Red_Yellow_4181_model;
-
 export const train_Door_1x4x5_Right_Red_Yellow_4182 =
   train_Door_1x4x5_Right_Red_Yellow_4182_model;
+export const door_Sliding_with_Vertical_Lines_4511 =
+  door_Sliding_with_Vertical_Lines_4511_model;

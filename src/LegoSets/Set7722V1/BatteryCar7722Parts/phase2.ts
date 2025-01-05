@@ -53,7 +53,7 @@ export const steamLocomotive7722batteryCarPhase2: LegoBlockType[] = [
   },
   {
     partPath: train_Buffer_Single_buffer,
-    partStartPosition: new Vector3(-220, 0, 260),
+    partStartPosition: new Vector3(-220, 0, 380),
     partType: "buffer",
     materialId: "blackPlasticMaterial",
     slotId: "ModelMarker.009",
@@ -61,7 +61,7 @@ export const steamLocomotive7722batteryCarPhase2: LegoBlockType[] = [
   },
   {
     partPath: train_Buffer_Single_buffer,
-    partStartPosition: new Vector3(-180, 0, 260),
+    partStartPosition: new Vector3(-180, 0, 380),
     partType: "buffer",
     materialId: "blackPlasticMaterial",
     slotId: "ModelMarker.010",
@@ -69,7 +69,7 @@ export const steamLocomotive7722batteryCarPhase2: LegoBlockType[] = [
   },
   {
     partPath: train_Buffer_Single_buffer,
-    partStartPosition: new Vector3(-220, 0, 245),
+    partStartPosition: new Vector3(-220, 0, 365),
     partType: "buffer",
     materialId: "blackPlasticMaterial",
     slotId: "ModelMarker.011",
@@ -77,7 +77,7 @@ export const steamLocomotive7722batteryCarPhase2: LegoBlockType[] = [
   },
   {
     partPath: train_Buffer_Single_buffer,
-    partStartPosition: new Vector3(-180, 0, 245),
+    partStartPosition: new Vector3(-180, 0, 365),
     partType: "buffer",
     materialId: "blackPlasticMaterial",
     slotId: "ModelMarker.012",

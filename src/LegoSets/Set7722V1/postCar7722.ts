@@ -1,6 +1,8 @@
 import { ModelBlock } from "../../Types/ModelBlock";
 import { steamLocomotive7722PostCarPhase1 } from "./PostCar7722Parts/Phase1";
 import { steamLocomotive7722PostCarPhase10 } from "./PostCar7722Parts/Phase10";
+import { steamLocomotive7722PostCarPhase11 } from "./PostCar7722Parts/Phase11";
+import { steamLocomotive7722PostCarPhase12 } from "./PostCar7722Parts/Phase12";
 import { steamLocomotive7722PostCarPhase2 } from "./PostCar7722Parts/Phase2";
 import { steamLocomotive7722PostCarPhase3 } from "./PostCar7722Parts/Phase3";
 import { steamLocomotive7722PostCarPhase4 } from "./PostCar7722Parts/Phase4";
@@ -50,5 +52,13 @@ export const steamLocomotive7722PostCarModelBlocks: ModelBlock[] = [
   {
     phaseId: 10,
     legoBlockTypes: steamLocomotive7722PostCarPhase10,
+  },
+  {
+    phaseId: 11,
+    legoBlockTypes: steamLocomotive7722PostCarPhase11,
+  },
+  {
+    phaseId: 12,
+    legoBlockTypes: steamLocomotive7722PostCarPhase12,
   },
 ];

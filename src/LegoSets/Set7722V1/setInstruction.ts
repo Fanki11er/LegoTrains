@@ -7,6 +7,8 @@ import set7722LocomotiveModelMarkers from "../../assets/3D/ModelsMarkers/SteamLo
 import set7722BatteryCarModelMarkers from "../../assets/3D/ModelsMarkers/BatteryCar7722/Markers.glb";
 // @ts-expect-error Not a type
 import set7722PlatformCarModelMarkers from "../../assets/3D/ModelsMarkers/PlatformCar7722/Markers.glb";
+// @ts-expect-error Not a type
+import set7722PostCarModelMarkers from "../../assets/3D/ModelsMarkers/PostCar7722/Markers.glb";
 import { Model } from "../../Classes/Model";
 import { SetLegoBlocks } from "./SteamLocomotive7722Parts/SetLegoBlockTypes";
 import { addForModelPhaseBlocks } from "../../Utilities/utilities";
@@ -38,8 +40,7 @@ export const createInstruction = () => {
 
   const postCar7722Model = new Model(
     "PostCar7722Model",
-    //!!!! Wrong markers
-    set7722PlatformCarModelMarkers,
+    set7722PostCarModelMarkers,
     set7722Instruction
   );
 
