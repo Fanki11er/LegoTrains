@@ -11,7 +11,7 @@ export const ALL_READY_SETS_INFORMATION_DATA: DashboardSetInformationData[] = [
     setId: "Set_7722_V1",
     setName: "LEGO 7722 Steam Cargo Train",
     setVersion: 1,
-    allModels: 3,
+    allModels: 4,
     imagePath: set_7722_image,
   },
 ];
