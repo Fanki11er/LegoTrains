@@ -52,13 +52,11 @@ const Tracks = ({
         const track = straightTrackModel.clone();
         track.position.copy(child.position);
         track.rotation.copy(child.rotation);
-        //markersModel.remove(child);
         markersModel.add(track);
       } else {
         const track = curveTrackModel.clone();
         track.position.copy(child.position);
         track.rotation.copy(child.rotation);
-        //markersModel.remove(child);
         markersModel.add(track);
       }
     });
@@ -68,19 +66,13 @@ const Tracks = ({
     addTracks(markersModel, straightTrackModel, curvedTrackModel);
   }, [markersModel, straightTrackModel, curvedTrackModel]);
 
-  // const renderTracks = () => {
-  //   return model.children.map((child) => {
-  //     if (child.userData.forTrackType === "straight") {
-  //       return (
-  //         <Track parent={model} marker={child} trackPath={straightTrackPath} />
-  //       );
-  //     } else {
-  //       return (
-  //         <Track parent={model} marker={child} trackPath={straightTrackPath} />
-  //       );
-  //     }
-  //   });
-  // };
+  useEffect(() => {
+    return () => {
+      useGLTF.clear(tracksMarkersPath);
+      useGLTF.clear(straightTrackPath);
+      useGLTF.clear(curvedTrackPath);
+    };
+  }, [tracksMarkersPath, straightTrackPath, curvedTrackPath]);
 
   return <>{markersModel && <primitive object={markersModel} />}</>;
 };
