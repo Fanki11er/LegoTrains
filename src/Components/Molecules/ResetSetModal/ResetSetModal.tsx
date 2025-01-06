@@ -14,7 +14,7 @@ import { OkStatus } from "../../Atoms/OkStatus/OkStatus.styles";
 import { FormError } from "../../Atoms/FormError/FormError.styles";
 import SubmitIndicator from "../SubmitIndicator/SubmitIndicator";
 import { useQueryClient } from "@tanstack/react-query";
-import { SET_DATA } from "../../../Api/queryKeys";
+import { All_SETS_DATA } from "../../../Api/queryKeys";
 
 type Props = {
   setId: string;
@@ -47,11 +47,9 @@ const ResetSetModal = ({ setId, handleToggleModal }: Props) => {
                   resetSet(setId)
                     ?.then(() => {
                       setStatus("ok");
+
                       queryClient.invalidateQueries({
-                        queryKey: [SET_DATA, setId],
-                      });
-                      queryClient.invalidateQueries({
-                        queryKey: [SET_DATA, setId],
+                        queryKey: [All_SETS_DATA],
                       });
                     })
                     .catch((err) => {
