@@ -37,9 +37,34 @@ const LegoPart = (props: PartProps) => {
     const model = scene.children[0].clone() as Mesh;
     if (partInfo.materialId) {
       model.material = materialsData[partInfo.materialId];
+      if (
+        partInfo.multipart &&
+        partInfo.propagateMainMaterialToChildren &&
+        partInfo.childrenMaterialId
+      ) {
+        model.children.forEach((child) => {
+          // @ts-expect-error Children have material property
+          child.material = materialsData[partInfo.childrenMaterialId];
+        });
+      } else if (
+        partInfo.multipart &&
+        partInfo.propagateMainMaterialToChildren
+      ) {
+        model.children.forEach((child) => {
+          // @ts-expect-error Children have material property
+          child.material = materialsData[partInfo.materialId];
+        });
+      }
     }
     return model;
-  }, [scene, partInfo.materialId, materialsData]);
+  }, [
+    scene,
+    partInfo.materialId,
+    materialsData,
+    partInfo.childrenMaterialId,
+    partInfo.multipart,
+    partInfo.propagateMainMaterialToChildren,
+  ]);
 
   const modelRef = useRef<Mesh>(null!);
 
@@ -57,6 +82,7 @@ const LegoPart = (props: PartProps) => {
           partId: partInfo.partId,
           partType: partInfo.partType,
           isConnected: false,
+          multipart: partInfo.multipart,
         } as PartUserData;
       } else {
         const rootMarker = handleGetRootModelMarkerByName(

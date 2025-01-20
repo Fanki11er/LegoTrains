@@ -67,11 +67,28 @@ import tile_1x2_with_Mail_Envelope_3069p01_model from "../../assets/3D/Tile_1x2_
 import train_Door_1x4x5_Left_Red_Yellow_4181_model from "../../assets/3D//Train_Door_1x4x5_Left_Red_Yellow_4181/Train_Door_1x4x5_Left_Red_Yellow_4181.glb";
 import train_Door_1x4x5_Right_Red_Yellow_4182_model from "../../assets/3D/Train_Door_1x4x5_Right_Red_Yellow_4182/Train_Door_1x4x5_Right_Red_Yellow_4182.glb";
 import door_Sliding_with_Vertical_Lines_4511_model from "../../assets/3D/Door_Sliding_with_Vertical_Lines_4511/Door_Sliding_with_Vertical_Lines_4511.glb";
+import plate_2x4_3020_model from "../../assets/3D/Plate_2x4_3020/Plate_2x4_3020.glb";
+import slope_Brick_45_2x2_3039_model from "../../assets/3D/Slope_Brick_45_2x2_3039/Slope_Brick_45_2x2_3039.glb";
+import plate_6x10_3033_model from "../../assets/3D/Plate_6x10_3033/Plate_6x10_3033.glb";
+import minifig_Hips_and_Legs_970c00_model from "../../assets/3D/Minifig_Hips_and_Legs_970c00/Minifig_Hips_and_Legs_970c00.glb";
+import minifig_Torso_Post_Office_Worker_973pb35c01_model from "../../assets/3D/Minifig_Torso_Post_Office_Worker_973pb35c01/Minifig_Torso_Post_Office_Worker_973pb35c01.glb";
+import minifig_Head_with_Standard_Grin_Pattern_Stud_Solid_3626ap01_model from "../../assets/3D/Minifig_Head_with_Standard_Grin_Pattern_Stud_Solid_3626ap01/Minifig_Head_with_Standard_Grin_Pattern_Stud_Solid_3626ap01.glb";
+import minifig_Headgear_Hat_Peaked_Cap_3624_model from "../../assets/3D/Minifig_Headgear_Hat_Peaked_Cap_3624/Minifig_Headgear_Hat_Peaked_Cap_3624.glb";
 
 //?? Tracks
 export const tracksMarkers_7722 = tracksMarkers_7722_model;
 export const straight_Track_Old = straight_Track_Old_model;
 export const curved_Track_Old = curved_Track_Old_model;
+
+//?? Minifigs
+
+export const minifig_Hips_and_Legs_970c00 = minifig_Hips_and_Legs_970c00_model;
+export const minifig_Torso_Post_Office_Worker_973pb35c01 =
+  minifig_Torso_Post_Office_Worker_973pb35c01_model;
+export const minifig_Head_with_Standard_Grin_Pattern_Stud_Solid_3626ap01 =
+  minifig_Head_with_Standard_Grin_Pattern_Stud_Solid_3626ap01_model;
+export const minifig_Headgear_Hat_Peaked_Cap_3624 =
+  minifig_Headgear_Hat_Peaked_Cap_3624_model;
 
 //?? Steam locomotive
 export const roundOpenStud_3062b = roundOpenStud_3062b_model;
@@ -168,3 +185,9 @@ export const train_Door_1x4x5_Right_Red_Yellow_4182 =
   train_Door_1x4x5_Right_Red_Yellow_4182_model;
 export const door_Sliding_with_Vertical_Lines_4511 =
   door_Sliding_with_Vertical_Lines_4511_model;
+
+//? Lifter
+
+export const plate_2x4_3020 = plate_2x4_3020_model;
+export const slope_Brick_45_2x2_3039 = slope_Brick_45_2x2_3039_model;
+export const plate_6x10_3033 = plate_6x10_3033_model;

@@ -53,9 +53,7 @@ const Nest = (props: NestProps) => {
   };
 
   const render = (mesh: Mesh | Group) => {
-    if (mesh.type === "Mesh") {
-      return renderMesh(mesh as Mesh);
-    } else if (mesh.type === "Group") {
+    if (mesh.type === "Group" || mesh.userData.multipart) {
       return (
         <>
           {mesh.children.map((child) => {
@@ -63,6 +61,8 @@ const Nest = (props: NestProps) => {
           })}
         </>
       );
+    } else if (mesh.type === "Mesh") {
+      return renderMesh(mesh as Mesh);
     }
   };
 

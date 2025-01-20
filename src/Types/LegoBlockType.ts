@@ -9,4 +9,7 @@ export type LegoBlockType = {
   materialId?: string;
   canNotBeRotated?: boolean;
   noAutomaticMoveToGroundLevel?: boolean;
+  multipart?: boolean;
+  childrenMaterialId?: string;
+  propagateMainMaterialToChildren?: boolean;
 };
