@@ -74,6 +74,13 @@ import minifig_Hips_and_Legs_970c00_model from "../../assets/3D/Minifig_Hips_and
 import minifig_Torso_Post_Office_Worker_973pb35c01_model from "../../assets/3D/Minifig_Torso_Post_Office_Worker_973pb35c01/Minifig_Torso_Post_Office_Worker_973pb35c01.glb";
 import minifig_Head_with_Standard_Grin_Pattern_Stud_Solid_3626ap01_model from "../../assets/3D/Minifig_Head_with_Standard_Grin_Pattern_Stud_Solid_3626ap01/Minifig_Head_with_Standard_Grin_Pattern_Stud_Solid_3626ap01.glb";
 import minifig_Headgear_Hat_Peaked_Cap_3624_model from "../../assets/3D/Minifig_Headgear_Hat_Peaked_Cap_3624/Minifig_Headgear_Hat_Peaked_Cap_3624.glb";
+import plate_8x2x1_Bracket_Modified_4732_model from "../../assets/3D/Plate_8x2x1_Bracket_Modified_4732/Plate_8x2x1_Bracket_Modified_4732.glb";
+import plate_2x3_3021_model from "../../assets/3D/Plate_2x3_3021/Plate_2x3_3021.glb";
+import plate_Specialty_2x2_with_Towball_3731_model from "../../assets/3D/Plate_Specialty_2x2_with_Towball_3731/Plate_Specialty_2x2_with_Towball_3731.glb";
+import plate_Speciality_2x2_with_Small_Wheels_122c01SW_model from "../../assets/3D/Plate_Speciality_2x2_with_Small_Wheels_122c01SW/Plate_Speciality_2x2_with_Small_Wheels_122c01SW.glb";
+import plate_Speciality_2x2_with_Medium_Wheels_122c01MW_model from "../../assets/3D/Plate_Speciality_2x2_with_Medium_Wheels_122c01MW/Plate_Speciality_2x2_with_Medium_Wheels_122c01MW.glb";
+import brick_1x2_with_Black_Grille_Pattern_3004p06_model from "../../assets/3D/Brick_1x2_with_Black_Grille_Pattern_3004p06/Brick_1x2_with_Black_Grille_Pattern_3004p06.glb";
+import plate_1x1_3024_model from "../../assets/3D/Plate_1x1_3024/Plate_1x1_3024.glb";
 
 //?? Tracks
 export const tracksMarkers_7722 = tracksMarkers_7722_model;
@@ -186,8 +193,23 @@ export const train_Door_1x4x5_Right_Red_Yellow_4182 =
 export const door_Sliding_with_Vertical_Lines_4511 =
   door_Sliding_with_Vertical_Lines_4511_model;
 
-//? Lifter
+//? Platform
 
 export const plate_2x4_3020 = plate_2x4_3020_model;
 export const slope_Brick_45_2x2_3039 = slope_Brick_45_2x2_3039_model;
 export const plate_6x10_3033 = plate_6x10_3033_model;
+
+//? Forklift
+
+export const plate_8x2x1_Bracket_Modified_4732 =
+  plate_8x2x1_Bracket_Modified_4732_model;
+export const plate_2x3_3021 = plate_2x3_3021_model;
+export const plate_Specialty_2x2_with_Towball_3731 =
+  plate_Specialty_2x2_with_Towball_3731_model;
+export const plate_Speciality_2x2_with_Small_Wheels_122c01SW =
+  plate_Speciality_2x2_with_Small_Wheels_122c01SW_model;
+export const plate_Speciality_2x2_with_Medium_Wheels_122c01MW =
+  plate_Speciality_2x2_with_Medium_Wheels_122c01MW_model;
+export const brick_1x2_with_Black_Grille_Pattern_3004p06 =
+  brick_1x2_with_Black_Grille_Pattern_3004p06_model;
+export const plate_1x1_3024 = plate_1x1_3024_model;

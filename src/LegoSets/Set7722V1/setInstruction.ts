@@ -19,6 +19,7 @@ import { steamLocomotive7722BatteryCarModelBlocks } from "./batteryCar7722";
 import { steamLocomotive7722PlatformCarModelBlocks } from "./platformCar7722";
 import { steamLocomotive7722PostCarModelBlocks } from "./postCar7722";
 import { steamLocomotive7722LoadingRampModelBlocks } from "./loadingRamp7722";
+import { steamLocomotive7722ForkliftModelBlocks } from "./forklift7722";
 
 export const createInstruction = () => {
   const set7722Instruction = new TrainInstruction(set7722SceneMarkers);
@@ -54,13 +55,21 @@ export const createInstruction = () => {
     set7722Instruction
   );
 
+  const forklift7722Model = new Model(
+    "forklift7722Model",
+    //!!
+    set7722LoadingRampModelMarkers,
+    set7722Instruction
+  );
+
   const set7722LegoBlocks = new SetLegoBlocks(set7722Instruction);
 
-  // set7722Instruction.addModel(steamLocomotive7722Model);
-  // set7722Instruction.addModel(batteryCar7722Model);
-  // set7722Instruction.addModel(platformCar7722Model);
-  // set7722Instruction.addModel(postCar7722Model);
+  set7722Instruction.addModel(steamLocomotive7722Model);
+  set7722Instruction.addModel(batteryCar7722Model);
+  set7722Instruction.addModel(platformCar7722Model);
+  set7722Instruction.addModel(postCar7722Model);
   set7722Instruction.addModel(loadingRamp7722Model);
+  set7722Instruction.addModel(forklift7722Model);
 
   addForModelPhaseBlocks(
     set7722LegoBlocks,
@@ -90,6 +99,12 @@ export const createInstruction = () => {
     set7722LegoBlocks,
     "loadingRamp7722Model",
     steamLocomotive7722LoadingRampModelBlocks
+  );
+
+  addForModelPhaseBlocks(
+    set7722LegoBlocks,
+    "forklift7722Model",
+    steamLocomotive7722ForkliftModelBlocks
   );
 
   set7722Instruction.addSetLegoBlocks(set7722LegoBlocks);
