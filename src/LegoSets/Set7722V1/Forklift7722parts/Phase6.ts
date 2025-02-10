@@ -9,15 +9,6 @@ import {
 } from "../PartsImports";
 
 export const steamLocomotive7722ForkliftPhase6: LegoBlockType[] = [
-  //   {
-  //     partPath: plate_1x4_3710,
-  //     partStartPosition: new Vector3(-180, 0, 315),
-  //     partType: "3710",
-  //     materialId: "bluePlasticMaterial",
-  //     slotId: "ModelMarker.013",
-  //     depends: [],
-  //   },
-
   {
     partPath: brick_4070,
     partStartPosition: new Vector3(530, 0, 30),

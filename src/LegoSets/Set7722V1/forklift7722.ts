@@ -5,6 +5,9 @@ import { steamLocomotive7722ForkliftPhase3 } from "./Forklift7722parts/Phase3";
 import { steamLocomotive7722ForkliftPhase4 } from "./Forklift7722parts/Phase4";
 import { steamLocomotive7722ForkliftPhase5 } from "./Forklift7722parts/Phase5";
 import { steamLocomotive7722ForkliftPhase6 } from "./Forklift7722parts/Phase6";
+import { steamLocomotive7722ForkliftPhase7 } from "./Forklift7722parts/Phase7";
+import { steamLocomotive7722ForkliftPhase8 } from "./Forklift7722parts/Phase8";
+import { steamLocomotive7722ForkliftPhase9 } from "./Forklift7722parts/Phase9";
 
 export const steamLocomotive7722ForkliftModelBlocks: ModelBlock[] = [
   {
@@ -31,5 +34,17 @@ export const steamLocomotive7722ForkliftModelBlocks: ModelBlock[] = [
   {
     phaseId: 6,
     legoBlockTypes: steamLocomotive7722ForkliftPhase6,
+  },
+  {
+    phaseId: 7,
+    legoBlockTypes: steamLocomotive7722ForkliftPhase7,
+  },
+  {
+    phaseId: 8,
+    legoBlockTypes: steamLocomotive7722ForkliftPhase8,
+  },
+  {
+    phaseId: 9,
+    legoBlockTypes: steamLocomotive7722ForkliftPhase9,
   },
 ];

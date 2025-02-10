@@ -81,6 +81,9 @@ import plate_Speciality_2x2_with_Small_Wheels_122c01SW_model from "../../assets/
 import plate_Speciality_2x2_with_Medium_Wheels_122c01MW_model from "../../assets/3D/Plate_Speciality_2x2_with_Medium_Wheels_122c01MW/Plate_Speciality_2x2_with_Medium_Wheels_122c01MW.glb";
 import brick_1x2_with_Black_Grille_Pattern_3004p06_model from "../../assets/3D/Brick_1x2_with_Black_Grille_Pattern_3004p06/Brick_1x2_with_Black_Grille_Pattern_3004p06.glb";
 import plate_1x1_3024_model from "../../assets/3D/Plate_1x1_3024/Plate_1x1_3024.glb";
+import antenna_Small_Base_with_Lever_4592c02_model from "../../assets/3D/Antenna_Small_Base_with_Lever_4592c02/Antenna_Small_Base_with_Lever_4592c02.glb";
+import hinge_Plate_1x2_with_2_Fingers_4276_model from "../../assets/3D/Hinge_Plate_1x2_with_2_Fingers_4276/Hinge_Plate_1x2_with_2_Fingers_4276.glb";
+import vehicle_Forklift_4518ac01_model from "../../assets/3D/Vehicle_Forklift_4518ac01/Vehicle_Forklift_4518ac01.glb";
 
 //?? Tracks
 export const tracksMarkers_7722 = tracksMarkers_7722_model;
@@ -213,3 +216,8 @@ export const plate_Speciality_2x2_with_Medium_Wheels_122c01MW =
 export const brick_1x2_with_Black_Grille_Pattern_3004p06 =
   brick_1x2_with_Black_Grille_Pattern_3004p06_model;
 export const plate_1x1_3024 = plate_1x1_3024_model;
+export const antenna_Small_Base_with_Lever_4592c02 =
+  antenna_Small_Base_with_Lever_4592c02_model;
+export const hinge_Plate_1x2_with_2_Fingers_4276 =
+  hinge_Plate_1x2_with_2_Fingers_4276_model;
+export const vehicle_Forklift_4518ac01 = vehicle_Forklift_4518ac01_model;
