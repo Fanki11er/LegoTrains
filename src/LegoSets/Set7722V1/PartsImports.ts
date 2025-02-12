@@ -84,6 +84,10 @@ import plate_1x1_3024_model from "../../assets/3D/Plate_1x1_3024/Plate_1x1_3024.
 import antenna_Small_Base_with_Lever_4592c02_model from "../../assets/3D/Antenna_Small_Base_with_Lever_4592c02/Antenna_Small_Base_with_Lever_4592c02.glb";
 import hinge_Plate_1x2_with_2_Fingers_4276_model from "../../assets/3D/Hinge_Plate_1x2_with_2_Fingers_4276/Hinge_Plate_1x2_with_2_Fingers_4276.glb";
 import vehicle_Forklift_4518ac01_model from "../../assets/3D/Vehicle_Forklift_4518ac01/Vehicle_Forklift_4518ac01.glb";
+import tile_Specialty_1x2_with_Vehicle_Steering_Stand_Blue_3829c01_model from "../../assets/3D/Tile_Specialty_1x2_with_Vehicle_Steering_Stand_Blue_3829c01/Tile_Specialty_1x2_with_Vehicle_Steering_Stand_Blue_3829c01.glb";
+import minifig_Torso_973pb203c01_model from "../../assets/3D/Minifig_Torso_973pb203c01/Minifig_Torso_973pb203c01.glb";
+import minifig_Accessory_Headgear_Cap_4485_model from "../../assets/3D/Minifig_Accessory_Headgear_Cap_4485/Minifig_Accessory_Headgear_Cap_4485.glb";
+import bar_1x4x2_with_Studs_4083_model from "../../assets/3D/Bar_1x4x2_with_Studs_4083/Bar_1x4x2_with_Studs_4083.glb";
 
 //?? Tracks
 export const tracksMarkers_7722 = tracksMarkers_7722_model;
@@ -91,7 +95,6 @@ export const straight_Track_Old = straight_Track_Old_model;
 export const curved_Track_Old = curved_Track_Old_model;
 
 //?? Minifigs
-
 export const minifig_Hips_and_Legs_970c00 = minifig_Hips_and_Legs_970c00_model;
 export const minifig_Torso_Post_Office_Worker_973pb35c01 =
   minifig_Torso_Post_Office_Worker_973pb35c01_model;
@@ -99,6 +102,9 @@ export const minifig_Head_with_Standard_Grin_Pattern_Stud_Solid_3626ap01 =
   minifig_Head_with_Standard_Grin_Pattern_Stud_Solid_3626ap01_model;
 export const minifig_Headgear_Hat_Peaked_Cap_3624 =
   minifig_Headgear_Hat_Peaked_Cap_3624_model;
+export const minifig_Torso_973pb203c01 = minifig_Torso_973pb203c01_model;
+export const minifig_Accessory_Headgear_Cap_4485 =
+  minifig_Accessory_Headgear_Cap_4485_model;
 
 //?? Steam locomotive
 export const roundOpenStud_3062b = roundOpenStud_3062b_model;
@@ -221,3 +227,6 @@ export const antenna_Small_Base_with_Lever_4592c02 =
 export const hinge_Plate_1x2_with_2_Fingers_4276 =
   hinge_Plate_1x2_with_2_Fingers_4276_model;
 export const vehicle_Forklift_4518ac01 = vehicle_Forklift_4518ac01_model;
+export const tile_Specialty_1x2_with_Vehicle_Steering_Stand_Blue_3829c01 =
+  tile_Specialty_1x2_with_Vehicle_Steering_Stand_Blue_3829c01_model;
+export const bar_1x4x2_with_Studs_4083 = bar_1x4x2_with_Studs_4083_model;

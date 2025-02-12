@@ -1,5 +1,6 @@
 import { ModelBlock } from "../../Types/ModelBlock";
 import { steamLocomotive7722ForkliftPhase1 } from "./Forklift7722parts/Phase1";
+import { steamLocomotive7722ForkliftPhase10 } from "./Forklift7722parts/Phase10";
 import { steamLocomotive7722ForkliftPhase2 } from "./Forklift7722parts/Phase2";
 import { steamLocomotive7722ForkliftPhase3 } from "./Forklift7722parts/Phase3";
 import { steamLocomotive7722ForkliftPhase4 } from "./Forklift7722parts/Phase4";
@@ -46,5 +47,9 @@ export const steamLocomotive7722ForkliftModelBlocks: ModelBlock[] = [
   {
     phaseId: 9,
     legoBlockTypes: steamLocomotive7722ForkliftPhase9,
+  },
+  {
+    phaseId: 10,
+    legoBlockTypes: steamLocomotive7722ForkliftPhase10,
   },
 ];

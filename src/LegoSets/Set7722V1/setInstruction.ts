@@ -11,6 +11,9 @@ import set7722PlatformCarModelMarkers from "../../assets/3D/ModelsMarkers/Platfo
 import set7722PostCarModelMarkers from "../../assets/3D/ModelsMarkers/PostCar7722/Markers.glb";
 // @ts-expect-error Not a type
 import set7722LoadingRampModelMarkers from "../../assets/3D/ModelsMarkers/LoadingRamp7722/Markers.glb";
+// @ts-expect-error Not a type
+import set7722ForkliftModelMarkers from "../../assets/3D/ModelsMarkers/Forklift7722/Markers.glb";
+
 import { Model } from "../../Classes/Model";
 import { SetLegoBlocks } from "./SteamLocomotive7722Parts/SetLegoBlockTypes";
 import { addForModelPhaseBlocks } from "../../Utilities/utilities";
@@ -50,15 +53,13 @@ export const createInstruction = () => {
 
   const loadingRamp7722Model = new Model(
     "loadingRamp7722Model",
-    //!!
     set7722LoadingRampModelMarkers,
     set7722Instruction
   );
 
   const forklift7722Model = new Model(
     "forklift7722Model",
-    //!!
-    set7722LoadingRampModelMarkers,
+    set7722ForkliftModelMarkers,
     set7722Instruction
   );
 
