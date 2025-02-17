@@ -13,6 +13,8 @@ import set7722PostCarModelMarkers from "../../assets/3D/ModelsMarkers/PostCar772
 import set7722LoadingRampModelMarkers from "../../assets/3D/ModelsMarkers/LoadingRamp7722/Markers.glb";
 // @ts-expect-error Not a type
 import set7722ForkliftModelMarkers from "../../assets/3D/ModelsMarkers/Forklift7722/Markers.glb";
+// @ts-expect-error Not a type
+import set7722ForkliftTrailerModelMarkers from "../../assets/3D/ModelsMarkers/ForkliftTrailer7722/Markers.glb";
 
 import { Model } from "../../Classes/Model";
 import { SetLegoBlocks } from "./SteamLocomotive7722Parts/SetLegoBlockTypes";
@@ -23,6 +25,7 @@ import { steamLocomotive7722PlatformCarModelBlocks } from "./platformCar7722";
 import { steamLocomotive7722PostCarModelBlocks } from "./postCar7722";
 import { steamLocomotive7722LoadingRampModelBlocks } from "./loadingRamp7722";
 import { steamLocomotive7722ForkliftModelBlocks } from "./forklift7722";
+import { steamLocomotive7722ForkliftTrailerModelBlocks } from "./forkliftTrailer7722";
 
 export const createInstruction = () => {
   const set7722Instruction = new TrainInstruction(set7722SceneMarkers);
@@ -63,6 +66,12 @@ export const createInstruction = () => {
     set7722Instruction
   );
 
+  const forkliftTrailer7722Model = new Model(
+    "forkliftTrailer7722Model",
+    set7722ForkliftTrailerModelMarkers,
+    set7722Instruction
+  );
+
   const set7722LegoBlocks = new SetLegoBlocks(set7722Instruction);
 
   set7722Instruction.addModel(steamLocomotive7722Model);
@@ -71,6 +80,7 @@ export const createInstruction = () => {
   set7722Instruction.addModel(postCar7722Model);
   set7722Instruction.addModel(loadingRamp7722Model);
   set7722Instruction.addModel(forklift7722Model);
+  set7722Instruction.addModel(forkliftTrailer7722Model);
 
   addForModelPhaseBlocks(
     set7722LegoBlocks,
@@ -106,6 +116,12 @@ export const createInstruction = () => {
     set7722LegoBlocks,
     "forklift7722Model",
     steamLocomotive7722ForkliftModelBlocks
+  );
+
+  addForModelPhaseBlocks(
+    set7722LegoBlocks,
+    "forkliftTrailer7722Model",
+    steamLocomotive7722ForkliftTrailerModelBlocks
   );
 
   set7722Instruction.addSetLegoBlocks(set7722LegoBlocks);

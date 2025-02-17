@@ -88,6 +88,10 @@ import tile_Specialty_1x2_with_Vehicle_Steering_Stand_Blue_3829c01_model from ".
 import minifig_Torso_973pb203c01_model from "../../assets/3D/Minifig_Torso_973pb203c01/Minifig_Torso_973pb203c01.glb";
 import minifig_Accessory_Headgear_Cap_4485_model from "../../assets/3D/Minifig_Accessory_Headgear_Cap_4485/Minifig_Accessory_Headgear_Cap_4485.glb";
 import bar_1x4x2_with_Studs_4083_model from "../../assets/3D/Bar_1x4x2_with_Studs_4083/Bar_1x4x2_with_Studs_4083.glb";
+import plate_4x8_3035_model from "../../assets/3D/Plate_4x8_3035/Plate_4x8_3035.glb";
+import turntable_2_x_2_Plate_Blue_3680c01_model from "../../assets/3D/Turntable_2_x_2_Plate_Blue_3680c01/Turntable_2_x_2_Plate_Blue_3680c01.glb";
+import plate_Specialty_2x2_with_Socket_3730_model from "../../assets/3D/Plate_Specialty_2x2_with_Socket_3730/Plate_Specialty_2x2_with_Socket_3730.glb";
+import hinge_Tile_1x2_with_2_Fingers_4531_model from "../../assets/3D/Hinge_Tile_1x2_with_2_Fingers_4531/Hinge_Tile_1x2_with_2_Fingers_4531.glb";
 
 //?? Tracks
 export const tracksMarkers_7722 = tracksMarkers_7722_model;
@@ -230,3 +234,13 @@ export const vehicle_Forklift_4518ac01 = vehicle_Forklift_4518ac01_model;
 export const tile_Specialty_1x2_with_Vehicle_Steering_Stand_Blue_3829c01 =
   tile_Specialty_1x2_with_Vehicle_Steering_Stand_Blue_3829c01_model;
 export const bar_1x4x2_with_Studs_4083 = bar_1x4x2_with_Studs_4083_model;
+
+//?? Forklift trailer
+
+export const plate_4x8_3035 = plate_4x8_3035_model;
+export const turntable_2_x_2_Plate_Blue_3680c01 =
+  turntable_2_x_2_Plate_Blue_3680c01_model;
+export const plate_Specialty_2x2_with_Socket_3730 =
+  plate_Specialty_2x2_with_Socket_3730_model;
+export const hinge_Tile_1x2_with_2_Fingers_4531 =
+  hinge_Tile_1x2_with_2_Fingers_4531_model;
