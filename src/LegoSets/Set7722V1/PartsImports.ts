@@ -92,6 +92,7 @@ import plate_4x8_3035_model from "../../assets/3D/Plate_4x8_3035/Plate_4x8_3035.
 import turntable_2_x_2_Plate_Blue_3680c01_model from "../../assets/3D/Turntable_2_x_2_Plate_Blue_3680c01/Turntable_2_x_2_Plate_Blue_3680c01.glb";
 import plate_Specialty_2x2_with_Socket_3730_model from "../../assets/3D/Plate_Specialty_2x2_with_Socket_3730/Plate_Specialty_2x2_with_Socket_3730.glb";
 import hinge_Tile_1x2_with_2_Fingers_4531_model from "../../assets/3D/Hinge_Tile_1x2_with_2_Fingers_4531/Hinge_Tile_1x2_with_2_Fingers_4531.glb";
+import minifig_Torso_973p26c01_model from "../../assets/3D/Minifig_Torso_973p26c01/Minifig_Torso_973p26c01.glb";
 
 //?? Tracks
 export const tracksMarkers_7722 = tracksMarkers_7722_model;
@@ -109,6 +110,7 @@ export const minifig_Headgear_Hat_Peaked_Cap_3624 =
 export const minifig_Torso_973pb203c01 = minifig_Torso_973pb203c01_model;
 export const minifig_Accessory_Headgear_Cap_4485 =
   minifig_Accessory_Headgear_Cap_4485_model;
+export const minifig_Torso_973p26c01 = minifig_Torso_973p26c01_model;
 
 //?? Steam locomotive
 export const roundOpenStud_3062b = roundOpenStud_3062b_model;
