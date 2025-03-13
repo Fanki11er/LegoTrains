@@ -88,7 +88,7 @@ export const steamLocomotive7722LoadingRampPhase5: LegoBlockType[] = [
     partType: "970c000",
     slotId: "ModelMarker.025",
     materialId: "blackPlasticMaterial",
-    depends: ["ModelMarker.020"],
+    depends: [],
     multipart: true,
     propagateMainMaterialToChildren: true,
   },
@@ -96,7 +96,6 @@ export const steamLocomotive7722LoadingRampPhase5: LegoBlockType[] = [
     partPath: minifig_Torso_Post_Office_Worker_973pb35c01,
     partStartPosition: new Vector3(490, 0, -240),
     partType: "973pb35c01",
-    //!!!! Animation
     slotId: "ModelMarker.026",
     noAutomaticMoveToGroundLevel: true,
     depends: ["ModelMarker.025"],

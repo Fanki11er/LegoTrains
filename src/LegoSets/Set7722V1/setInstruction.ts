@@ -26,6 +26,10 @@ import { steamLocomotive7722PostCarModelBlocks } from "./postCar7722";
 import { steamLocomotive7722LoadingRampModelBlocks } from "./loadingRamp7722";
 import { steamLocomotive7722ForkliftModelBlocks } from "./forklift7722";
 import { steamLocomotive7722ForkliftTrailerModelBlocks } from "./forkliftTrailer7722";
+import { steamLocomotive7722ModelArrangementFunction } from "./SteamLocomotive7722Parts/steamLocomotive7722ModelArrangementFunction";
+import { batteryCar7722ModelArrangementFunction } from "./BatteryCar7722Parts/batteryCarModelArrangementFunction";
+import { platformCar7722ModelArrangementFunction } from "./PlatformCar7722Parts/platformCar7722ModelArrangementFunction";
+import { postCar7722ModelArrangementFunction } from "./PostCar7722Parts/postCar7722ModelArrangementFunction";
 
 export const createInstruction = () => {
   const set7722Instruction = new TrainInstruction(set7722SceneMarkers);
@@ -36,10 +40,35 @@ export const createInstruction = () => {
     set7722Instruction
   );
 
+  steamLocomotive7722Model.registerBlocksAfterConnectArraignmentsFunctionsNames(
+    [
+      {
+        markerId: "ModelMarker.100",
+        arraignmentFunctionName: "rightLeg30Forward",
+      },
+      {
+        markerId: "ModelMarker.102",
+        arraignmentFunctionName: "rotateHead30Left",
+      },
+      {
+        markerId: "ModelMarker.103",
+        arraignmentFunctionName: "rotateHat30Left",
+      },
+    ]
+  );
+
+  steamLocomotive7722Model.registerModelArrangementFunction(
+    steamLocomotive7722ModelArrangementFunction
+  );
+
   const batteryCar7722Model = new Model(
     "BatteryCar7722Model",
     set7722BatteryCarModelMarkers,
     set7722Instruction
+  );
+
+  batteryCar7722Model.registerModelArrangementFunction(
+    batteryCar7722ModelArrangementFunction
   );
 
   const platformCar7722Model = new Model(
@@ -48,10 +77,18 @@ export const createInstruction = () => {
     set7722Instruction
   );
 
+  platformCar7722Model.registerModelArrangementFunction(
+    platformCar7722ModelArrangementFunction
+  );
+
   const postCar7722Model = new Model(
     "PostCar7722Model",
     set7722PostCarModelMarkers,
     set7722Instruction
+  );
+
+  postCar7722Model.registerModelArrangementFunction(
+    postCar7722ModelArrangementFunction
   );
 
   const loadingRamp7722Model = new Model(

@@ -8,10 +8,15 @@ type ObjectPersistenceData = {
   rotation: number[];
 };
 
+export type ObjectPersistenceDataWithChildren = ObjectPersistenceData & {
+  children: ObjectPersistenceDataWithChildren[];
+  visible: boolean;
+};
+
 export type ModelMarkerPersistenceData = ObjectPersistenceData & {
   name: string;
 };
-export type PartPersistenceData = ObjectPersistenceData & {
+export type PartPersistenceData = ObjectPersistenceDataWithChildren & {
   userData: PartUserData;
 };
 
@@ -132,6 +137,24 @@ export class PersistenceModule {
     };
   };
 
+  private saveMultipartModelChildrenRecursively = (
+    parts: Object3D<Object3DEventMap>[]
+  ): ObjectPersistenceDataWithChildren[] => {
+    return parts.map((part) => {
+      const rotation: number[] = [];
+      const position: number[] = [];
+      part.rotation.toArray(rotation);
+      part.position.toArray(position);
+
+      return {
+        visible: part.visible,
+        position,
+        rotation,
+        children: this.saveMultipartModelChildrenRecursively(part.children),
+      };
+    });
+  };
+
   private prepareModelPartsDataToSave = (
     modelMarkers: Object3D<Object3DEventMap>
   ) => {
@@ -146,10 +169,15 @@ export class PersistenceModule {
       const position: number[] = [];
       part.rotation.toArray(rotation);
       part.position.toArray(position);
+
       return {
+        visible: part.visible,
         position,
         rotation,
         userData: data,
+        children: part.userData.multipart
+          ? this.saveMultipartModelChildrenRecursively(part.children)
+          : [],
       };
     });
 

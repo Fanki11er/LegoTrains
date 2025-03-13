@@ -1,6 +1,7 @@
 import styled from "styled-components";
 type Props = {
   $show: boolean;
+  $status: string | undefined;
 };
 
 export const InSceneProceedStatus = styled.span<Props>`
@@ -11,7 +12,8 @@ export const InSceneProceedStatus = styled.span<Props>`
   min-width: 150px;
   position: absolute;
   padding: 2rem;
-  background-color: ${({ theme }) => theme.colors.green};
+  background-color: ${({ theme, $status }) =>
+    $status === "error" ? theme.colors.red : theme.colors.green};
   border-radius: 1rem;
   top: 30px;
   left: 50%;

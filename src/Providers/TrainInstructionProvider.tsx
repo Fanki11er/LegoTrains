@@ -12,6 +12,7 @@ import { MarkersInfo, Model } from "../Classes/Model";
 import { LegoBlock } from "../Types/LegoBlock";
 import { ModelPersistenceData } from "../Classes/PersistenceModule";
 import usePersistenceDataProvider from "../Hooks/usePersistenceDataProvider";
+import { PartsArraignmentFunctionsTypes } from "../Utilities/partsAfterConnectionFunctions";
 
 export const TrainInstructionContext = createContext({
   handleGetPartsList: (): LegoBlock[] => [],
@@ -33,6 +34,12 @@ export const TrainInstructionContext = createContext({
   handleMoveReadyModelToSetArrangement: () => {},
   handleGetSetRootMarker: () =>
     undefined as Object3D<Object3DEventMap> | undefined,
+  handleArrangePartAfterConnection: (
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _model: Object3D<Object3DEventMap>,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _arraignmentFunctionName: PartsArraignmentFunctionsTypes
+  ) => {},
 });
 
 type InstructionData = {
@@ -128,7 +135,7 @@ const TrainInstructionProvider = (
   }, [instruction]);
 
   const handleMoveReadyModelToSetArrangement = useCallback(() => {
-    const result = instruction.moveReadyModelToSetArrangement();
+    const result = instruction.setFinalModelArrangement();
     if (result) {
       handleSaveArrangedModelDataToDatabase(result);
     }
@@ -138,6 +145,13 @@ const TrainInstructionProvider = (
   const handleGetSetRootMarker = useCallback(() => {
     return instruction.getSetRootMarker();
   }, [instruction]);
+
+  const handleArrangePartAfterConnection = (
+    model: Object3D<Object3DEventMap>,
+    arraignmentFunctionName: PartsArraignmentFunctionsTypes
+  ) => {
+    instruction.arrangePartAfterConnection(model, arraignmentFunctionName);
+  };
 
   const context = {
     handleGetPartsList,
@@ -150,6 +164,7 @@ const TrainInstructionProvider = (
     updateInstructionWithPersistenceData,
     handleMoveReadyModelToSetArrangement,
     handleGetSetRootMarker,
+    handleArrangePartAfterConnection,
   };
 
   return (

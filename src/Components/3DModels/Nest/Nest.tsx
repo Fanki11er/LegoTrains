@@ -14,7 +14,8 @@ const Nest = (props: NestProps) => {
   const { marker, mesh } = props;
   const [isHovered, setIsHovered] = useState(false);
   const nestRef = useRef<Group>(null!);
-  const { handleFinishPartConnection } = useTrainInstruction();
+  const { handleFinishPartConnection, handleArrangePartAfterConnection } =
+    useTrainInstruction();
   const { handleSaveModelDataToDatabase } = usePersistenceDataProvider();
 
   useEffect(() => {
@@ -77,9 +78,18 @@ const Nest = (props: NestProps) => {
           if (marker.parent) {
             mesh.position.copy(nest.position);
             mesh.quaternion.copy(nest.quaternion);
+
             marker.parent.add(mesh);
-            mesh.userData.isConnected = true;
+
+            mesh.userData.isConnected = marker.userData.name;
             const isPhaseFinished = handleFinishPartConnection(marker);
+            if (marker.userData.afterConnectionArraignmentFunctionName) {
+              handleArrangePartAfterConnection(
+                mesh,
+                marker.userData.afterConnectionArraignmentFunctionName
+              );
+            }
+
             if (isPhaseFinished) {
               handleSaveModelDataToDatabase();
             }

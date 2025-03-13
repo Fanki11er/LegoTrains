@@ -8,5 +8,8 @@ service cloud.firestore {
      && request.auth.uid == user;
   
     }
+     match /ErrorLogs/{document=**} {
+     allow create: if request.auth != null  
+    }
   }
 }

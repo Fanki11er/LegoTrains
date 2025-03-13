@@ -86,6 +86,10 @@ const ModelMarkers = (props: Props) => {
     }
   }, [modelRef]);
 
+  useEffect(() => {
+    modelDataObject.addArraignmentFunctionsToMarkers(model);
+  }, [model, modelDataObject]);
+
   return (
     <>
       <primitive

@@ -11,6 +11,7 @@ import {
   convertToEuler,
   convertToVector3,
   moveElementToFloorLevel,
+  setPersistenceDataRecursively,
 } from "../../../Utilities/utilities";
 import { LegoBlock } from "../../../Types/LegoBlock";
 import { PartPersistenceData } from "../../../Classes/PersistenceModule";
@@ -81,25 +82,36 @@ const LegoPart = (props: PartProps) => {
         modelRef.current.userData = {
           partId: partInfo.partId,
           partType: partInfo.partType,
-          isConnected: false,
-          multipart: partInfo.multipart,
+          isConnected: "",
+          multipart: !!partInfo.multipart,
         } as PartUserData;
       } else {
         const rootMarker = handleGetRootModelMarkerByName(
           persistenceData.userData.modelId!
         );
 
-        modelRef.current.position.copy(
-          convertToVector3(persistenceData.position)
-        );
-        modelRef.current.rotation.copy(
-          convertToEuler(persistenceData.rotation)
-        );
+        modelRef.current.userData = persistenceData.userData;
 
         if (rootMarker) {
+          modelRef.current.position.copy(
+            convertToVector3(persistenceData.position)
+          );
+
+          modelRef.current.rotation.copy(
+            convertToEuler(persistenceData.rotation)
+          );
+
+          modelRef.current.visible = persistenceData.visible;
+
+          if (persistenceData.userData.multipart) {
+            setPersistenceDataRecursively(
+              persistenceData.children,
+              modelRef.current.children
+            );
+          }
+
           rootMarker.add(modelRef.current);
         }
-        modelRef.current.userData = persistenceData.userData;
       }
 
       modelRef.current.name = partInfo.partType;

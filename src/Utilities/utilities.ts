@@ -3,6 +3,7 @@ import {
   Euler,
   Mesh,
   Object3D,
+  Object3DEventMap,
   SRGBColorSpace,
   Texture,
   Vector3,
@@ -10,6 +11,7 @@ import {
 import { SetLegoBlocks } from "../LegoSets/Set7722V1/SteamLocomotive7722Parts/SetLegoBlockTypes";
 import { ModelBlock } from "../Types/ModelBlock";
 import { saveErrorLog } from "../firebase/writeToDbFunctions";
+import { ObjectPersistenceDataWithChildren } from "../Classes/PersistenceModule";
 
 export const rotateElementUp = (
   element: Mesh | Object3D,
@@ -81,4 +83,32 @@ export const checkIfIsErrors = (errors: (Error | null)[]) => {
     saveErrorLog(err.message);
   }
   return err;
+};
+
+export const convertDegreesToRadians = (degrees: number) => {
+  return (degrees * Math.PI) / 180;
+};
+
+export const setPersistenceDataRecursively = (
+  persistenceDataChildren: ObjectPersistenceDataWithChildren[],
+  modelChildren: Object3D<Object3DEventMap>[]
+) => {
+  if (persistenceDataChildren.length !== modelChildren.length) {
+    console.log("Incorrect children number");
+    return;
+  }
+  for (let i = 0; i < persistenceDataChildren.length; i++) {
+    modelChildren[i].position.copy(
+      convertToVector3(persistenceDataChildren[i].position)
+    );
+    modelChildren[i].rotation.copy(
+      convertToEuler(persistenceDataChildren[i].rotation)
+    );
+
+    modelChildren[i].visible = persistenceDataChildren[i].visible;
+    setPersistenceDataRecursively(
+      persistenceDataChildren[i].children,
+      modelChildren[i].children
+    );
+  }
 };

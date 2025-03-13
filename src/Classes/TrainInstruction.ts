@@ -1,9 +1,12 @@
-import { Object3D, Scene } from "three";
+import { Object3D, Object3DEventMap, Scene } from "three";
 import { MarkersInfo, Model } from "./Model";
 import { SetLegoBlocks } from "../LegoSets/Set7722V1/SteamLocomotive7722Parts/SetLegoBlockTypes";
 import { ModelPersistenceData, PersistenceModule } from "./PersistenceModule";
 import { saveErrorLog } from "../firebase/writeToDbFunctions";
-
+import {
+  getPartArrangementFunction,
+  PartsArraignmentFunctionsTypes,
+} from "../Utilities/partsAfterConnectionFunctions";
 export class TrainInstruction {
   private models: Model[] = [];
   sceneLoader!: () => Scene;
@@ -223,7 +226,7 @@ export class TrainInstruction {
     this.isPersistenceDataLoaded = true;
   };
 
-  moveReadyModelToSetArrangement = () => {
+  setFinalModelArrangement = () => {
     if (this.activeModel) {
       const oldModel = this.activeModel;
       const modelName = this.activeModel.getModelName();
@@ -249,7 +252,23 @@ export class TrainInstruction {
         modelRootMarker.position.copy(destinationMarker.position);
         modelRootMarker.quaternion.copy(destinationMarker.quaternion);
         sceneRootMarker.add(modelRootMarker);
+
         this.activeModel.setIsModelArranged(true);
+
+        const modelArrangementFunction =
+          this.activeModel.getModelArrangementFunction();
+
+        // Arrange elements like doors and connectors
+        if (!modelArrangementFunction) {
+          saveErrorLog(
+            "Error, arrangement function not found",
+            this.activeModel.getModelName()
+          );
+          return null;
+        }
+
+        modelArrangementFunction!(modelRootMarker);
+
         this.changeToNextActiveModel();
         return oldModel;
       } else {
@@ -298,5 +317,17 @@ export class TrainInstruction {
   };
   getSceneLoader = (fn: () => Scene) => {
     this.sceneLoader = fn;
+  };
+
+  arrangePartAfterConnection = (
+    model: Object3D<Object3DEventMap>,
+    arraignmentFunctionName: PartsArraignmentFunctionsTypes
+  ) => {
+    const arraignmentFunction = getPartArrangementFunction(
+      arraignmentFunctionName
+    );
+    if (arraignmentFunction) {
+      arraignmentFunction(model);
+    }
   };
 }

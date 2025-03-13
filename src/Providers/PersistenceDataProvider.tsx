@@ -167,7 +167,7 @@ const PersistenceDataProvider = ({
         </FullCenterWrapper>
       )}
       {!isLoading && !error && children}
-      <InSceneProceedStatus $show={!!status}>
+      <InSceneProceedStatus $show={!!status} $status={status?.status}>
         {status?.message}
       </InSceneProceedStatus>
     </PersistenceDataContext.Provider>

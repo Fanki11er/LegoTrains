@@ -211,6 +211,6 @@ export const saveErrorLog = async (
 
   addDoc(collection(db, errorLogsCollection), errorLog).catch((err) => {
     console.log(err, "Log Error");
-    throw new Error("Sorry, something went wrong");
+    //throw new Error("Sorry, something went wrong");
   });
 };

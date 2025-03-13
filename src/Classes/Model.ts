@@ -3,6 +3,7 @@ import { Phase } from "./Phase";
 import { TrainInstruction } from "./TrainInstruction";
 import { PartInfo } from "../Types/PartInfo";
 import { LegoBlock } from "../Types/LegoBlock";
+import { ArraignmentFunction } from "../Types/ArrangementFunction";
 
 export type MarkersInfo = {
   markersPath: string;
@@ -16,6 +17,9 @@ export class Model {
   private activePhase: Phase | null = null;
   private instruction: TrainInstruction;
   private modelMarkersInfo: MarkersInfo;
+  private arraignmentFunctionRegistrationEntries: ArraignmentFunctionRegistrationEntry[] =
+    [];
+  private modelArrangementFunction: ArraignmentFunction | undefined;
 
   constructor(
     modelName: string,
@@ -29,6 +33,7 @@ export class Model {
       rootMarkerId: `${modelName}_ModelRootMarker`,
     };
   }
+
   getActivePhase = () => {
     return this.activePhase;
   };
@@ -61,6 +66,10 @@ export class Model {
     return this.phases;
   };
 
+  getModelArrangementFunction = () => {
+    return this.modelArrangementFunction;
+  };
+
   setIsModelFinished = (isFinished: boolean) => {
     this.isFinished = isFinished;
   };
@@ -84,33 +93,6 @@ export class Model {
     if (!this.activePhase) {
       this.activePhase = this.findFirstPhase();
     }
-  };
-
-  private mapBlockToPartsInfo = (legoBlocks: LegoBlock[]) => {
-    return legoBlocks.map((block) => {
-      return {
-        partType: block.partType,
-        slotId: block.slotId,
-        depends: block.depends,
-      };
-    });
-  };
-
-  private findFirstPhaseNumber = () => {
-    const firstPhaseNumber = Math.min(
-      ...this.phases.map((phase) => {
-        return phase.getPhaseNumber();
-      })
-    );
-    return firstPhaseNumber;
-  };
-
-  private findFirstPhase = () => {
-    const firstPhase =
-      this.phases.find((phase) => {
-        return phase.getPhaseNumber() === this.findFirstPhaseNumber();
-      }) || this.phases[0];
-    return firstPhase;
   };
 
   getMarkersForSelectedPart = (partType: string) => {
@@ -190,4 +172,69 @@ export class Model {
   setActivePhase = (phase: Phase) => {
     this.activePhase = phase;
   };
+
+  registerBlocksAfterConnectArraignmentsFunctionsNames = (
+    arraignmentFunctionRegistrationEntries: ArraignmentFunctionRegistrationEntry[]
+  ) => {
+    this.arraignmentFunctionRegistrationEntries =
+      arraignmentFunctionRegistrationEntries;
+  };
+
+  addArraignmentFunctionsToMarkers = (model: Object3D<Object3DEventMap>) => {
+    this.arraignmentFunctionRegistrationEntries.forEach((entry) => {
+      const marker = this.getMarkerByName(entry.markerId, model);
+
+      if (marker) {
+        marker.userData.afterConnectionArraignmentFunctionName =
+          entry.arraignmentFunctionName;
+      }
+    });
+  };
+
+  registerModelArrangementFunction = (
+    modelArrangementFunction: ArraignmentFunction
+  ) => {
+    this.modelArrangementFunction = modelArrangementFunction;
+  };
+
+  private getMarkerByName = (
+    name: string,
+    model: Object3D<Object3DEventMap>
+  ) => {
+    const markerName = name.replace(".", "");
+    const marker = model.getObjectByName(markerName);
+    return marker;
+  };
+
+  private mapBlockToPartsInfo = (legoBlocks: LegoBlock[]) => {
+    return legoBlocks.map((block) => {
+      return {
+        partType: block.partType,
+        slotId: block.slotId,
+        depends: block.depends,
+      };
+    });
+  };
+
+  private findFirstPhaseNumber = () => {
+    const firstPhaseNumber = Math.min(
+      ...this.phases.map((phase) => {
+        return phase.getPhaseNumber();
+      })
+    );
+    return firstPhaseNumber;
+  };
+
+  private findFirstPhase = () => {
+    const firstPhase =
+      this.phases.find((phase) => {
+        return phase.getPhaseNumber() === this.findFirstPhaseNumber();
+      }) || this.phases[0];
+    return firstPhase;
+  };
 }
+
+type ArraignmentFunctionRegistrationEntry = {
+  markerId: string;
+  arraignmentFunctionName: string;
+};
