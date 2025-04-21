@@ -135,16 +135,16 @@ export class ArrangementFunctionsHelper {
   };
 
   static moveElementToNewNestPosition = (
-    model: Object3D<Object3DEventMap>,
+    element: Object3D<Object3DEventMap>,
     newNest: Object3D<Object3DEventMap>
   ) => {
-    const modelParent = model.parent;
+    const elementParent = element.parent;
     const scene = newNest.parent;
-    if (scene && modelParent) {
-      model.rotation.copy(newNest.rotation);
-      model.position.copy(newNest.position);
-      scene.add(model);
-      modelParent?.attach(model);
+    if (scene && elementParent) {
+      element.position.copy(newNest.position);
+      element.quaternion.copy(newNest.quaternion);
+      scene.add(element);
+      elementParent.attach(element);
     } else {
       console.log("Nest parent not found");
     }
