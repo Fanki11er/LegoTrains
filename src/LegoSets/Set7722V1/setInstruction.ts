@@ -115,6 +115,21 @@ export const createInstruction = () => {
     set7722Instruction
   );
 
+  forklift7722Model.registerBlocksAfterConnectArraignmentsFunctionsNames([
+    {
+      markerId: "ModelMarker.044",
+      arraignmentFunctionName: "minifigSit",
+    },
+    {
+      markerId: "ModelMarker.045",
+      arraignmentFunctionName: "minifigArms60DegForward",
+    },
+    // {
+    //   markerId: "ModelMarker.103",
+    //   arraignmentFunctionName: "rotateHat30Left",
+    // },
+  ]);
+
   const forkliftTrailer7722Model = new Model(
     "forkliftTrailer7722Model",
     set7722ForkliftTrailerModelMarkers,
