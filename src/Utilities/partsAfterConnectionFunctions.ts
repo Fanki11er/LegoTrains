@@ -5,7 +5,8 @@ import { ArraignmentFunction } from "../Types/ArrangementFunction";
 export type PartsArraignmentFunctionsTypes =
   | "rightLeg30Forward"
   | "rotateHead30Left"
-  | "rotateHat30Left";
+  | "rotateHat30Left"
+  | "rightArmForward60deg";
 
 export const getPartArrangementFunction = (
   name: PartsArraignmentFunctionsTypes
@@ -19,6 +20,9 @@ export const getPartArrangementFunction = (
     }
     case "rotateHat30Left": {
       return rotateCup30Left;
+    }
+    case "rightArmForward60deg": {
+      return rightArmForward60deg;
     }
     default: {
       return undefined;
@@ -36,4 +40,8 @@ const rotateHead30Left = (model: Object3D<Object3DEventMap>) => {
 
 const rotateCup30Left = (model: Object3D<Object3DEventMap>) => {
   ArrangementFunctionsHelper.rotateElementOnYAxis(model, 30);
+};
+
+const rightArmForward60deg = (model: Object3D<Object3DEventMap>) => {
+  ArrangementFunctionsHelper.rotateMinifigArm(model, "Right", 60, 30);
 };

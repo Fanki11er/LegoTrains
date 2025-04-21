@@ -30,6 +30,7 @@ import { steamLocomotive7722ModelArrangementFunction } from "./SteamLocomotive77
 import { batteryCar7722ModelArrangementFunction } from "./BatteryCar7722Parts/batteryCarModelArrangementFunction";
 import { platformCar7722ModelArrangementFunction } from "./PlatformCar7722Parts/platformCar7722ModelArrangementFunction";
 import { postCar7722ModelArrangementFunction } from "./PostCar7722Parts/postCar7722ModelArrangementFunction";
+import { loadingRamp7722ModelArrangementFunction } from "./LoadingRamp7722Parts/loadingPlatform7722ModelArrangementFunction";
 
 export const createInstruction = () => {
   const set7722Instruction = new TrainInstruction(set7722SceneMarkers);
@@ -95,6 +96,17 @@ export const createInstruction = () => {
     "loadingRamp7722Model",
     set7722LoadingRampModelMarkers,
     set7722Instruction
+  );
+
+  loadingRamp7722Model.registerBlocksAfterConnectArraignmentsFunctionsNames([
+    {
+      markerId: "ModelMarker.026",
+      arraignmentFunctionName: "rightArmForward60deg",
+    },
+  ]);
+
+  loadingRamp7722Model.registerModelArrangementFunction(
+    loadingRamp7722ModelArrangementFunction
   );
 
   const forklift7722Model = new Model(

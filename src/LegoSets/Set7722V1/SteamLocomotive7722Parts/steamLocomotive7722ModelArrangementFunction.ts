@@ -36,18 +36,18 @@ const openLeftDoor = (model: Object3D<Object3DEventMap>) => {
     return;
   }
 
-  const originalOParent = doorWindow.parent;
+  const originalParent = doorWindow.parent;
 
   door.attach(doorWindow);
 
   door.rotateY(convertDegreesToRadians(30));
 
-  if (!originalOParent) {
+  if (!originalParent) {
     console.log("Parent element is missing");
     return;
   }
 
-  originalOParent.attach(doorWindow);
+  originalParent.attach(doorWindow);
 };
 
 const hideWire = (model: Object3D<Object3DEventMap>) => {
@@ -135,5 +135,5 @@ const arrangeMinifig = (model: Object3D<Object3DEventMap>) => {
   ArrangementFunctionsHelper.rotateLeg(minifigHeaps, -45, "Left");
   ArrangementFunctionsHelper.rotateLeg(minifigHeaps, 75, "Right"); //? Cancel previous rotation and add new
 
-  ArrangementFunctionsHelper.rotateMinifigArm(minifigTorso, 30, "Right");
+  ArrangementFunctionsHelper.rotateMinifigArm(minifigTorso, "Right", 30);
 };

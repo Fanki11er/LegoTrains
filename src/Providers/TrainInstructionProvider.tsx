@@ -136,9 +136,9 @@ const TrainInstructionProvider = (
 
   const handleMoveReadyModelToSetArrangement = useCallback(() => {
     const result = instruction.setFinalModelArrangement();
-    if (result) {
-      handleSaveArrangedModelDataToDatabase(result);
-    }
+    // if (result) {
+    //   handleSaveArrangedModelDataToDatabase(result);
+    // }
     //Todo: Make arrangement of model
   }, [handleSaveArrangedModelDataToDatabase, instruction]);
 
