@@ -136,10 +136,18 @@ const TrainInstructionProvider = (
 
   const handleMoveReadyModelToSetArrangement = useCallback(() => {
     const result = instruction.setFinalModelArrangement();
-    // if (result) {
-    //   handleSaveArrangedModelDataToDatabase(result);
-    // }
-    //Todo: Make arrangement of model
+    if (result) {
+      const touchedModels = result.otherModifiedModelsIds.map((id) => {
+        return instruction.getModelByName(id);
+      });
+
+      handleSaveArrangedModelDataToDatabase(result.oldModel);
+      touchedModels.forEach((model) => {
+        if (model) {
+          handleSaveArrangedModelDataToDatabase(model, true);
+        }
+      });
+    }
   }, [handleSaveArrangedModelDataToDatabase, instruction]);
 
   const handleGetSetRootMarker = useCallback(() => {

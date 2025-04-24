@@ -31,6 +31,7 @@ import { batteryCar7722ModelArrangementFunction } from "./BatteryCar7722Parts/ba
 import { platformCar7722ModelArrangementFunction } from "./PlatformCar7722Parts/platformCar7722ModelArrangementFunction";
 import { postCar7722ModelArrangementFunction } from "./PostCar7722Parts/postCar7722ModelArrangementFunction";
 import { loadingRamp7722ModelArrangementFunction } from "./LoadingRamp7722Parts/loadingPlatform7722ModelArrangementFunction";
+import { forklift7722ModelArrangementFunction } from "./Forklift7722parts/forklift7722ModelArrangementFunction";
 
 export const createInstruction = () => {
   const set7722Instruction = new TrainInstruction(set7722SceneMarkers);
@@ -124,11 +125,11 @@ export const createInstruction = () => {
       markerId: "ModelMarker.045",
       arraignmentFunctionName: "minifigArms60DegForward",
     },
-    // {
-    //   markerId: "ModelMarker.103",
-    //   arraignmentFunctionName: "rotateHat30Left",
-    // },
   ]);
+
+  forklift7722Model.registerModelArrangementFunction(
+    forklift7722ModelArrangementFunction
+  );
 
   const forkliftTrailer7722Model = new Model(
     "forkliftTrailer7722Model",

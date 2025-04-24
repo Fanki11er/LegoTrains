@@ -25,8 +25,12 @@ import { Model } from "../Classes/Model";
 
 export const PersistenceDataContext = createContext({
   handleSaveModelDataToDatabase: () => {},
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handleSaveArrangedModelDataToDatabase: (_model: Model) => {},
+  handleSaveArrangedModelDataToDatabase: (
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _model: Model,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _doNotIncrementFinishedModelsNumber?: boolean
+  ) => {},
   setData: null as SetPersistenceData | null | undefined,
   modelsData: null as ModelPersistenceData[] | null | undefined,
 });
@@ -63,7 +67,11 @@ const PersistenceDataProvider = ({
   });
 
   const sendModelDataToDatabase = useCallback(
-    (data: ModelPersistenceData, modelsList: string[]) => {
+    (
+      data: ModelPersistenceData,
+      modelsList: string[],
+      doNotIncrementFinishedModelsNumber?: boolean
+    ) => {
       const foundModel = modelsList.find((model) => {
         return model === data.modelName;
       });
@@ -71,7 +79,11 @@ const PersistenceDataProvider = ({
       setStatus({ message: "Saving progress...", status: "proceed" });
 
       if (foundModel) {
-        updateModelInDatabase(legoSetId, data)
+        updateModelInDatabase(
+          legoSetId,
+          data,
+          doNotIncrementFinishedModelsNumber
+        )
           .then(() => {
             queryClient.invalidateQueries({
               queryKey: [MODELS_DATA, legoSetId],
@@ -133,11 +145,15 @@ const PersistenceDataProvider = ({
   }, [sendModelDataToDatabase, instruction, setData]);
 
   const handleSaveArrangedModelDataToDatabase = useCallback(
-    (model: Model) => {
+    (model: Model, doNotIncrementFinishedModelsNumber?: boolean) => {
       if (instruction) {
         const data = instruction.prepareDataToSaveAfterModelArrangement(model);
         if (data && setData) {
-          sendModelDataToDatabase(data, setData?.modelsList || []);
+          sendModelDataToDatabase(
+            data,
+            setData?.modelsList || [],
+            doNotIncrementFinishedModelsNumber
+          );
         }
       }
     },

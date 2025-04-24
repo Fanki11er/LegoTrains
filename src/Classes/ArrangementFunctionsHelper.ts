@@ -18,6 +18,12 @@ type PaletteMarkersData = {
   paletteLegsMarkersIds: [string, string];
 };
 
+export type BarrelMarkersData = {
+  barrelBottomPartMarkerId: string;
+  barrelRingMarkerId: string;
+  barrelTopPartMarkerId: string;
+};
+
 export class ArrangementFunctionsHelper {
   static rotateLeg = (
     model: Object3D<Object3DEventMap>,
@@ -351,6 +357,120 @@ export class ArrangementFunctionsHelper {
       minifigTorso,
       minifigHead,
       minifigHut,
+    };
+  };
+
+  static completePalette = (
+    model: Object3D<Object3DEventMap>,
+    { paletteBaseMarkerId, paletteLegsMarkersIds }: PaletteMarkersData
+  ) => {
+    const paletteBase = ArrangementFunctionsHelper.findElementConnectedToMarker(
+      model,
+      paletteBaseMarkerId
+    );
+
+    const paletteLeg1 = ArrangementFunctionsHelper.findElementConnectedToMarker(
+      model,
+      paletteLegsMarkersIds[0]
+    );
+    const paletteLeg2 = ArrangementFunctionsHelper.findElementConnectedToMarker(
+      model,
+      paletteLegsMarkersIds[1]
+    );
+
+    if (!paletteBase) {
+      console.log("Palette base element not found");
+      return;
+    }
+
+    if (!paletteLeg1) {
+      console.log("Palette leg 1 element not found");
+      return;
+    }
+
+    if (!paletteLeg2) {
+      console.log("Palette leg 2 element not found");
+      return;
+    }
+
+    ArrangementFunctionsHelper.attachModelToNewParent(paletteLeg1, paletteBase);
+
+    ArrangementFunctionsHelper.attachModelToNewParent(paletteLeg2, paletteBase);
+
+    const disconnectPalette = () => {
+      ArrangementFunctionsHelper.attachModelToNewParent(paletteLeg1, model);
+
+      ArrangementFunctionsHelper.attachModelToNewParent(paletteLeg2, model);
+      ArrangementFunctionsHelper.attachModelToNewParent(paletteBase, model);
+    };
+
+    return {
+      paletteBase,
+      disconnectPalette,
+    };
+  };
+
+  static completeBarrel = (
+    model: Object3D<Object3DEventMap>,
+    {
+      barrelBottomPartMarkerId,
+      barrelRingMarkerId,
+      barrelTopPartMarkerId,
+    }: BarrelMarkersData
+  ) => {
+    const barrelBottomPart =
+      ArrangementFunctionsHelper.findElementConnectedToMarker(
+        model,
+        barrelBottomPartMarkerId
+      );
+
+    const barrelRing = ArrangementFunctionsHelper.findElementConnectedToMarker(
+      model,
+      barrelRingMarkerId
+    );
+    const barrelTopPart =
+      ArrangementFunctionsHelper.findElementConnectedToMarker(
+        model,
+        barrelTopPartMarkerId
+      );
+
+    if (!barrelBottomPart) {
+      console.log("Barrel bottom part  element not found");
+      return;
+    }
+
+    if (!barrelRing) {
+      console.log("Barrel ring element not found");
+      return;
+    }
+
+    if (!barrelTopPart) {
+      console.log("Barrel top part element not found");
+      return;
+    }
+
+    ArrangementFunctionsHelper.attachModelToNewParent(
+      barrelRing,
+      barrelBottomPart
+    );
+
+    ArrangementFunctionsHelper.attachModelToNewParent(
+      barrelTopPart,
+      barrelBottomPart
+    );
+
+    const disconnectBarrel = () => {
+      ArrangementFunctionsHelper.attachModelToNewParent(barrelRing, model);
+      ArrangementFunctionsHelper.attachModelToNewParent(barrelTopPart, model);
+      ArrangementFunctionsHelper.attachModelToNewParent(
+        barrelBottomPart,
+        model
+      );
+    };
+
+    return {
+      barrelBottomPart,
+      disconnectBarrel,
     };
   };
 }

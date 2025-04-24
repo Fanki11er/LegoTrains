@@ -47,7 +47,7 @@ export const steamLocomotive7722ForkliftPhase10: LegoBlockType[] = [
   {
     partPath: minifig_Hips_and_Legs_970c00,
     partStartPosition: new Vector3(520, 0, -220),
-    partType: "4079",
+    partType: "970c00",
     materialId: "redPlasticMaterial",
     multipart: true,
     propagateMainMaterialToChildren: true,

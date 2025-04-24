@@ -5,6 +5,7 @@ export const batteryCar7722ModelArrangementFunction = (
   model: Object3D<Object3DEventMap>
 ) => {
   rotateCoupling(model);
+  return [];
 };
 
 const rotateCoupling = (model: Object3D<Object3DEventMap>) => {

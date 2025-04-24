@@ -107,7 +107,8 @@ export const createNewModelData = async (
 
 export const updateModelInDatabase = async (
   setId: string,
-  data: ModelPersistenceData
+  data: ModelPersistenceData,
+  doNotIncrementFinishedModelsNumber?: boolean
 ) => {
   const user = auth.currentUser;
 
@@ -132,7 +133,7 @@ export const updateModelInDatabase = async (
     );
     bath.set(setRef, data);
 
-    if (data.isModelArranged) {
+    if (data.isModelArranged && !doNotIncrementFinishedModelsNumber) {
       const setDocRef = doc(db, usersCollection, userId, setsCollection, setId);
 
       bath.update(setDocRef, {

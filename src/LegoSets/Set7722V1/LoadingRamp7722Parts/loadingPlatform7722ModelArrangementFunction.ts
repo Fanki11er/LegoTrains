@@ -1,5 +1,6 @@
 import { Object3D, Object3DEventMap } from "three";
 import { ArrangementFunctionsHelper } from "../../../Classes/ArrangementFunctionsHelper";
+import { ArraignmentFunction } from "../../../Types/ArrangementFunction";
 
 const {
   arrangePalette,
@@ -9,7 +10,7 @@ const {
   rotateLeg,
 } = ArrangementFunctionsHelper;
 
-export const loadingRamp7722ModelArrangementFunction = (
+export const loadingRamp7722ModelArrangementFunction: ArraignmentFunction = (
   model: Object3D<Object3DEventMap>
 ) => {
   arrangePalette(model, "PlatformPalette.001", {
@@ -25,6 +26,8 @@ export const loadingRamp7722ModelArrangementFunction = (
     postPackageEnvelopeMarkerId: "ModelMarker.024",
   });
   arrangePostmanMinifig(model);
+
+  return [];
 };
 
 const arrangePostmanMinifig = (model: Object3D<Object3DEventMap>) => {

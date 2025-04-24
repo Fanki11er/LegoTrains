@@ -14,6 +14,8 @@ export const steamLocomotive7722ModelArrangementFunction = (
   );
   hideWire(model);
   arrangeMinifig(model);
+
+  return [];
 };
 
 const openLeftDoor = (model: Object3D<Object3DEventMap>) => {

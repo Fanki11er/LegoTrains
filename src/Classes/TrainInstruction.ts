@@ -49,7 +49,7 @@ export class TrainInstruction {
 
   getModelByName = (modelName: string) => {
     return this.models.find((model) => {
-      model.getModelName() === modelName;
+      return model.getModelName() === modelName;
     });
   };
 
@@ -227,6 +227,7 @@ export class TrainInstruction {
   };
 
   setFinalModelArrangement = () => {
+    let otherModifiedModelsIds: string[] = [];
     if (this.activeModel) {
       const oldModel = this.activeModel;
       const modelName = this.activeModel.getModelName();
@@ -259,18 +260,16 @@ export class TrainInstruction {
           this.activeModel.getModelArrangementFunction();
 
         // Arrange elements like doors and connectors
-        if (!modelArrangementFunction) {
-          saveErrorLog(
-            "Error, arrangement function not found",
-            this.activeModel.getModelName()
-          );
-          return null;
+
+        if (modelArrangementFunction) {
+          otherModifiedModelsIds = modelArrangementFunction(modelRootMarker);
         }
 
-        modelArrangementFunction!(modelRootMarker);
-
         this.changeToNextActiveModel();
-        return oldModel;
+        return {
+          oldModel,
+          otherModifiedModelsIds,
+        };
       } else {
         saveErrorLog(
           "Error, markers not found",
