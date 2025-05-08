@@ -24,10 +24,6 @@ const movePostCarSlidingDoor = (
     model,
     "ModelMarker.085"
   );
-  if (!door) {
-    console.log("Sliding door element not found");
-    return;
-  }
 
   door.translateX(distance);
 };

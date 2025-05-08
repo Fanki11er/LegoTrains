@@ -1,15 +1,15 @@
 import { Object3D, Object3DEventMap } from "three";
-import {
-  ArrangementFunctionsHelper,
-  BarrelMarkersData,
-} from "../../../Classes/ArrangementFunctionsHelper";
+import { ArrangementFunctionsHelper } from "../../../Classes/ArrangementFunctionsHelper";
 import { ArraignmentFunction } from "../../../Types/ArrangementFunction";
+import { BarrelMarkersData } from "../../../Types/ArrangeablePartsTypes";
 
 const {
   completePalette,
   completeBarrel,
   attachModelToNewParent,
   moveElementToNewNestPosition,
+  findMarkerById,
+  throwErrorIfElementIsMissing,
 } = ArrangementFunctionsHelper;
 
 export const forklift7722ModelArrangementFunction: ArraignmentFunction = (
@@ -24,36 +24,20 @@ export const movePaletteWithBarrelsToNewPosition = (
 ) => {
   const scene = model.parent;
 
-  if (!scene) {
-    console.log("Missing scene element");
-    return;
-  }
+  throwErrorIfElementIsMissing(scene, "Scene element is missing");
 
-  const markerForPaletteWithBarrels = scene?.children.find((child) => {
-    return child.userData.forModelId === "Palette.002";
-  });
+  const markerForPaletteWithBarrels = findMarkerById(scene!, "Palette.002");
 
-  if (!markerForPaletteWithBarrels) {
-    console.log("Missing marker for pallette with barrels");
-    return;
-  }
-
-  const platformCar = scene.getObjectByName(
+  const platformCar = scene!.getObjectByName(
     "PlatformCar7722Model_ModelRootMarker"
   );
+  throwErrorIfElementIsMissing(platformCar, "Platform Car model is missing");
 
-  if (!platformCar) {
-    console.log("Platform Car model not found");
-    return;
-  }
-  const paletteCompletionResult = completePalette(platformCar, {
+  const paletteCompletionResult = completePalette(platformCar!, {
     paletteBaseMarkerId: "ModelMarker.049",
     paletteLegsMarkersIds: ["ModelMarker.044", "ModelMarker.045"],
   });
 
-  if (!paletteCompletionResult) {
-    return;
-  }
   const { paletteBase, disconnectPalette } = paletteCompletionResult;
 
   const barrelsMarkersData: BarrelMarkersData[] = [
@@ -90,12 +74,13 @@ export const movePaletteWithBarrelsToNewPosition = (
   ];
 
   const barrels = barrelsMarkersData.map((barrelData) => {
-    return completeBarrel(platformCar, barrelData);
+    return completeBarrel(platformCar!, barrelData);
   });
 
   if (barrels.length !== barrelsMarkersData.length) {
-    console.log("Some barrels elements are missing");
-    return;
+    throw new Error(
+      `Barrels length ${barrels.length} does not match markers data length ${barrelsMarkersData.length}`
+    );
   }
 
   barrels.forEach((barrel) => {

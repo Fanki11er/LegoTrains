@@ -7,6 +7,7 @@ import AccountLoginFormView from "../../Views/AccountLoginFormView/AccountLoginF
 import AuthComponent from "../../Components/Molecules/AuthComponent/AuthComponent";
 import ResetPasswordView from "../../Views/ResetPasswordView/ResetPasswordView";
 import UpgradeAccountView from "../../Views/UpgradeAccountView/UpgradeAccountView";
+import ErrorView from "../../Views/ErrrorView/ErrorView";
 
 const {
   userDashboardRouterPath,
@@ -15,6 +16,7 @@ const {
   loginPath,
   resetPasswordPath,
   upgradeAccountPath,
+  errorPath,
 } = paths;
 
 const Router = () => {
@@ -32,6 +34,7 @@ const Router = () => {
           <Route path={upgradeAccountPath} element={<UpgradeAccountView />} />
           <Route path={legoSetRouterPath} element={<LegoSet />} />
         </Route>
+        <Route path={errorPath} element={<ErrorView />} />
         <Route path="*" element={<Navigate to={loginPath} />} />
       </Routes>
     </BrowserRouter>

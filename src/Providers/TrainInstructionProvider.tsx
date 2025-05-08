@@ -13,6 +13,8 @@ import { LegoBlock } from "../Types/LegoBlock";
 import { ModelPersistenceData } from "../Classes/PersistenceModule";
 import usePersistenceDataProvider from "../Hooks/usePersistenceDataProvider";
 import { PartsArraignmentFunctionsTypes } from "../Utilities/partsAfterConnectionFunctions";
+import { paths } from "../router/routerPaths";
+import { useNavigate } from "react-router-dom";
 
 export const TrainInstructionContext = createContext({
   handleGetPartsList: (): LegoBlock[] => [],
@@ -50,6 +52,7 @@ const TrainInstructionProvider = (
   props: PropsWithChildren & InstructionData
 ) => {
   const { children, instruction } = props;
+  const navigate = useNavigate();
   const { scene } = useThree();
   const { handleSaveArrangedModelDataToDatabase } =
     usePersistenceDataProvider();
@@ -135,20 +138,29 @@ const TrainInstructionProvider = (
   }, [instruction]);
 
   const handleMoveReadyModelToSetArrangement = useCallback(() => {
-    const result = instruction.setFinalModelArrangement();
-    if (result) {
-      const touchedModels = result.otherModifiedModelsIds.map((id) => {
-        return instruction.getModelByName(id);
-      });
+    try {
+      const result = instruction.setFinalModelArrangement();
+      if (result) {
+        const touchedModels = result.otherModifiedModelsIds.map((id) => {
+          return instruction.getModelByName(id);
+        });
 
-      handleSaveArrangedModelDataToDatabase(result.oldModel);
-      touchedModels.forEach((model) => {
-        if (model) {
-          handleSaveArrangedModelDataToDatabase(model, true);
-        }
+        handleSaveArrangedModelDataToDatabase(result.oldModel);
+        touchedModels.forEach((model) => {
+          if (model) {
+            handleSaveArrangedModelDataToDatabase(model, true);
+          }
+        });
+      }
+    } catch (err) {
+      const error = err as Error;
+      navigate(paths.errorPath, {
+        state: {
+          error: error.message,
+        },
       });
     }
-  }, [handleSaveArrangedModelDataToDatabase, instruction]);
+  }, [handleSaveArrangedModelDataToDatabase, instruction, navigate]);
 
   const handleGetSetRootMarker = useCallback(() => {
     return instruction.getSetRootMarker();
@@ -158,7 +170,17 @@ const TrainInstructionProvider = (
     model: Object3D<Object3DEventMap>,
     arraignmentFunctionName: PartsArraignmentFunctionsTypes
   ) => {
-    instruction.arrangePartAfterConnection(model, arraignmentFunctionName);
+    try {
+      instruction.arrangePartAfterConnection(model, arraignmentFunctionName);
+    } catch (err) {
+      const error = err as Error;
+
+      navigate(paths.errorPath, {
+        state: {
+          error: error.message,
+        },
+      });
+    }
   };
 
   const context = {

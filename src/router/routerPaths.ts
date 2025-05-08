@@ -5,6 +5,7 @@ export const paths = {
   upgradeAccountPath: "/Upgrade",
   userDashboardRouterPath: "/Dashboard",
   legoSetRouterPath: "/Set/:id",
+  errorPath: "/Error",
 };
 
 export const legoSetRouterNavigationPath = (id: string) => {

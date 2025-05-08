@@ -44,26 +44,32 @@ export const getPartArrangementFunction = (
 
 const rightLeg30Forward = (model: Object3D<Object3DEventMap>) => {
   rotateLeg(model, -30, "Right");
+  return [];
 };
 
 const rotateHead30Left = (model: Object3D<Object3DEventMap>) => {
   rotateElementOnYAxis(model, 30);
+  return [];
 };
 
 const rotateCup30Left = (model: Object3D<Object3DEventMap>) => {
   rotateElementOnYAxis(model, 30);
+  return [];
 };
 
 const rightArmForward60deg = (model: Object3D<Object3DEventMap>) => {
   rotateMinifigArm(model, "Right", 60, 30);
+  return [];
 };
 
 const minifigSit = (model: Object3D<Object3DEventMap>) => {
   rotateLeg(model, -90, "Right");
   rotateLeg(model, -90, "Left");
+  return [];
 };
 
 const minifigArms60DegForward = (model: Object3D<Object3DEventMap>) => {
   rotateMinifigArm(model, "Right", 20, 25);
   rotateMinifigArm(model, "Left", 25, 0);
+  return [];
 };

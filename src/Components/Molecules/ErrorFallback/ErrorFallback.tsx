@@ -4,15 +4,17 @@ import {
   ErrorFallbackWrapper,
 } from "./ErrorFallback.styles";
 import errorFallbackImage from "../../../assets/svg/ErrorFallbackImage.svg";
+import { PropsWithChildren } from "react";
 
-type Props = {
+type Props = PropsWithChildren & {
   message: string;
 };
-const ErrorFallback = ({ message }: Props) => {
+const ErrorFallback = ({ message, children }: Props) => {
   return (
     <ErrorFallbackWrapper>
       <ErrorFallbackImage src={errorFallbackImage} alt={"Error image"} />
       <ErrorFallbackText>{message}</ErrorFallbackText>
+      {children}
     </ErrorFallbackWrapper>
   );
 };

@@ -1,49 +1,89 @@
 import { Object3D, Object3DEventMap } from "three";
 import { convertDegreesToRadians } from "../Utilities/utilities";
-
-type MinifigMarkersData = {
-  minifigHeapsMarkerId: string;
-  minifigTorsoMarkerId: string;
-  minifigHeadMarkerId: string;
-  minifigHutMarkerId: string;
-};
-
-type PostPackageMarkersData = {
-  postPackageBaseMarkerId: string;
-  postPackageEnvelopeMarkerId: string;
-};
-
-type PaletteMarkersData = {
-  paletteBaseMarkerId: string;
-  paletteLegsMarkersIds: [string, string];
-};
-
-export type BarrelMarkersData = {
-  barrelBottomPartMarkerId: string;
-  barrelRingMarkerId: string;
-  barrelTopPartMarkerId: string;
-};
+import { saveErrorLog } from "../firebase/writeToDbFunctions";
+import {
+  BarrelMarkersData,
+  MinifigMarkersData,
+  PaletteMarkersData,
+  PostPackageMarkersData,
+} from "../Types/ArrangeablePartsTypes";
 
 export class ArrangementFunctionsHelper {
+  static throwErrorIfElementIsMissing = (
+    element: Object3D<Object3DEventMap> | undefined | null,
+    errorMessage: string
+  ) => {
+    if (!element) {
+      console.error(errorMessage);
+      saveErrorLog(errorMessage);
+      throw new Error(errorMessage);
+    }
+  };
+
+  static findModelPartByName = (
+    model: Object3D<Object3DEventMap>,
+    name: string
+  ) => {
+    let foundPart: Object3D<Object3DEventMap> | undefined = undefined;
+    model.traverse((element) => {
+      if (element.name.includes(name)) {
+        foundPart = element;
+      }
+    });
+
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      foundPart,
+      `${name} element not found`
+    );
+
+    return foundPart! as Object3D<Object3DEventMap>;
+  };
+
+  static findElementConnectedToMarker = (
+    model: Object3D<Object3DEventMap>,
+    markerName: string,
+    errorMessage: string = "Element not found"
+  ) => {
+    const element = model.children.find((child) => {
+      return child.userData.isConnected === markerName;
+    });
+
+    if (!element) {
+      console.error(errorMessage);
+      saveErrorLog(errorMessage, markerName);
+      throw new Error(errorMessage);
+    }
+
+    return element;
+  };
+
+  static findMarkerById = (
+    model: Object3D<Object3DEventMap>,
+    markerId: string
+  ) => {
+    const marker = model?.children.find((child) => {
+      return child.userData.forModelId === markerId;
+    });
+
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      marker,
+      `Marker element: ${markerId} not found`
+    );
+
+    return marker as Object3D<Object3DEventMap>;
+  };
+
   static rotateLeg = (
     model: Object3D<Object3DEventMap>,
     degree: number,
     legSide: "Left" | "Right"
   ) => {
-    let leg: Object3D<Object3DEventMap> | undefined = undefined;
-    model.traverse((element) => {
-      if (element.name.includes(`Minifig_Leg_${legSide}`)) {
-        leg = element;
-      }
-    });
+    const leg = ArrangementFunctionsHelper.findModelPartByName(
+      model,
+      `Minifig_Leg_${legSide}`
+    );
 
-    if (!leg) {
-      console.log("Minifig arm element not found");
-      return;
-    }
-
-    const selectedLeg = leg as Object3D<Object3DEventMap>;
-    selectedLeg.rotateX(convertDegreesToRadians(degree));
+    leg.rotateX(convertDegreesToRadians(degree));
   };
 
   static rotateElementOnYAxis = (
@@ -60,31 +100,14 @@ export class ArrangementFunctionsHelper {
     degreeX: number = 0,
     degreeY: number = 0
   ) => {
-    let arm: Object3D<Object3DEventMap> | undefined = undefined;
-    model.traverse((element) => {
-      if (element.name.includes(`Minifig_Arm_${armSide}`)) {
-        arm = element;
-      }
-    });
+    const arm = ArrangementFunctionsHelper.findModelPartByName(
+      model,
+      `Minifig_Arm_${armSide}`
+    );
 
-    if (!arm) {
-      console.log("Minifig arm element not found");
-      return;
-    }
-
-    const selectedArm = arm as Object3D<Object3DEventMap>;
-    selectedArm.rotateZ(convertDegreesToRadians(degreeZ));
-    selectedArm.rotateX(convertDegreesToRadians(degreeX));
-    selectedArm.rotateY(convertDegreesToRadians(degreeY));
-  };
-
-  static findElementConnectedToMarker = (
-    model: Object3D<Object3DEventMap>,
-    markerName: string
-  ) => {
-    return model.children.find((child) => {
-      return child.userData.isConnected === markerName;
-    });
+    arm.rotateZ(convertDegreesToRadians(degreeZ));
+    arm.rotateX(convertDegreesToRadians(degreeX));
+    arm.rotateY(convertDegreesToRadians(degreeY));
   };
 
   static rotateCoupling = (
@@ -95,23 +118,16 @@ export class ArrangementFunctionsHelper {
   ) => {
     const coupling = ArrangementFunctionsHelper.findElementConnectedToMarker(
       model,
-      couplingMarkerName
+      couplingMarkerName,
+      "Coupling element not found"
     );
+
     const magnetCylinder =
       ArrangementFunctionsHelper.findElementConnectedToMarker(
         model,
-        cylinderMarkerName
+        cylinderMarkerName,
+        "Magnet cylinder element not found"
       );
-
-    if (!coupling) {
-      console.log("Coupling element not found");
-      return;
-    }
-
-    if (!magnetCylinder) {
-      console.log("Magnet cylinder element not found");
-      return;
-    }
 
     const originalOParent = coupling.parent;
 
@@ -119,25 +135,26 @@ export class ArrangementFunctionsHelper {
 
     ArrangementFunctionsHelper.rotateElementOnYAxis(coupling, degree);
 
-    if (!originalOParent) {
-      console.log("Parent element is missing");
-      return;
-    }
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      originalOParent,
+      "Parent element is missing"
+    );
 
-    originalOParent.attach(magnetCylinder);
+    originalOParent!.attach(magnetCylinder);
   };
 
   static attachModelToNewParent = (
     model: Object3D<Object3DEventMap>,
     newParent: Object3D<Object3DEventMap> | null | undefined
   ) => {
-    if (newParent) {
-      const originalParent = model.parent;
-      newParent.attach(model);
-      return originalParent;
-    }
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      newParent,
+      "New parent element not found"
+    );
 
-    console.log("New parent element not found");
+    const originalParent = model.parent;
+    newParent!.attach(model);
+    return originalParent;
   };
 
   static moveElementToNewNestPosition = (
@@ -146,14 +163,21 @@ export class ArrangementFunctionsHelper {
   ) => {
     const elementParent = element.parent;
     const scene = newNest.parent;
-    if (scene && elementParent) {
-      element.position.copy(newNest.position);
-      element.quaternion.copy(newNest.quaternion);
-      scene.add(element);
-      elementParent.attach(element);
-    } else {
-      console.log("Nest parent not found");
-    }
+
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      elementParent,
+      "Nest parent not found"
+    );
+
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      scene,
+      "Scene element not found"
+    );
+
+    element.position.copy(newNest.position);
+    element.quaternion.copy(newNest.quaternion);
+    scene!.add(element);
+    elementParent!.attach(element);
   };
 
   static arrangePalette = (
@@ -161,63 +185,30 @@ export class ArrangementFunctionsHelper {
     newPositionMarkerId: string,
     { paletteBaseMarkerId, paletteLegsMarkersIds }: PaletteMarkersData
   ) => {
-    const paletteBase = ArrangementFunctionsHelper.findElementConnectedToMarker(
-      model,
-      paletteBaseMarkerId
-    );
-
-    const paletteLeg1 = ArrangementFunctionsHelper.findElementConnectedToMarker(
-      model,
-      paletteLegsMarkersIds[0]
-    );
-    const paletteLeg2 = ArrangementFunctionsHelper.findElementConnectedToMarker(
-      model,
-      paletteLegsMarkersIds[1]
-    );
+    const { paletteBase, disconnectPalette } =
+      ArrangementFunctionsHelper.completePalette(model, {
+        paletteBaseMarkerId,
+        paletteLegsMarkersIds,
+      });
 
     const scene = model.parent;
 
-    if (!scene) {
-      console.log("Scene element not found");
-      return;
-    }
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      scene,
+      "Scene element not found"
+    );
 
-    if (!paletteBase) {
-      console.log("Palette base element not found");
-      return;
-    }
-
-    if (!paletteLeg1) {
-      console.log("Palette leg 1 element not found");
-      return;
-    }
-
-    if (!paletteLeg2) {
-      console.log("Palette leg 2 element not found");
-      return;
-    }
-
-    const markerForPaletteBase = scene?.children.find((child) => {
-      return child.userData.forModelId === newPositionMarkerId;
-    });
-
-    if (!markerForPaletteBase) {
-      console.log("marker for palette base element not found");
-      return;
-    }
-
-    ArrangementFunctionsHelper.attachModelToNewParent(paletteLeg1, paletteBase);
-
-    ArrangementFunctionsHelper.attachModelToNewParent(paletteLeg2, paletteBase);
+    const markerForPaletteBase = ArrangementFunctionsHelper.findMarkerById(
+      scene!,
+      newPositionMarkerId
+    );
 
     ArrangementFunctionsHelper.moveElementToNewNestPosition(
       paletteBase,
       markerForPaletteBase
     );
 
-    ArrangementFunctionsHelper.attachModelToNewParent(paletteLeg1, model);
-
-    ArrangementFunctionsHelper.attachModelToNewParent(paletteLeg2, model);
+    disconnectPalette();
   };
 
   static arrangePostPackage = (
@@ -230,39 +221,27 @@ export class ArrangementFunctionsHelper {
   ) => {
     const scene = model.parent;
 
-    if (!scene) {
-      console.log("Scene element not found");
-      return;
-    }
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      scene,
+      "Scene element not found"
+    );
 
     const postPackage = ArrangementFunctionsHelper.findElementConnectedToMarker(
       model,
-      postPackageBaseMarkerId
+      postPackageBaseMarkerId,
+      "Post package element not found"
     );
-
-    if (!postPackage) {
-      console.log("Post package element not found");
-      return;
-    }
 
     const envelope = ArrangementFunctionsHelper.findElementConnectedToMarker(
       model,
-      postPackageEnvelopeMarkerId
+      postPackageEnvelopeMarkerId,
+      "Envelope element not found"
     );
 
-    if (!envelope) {
-      console.log("Envelope element not found");
-      return;
-    }
-
-    const markerForPackage = scene.children.find((child) => {
-      return child.userData.forModelId === newPositionMarkerId;
-    });
-
-    if (!markerForPackage) {
-      console.log("Marker for package element not found");
-      return;
-    }
+    const markerForPackage = ArrangementFunctionsHelper.findMarkerById(
+      scene!,
+      newPositionMarkerId
+    );
 
     ArrangementFunctionsHelper.attachModelToNewParent(envelope, postPackage);
 
@@ -285,59 +264,41 @@ export class ArrangementFunctionsHelper {
     }: MinifigMarkersData
   ) => {
     const scene = model.parent;
-
-    if (!scene) {
-      console.log("Scene element not found");
-      return;
-    }
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      scene,
+      "Scene element not found"
+    );
 
     const minifigHeaps =
       ArrangementFunctionsHelper.findElementConnectedToMarker(
         model,
-        minifigHeapsMarkerId
+        minifigHeapsMarkerId,
+        "Minifig heaps element not found"
       );
+
     const minifigTorso =
       ArrangementFunctionsHelper.findElementConnectedToMarker(
         model,
-        minifigTorsoMarkerId
+        minifigTorsoMarkerId,
+        "Minifig torso element not found"
       );
+
     const minifigHead = ArrangementFunctionsHelper.findElementConnectedToMarker(
       model,
-      minifigHeadMarkerId
+      minifigHeadMarkerId,
+      "Minifig head element not found"
     );
+
     const minifigHut = ArrangementFunctionsHelper.findElementConnectedToMarker(
       model,
-      minifigHutMarkerId
+      minifigHutMarkerId,
+      "Minifig hut element not found"
     );
 
-    if (!minifigHeaps) {
-      console.log("Minifig heaps element not found");
-      return;
-    }
-
-    if (!minifigTorso) {
-      console.log("Minifig torso element not found");
-      return;
-    }
-
-    if (!minifigHead) {
-      console.log("Minifig head element not found");
-      return;
-    }
-
-    if (!minifigHut) {
-      console.log("Minifig head element not found");
-      return;
-    }
-
-    const markerForMinifig = scene?.children.find((child) => {
-      return child.userData.forModelId === newMarkerForMinifigId;
-    });
-
-    if (!markerForMinifig) {
-      console.log("Minifig marker element not found");
-      return;
-    }
+    const markerForMinifig = ArrangementFunctionsHelper.findMarkerById(
+      scene!,
+      newMarkerForMinifigId
+    );
 
     minifigHeaps.attach(minifigTorso);
     minifigHeaps.attach(minifigHead);
@@ -345,18 +306,21 @@ export class ArrangementFunctionsHelper {
 
     minifigHeaps.position.copy(markerForMinifig.position);
     minifigHeaps.quaternion.copy(markerForMinifig.quaternion);
-    scene.add(minifigHeaps);
+    scene!.add(minifigHeaps);
 
-    model.attach(minifigHeaps);
-    model.attach(minifigTorso);
-    model.attach(minifigHead);
-    model.attach(minifigHut);
+    const disconnectMinifig = () => {
+      ArrangementFunctionsHelper.attachModelToNewParent(minifigHut, model);
+      ArrangementFunctionsHelper.attachModelToNewParent(minifigHead, model);
+      ArrangementFunctionsHelper.attachModelToNewParent(minifigTorso, model);
+      ArrangementFunctionsHelper.attachModelToNewParent(minifigHeaps, model);
+    };
 
     return {
       minifigHeaps,
       minifigTorso,
       minifigHead,
       minifigHut,
+      disconnectMinifig,
     };
   };
 
@@ -366,32 +330,20 @@ export class ArrangementFunctionsHelper {
   ) => {
     const paletteBase = ArrangementFunctionsHelper.findElementConnectedToMarker(
       model,
-      paletteBaseMarkerId
+      paletteBaseMarkerId,
+      "Palette base element not found"
     );
 
     const paletteLeg1 = ArrangementFunctionsHelper.findElementConnectedToMarker(
       model,
-      paletteLegsMarkersIds[0]
+      paletteLegsMarkersIds[0],
+      "Palette leg 1 element not found"
     );
     const paletteLeg2 = ArrangementFunctionsHelper.findElementConnectedToMarker(
       model,
-      paletteLegsMarkersIds[1]
+      paletteLegsMarkersIds[1],
+      "Palette leg 2 element not found"
     );
-
-    if (!paletteBase) {
-      console.log("Palette base element not found");
-      return;
-    }
-
-    if (!paletteLeg1) {
-      console.log("Palette leg 1 element not found");
-      return;
-    }
-
-    if (!paletteLeg2) {
-      console.log("Palette leg 2 element not found");
-      return;
-    }
 
     ArrangementFunctionsHelper.attachModelToNewParent(paletteLeg1, paletteBase);
 
@@ -399,7 +351,6 @@ export class ArrangementFunctionsHelper {
 
     const disconnectPalette = () => {
       ArrangementFunctionsHelper.attachModelToNewParent(paletteLeg1, model);
-
       ArrangementFunctionsHelper.attachModelToNewParent(paletteLeg2, model);
       ArrangementFunctionsHelper.attachModelToNewParent(paletteBase, model);
     };
@@ -421,33 +372,22 @@ export class ArrangementFunctionsHelper {
     const barrelBottomPart =
       ArrangementFunctionsHelper.findElementConnectedToMarker(
         model,
-        barrelBottomPartMarkerId
+        barrelBottomPartMarkerId,
+        "Barrel bottom part  element not found"
       );
 
     const barrelRing = ArrangementFunctionsHelper.findElementConnectedToMarker(
       model,
-      barrelRingMarkerId
+      barrelRingMarkerId,
+      "Barrel ring element not found"
     );
+
     const barrelTopPart =
       ArrangementFunctionsHelper.findElementConnectedToMarker(
         model,
-        barrelTopPartMarkerId
+        barrelTopPartMarkerId,
+        "Barrel top part element not found"
       );
-
-    if (!barrelBottomPart) {
-      console.log("Barrel bottom part  element not found");
-      return;
-    }
-
-    if (!barrelRing) {
-      console.log("Barrel ring element not found");
-      return;
-    }
-
-    if (!barrelTopPart) {
-      console.log("Barrel top part element not found");
-      return;
-    }
 
     ArrangementFunctionsHelper.attachModelToNewParent(
       barrelRing,

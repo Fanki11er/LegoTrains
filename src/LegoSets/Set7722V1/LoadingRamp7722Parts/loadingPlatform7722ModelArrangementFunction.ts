@@ -48,6 +48,8 @@ const arrangePostmanMinifig = (model: Object3D<Object3DEventMap>) => {
     rotateLeg(minifig.minifigHeaps, 45, "Right");
   }
 
+  minifig?.disconnectMinifig();
+
   arrangePostPackage(model, "PostPackage.003", {
     postPackageBaseMarkerId: "ModelMarker.029",
     postPackageEnvelopeMarkerId: "ModelMarker.030",
