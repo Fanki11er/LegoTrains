@@ -27,8 +27,15 @@ const Nest = (props: NestProps) => {
 
   useEffect(() => {
     const nest = nestRef.current;
+
     if (marker.parent && nest) {
       marker.parent.add(nest);
+      if (marker.userData.afterConnectionArraignmentFunctionName) {
+        handleArrangePartAfterConnection(
+          nest,
+          marker.userData.afterConnectionArraignmentFunctionName
+        );
+      }
     }
 
     return () => {
@@ -36,7 +43,7 @@ const Nest = (props: NestProps) => {
         nest.removeFromParent();
       }
     };
-  }, [marker]);
+  }, [marker, handleArrangePartAfterConnection]);
 
   const renderMultipartChildrenRecursively = (
     children: Object3D<Object3DEventMap>[]
@@ -46,6 +53,7 @@ const Nest = (props: NestProps) => {
       return (
         <mesh
           key={child.uuid}
+          name={childMesh.name}
           geometry={childMesh.geometry}
           position={
             child.type === "Group" ? childMesh.position : child.position
@@ -65,7 +73,7 @@ const Nest = (props: NestProps) => {
     return (
       <mesh
         key={mesh.uuid}
-        name="Nest"
+        name={mesh.name}
         geometry={mesh.geometry}
         material={material}
         position={marker.position}
@@ -90,7 +98,7 @@ const Nest = (props: NestProps) => {
       onClick={(e) => {
         e.stopPropagation();
         if (nestRef.current) {
-          const nest = nestRef.current.getObjectByName("Nest");
+          const nest = nestRef.current.children[0];
 
           if (marker.parent && nest) {
             mesh.position.copy(nest.position);
