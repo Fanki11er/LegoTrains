@@ -1,4 +1,7 @@
 export type PartUserData = {
-  partId: string;
-  isConnected: boolean;
+  partId: number;
+  partType: string;
+  isConnected: string;
+  modelId: string | undefined;
+  multipart: boolean;
 };

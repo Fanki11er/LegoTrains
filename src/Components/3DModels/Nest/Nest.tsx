@@ -3,6 +3,7 @@ import { nestMaterial } from "../../../Materials/NestMaterial";
 import { useEffect, useRef, useState } from "react";
 import { NestElementUserData } from "../../../Types/NestElementUserData";
 import useTrainInstruction from "../../../Hooks/useTrainInstruction";
+import usePersistenceDataProvider from "../../../Hooks/usePersistenceDataProvider";
 
 type NestProps = {
   marker: Object3D<Object3DEventMap>;
@@ -13,7 +14,9 @@ const Nest = (props: NestProps) => {
   const { marker, mesh } = props;
   const [isHovered, setIsHovered] = useState(false);
   const nestRef = useRef<Group>(null!);
-  const { handleFinishPartConnection } = useTrainInstruction();
+  const { handleFinishPartConnection, handleArrangePartAfterConnection } =
+    useTrainInstruction();
+  const { handleSaveModelDataToDatabase } = usePersistenceDataProvider();
 
   useEffect(() => {
     const nest = nestRef.current;
@@ -33,9 +36,10 @@ const Nest = (props: NestProps) => {
       <mesh
         key={mesh.uuid}
         name="Nest"
-        geometry={mesh.geometry.clone()}
+        geometry={mesh.geometry}
         material={nestMaterial.clone()}
-        material-color={isHovered ? "green" : "blue"}
+        material-opacity={isHovered ? 0.5 : 0}
+        material-color="blue"
         position={marker.position}
         quaternion={marker.quaternion}
         userData={{ markerId: marker.id } as NestElementUserData}
@@ -50,9 +54,7 @@ const Nest = (props: NestProps) => {
   };
 
   const render = (mesh: Mesh | Group) => {
-    if (mesh.type === "Mesh") {
-      return renderMesh(mesh as Mesh);
-    } else if (mesh.type === "Group") {
+    if (mesh.type === "Group" || mesh.userData.multipart) {
       return (
         <>
           {mesh.children.map((child) => {
@@ -60,6 +62,8 @@ const Nest = (props: NestProps) => {
           })}
         </>
       );
+    } else if (mesh.type === "Mesh") {
+      return renderMesh(mesh as Mesh);
     }
   };
 
@@ -74,9 +78,21 @@ const Nest = (props: NestProps) => {
           if (marker.parent) {
             mesh.position.copy(nest.position);
             mesh.quaternion.copy(nest.quaternion);
+
             marker.parent.add(mesh);
-            mesh.userData.isConnected = true;
-            handleFinishPartConnection(marker);
+
+            mesh.userData.isConnected = marker.userData.name;
+            const isPhaseFinished = handleFinishPartConnection(marker);
+            if (marker.userData.afterConnectionArraignmentFunctionName) {
+              handleArrangePartAfterConnection(
+                mesh,
+                marker.userData.afterConnectionArraignmentFunctionName
+              );
+            }
+
+            if (isPhaseFinished) {
+              handleSaveModelDataToDatabase();
+            }
           }
         }
       }}

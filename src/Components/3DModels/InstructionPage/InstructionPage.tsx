@@ -1,8 +1,8 @@
 import { useGLTF, useTexture } from "@react-three/drei";
-import { useMemo, useRef, useState } from "react";
+import { useDeferredValue, useMemo, useRef, useState } from "react";
 import { Group, MeshStandardMaterial, Object3DEventMap } from "three";
 // @ts-expect-error Not a type
-import instructionPage from "../../../assets/3D/InstructionPage/InstructionPage.glb";
+import instructionPagePath from "../../../assets/3D/InstructionPage/InstructionPage.glb";
 import { InstructionPageTextures } from "../../../Types/InstructionPageTextures";
 import { setTextureOptions } from "../../../Utilities/utilities";
 import { useSpring, animated } from "@react-spring/three";
@@ -21,6 +21,7 @@ const InstructionPage = (props: Props) => {
 
   const pageRef = useRef<Group<Object3DEventMap>>(null);
 
+  const instructionPage = useDeferredValue(instructionPagePath);
   const { nodes } = useGLTF(instructionPage);
 
   const { x: pageStartXPosition, z: pageStartZPosition } =
@@ -94,14 +95,14 @@ const InstructionPage = (props: Props) => {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.PageFront.geometry.clone()}
+        geometry={nodes.PageFront.geometry}
         material={pageMaterials.frontPageMaterial}
         position={[72.05, 0.05, 0]}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.PageBack.geometry.clone()}
+        geometry={nodes.PageBack.geometry}
         material={pageMaterials.backPageMaterial}
         position={[72.05, -0.05, 0]}
         rotation={[0, 0, Math.PI]}

@@ -1,9 +1,7 @@
-import { NeededPartInfo } from "../Types/NeededPartInfo";
 import { PartInfo } from "../Types/PartInfo";
 
 export class Phase {
   private phaseNumber: number;
-  private neededPartsList: NeededPartInfo[] = [];
   private phasePartsList: PartInfo[] = [];
 
   constructor(phaseNumber: number, phasePartsList: PartInfo[]) {
@@ -15,26 +13,19 @@ export class Phase {
     return this.phaseNumber;
   };
 
-  checkIfPartIsNeededInPhase = (partId: string) => {
-    const currentPriority = this.getCurrentPriority();
-
-    if (
-      this.neededPartsList.find((part) => {
-        return part.partId === partId && part.partPriority === currentPriority;
-      })
-    ) {
-      return true;
-    }
-    return false;
+  checkIfPartTypeIsNeededInPhase = (partType: string) => {
+    return this.phasePartsList.filter((part) => {
+      return part.partType === partType;
+    });
   };
 
-  updateNeededPartList = (partId: string) => {
-    const recordIndexToRemove = this.neededPartsList.findIndex((part) => {
-      return part.partId === partId;
+  updateNeededPartList = (slotId: string) => {
+    const recordIndexToRemove = this.phasePartsList.findIndex((part) => {
+      return part.slotId === slotId;
     });
-    this.neededPartsList.splice(recordIndexToRemove, 1);
+    this.phasePartsList.splice(recordIndexToRemove, 1);
 
-    return this.neededPartsList.length;
+    return this.phasePartsList.length;
   };
 
   getPhasePartsList = () => {
@@ -44,17 +35,10 @@ export class Phase {
   addPartsToPhase = (partInfoList: PartInfo[]) => {
     partInfoList.forEach((partInfo) => {
       this.phasePartsList.push(partInfo);
-      this.neededPartsList.push({
-        partId: partInfo.partId,
-        partPriority: partInfo.partPriority,
-      });
     });
   };
 
-  private getCurrentPriority = () => {
-    const priorities = this.neededPartsList.map((part) => {
-      return part.partPriority;
-    });
-    return Math.min(...priorities);
+  clearPhasePartsList = () => {
+    this.phasePartsList = [];
   };
 }

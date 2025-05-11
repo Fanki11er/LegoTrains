@@ -1,0 +1,91 @@
+import { Vector3 } from "three";
+import { LegoBlockType } from "../../../Types/LegoBlockType";
+import {
+  brick_1x2_3004,
+  brick_1x2_with_Black_Grille_Pattern_3004p06,
+  brick_4070,
+  plate_1x1_3024,
+  plate_1x4_3710,
+  plate_2_x_2_3022,
+} from "../PartsImports";
+
+export const steamLocomotive7722ForkliftPhase5: LegoBlockType[] = [
+  {
+    partPath: plate_1x4_3710,
+    partStartPosition: new Vector3(-180, 0, 315),
+    partType: "3710",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.013",
+    depends: [],
+  },
+  {
+    partPath: plate_1x4_3710,
+    partStartPosition: new Vector3(-180, 0, 330),
+    partType: "3710",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.014",
+    depends: [],
+  },
+  {
+    partPath: plate_2_x_2_3022,
+    partStartPosition: new Vector3(-290, 0, 200),
+    partType: "3022",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.015",
+    depends: [],
+  },
+  {
+    partPath: brick_1x2_with_Black_Grille_Pattern_3004p06,
+    partStartPosition: new Vector3(425, 0, 160),
+    partType: "3004p06",
+    slotId: "ModelMarker.016",
+    depends: [],
+  },
+  {
+    partPath: brick_1x2_with_Black_Grille_Pattern_3004p06,
+    partStartPosition: new Vector3(450, 0, 160),
+    partType: "3004p06",
+    slotId: "ModelMarker.017",
+    depends: [],
+  },
+  {
+    partPath: brick_1x2_3004,
+    partStartPosition: new Vector3(425, 0, 180),
+    partType: "3004",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.018",
+    depends: [],
+  },
+  {
+    partPath: brick_4070,
+    partStartPosition: new Vector3(490, 0, 30),
+    partType: "4070",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.019",
+    depends: [],
+  },
+  {
+    partPath: brick_4070,
+    partStartPosition: new Vector3(510, 0, 30),
+    partType: "4070",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.020",
+    depends: [],
+  },
+  {
+    partPath: plate_1x1_3024,
+    partStartPosition: new Vector3(450, 0, 15),
+    partType: "3024",
+    materialId: "redTransparentMaterial",
+    slotId: "ModelMarker.021",
+    depends: ["ModelMarker.019"],
+  },
+  {
+    partPath: plate_1x1_3024,
+    partStartPosition: new Vector3(470, 0, 15),
+    partType: "3024",
+    materialId: "redTransparentMaterial",
+    slotId: "ModelMarker.022",
+    depends: ["ModelMarker.020"],
+  },
+];

@@ -1,59 +1,128 @@
 import { useGLTF } from "@react-three/drei";
 import { Mesh, Object3D, Object3DEventMap } from "three";
 import { ThreeEvent } from "@react-three/fiber";
-import { PartInfo } from "../../../Types/PartInfo";
 import { PartUserData } from "../../../Types/PartUserData";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import useTrainInstruction from "../../../Hooks/useTrainInstruction";
 import useSelectModel from "../../../Hooks/useSelectModel";
 import Nest from "../Nest/Nest";
-import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu";
-import { customMaterials } from "../../../Materials/customMaterials";
-import { moveElementToFloorLevel } from "../../../Utilities/utilities";
+import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu/SelectedElementContextMenu";
+import {
+  convertToEuler,
+  convertToVector3,
+  moveElementToFloorLevel,
+  setPersistenceDataRecursively,
+} from "../../../Utilities/utilities";
+import { LegoBlock } from "../../../Types/LegoBlock";
+import { PartPersistenceData } from "../../../Classes/PersistenceModule";
+import useMaterials from "../../../Hooks/useMaterials";
 
 type PartProps = {
-  partInfo: PartInfo;
+  partInfo: LegoBlock;
+  persistenceData: PartPersistenceData | undefined;
 };
 
 const LegoPart = (props: PartProps) => {
-  const { partInfo } = props;
-  const { scene } = useGLTF(partInfo.partPath);
-  const { handleGetMarkersForSelectedPart } = useTrainInstruction();
+  const { partInfo, persistenceData } = props;
+  const partPath = useDeferredValue(partInfo.partPath);
+  const { scene } = useGLTF(partPath);
+  const { handleGetMarkersForSelectedPart, handleGetRootModelMarkerByName } =
+    useTrainInstruction();
   const [markersList, setMarkersList] = useState<Object3D<Object3DEventMap>[]>(
     []
   );
 
+  const { materialsData } = useMaterials();
+
   const model = useMemo(() => {
     const model = scene.children[0].clone() as Mesh;
     if (partInfo.materialId) {
-      model.material = customMaterials[partInfo.materialId];
+      model.material = materialsData[partInfo.materialId];
+      if (
+        partInfo.multipart &&
+        partInfo.propagateMainMaterialToChildren &&
+        partInfo.childrenMaterialId
+      ) {
+        model.children.forEach((child) => {
+          // @ts-expect-error Children have material property
+          child.material = materialsData[partInfo.childrenMaterialId];
+        });
+      } else if (
+        partInfo.multipart &&
+        partInfo.propagateMainMaterialToChildren
+      ) {
+        model.children.forEach((child) => {
+          // @ts-expect-error Children have material property
+          child.material = materialsData[partInfo.materialId];
+        });
+      }
     }
     return model;
-  }, [scene, partInfo.materialId]);
+  }, [
+    scene,
+    partInfo.materialId,
+    materialsData,
+    partInfo.childrenMaterialId,
+    partInfo.multipart,
+    partInfo.propagateMainMaterialToChildren,
+  ]);
 
   const modelRef = useRef<Mesh>(null!);
 
   useEffect(() => {
     if (modelRef.current) {
-      modelRef.current.position.setX(partInfo.partStartPosition.x);
-      modelRef.current.position.setZ(partInfo.partStartPosition.z);
+      if (!persistenceData) {
+        modelRef.current.position.setX(partInfo.partStartPosition.x);
+        modelRef.current.position.setZ(partInfo.partStartPosition.z);
 
-      if(!partInfo.noAutomaticMoveToGroundLevel){
-        moveElementToFloorLevel(modelRef.current);
+        if (!partInfo.noAutomaticMoveToGroundLevel) {
+          moveElementToFloorLevel(modelRef.current);
+        }
+
+        modelRef.current.userData = {
+          partId: partInfo.partId,
+          partType: partInfo.partType,
+          isConnected: "",
+          multipart: !!partInfo.multipart,
+        } as PartUserData;
+      } else {
+        const rootMarker = handleGetRootModelMarkerByName(
+          persistenceData.userData.modelId!
+        );
+
+        modelRef.current.userData = persistenceData.userData;
+
+        if (rootMarker) {
+          modelRef.current.position.copy(
+            convertToVector3(persistenceData.position)
+          );
+
+          modelRef.current.rotation.copy(
+            convertToEuler(persistenceData.rotation)
+          );
+
+          modelRef.current.visible = persistenceData.visible;
+
+          if (persistenceData.userData.multipart) {
+            setPersistenceDataRecursively(
+              persistenceData.children,
+              modelRef.current.children
+            );
+          }
+
+          rootMarker.add(modelRef.current);
+        }
       }
-      
-      modelRef.current.userData = {
-        partId: partInfo.partId,
-        isConnected: false,
-      } as PartUserData;
 
-      modelRef.current.name = partInfo.partId;
+      modelRef.current.name = partInfo.partType;
     }
+    return () => {
+      useGLTF.clear(partInfo.partPath);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { isSelected, originalMaterial, handleSelect, handleUnselect } =
-    useSelectModel();
+  const { isSelected, handleSelect, handleUnselect } = useSelectModel();
 
   const renderNests = (markersList: Object3D<Object3DEventMap>[]) => {
     return markersList.map((marker) => {
@@ -66,11 +135,6 @@ const LegoPart = (props: PartProps) => {
       <primitive
         ref={modelRef}
         object={model}
-        material={
-          isSelected
-            ? customMaterials.selectedElementMaterial
-            : originalMaterial.current[model.uuid]
-        }
         onClick={(e: ThreeEvent<Event>) => {
           if (!modelRef.current.userData.isConnected) {
             e.stopPropagation();
@@ -78,10 +142,10 @@ const LegoPart = (props: PartProps) => {
 
           if (modelRef.current && !modelRef.current.userData.isConnected) {
             const list = handleGetMarkersForSelectedPart(
-              modelRef.current.userData.partId
+              modelRef.current.userData.partType
             );
             setMarkersList(list);
-            handleSelect(modelRef.current);
+            handleSelect(modelRef.current, !!list.length);
           }
         }}
         onPointerMissed={() => {

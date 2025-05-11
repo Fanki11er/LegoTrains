@@ -1,0 +1,15 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /Users/{user}/{document=**} {
+     allow read, update, delete, list, create: if request.auth != null 
+     && request.auth.token.firebase.sign_in_provider != 'anonymous' 
+     && request.auth.uid == user;
+  
+    }
+     match /ErrorLogs/{document=**} {
+     allow create: if request.auth != null  
+    }
+  }
+}
