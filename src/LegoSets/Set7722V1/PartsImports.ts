@@ -93,11 +93,17 @@ import turntable_2_x_2_Plate_Blue_3680c01_model from "../../assets/3D/Turntable_
 import plate_Specialty_2x2_with_Socket_3730_model from "../../assets/3D/Plate_Specialty_2x2_with_Socket_3730/Plate_Specialty_2x2_with_Socket_3730.glb";
 import hinge_Tile_1x2_with_2_Fingers_4531_model from "../../assets/3D/Hinge_Tile_1x2_with_2_Fingers_4531/Hinge_Tile_1x2_with_2_Fingers_4531.glb";
 import minifig_Torso_973p26c01_model from "../../assets/3D/Minifig_Torso_973p26c01/Minifig_Torso_973p26c01.glb";
+import train_Signal_Post_model from "../../assets/3D/Train_Signal_Post/Train_Signal_Post.glb";
+import train_Direction_Switch_3218_model from "../../assets/3D/Train_Direction_Switch_3218/Train_Direction_Switch_3218.glb";
 
 //?? Tracks
 export const tracksMarkers_7722 = tracksMarkers_7722_model;
 export const straight_Track_Old = straight_Track_Old_model;
 export const curved_Track_Old = curved_Track_Old_model;
+
+//?? Signal Post
+export const train_Signal_Post = train_Signal_Post_model;
+export const train_Direction_Switch_3218 = train_Direction_Switch_3218_model;
 
 //?? Minifigs
 export const minifig_Hips_and_Legs_970c00 = minifig_Hips_and_Legs_970c00_model;

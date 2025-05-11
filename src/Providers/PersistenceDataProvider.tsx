@@ -94,7 +94,7 @@ const PersistenceDataProvider = ({
 
             timeout = setTimeout(() => {
               setStatus(null);
-            }, 2000);
+            }, 1000);
           })
           .catch((err) => {
             setStatus({ message: err.name, status: "error" });
@@ -117,7 +117,7 @@ const PersistenceDataProvider = ({
 
             timeout = setTimeout(() => {
               setStatus(null);
-            }, 2000);
+            }, 1000);
           })
           .catch((err) => {
             setStatus({ message: err.name, status: "error" });

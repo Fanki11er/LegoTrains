@@ -16,6 +16,7 @@ export const steamLocomotive7722ForkliftPhase4: LegoBlockType[] = [
     slotId: "ModelMarker.009",
     depends: [],
   },
+  //!! Check depends of wheels
   {
     partPath: plate_Specialty_2x2_with_Towball_3731,
     partStartPosition: new Vector3(450, 0, -65),

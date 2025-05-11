@@ -14,10 +14,13 @@ import usePersistenceDataProvider from "../../../../Hooks/usePersistenceDataProv
 import MaterialsProvider from "../../../../Providers/materialsProvider";
 import Floor from "../../Floor/Floor";
 import Tracks from "../../Tracks/Tracks";
+import OtherSceneElement from "../../OtherSceneElement/OtherSceneElement";
 import {
   straight_Track_Old,
   curved_Track_Old,
   tracksMarkers_7722,
+  train_Signal_Post,
+  train_Direction_Switch_3218,
 } from "../../../../LegoSets/Set7722V1/PartsImports";
 
 const SteamLocomotive_7722 = memo(() => {
@@ -116,6 +119,19 @@ const SteamLocomotive_7722 = memo(() => {
             curvedTrackFilePath={curved_Track_Old}
           />
 
+          <OtherSceneElement
+            elementPath={train_Signal_Post}
+            markerId="SignalPost"
+            elementDescription="SignalPost"
+          />
+
+          <OtherSceneElement
+            elementPath={train_Direction_Switch_3218}
+            markerId="DestinationSwitch"
+            elementDescription="DestinationSwitch"
+          />
+          <Instruction position={[-170, 0.1, 0]} />
+
           <MaterialsProvider>
             <Floor />
             {renderModels(handleGetSetModelsToRenderList(), modelsData)}
@@ -126,8 +142,6 @@ const SteamLocomotive_7722 = memo(() => {
               )}
             </group>
           </MaterialsProvider>
-
-          <Instruction position={[-170, 0.1, 0]} />
         </>
       )}
     </>
