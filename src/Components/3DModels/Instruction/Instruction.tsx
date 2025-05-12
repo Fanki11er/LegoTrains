@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { instruction_textures_7722 } from "../../../InstructionsTextures/Instruction_7722";
 import { InstructionPageTextures } from "../../../Types/InstructionPageTextures";
 import InstructionPage from "../InstructionPage/InstructionPage";
 import { Group } from "three";
@@ -7,9 +6,9 @@ import { moveElementToFloorLevel } from "../../../Utilities/utilities";
 
 type Props = {
   position: [number, number, number];
+  instructionTextures: InstructionPageTextures[];
 };
-const Instruction = (props: Props) => {
-  const { position } = props;
+const Instruction = ({ position, instructionTextures }: Props) => {
   const instructionRef = useRef<Group>(null);
 
   useEffect(() => {
@@ -36,7 +35,7 @@ const Instruction = (props: Props) => {
 
   return (
     <group ref={instructionRef} position={position}>
-      {renderInstruction(instruction_textures_7722)}
+      {renderInstruction(instructionTextures)}
     </group>
   );
 };

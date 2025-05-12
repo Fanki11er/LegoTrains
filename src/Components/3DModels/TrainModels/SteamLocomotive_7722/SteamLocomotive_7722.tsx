@@ -22,9 +22,11 @@ import {
   train_Signal_Post,
   train_Direction_Switch_3218,
 } from "../../../../LegoSets/Set7722V1/PartsImports";
+import { instruction_textures_7722 } from "../../../../InstructionsTextures/Instruction_7722";
 
 const SteamLocomotive_7722 = memo(() => {
   console.log("Rerender Locomotive");
+  //Todo make Higher Order Component
 
   const {
     handleGetPartsList,
@@ -130,7 +132,10 @@ const SteamLocomotive_7722 = memo(() => {
             markerId="DestinationSwitch"
             elementDescription="DestinationSwitch"
           />
-          <Instruction position={[-170, 0.1, 0]} />
+          <Instruction
+            position={[-170, 0.1, 0]}
+            instructionTextures={instruction_textures_7722}
+          />
 
           <MaterialsProvider>
             <Floor />
