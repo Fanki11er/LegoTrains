@@ -79,11 +79,12 @@ const LegoPart = (props: PartProps) => {
           moveElementToFloorLevel(modelRef.current);
         }
 
-        modelRef.current.userData = new PartUserData(
-          partInfo.partId,
-          partInfo.partType,
-          !!partInfo.multipart
-        );
+        modelRef.current.userData = {
+          partId: partInfo.partId,
+          partType: partInfo.partType,
+          isConnected: "",
+          multipart: !!partInfo.multipart,
+        } as PartUserData;
       } else {
         const rootMarker = handleGetRootModelMarkerByName(
           persistenceData.userData.modelId!

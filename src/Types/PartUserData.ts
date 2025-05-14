@@ -1,20 +1,7 @@
-export class PartUserData {
-  isConnected: boolean;
+export type PartUserData = {
   partId: number;
   partType: string;
+  isConnected: string;
+  modelId: string | undefined;
   multipart: boolean;
-  modelId?: string;
-  constructor(
-    partId: number,
-    partType: string,
-    multipart: boolean,
-    isConnected = false,
-    modelId = ""
-  ) {
-    this.partId = partId;
-    this.partType = partType;
-    this.multipart = multipart;
-    this.modelId = modelId;
-    this.isConnected = isConnected;
-  }
-}
+};

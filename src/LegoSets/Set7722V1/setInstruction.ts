@@ -33,7 +33,7 @@ import { postCar7722ModelArrangementFunction } from "./PostCar7722Parts/postCar7
 import { loadingRamp7722ModelArrangementFunction } from "./LoadingRamp7722Parts/loadingPlatform7722ModelArrangementFunction";
 import { forklift7722ModelArrangementFunction } from "./Forklift7722parts/forklift7722ModelArrangementFunction";
 
-export const createInstruction = () => {
+export const createSet7722V1Instruction = () => {
   const set7722Instruction = new TrainInstruction(set7722SceneMarkers);
 
   const steamLocomotive7722Model = new Model(
