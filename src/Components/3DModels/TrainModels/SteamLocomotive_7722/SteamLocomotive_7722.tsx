@@ -14,6 +14,8 @@ import { instruction_textures_7722 } from "../../../../InstructionsTextures/Inst
 import { TrainModelProps } from "../../TrainModel/TrainModel";
 import MaterialsProvider from "../../../../Providers/materialsProvider";
 
+const tracksPaths = [straight_Track_Old, curved_Track_Old];
+
 const SteamLocomotive_7722 = ({
   modelsData,
   partsList,
@@ -33,8 +35,7 @@ const SteamLocomotive_7722 = ({
         />
         <Tracks
           tracksMarkersFilePath={tracksMarkers_7722}
-          straightTrackFilePath={straight_Track_Old}
-          curvedTrackFilePath={curved_Track_Old}
+          tracksTypesFilePaths={tracksPaths}
         />
 
         <OtherSceneElement
