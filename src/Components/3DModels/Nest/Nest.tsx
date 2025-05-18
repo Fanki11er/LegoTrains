@@ -20,10 +20,11 @@ const Nest = (props: NestProps) => {
 
   const material = useMemo(() => {
     const material = nestMaterial.clone();
-    material.opacity = isHovered ? 0.5 : 0;
+    material.opacity =
+      isHovered || !marker.parent?.userData.hideHelper ? 0.5 : 0;
     material.color = new Color("blue");
     return material;
-  }, [isHovered]);
+  }, [isHovered, marker.parent]);
 
   useEffect(() => {
     const nest = nestRef.current;

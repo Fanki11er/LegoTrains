@@ -28,6 +28,7 @@ export type ModelPersistenceData = {
   activePhaseId: number | null | undefined;
   isModelFinished: boolean;
   isModelArranged: boolean;
+  hideHelper?: boolean;
 };
 
 export type ExistingDataInfo = string;
@@ -84,6 +85,7 @@ export class PersistenceModule {
       activePhaseId: activePhaseId || null,
       isModelFinished: isModelFinished,
       isModelArranged: isModelArranged,
+      hideHelper: true,
     };
   };
 
@@ -119,6 +121,7 @@ export class PersistenceModule {
       activePhaseId: activePhaseId,
       isModelFinished: isModelFinished,
       isModelArranged: isModelArranged,
+      hideHelper: true,
     };
   };
 

@@ -5,6 +5,7 @@ import {
   useEffect,
   useMemo,
   useRef,
+  useState,
 } from "react";
 import { Object3D } from "three";
 import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu/SelectedElementContextMenu";
@@ -29,6 +30,13 @@ const ModelMarkers = (props: Props) => {
   const markersPath = useDeferredValue(modelDataObject.getModelMarkersPath());
   const { scene } = useGLTF(markersPath);
   const { handleGetSetRootMarker } = useTrainInstruction();
+  const [hideHelper, setHideHelper] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (persistenceData?.hideHelper) {
+      setHideHelper(true);
+    }
+  }, [persistenceData]);
 
   const model = useMemo(() => {
     return scene.children[0];
@@ -44,16 +52,23 @@ const ModelMarkers = (props: Props) => {
     }
   }, [modelDataObject, modelRef]);
 
+  const handleHideHelper = useCallback(() => {
+    !hideHelper && setHideHelper(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     if (model) {
       model.name = modelDataObject.getRootModelMarkerId();
       model.addEventListener("childadded", handleMoveElementToFloorLevel);
+      model.addEventListener("childremoved", handleHideHelper);
       model.addEventListener("childremoved", handleMoveElementToFloorLevel);
     }
 
     return () => {
       model &&
         model.removeEventListener("childadded", handleMoveElementToFloorLevel);
+      model && model.removeEventListener("childremoved", handleHideHelper);
       model &&
         model.removeEventListener(
           "childremoved",
@@ -61,7 +76,7 @@ const ModelMarkers = (props: Props) => {
         );
       useGLTF.clear(modelDataObject.getModelMarkersPath());
     };
-  }, [modelDataObject, handleMoveElementToFloorLevel, model]);
+  }, [modelDataObject, handleMoveElementToFloorLevel, model, handleHideHelper]);
 
   useEffect(() => {
     if (model && persistenceData) {
@@ -95,6 +110,7 @@ const ModelMarkers = (props: Props) => {
       <primitive
         object={model}
         ref={modelRef}
+        userData={{ hideHelper: hideHelper }}
         onClick={() => {
           if (modelRef.current && !modelDataObject.getIsModelArranged()) {
             handleSelect(modelRef.current, true);
