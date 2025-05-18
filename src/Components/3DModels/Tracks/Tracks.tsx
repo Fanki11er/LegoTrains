@@ -45,7 +45,6 @@ const Tracks = ({ tracksMarkersFilePath, tracksTypesFilePaths }: Props) => {
     track.position.copy(trackMarker.position);
     track.rotation.copy(trackMarker.rotation);
     markersModel.add(track);
-    markersModel.remove(trackMarker);
   };
 
   const addTracks = useCallback(

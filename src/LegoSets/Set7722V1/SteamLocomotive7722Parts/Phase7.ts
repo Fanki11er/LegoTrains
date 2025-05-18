@@ -6,7 +6,7 @@ import {
   brick_4070,
   hose_Flexible_8p5_73590c01a,
   slope_Brick_45_2x2_With_Gauges_And_Knobs_3039px6,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722LocomotiveModelPhase7: LegoBlockType[] = [
   {

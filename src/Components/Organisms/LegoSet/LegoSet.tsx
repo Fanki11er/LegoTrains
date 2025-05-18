@@ -16,7 +16,7 @@ import {
 import ErrorBoundary from "../../Molecules/ErrorBoundary/ErrorBoundary";
 import ErrorFallback from "../../Molecules/ErrorFallback/ErrorFallback";
 import { ERROR_FALLBACK_TEXT } from "../../../Constants/constants";
-import { createSet7722V1Instruction } from "../../../LegoSets/Set7722V1/setInstruction";
+import { createSet7722V1Instruction } from "../../../LegoSets/Set7722V1/set7722V1Instruction";
 import Experience from "../../3DModels/Experience/Experience";
 import SteamLocomotive_7722 from "../../3DModels/TrainModels/SteamLocomotive_7722/SteamLocomotive_7722";
 

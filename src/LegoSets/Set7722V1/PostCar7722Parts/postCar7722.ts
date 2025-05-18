@@ -1,16 +1,16 @@
-import { ModelBlock } from "../../Types/ModelBlock";
-import { steamLocomotive7722PostCarPhase1 } from "./PostCar7722Parts/Phase1";
-import { steamLocomotive7722PostCarPhase10 } from "./PostCar7722Parts/Phase10";
-import { steamLocomotive7722PostCarPhase11 } from "./PostCar7722Parts/Phase11";
-import { steamLocomotive7722PostCarPhase12 } from "./PostCar7722Parts/Phase12";
-import { steamLocomotive7722PostCarPhase2 } from "./PostCar7722Parts/Phase2";
-import { steamLocomotive7722PostCarPhase3 } from "./PostCar7722Parts/Phase3";
-import { steamLocomotive7722PostCarPhase4 } from "./PostCar7722Parts/Phase4";
-import { steamLocomotive7722PostCarPhase5 } from "./PostCar7722Parts/Phase5";
-import { steamLocomotive7722PostCarPhase6 } from "./PostCar7722Parts/Phase6";
-import { steamLocomotive7722PostCarPhase7 } from "./PostCar7722Parts/Phase7";
-import { steamLocomotive7722PostCarPhase8 } from "./PostCar7722Parts/Phase8";
-import { steamLocomotive7722PostCarPhase9 } from "./PostCar7722Parts/Phase9";
+import { ModelBlock } from "../../../Types/ModelBlock";
+import { steamLocomotive7722PostCarPhase1 } from "./Phase1";
+import { steamLocomotive7722PostCarPhase10 } from "./Phase10";
+import { steamLocomotive7722PostCarPhase11 } from "./Phase11";
+import { steamLocomotive7722PostCarPhase12 } from "./Phase12";
+import { steamLocomotive7722PostCarPhase2 } from "./Phase2";
+import { steamLocomotive7722PostCarPhase3 } from "./Phase3";
+import { steamLocomotive7722PostCarPhase4 } from "./Phase4";
+import { steamLocomotive7722PostCarPhase5 } from "./Phase5";
+import { steamLocomotive7722PostCarPhase6 } from "./Phase6";
+import { steamLocomotive7722PostCarPhase7 } from "./Phase7";
+import { steamLocomotive7722PostCarPhase8 } from "./Phase8";
+import { steamLocomotive7722PostCarPhase9 } from "./Phase9";
 
 export const steamLocomotive7722PostCarModelBlocks: ModelBlock[] = [
   {

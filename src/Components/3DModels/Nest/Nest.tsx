@@ -29,13 +29,13 @@ const Nest = (props: NestProps) => {
     const nest = nestRef.current;
 
     if (marker.parent && nest) {
-      marker.parent.add(nest);
       if (marker.userData.afterConnectionArraignmentFunctionName) {
         handleArrangePartAfterConnection(
-          nest,
+          nest.children[0],
           marker.userData.afterConnectionArraignmentFunctionName
         );
       }
+      marker.parent.add(nest);
     }
 
     return () => {
@@ -55,12 +55,8 @@ const Nest = (props: NestProps) => {
           key={child.uuid}
           name={childMesh.name}
           geometry={childMesh.geometry}
-          position={
-            child.type === "Group" ? childMesh.position : child.position
-          }
-          quaternion={
-            child.type === "Group" ? childMesh.quaternion : child.quaternion
-          }
+          position={child.position}
+          quaternion={child.quaternion}
           material={material}
         >
           {renderMultipartChildrenRecursively(childMesh.children)}
@@ -69,7 +65,7 @@ const Nest = (props: NestProps) => {
     });
   };
 
-  const renderMesh = (mesh: Mesh) => {
+  const renderMesh = (mesh: Mesh, marker: Object3D) => {
     return (
       <mesh
         key={mesh.uuid}
@@ -122,7 +118,7 @@ const Nest = (props: NestProps) => {
         }
       }}
     >
-      {renderMesh(mesh as Mesh)}
+      {renderMesh(mesh as Mesh, marker)}
     </group>
   );
 };

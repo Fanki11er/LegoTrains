@@ -16,11 +16,11 @@ export type TrainModelProps = {
   partsList: LegoBlock[];
   renderModels: (
     models: Model[],
-    modelPersistenceData: ModelPersistenceData[] | null
+    modelPersistenceData: ModelPersistenceData[] | null | undefined
   ) => JSX.Element[];
   sceneMarkersInfo: MarkersInfo | null;
   getPersistenceUsedPartsDataForModel: (
-    modelPersistenceData: ModelPersistenceData[] | null
+    modelPersistenceData: ModelPersistenceData[] | null | undefined
   ) => PartPersistenceData[];
   renderLegoParts: (
     partsList: LegoBlock[],
@@ -49,7 +49,7 @@ const TrainModel = memo(({ model }: RenderProps) => {
 
   const renderModels = (
     models: Model[],
-    modelPersistenceData: ModelPersistenceData[] | null
+    modelPersistenceData: ModelPersistenceData[] | null | undefined
   ) => {
     return models.map((model) => {
       return (
@@ -87,7 +87,7 @@ const TrainModel = memo(({ model }: RenderProps) => {
   };
 
   const getPersistenceDataForModel = (
-    modelPersistenceData: ModelPersistenceData[] | null,
+    modelPersistenceData: ModelPersistenceData[] | null | undefined,
     modelMarkerId: string | undefined
   ) => {
     if (modelPersistenceData && modelMarkerId) {
@@ -102,7 +102,7 @@ const TrainModel = memo(({ model }: RenderProps) => {
   };
 
   const getPersistenceUsedPartsDataForModel = (
-    modelPersistenceData: ModelPersistenceData[] | null
+    modelPersistenceData: ModelPersistenceData[] | null | undefined
   ) => {
     const usedPartsData: PartPersistenceData[] = [];
     modelPersistenceData?.forEach((model) => {

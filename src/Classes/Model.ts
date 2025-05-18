@@ -4,7 +4,7 @@ import { TrainInstruction } from "./TrainInstruction";
 import { PartInfo } from "../Types/PartInfo";
 import { LegoBlock } from "../Types/LegoBlock";
 import { ArraignmentFunction } from "../Types/ArrangementFunction";
-import { PartsArraignmentFunctionsTypes } from "../Utilities/partsAfterConnectionFunctions";
+import { ArraignmentFunctionRegistrationEntry } from "../Types/ModelTypes";
 
 export type MarkersInfo = {
   markersPath: string;
@@ -234,8 +234,3 @@ export class Model {
     return firstPhase;
   };
 }
-
-type ArraignmentFunctionRegistrationEntry = {
-  markerId: string;
-  arraignmentFunctionName: PartsArraignmentFunctionsTypes;
-};

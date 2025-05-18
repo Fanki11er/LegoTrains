@@ -4,7 +4,7 @@ import {
   antenna_Small_Base_with_Lever_4592c02,
   brick_1x2_3004,
   slope_3040,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722ForkliftPhase7: LegoBlockType[] = [
   {

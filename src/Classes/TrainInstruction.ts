@@ -7,11 +7,12 @@ import {
   getPartArrangementFunction,
   PartsArraignmentFunctionsTypes,
 } from "../Utilities/partsAfterConnectionFunctions";
+import { ModelConfiguration } from "../Types/ModelTypes";
 export class TrainInstruction {
   private models: Model[] = [];
   sceneLoader!: () => Scene;
   private activeModel: Model | null = null;
-  private setLegoBlocks: SetLegoBlocks | null = null;
+  private setLegoBlocks: SetLegoBlocks;
   private connectedMarkersIds: string[] = [];
   private persistenceModule: PersistenceModule;
   private sceneMarkersInfo: MarkersInfo;
@@ -24,10 +25,33 @@ export class TrainInstruction {
     };
 
     this.persistenceModule = new PersistenceModule(this);
+    this.setLegoBlocks = new SetLegoBlocks(this);
   }
 
-  addSetLegoBlocks = (setLegoBlocks: SetLegoBlocks) => {
-    this.setLegoBlocks = setLegoBlocks;
+  createModel = (modelConfiguration: ModelConfiguration) => {
+    const {
+      modelName,
+      modelMarkers,
+      modelBlocks,
+      arrangementFunction,
+      afterConnectArraignmentFunctionsNames,
+    } = modelConfiguration;
+
+    const steamLocomotive7722Model = new Model(modelName, modelMarkers, this);
+
+    steamLocomotive7722Model.registerBlocksAfterConnectArraignmentsFunctionsNames(
+      afterConnectArraignmentFunctionsNames
+    );
+
+    if (arrangementFunction) {
+      steamLocomotive7722Model.registerModelArrangementFunction(
+        arrangementFunction
+      );
+    }
+
+    this.addModel(steamLocomotive7722Model);
+
+    this.setLegoBlocks.addForModelBlocks(modelName, modelBlocks);
   };
 
   getSceneMarkersInfo = () => {
@@ -259,7 +283,7 @@ export class TrainInstruction {
         const modelArrangementFunction =
           this.activeModel.getModelArrangementFunction();
 
-        // Arrange elements like doors and connectors
+        //?? Arrange elements like doors and connectors
 
         if (modelArrangementFunction) {
           otherModifiedModelsIds = modelArrangementFunction(modelRootMarker);

@@ -9,7 +9,7 @@ import {
   tracksMarkers_7722,
   train_Signal_Post,
   train_Direction_Switch_3218,
-} from "../../../../LegoSets/Set7722V1/PartsImports";
+} from "../../../../LegoSets/Set7722V1/Set7722V1PartsImports";
 import { instruction_textures_7722 } from "../../../../InstructionsTextures/Instruction_7722";
 import { TrainModelProps } from "../../TrainModel/TrainModel";
 import MaterialsProvider from "../../../../Providers/materialsProvider";
@@ -26,13 +26,13 @@ const SteamLocomotive_7722 = ({
   getPersistenceUsedPartsDataForModel,
 }: TrainModelProps) => {
   return (
-    modelsData &&
     sceneMarkersInfo && (
       <>
         <SceneMarkers
           sceneMarkersInfo={sceneMarkersInfo}
           position={[0, 0, -550]}
         />
+
         <Tracks
           tracksMarkersFilePath={tracksMarkers_7722}
           tracksTypesFilePaths={tracksPaths}

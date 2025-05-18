@@ -1,6 +1,6 @@
 import { Vector3 } from "three";
 import { LegoBlockType } from "../../../Types/LegoBlockType";
-import { hinge_Plate_1x2_with_2_Fingers_4276 } from "../PartsImports";
+import { hinge_Plate_1x2_with_2_Fingers_4276 } from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722ForkliftPhase8: LegoBlockType[] = [
   {

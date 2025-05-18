@@ -5,7 +5,7 @@ import {
   plate_2_x_6_3795,
   train_Buffer_Beam_4022,
   trainCoupling_4023,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722PostCarPhase2: LegoBlockType[] = [
   {

@@ -11,7 +11,7 @@ import {
   train_Door_1x4x5_Left_Red_Yellow_4181,
   train_Door_1x4x5_Right_Red_Yellow_4182,
   train_Window_1x2x3_4035,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722PostCarPhase10: LegoBlockType[] = [
   {

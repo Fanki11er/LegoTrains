@@ -4,7 +4,7 @@ import {
   plate_1x6_3666,
   plate_2_x_2_3022,
   slope_Brick_Inverted_3665,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722PlatformCarPhase3: LegoBlockType[] = [
   {

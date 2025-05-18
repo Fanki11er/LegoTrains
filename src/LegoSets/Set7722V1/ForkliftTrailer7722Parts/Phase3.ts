@@ -4,7 +4,7 @@ import {
   plate_3023,
   plate_Specialty_2x2_with_Socket_3730,
   slope_Brick_Inverted_2x2_3660,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722ForkliftTrailerPhase3: LegoBlockType[] = [
   {

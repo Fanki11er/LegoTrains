@@ -1,11 +1,11 @@
-import { ModelBlock } from "../../Types/ModelBlock";
-import { steamLocomotive7722PlatformCarPhase1 } from "./PlatformCar7722Parts/Phase1";
-import { steamLocomotive7722PlatformCarPhase2 } from "./PlatformCar7722Parts/Phase2";
-import { steamLocomotive7722PlatformCarPhase3 } from "./PlatformCar7722Parts/Phase3";
-import { steamLocomotive7722PlatformCarPhase4 } from "./PlatformCar7722Parts/Phase4";
-import { steamLocomotive7722PlatformCarPhase5 } from "./PlatformCar7722Parts/Phase5";
-import { steamLocomotive7722PlatformCarPhase6 } from "./PlatformCar7722Parts/Phase6";
-import { steamLocomotive7722PlatformCarPhase7 } from "./PlatformCar7722Parts/Phase7";
+import { ModelBlock } from "../../../Types/ModelBlock";
+import { steamLocomotive7722PlatformCarPhase1 } from "./Phase1";
+import { steamLocomotive7722PlatformCarPhase2 } from "./Phase2";
+import { steamLocomotive7722PlatformCarPhase3 } from "./Phase3";
+import { steamLocomotive7722PlatformCarPhase4 } from "./Phase4";
+import { steamLocomotive7722PlatformCarPhase5 } from "./Phase5";
+import { steamLocomotive7722PlatformCarPhase6 } from "./Phase6";
+import { steamLocomotive7722PlatformCarPhase7 } from "./Phase7";
 
 export const steamLocomotive7722PlatformCarModelBlocks: ModelBlock[] = [
   {

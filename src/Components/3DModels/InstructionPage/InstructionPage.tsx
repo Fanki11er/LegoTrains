@@ -1,8 +1,8 @@
 import { useGLTF, useTexture } from "@react-three/drei";
-import { useDeferredValue, useMemo, useRef, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import { Group, MeshStandardMaterial, Object3DEventMap } from "three";
 // @ts-expect-error Not a type
-import instructionPagePath from "../../../assets/3D/InstructionPage/InstructionPage.glb";
+import instructionPagePath from "../../../assets/Blocks/InstructionPage/InstructionPage.glb";
 import { InstructionPageTextures } from "../../../Types/InstructionPageTextures";
 import { setTextureOptions } from "../../../Utilities/utilities";
 import { useSpring, animated } from "@react-spring/three";
@@ -80,6 +80,12 @@ const InstructionPage = (props: Props) => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    return () => {
+      useGLTF.clear(instructionPage);
+    };
+  }, [instructionPage]);
 
   return (
     <animated.group

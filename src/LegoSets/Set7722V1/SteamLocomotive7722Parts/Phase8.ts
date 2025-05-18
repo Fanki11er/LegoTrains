@@ -4,7 +4,7 @@ import {
   brick_1x1_3005,
   brick_1x8_3008,
   technic_Brick_1x2_With_Pin_Hole_3700,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722LocomotiveModelPhase8: LegoBlockType[] = [
   {

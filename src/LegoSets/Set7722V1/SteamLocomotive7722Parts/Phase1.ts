@@ -1,6 +1,6 @@
 import { Vector3 } from "three";
 import { LegoBlockType } from "../../../Types/LegoBlockType";
-import { roundOpenStud_3062b, trainBase_4178 } from "../PartsImports";
+import { roundOpenStud_3062b, trainBase_4178 } from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722LocomotiveModelPhase1: LegoBlockType[] = [
   {

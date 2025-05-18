@@ -6,7 +6,7 @@ import {
   plate_1x6_3666,
   slope_Brick_Inverted_2x2_3660,
   slope_Brick_Inverted_3665,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722LocomotiveModelPhase6: LegoBlockType[] = [
   {
