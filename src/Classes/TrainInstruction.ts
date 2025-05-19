@@ -13,7 +13,7 @@ export class TrainInstruction {
   sceneLoader!: () => Scene;
   private activeModel: Model | null = null;
   private setLegoBlocks: SetLegoBlocks;
-  private connectedMarkersIds: string[] = [];
+  // private connectedMarkersIds: string[] = [];
   private persistenceModule: PersistenceModule;
   private sceneMarkersInfo: MarkersInfo;
   private isPersistenceDataLoaded: boolean = false;
@@ -105,26 +105,8 @@ export class TrainInstruction {
     return "";
   };
 
-  getIsActiveModelFinished = () => {
-    if (this.activeModel) {
-      return this.activeModel.getIsModelFinished();
-    }
-    return null;
-  };
-
-  getIsActiveModelArranged = () => {
-    if (this.activeModel) {
-      return this.activeModel.getIsModelArranged();
-    }
-    return null;
-  };
-
   getPersistenceModule = () => {
     return this.persistenceModule;
-  };
-
-  getConnectedMarkersIds = () => {
-    return this.connectedMarkersIds;
   };
 
   getActivePhaseId = () => {
@@ -189,14 +171,6 @@ export class TrainInstruction {
     return this.activeModel;
   };
 
-  checkIfWasMarkerUsed = (markerId: string) => {
-    const result = this.connectedMarkersIds.find((id) => {
-      return id === markerId;
-    });
-
-    return !!result;
-  };
-
   finishPartConnection = (marker: Object3D) => {
     let isPhaseFinished = false;
     marker.removeFromParent();
@@ -205,13 +179,15 @@ export class TrainInstruction {
         marker.userData.name
       );
 
-      this.connectedMarkersIds.push(marker.userData.name);
+      this.activeModel.addConnectedMarkerIdToArray(marker.userData.name);
     }
     return isPhaseFinished;
   };
 
   prepareDataToSaveAfterPhaseEnd = () => {
-    return this.persistenceModule.prepareDataToSaveAfterPhaseEnd();
+    return this.persistenceModule.prepareDataToSaveAfterPhaseEnd(
+      this.activeModel
+    );
   };
 
   prepareDataToSaveAfterModelArrangement = (model: Model) => {

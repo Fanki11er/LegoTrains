@@ -18,6 +18,7 @@ export class Model {
   private activePhase: Phase | null = null;
   private instruction: TrainInstruction;
   private modelMarkersInfo: MarkersInfo;
+  private connectedMarkersIds: string[] = [];
   private arraignmentFunctionRegistrationEntries: ArraignmentFunctionRegistrationEntry[] =
     [];
   private modelArrangementFunction: ArraignmentFunction | undefined;
@@ -115,7 +116,7 @@ export class Model {
             }
           } else {
             for (let i = 0; i < part.depends.length; i++) {
-              if (!this.instruction.checkIfWasMarkerUsed(part.depends[i])) {
+              if (!this.checkIfWasMarkerUsed(part.depends[i])) {
                 return;
               }
             }
@@ -198,6 +199,14 @@ export class Model {
     this.modelArrangementFunction = modelArrangementFunction;
   };
 
+  addConnectedMarkerIdToArray = (markerId: string) => {
+    this.connectedMarkersIds.push(markerId);
+  };
+
+  getConnectedMarkersIds = () => {
+    return this.connectedMarkersIds;
+  };
+
   private getMarkerByName = (
     name: string,
     model: Object3D<Object3DEventMap>
@@ -232,5 +241,13 @@ export class Model {
         return phase.getPhaseNumber() === this.findFirstPhaseNumber();
       }) || this.phases[0];
     return firstPhase;
+  };
+
+  private checkIfWasMarkerUsed = (markerId: string) => {
+    const result = this.connectedMarkersIds.find((id) => {
+      return id === markerId;
+    });
+
+    return !!result;
   };
 }
