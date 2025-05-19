@@ -203,6 +203,12 @@ export class Model {
     this.connectedMarkersIds.push(markerId);
   };
 
+  addConnectedMarkersIdToArray = (markersId: string[]) => {
+    markersId.forEach((markerId) => {
+      this.addConnectedMarkerIdToArray(markerId);
+    });
+  };
+
   getConnectedMarkersIds = () => {
     return this.connectedMarkersIds;
   };

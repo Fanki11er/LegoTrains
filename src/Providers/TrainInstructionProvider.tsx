@@ -42,6 +42,7 @@ export const TrainInstructionContext = createContext({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _arraignmentFunctionName: PartsArraignmentFunctionsTypes
   ) => {},
+  handleGetShouldByHelperVisible: (): boolean => true,
 });
 
 type InstructionData = {
@@ -183,6 +184,10 @@ const TrainInstructionProvider = (
     }
   };
 
+  const handleGetShouldByHelperVisible = useCallback(() => {
+    return instruction.getShouldByHelperVisible();
+  }, [instruction]);
+
   const context = {
     handleGetPartsList,
     handleGetMarkersForSelectedPart,
@@ -195,6 +200,7 @@ const TrainInstructionProvider = (
     handleMoveReadyModelToSetArrangement,
     handleGetSetRootMarker,
     handleArrangePartAfterConnection,
+    handleGetShouldByHelperVisible,
   };
 
   return (

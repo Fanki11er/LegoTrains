@@ -14,17 +14,20 @@ const Nest = (props: NestProps) => {
   const { marker, mesh } = props;
   const [isHovered, setIsHovered] = useState(false);
   const nestRef = useRef<Group>(null!);
-  const { handleFinishPartConnection, handleArrangePartAfterConnection } =
-    useTrainInstruction();
+  const {
+    handleFinishPartConnection,
+    handleArrangePartAfterConnection,
+    handleGetShouldByHelperVisible,
+  } = useTrainInstruction();
   const { handleSaveModelDataToDatabase } = usePersistenceDataProvider();
 
   const material = useMemo(() => {
     const material = nestMaterial.clone();
-    material.opacity =
-      isHovered || !marker.parent?.userData.hideHelper ? 0.5 : 0;
+    const shouldByHelperVisible = handleGetShouldByHelperVisible();
+    material.opacity = isHovered || shouldByHelperVisible ? 0.5 : 0;
     material.color = new Color("blue");
     return material;
-  }, [isHovered, marker.parent]);
+  }, [isHovered, handleGetShouldByHelperVisible]);
 
   useEffect(() => {
     const nest = nestRef.current;

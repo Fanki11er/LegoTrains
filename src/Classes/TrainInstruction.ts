@@ -13,7 +13,6 @@ export class TrainInstruction {
   sceneLoader!: () => Scene;
   private activeModel: Model | null = null;
   private setLegoBlocks: SetLegoBlocks;
-  // private connectedMarkersIds: string[] = [];
   private persistenceModule: PersistenceModule;
   private sceneMarkersInfo: MarkersInfo;
   private isPersistenceDataLoaded: boolean = false;
@@ -216,6 +215,7 @@ export class TrainInstruction {
             );
           }
         }
+        model.addConnectedMarkersIdToArray(foundModel.connectedMarkersIds);
       } else {
         this.clearNeededPartsListInAllModelPhases(model);
         model.setIsModelFinished(foundModel.isModelFinished);
@@ -280,6 +280,13 @@ export class TrainInstruction {
     }
     return null;
   };
+
+  getShouldByHelperVisible() {
+    if (this.activeModel) {
+      return !this.activeModel.getConnectedMarkersIds().length;
+    }
+    return true;
+  }
 
   private clearNeededPartsInModelPhasesBeforePhaseId = (
     model: Model,

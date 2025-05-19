@@ -85,6 +85,7 @@ const LegoSet = () => {
     <ErrorBoundary
       fallback={<ErrorFallback message={ERROR_FALLBACK_TEXT} />}
       save
+      setId={id}
     >
       {isLoading && (
         <FullCenterWrapper>

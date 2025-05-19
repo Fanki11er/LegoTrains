@@ -3,6 +3,7 @@ import { saveErrorLog } from "../../../firebase/writeToDbFunctions";
 type Props = {
   fallback: ReactNode;
   save?: boolean;
+  setId?: string;
 };
 
 class ErrorBoundary extends Component<PropsWithChildren & Props> {
@@ -11,7 +12,7 @@ class ErrorBoundary extends Component<PropsWithChildren & Props> {
   componentDidCatch(err: Error) {
     this.setState({ hasError: true });
     if (this.props.save) {
-      saveErrorLog(err.message);
+      saveErrorLog(err.message, this.props.setId);
     }
   }
 
