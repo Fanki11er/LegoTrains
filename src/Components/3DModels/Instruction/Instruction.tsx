@@ -13,8 +13,6 @@ const Instruction = ({ position, instructionTextures }: Props) => {
   const [onTopPagesIndexes, setOnTopPagesIndexes] = useState<number[]>([0]);
   const pagesCount = instructionTextures.length;
 
-  console.log("onTopPagesIndexes", onTopPagesIndexes);
-
   const handleSetOnTopPagesIndexUp = useCallback(
     (index: number) => {
       if (onTopPagesIndexes.length === 1) {
