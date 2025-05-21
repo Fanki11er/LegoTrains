@@ -49,13 +49,13 @@ const SteamLocomotive_7722 = ({
           markerId="DestinationSwitch"
           elementDescription="DestinationSwitch"
         />
-        <Instruction
-          position={[-170, 0.1, 0]}
-          instructionTextures={instruction_textures_7722}
-        />
 
         <MaterialsProvider>
           <Floor />
+          <Instruction
+            position={[-170, 0.1, 0]}
+            instructionTextures={instruction_textures_7722}
+          />
           {renderModels(handleGetSetModelsToRenderList(), modelsData)}
           <group name={"LeftBlocks"}>
             {renderLegoParts(

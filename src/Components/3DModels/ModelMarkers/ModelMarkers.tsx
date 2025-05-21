@@ -29,24 +29,6 @@ const ModelMarkers = (props: Props) => {
   const markersPath = useDeferredValue(modelDataObject.getModelMarkersPath());
   const { scene } = useGLTF(markersPath);
   const { handleGetSetRootMarker } = useTrainInstruction();
-  // const [hideHelper, setHideHelper] = useState<boolean>(false);
-
-  // useEffect(() => {
-  //   if (persistenceData?.connectedMarkersIds.length) {
-  //     setHideHelper(true);
-  //   }
-  // }, [persistenceData]);
-
-  // const shouldByHelperVisible = useMemo(() => {
-  //   if (
-  //     persistenceData?.connectedMarkersIds.length ||
-  //     modelDataObject.getConnectedMarkersIds().length
-  //   ) {
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
-  // }, [persistenceData, modelDataObject]);
 
   const model = useMemo(() => {
     return scene.children[0];
@@ -62,25 +44,16 @@ const ModelMarkers = (props: Props) => {
     }
   }, [modelDataObject, modelRef]);
 
-  // const handleHideHelper = useCallback(() => {
-  //   !hideHelper &&
-  //     modelDataObject.getConnectedMarkersIds().length &&
-  //     setHideHelper(true);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
   useEffect(() => {
     if (model) {
       model.name = modelDataObject.getRootModelMarkerId();
       model.addEventListener("childadded", handleMoveElementToFloorLevel);
-      //model.addEventListener("childadded", handleHideHelper);
       model.addEventListener("childremoved", handleMoveElementToFloorLevel);
     }
 
     return () => {
       model &&
         model.removeEventListener("childadded", handleMoveElementToFloorLevel);
-      //model && model.removeEventListener("childadded", handleHideHelper);
       model &&
         model.removeEventListener(
           "childremoved",
