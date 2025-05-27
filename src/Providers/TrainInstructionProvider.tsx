@@ -43,6 +43,8 @@ export const TrainInstructionContext = createContext({
     _arraignmentFunctionName: PartsArraignmentFunctionsTypes
   ) => {},
   handleGetShouldByHelperVisible: (): boolean => true,
+  handleCheckIfSetIsFinished: (): boolean => false,
+  handleGetLegoSetNumber: (): string => "",
 });
 
 type InstructionData = {
@@ -188,6 +190,14 @@ const TrainInstructionProvider = (
     return instruction.getShouldByHelperVisible();
   }, [instruction]);
 
+  const handleCheckIfSetIsFinished = useCallback(() => {
+    return instruction.checkIfSetIsFinished();
+  }, [instruction]);
+
+  const handleGetLegoSetNumber = useCallback(() => {
+    return instruction.getLegoSetNumber();
+  }, [instruction]);
+
   const context = {
     handleGetPartsList,
     handleGetMarkersForSelectedPart,
@@ -201,6 +211,8 @@ const TrainInstructionProvider = (
     handleGetSetRootMarker,
     handleArrangePartAfterConnection,
     handleGetShouldByHelperVisible,
+    handleCheckIfSetIsFinished,
+    handleGetLegoSetNumber,
   };
 
   return (

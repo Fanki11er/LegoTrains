@@ -9,6 +9,7 @@ import {
 } from "../Utilities/partsAfterConnectionFunctions";
 import { ModelConfiguration } from "../Types/ModelTypes";
 export class TrainInstruction {
+  private legoSetNumber: string;
   private models: Model[] = [];
   sceneLoader!: () => Scene;
   private activeModel: Model | null = null;
@@ -17,7 +18,12 @@ export class TrainInstruction {
   private sceneMarkersInfo: MarkersInfo;
   private isPersistenceDataLoaded: boolean = false;
 
-  constructor(modelMarkersPath: string, markersId: string = "SceneRootMarker") {
+  constructor(
+    legoSetNumber: string,
+    modelMarkersPath: string,
+    markersId: string = "SceneRootMarker"
+  ) {
+    this.legoSetNumber = legoSetNumber;
     this.sceneMarkersInfo = {
       markersPath: modelMarkersPath,
       rootMarkerId: markersId,
@@ -26,6 +32,10 @@ export class TrainInstruction {
     this.persistenceModule = new PersistenceModule(this);
     this.setLegoBlocks = new SetLegoBlocks(this);
   }
+
+  getLegoSetNumber = () => {
+    return this.legoSetNumber;
+  };
 
   createModel = (modelConfiguration: ModelConfiguration) => {
     const {
@@ -266,6 +276,7 @@ export class TrainInstruction {
         }
 
         this.changeToNextActiveModel();
+
         return {
           oldModel,
           otherModifiedModelsIds,
@@ -279,6 +290,12 @@ export class TrainInstruction {
       }
     }
     return null;
+  };
+
+  checkIfSetIsFinished = () => {
+    return !this.models.find((model) => {
+      return !model.getIsModelArranged();
+    });
   };
 
   getShouldByHelperVisible() {
@@ -321,6 +338,7 @@ export class TrainInstruction {
 
     this.activeModel = newActiveModel;
   };
+
   getSceneLoader = (fn: () => Scene) => {
     this.sceneLoader = fn;
   };

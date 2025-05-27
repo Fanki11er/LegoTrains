@@ -1,70 +1,49 @@
-import {
-  SelectedElementContextMenuWrapper,
-  SelectedElementMenuSection,
-  SelectedElementMenuSectionHeader,
-  SelectedElementMenuSectionHorizontalWrapper,
-} from "./SelectedElementContextMenu.styles";
-import { rotateElementUp } from "../../../Utilities/utilities";
-import { Html } from "@react-three/drei";
 import { Mesh, Object3D } from "three";
-import { InSceneRotateElementContextMenuButton } from "../../Atoms/InSceneButtons/InSceneButtons.styles";
+import { InSceneRotateModelContextMenuButton } from "../../Atoms/InSceneButtons/InSceneButtons.styles";
+import {
+  SelectedItemContextMenuWrapper,
+  SelectedItemMenuSection,
+  SelectedItemMenuSectionHeader,
+  SelectedItemMenuSectionHorizontalWrapper,
+} from "../../Atoms/SelectedItemContextMenu/SelectedItemContextMenu.styles";
+import useFocusCamera from "../../../Hooks/useFocusCamera";
+import InSceneHTMLWrapper from "../../Atoms/InSceneHTMLWrapper/InSceneHTMLWrapper";
+
 type Props = {
   mesh: Object3D | Mesh;
+  withHelper?: boolean;
 };
 
-const SelectedElementContextMenu = (props: Props) => {
-  const { mesh } = props;
+const SelectedElementContextMenu = ({ mesh, withHelper }: Props) => {
+  const { handleFocusCamera } = useFocusCamera();
+
   return (
-    <Html>
-      <SelectedElementContextMenuWrapper>
-        <SelectedElementMenuSection>
-          <SelectedElementMenuSectionHeader>
-            Rotate
-          </SelectedElementMenuSectionHeader>
-          <SelectedElementMenuSectionHorizontalWrapper>
-            <InSceneRotateElementContextMenuButton
+    <InSceneHTMLWrapper positionRight={30} positionBottom={30}>
+      <SelectedItemContextMenuWrapper>
+        <SelectedItemMenuSection>
+          <SelectedItemMenuSectionHeader>Camera</SelectedItemMenuSectionHeader>
+          <SelectedItemMenuSectionHorizontalWrapper>
+            <InSceneRotateModelContextMenuButton
               onClick={(e) => {
                 e.stopPropagation();
-                rotateElementUp(mesh, "x", -90);
+                handleFocusCamera(mesh);
               }}
             >
-              Up
-            </InSceneRotateElementContextMenuButton>
-            <InSceneRotateElementContextMenuButton
-              onClick={(e) => {
-                e.stopPropagation();
-                rotateElementUp(mesh, "y", -90);
-              }}
-            >
-              Left
-            </InSceneRotateElementContextMenuButton>
-            <InSceneRotateElementContextMenuButton
-              onClick={(e) => {
-                e.stopPropagation();
-                rotateElementUp(mesh, "y", 90);
-              }}
-            >
-              Right
-            </InSceneRotateElementContextMenuButton>
-            <InSceneRotateElementContextMenuButton
-              onClick={(e) => {
-                e.stopPropagation();
-                rotateElementUp(mesh, "x", 90);
-              }}
-            >
-              Down
-            </InSceneRotateElementContextMenuButton>
-          </SelectedElementMenuSectionHorizontalWrapper>
-        </SelectedElementMenuSection>
-        {/* //!!Position helper*/}
-        <SelectedElementMenuSection>
-          <SelectedElementMenuSectionHeader>
-            Position
-          </SelectedElementMenuSectionHeader>
-          <span>{`X: ${mesh.position.x} Z: ${mesh.position.z}`}</span>
-        </SelectedElementMenuSection>
-      </SelectedElementContextMenuWrapper>
-    </Html>
+              Focus
+            </InSceneRotateModelContextMenuButton>
+          </SelectedItemMenuSectionHorizontalWrapper>
+        </SelectedItemMenuSection>
+        {/* //??Position helper*/}
+        {withHelper ? (
+          <SelectedItemMenuSection>
+            <SelectedItemMenuSectionHeader>
+              Position
+            </SelectedItemMenuSectionHeader>
+            <span>{`X: ${mesh.position.x} Z: ${mesh.position.z}`}</span>
+          </SelectedItemMenuSection>
+        ) : null}
+      </SelectedItemContextMenuWrapper>
+    </InSceneHTMLWrapper>
   );
 };
 export default SelectedElementContextMenu;

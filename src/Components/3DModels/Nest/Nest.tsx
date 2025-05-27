@@ -1,4 +1,4 @@
-import { Color, Group, Mesh, Object3D, Object3DEventMap } from "three";
+import { Group, Mesh, Object3D, Object3DEventMap } from "three";
 import { nestMaterial } from "../../../Materials/NestMaterial";
 import { useEffect, useMemo, useRef } from "react";
 import { NestElementUserData } from "../../../Types/NestElementUserData";
@@ -32,8 +32,7 @@ const Nest = (props: NestProps) => {
   const material = useMemo(() => {
     const material = nestMaterial.clone();
     const shouldByHelperVisible = handleGetShouldByHelperVisible();
-    shouldByHelperVisible && opacity.start(0.5);
-    material.color = new Color("blue");
+    shouldByHelperVisible && opacity.start(0.8);
     return material;
   }, [handleGetShouldByHelperVisible, opacity]);
 
@@ -90,7 +89,7 @@ const Nest = (props: NestProps) => {
         userData={{ markerId: marker.id } as NestElementUserData}
         material-opacity={opacity}
         onPointerEnter={() => {
-          opacity.start(0.5);
+          opacity.start(0.8);
         }}
         onPointerLeave={() => {
           opacity.start(0);

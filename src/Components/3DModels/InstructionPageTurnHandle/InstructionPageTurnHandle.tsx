@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import useMaterials from "../../../Hooks/useMaterials";
 import { useSpring, animated } from "@react-spring/three";
+import { theme } from "../../../Theme/theme";
 type Props = {
   height: number;
   width: number;
@@ -28,7 +29,7 @@ const InstructionPageTurnHandle = ({
   }));
 
   const [hover, hoverApi] = useSpring(() => ({
-    color: "blue",
+    color: theme.colors.nestBlue,
     config: {
       mass: 0.5,
       tension: 20,
@@ -39,7 +40,7 @@ const InstructionPageTurnHandle = ({
   useEffect(() => {
     if (visible) {
       api.start({
-        opacity: 0.5,
+        opacity: 0.8,
       });
     } else {
       api.start({
@@ -64,12 +65,12 @@ const InstructionPageTurnHandle = ({
       receiveShadow
       onPointerEnter={() => {
         hoverApi.start({
-          color: "darkgreen",
+          color: theme.colors.green,
         });
       }}
       onPointerLeave={() => {
         hoverApi.start({
-          color: "blue",
+          color: theme.colors.nestBlue,
         });
       }}
     >

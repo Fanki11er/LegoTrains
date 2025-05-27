@@ -7,6 +7,7 @@ import { ReturnButton } from "../../Atoms/Buttons/Buttons.styles";
 import { paths } from "../../../router/routerPaths";
 import TrainModel, { TrainModelProps } from "../TrainModel/TrainModel";
 import { TrainInstruction } from "../../../Classes/TrainInstruction";
+import FinishedSetCongratulationsBanner from "../../Molecules/FinishedSetCongratulationsBanner/FinishedSetCongratulationsBanner";
 
 type Props = {
   legoSetId: string;
@@ -25,6 +26,7 @@ const Experience = ({ legoSetId, createInstruction, model }: Props) => {
       <Scene>
         <TrainInstructionProvider instruction={instruction}>
           <TrainModel model={(props) => model(props)} />
+          <FinishedSetCongratulationsBanner />
         </TrainInstructionProvider>
       </Scene>
       <ReturnButton onClick={() => navigate(paths.userDashboardRouterPath)}>

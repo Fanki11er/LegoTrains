@@ -7,7 +7,6 @@ import {
   useRef,
 } from "react";
 import { Object3D } from "three";
-import SelectedElementContextMenu from "../../Organisms/SelectedElementContextMenu/SelectedElementContextMenu";
 import useSelectModel from "../../../Hooks/useSelectModel";
 import {
   convertToEuler,
@@ -16,16 +15,18 @@ import {
 } from "../../../Utilities/utilities";
 import { ModelPersistenceData } from "../../../Classes/PersistenceModule";
 import { Model } from "../../../Classes/Model";
-import FinishedModelContextMenu from "../../Organisms/FinishedModelContextMenu/FinishedModelContextMenu";
+import ArrangeModelContextMenu from "../../Organisms/ArrangeModelContextMenu/ArrangeModelContextMenu";
 import useTrainInstruction from "../../../Hooks/useTrainInstruction";
+import SelectedModelContextMenu from "../../Molecules/SelectedModelContextmenu/SelectedModelContextmenu";
+import useFocusCamera from "../../../Hooks/useFocusCamera";
+import { SCENE_OFFSET } from "../../../Constants/sceneOffset";
 
 type Props = {
   modelDataObject: Model;
   persistenceData: ModelPersistenceData | undefined | null;
 };
 
-const ModelMarkers = (props: Props) => {
-  const { persistenceData, modelDataObject } = props;
+const ModelMarkers = ({ persistenceData, modelDataObject }: Props) => {
   const markersPath = useDeferredValue(modelDataObject.getModelMarkersPath());
   const { scene } = useGLTF(markersPath);
   const { handleGetSetRootMarker } = useTrainInstruction();
@@ -37,6 +38,7 @@ const ModelMarkers = (props: Props) => {
   const modelRef = useRef<Object3D>(null!);
 
   const { isSelected, handleSelect, handleUnselect } = useSelectModel();
+  const { handleFocusCamera } = useFocusCamera();
 
   const handleMoveElementToFloorLevel = useCallback(() => {
     if (modelRef && !modelDataObject.getIsModelArranged()) {
@@ -96,8 +98,11 @@ const ModelMarkers = (props: Props) => {
         object={model}
         ref={modelRef}
         onClick={() => {
-          if (modelRef.current && !modelDataObject.getIsModelArranged()) {
+          const isModelArranged = modelDataObject.getIsModelArranged();
+          if (modelRef.current && !isModelArranged) {
             handleSelect(modelRef.current, true);
+          } else if (modelRef.current && isModelArranged) {
+            handleFocusCamera(modelRef.current, SCENE_OFFSET);
           }
         }}
         onPointerMissed={() => {
@@ -108,11 +113,11 @@ const ModelMarkers = (props: Props) => {
       {modelRef.current &&
         isSelected &&
         !modelDataObject.getIsModelFinished() && (
-          <SelectedElementContextMenu mesh={modelRef.current} />
+          <SelectedModelContextMenu mesh={modelRef.current} />
         )}
       {modelRef.current &&
         isSelected &&
-        modelDataObject.getIsModelFinished() && <FinishedModelContextMenu />}
+        modelDataObject.getIsModelFinished() && <ArrangeModelContextMenu />}
     </>
   );
 };

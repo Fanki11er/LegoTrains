@@ -13,8 +13,11 @@ import {
 import { instruction_textures_7722 } from "../../../../InstructionsTextures/Instruction_7722";
 import { TrainModelProps } from "../../TrainModel/TrainModel";
 import MaterialsProvider from "../../../../Providers/materialsProvider";
+import { SCENE_OFFSET } from "../../../../Constants/sceneOffset";
 
 const tracksPaths = [straight_Track_Old, curved_Track_Old];
+
+const [x, y, z] = SCENE_OFFSET;
 
 const SteamLocomotive_7722 = ({
   modelsData,
@@ -30,7 +33,7 @@ const SteamLocomotive_7722 = ({
       <>
         <SceneMarkers
           sceneMarkersInfo={sceneMarkersInfo}
-          position={[0, 0, -550]}
+          position={[x, y, z]}
         />
 
         <Tracks

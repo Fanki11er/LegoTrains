@@ -13,10 +13,12 @@ const Scene = ({ children }: PropsWithChildren) => {
         camera={{ near: 1, far: 2000, position: [0, 50, 250] }}
       >
         <Suspense fallback={<Loader />}>
-          <Perf position={"bottom-right"} />
+          <Perf position={"bottom-left"} />
+
           <directionalLight position={[0, 50, 5]} intensity={6} />
           <ambientLight intensity={1} />
           <OrbitControls
+            makeDefault
             enableDamping
             minPolarAngle={0}
             maxPolarAngle={Math.PI / 2.05}
