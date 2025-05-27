@@ -5,7 +5,7 @@ import {
   plate_3023,
   plate_With_Ladder_4175,
   slope_3040,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722LocomotiveModelPhase4: LegoBlockType[] = [
   {

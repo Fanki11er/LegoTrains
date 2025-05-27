@@ -5,7 +5,7 @@ import {
   plate_1_x_8_3460,
   plate_1x4_3710,
   plate_Specialty_1_x_8_with_Door_Rail_4510,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722PostCarPhase11: LegoBlockType[] = [
   {

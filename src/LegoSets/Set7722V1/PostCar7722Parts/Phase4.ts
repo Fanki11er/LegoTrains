@@ -3,7 +3,7 @@ import { LegoBlockType } from "../../../Types/LegoBlockType";
 import {
   brick_Specialty_2_x_4_with_Black_Spoked_Train_Wheels_4180c01,
   plate_4_x_4_3031,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722PostCarPhase4: LegoBlockType[] = [
   {

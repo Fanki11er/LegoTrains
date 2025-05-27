@@ -74,7 +74,7 @@ export class PersistenceModule {
     const preparedMarkerData = this.prepareModelMarkerDataToSave(markers);
     const partsPreparedToSave = this.prepareModelPartsDataToSave(markers);
 
-    const connectedMarkersIds = this.trainInstruction.getConnectedMarkersIds();
+    const connectedMarkersIds = model.getConnectedMarkersIds();
 
     return {
       modelName: modelName,
@@ -87,10 +87,16 @@ export class PersistenceModule {
     };
   };
 
-  prepareDataToSaveAfterPhaseEnd = (): ModelPersistenceData | undefined => {
-    const modelName = this.trainInstruction.getActiveModelName();
-    const isModelFinished = this.trainInstruction.getIsActiveModelFinished();
-    const isModelArranged = this.trainInstruction.getIsActiveModelArranged();
+  prepareDataToSaveAfterPhaseEnd = (
+    model: Model | null
+  ): ModelPersistenceData | undefined => {
+    if (!model) {
+      return undefined;
+    }
+
+    const modelName = model.getModelName();
+    const isModelFinished = model.getIsModelFinished();
+    const isModelArranged = model.getIsModelArranged();
 
     if (!modelName || isModelFinished === null || isModelArranged === null) {
       return undefined;
@@ -109,7 +115,7 @@ export class PersistenceModule {
     const preparedMarkerData = this.prepareModelMarkerDataToSave(markers);
     const partsPreparedToSave = this.prepareModelPartsDataToSave(markers);
 
-    const connectedMarkersIds = this.trainInstruction.getConnectedMarkersIds();
+    const connectedMarkersIds = model.getConnectedMarkersIds();
 
     return {
       modelName: modelName,

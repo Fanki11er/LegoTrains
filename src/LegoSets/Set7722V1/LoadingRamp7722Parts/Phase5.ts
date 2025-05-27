@@ -9,7 +9,7 @@ import {
   plate_1x4_3710,
   plate_4_x_6_3032,
   tile_1x2_with_Mail_Envelope_3069p01,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722LoadingRampPhase5: LegoBlockType[] = [
   {

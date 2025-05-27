@@ -6,7 +6,7 @@ import {
   plate_1x4_3710,
   plate_1x6_3666,
   round_Plate_4073,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722LocomotiveModelPhase11: LegoBlockType[] = [
   {

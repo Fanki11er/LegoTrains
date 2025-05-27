@@ -42,6 +42,9 @@ export const TrainInstructionContext = createContext({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _arraignmentFunctionName: PartsArraignmentFunctionsTypes
   ) => {},
+  handleGetShouldByHelperVisible: (): boolean => true,
+  handleCheckIfSetIsFinished: (): boolean => false,
+  handleGetLegoSetNumber: (): string => "",
 });
 
 type InstructionData = {
@@ -183,6 +186,18 @@ const TrainInstructionProvider = (
     }
   };
 
+  const handleGetShouldByHelperVisible = useCallback(() => {
+    return instruction.getShouldByHelperVisible();
+  }, [instruction]);
+
+  const handleCheckIfSetIsFinished = useCallback(() => {
+    return instruction.checkIfSetIsFinished();
+  }, [instruction]);
+
+  const handleGetLegoSetNumber = useCallback(() => {
+    return instruction.getLegoSetNumber();
+  }, [instruction]);
+
   const context = {
     handleGetPartsList,
     handleGetMarkersForSelectedPart,
@@ -195,6 +210,9 @@ const TrainInstructionProvider = (
     handleMoveReadyModelToSetArrangement,
     handleGetSetRootMarker,
     handleArrangePartAfterConnection,
+    handleGetShouldByHelperVisible,
+    handleCheckIfSetIsFinished,
+    handleGetLegoSetNumber,
   };
 
   return (

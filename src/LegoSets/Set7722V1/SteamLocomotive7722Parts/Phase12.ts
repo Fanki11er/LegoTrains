@@ -11,7 +11,7 @@ import {
   tile_2x2_With_Grove_3068b,
   train_Roof_6x6_4509,
   train_Wheel_Spoked_2ac02,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722LocomotiveModelPhase12: LegoBlockType[] = [
   {

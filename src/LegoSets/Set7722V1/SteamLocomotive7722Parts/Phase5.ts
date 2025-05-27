@@ -5,7 +5,7 @@ import {
   brick_4070,
   electric_Wire_766c28,
   round_Plate_4073,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722LocomotiveModelPhase5: LegoBlockType[] = [
   {

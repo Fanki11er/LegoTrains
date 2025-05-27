@@ -4,7 +4,7 @@ import {
   slope_Brick_3_x_2_33_Degrees_3298,
   tile_2x2_With_Grove_3068b,
   train_Roof_6x6_4509,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722batteryCarPhase3: LegoBlockType[] = [
   {

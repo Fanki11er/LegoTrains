@@ -7,27 +7,60 @@ import {
   getPartArrangementFunction,
   PartsArraignmentFunctionsTypes,
 } from "../Utilities/partsAfterConnectionFunctions";
+import { ModelConfiguration } from "../Types/ModelTypes";
 export class TrainInstruction {
+  private legoSetNumber: string;
   private models: Model[] = [];
   sceneLoader!: () => Scene;
   private activeModel: Model | null = null;
-  private setLegoBlocks: SetLegoBlocks | null = null;
-  private connectedMarkersIds: string[] = [];
+  private setLegoBlocks: SetLegoBlocks;
   private persistenceModule: PersistenceModule;
   private sceneMarkersInfo: MarkersInfo;
   private isPersistenceDataLoaded: boolean = false;
 
-  constructor(modelMarkersPath: string, markersId: string = "SceneRootMarker") {
+  constructor(
+    legoSetNumber: string,
+    modelMarkersPath: string,
+    markersId: string = "SceneRootMarker"
+  ) {
+    this.legoSetNumber = legoSetNumber;
     this.sceneMarkersInfo = {
       markersPath: modelMarkersPath,
       rootMarkerId: markersId,
     };
 
     this.persistenceModule = new PersistenceModule(this);
+    this.setLegoBlocks = new SetLegoBlocks(this);
   }
 
-  addSetLegoBlocks = (setLegoBlocks: SetLegoBlocks) => {
-    this.setLegoBlocks = setLegoBlocks;
+  getLegoSetNumber = () => {
+    return this.legoSetNumber;
+  };
+
+  createModel = (modelConfiguration: ModelConfiguration) => {
+    const {
+      modelName,
+      modelMarkers,
+      modelBlocks,
+      arrangementFunction,
+      afterConnectArraignmentFunctionsNames,
+    } = modelConfiguration;
+
+    const steamLocomotive7722Model = new Model(modelName, modelMarkers, this);
+
+    steamLocomotive7722Model.registerBlocksAfterConnectArraignmentsFunctionsNames(
+      afterConnectArraignmentFunctionsNames
+    );
+
+    if (arrangementFunction) {
+      steamLocomotive7722Model.registerModelArrangementFunction(
+        arrangementFunction
+      );
+    }
+
+    this.addModel(steamLocomotive7722Model);
+
+    this.setLegoBlocks.addForModelBlocks(modelName, modelBlocks);
   };
 
   getSceneMarkersInfo = () => {
@@ -81,26 +114,8 @@ export class TrainInstruction {
     return "";
   };
 
-  getIsActiveModelFinished = () => {
-    if (this.activeModel) {
-      return this.activeModel.getIsModelFinished();
-    }
-    return null;
-  };
-
-  getIsActiveModelArranged = () => {
-    if (this.activeModel) {
-      return this.activeModel.getIsModelArranged();
-    }
-    return null;
-  };
-
   getPersistenceModule = () => {
     return this.persistenceModule;
-  };
-
-  getConnectedMarkersIds = () => {
-    return this.connectedMarkersIds;
   };
 
   getActivePhaseId = () => {
@@ -165,14 +180,6 @@ export class TrainInstruction {
     return this.activeModel;
   };
 
-  checkIfWasMarkerUsed = (markerId: string) => {
-    const result = this.connectedMarkersIds.find((id) => {
-      return id === markerId;
-    });
-
-    return !!result;
-  };
-
   finishPartConnection = (marker: Object3D) => {
     let isPhaseFinished = false;
     marker.removeFromParent();
@@ -181,13 +188,15 @@ export class TrainInstruction {
         marker.userData.name
       );
 
-      this.connectedMarkersIds.push(marker.userData.name);
+      this.activeModel.addConnectedMarkerIdToArray(marker.userData.name);
     }
     return isPhaseFinished;
   };
 
   prepareDataToSaveAfterPhaseEnd = () => {
-    return this.persistenceModule.prepareDataToSaveAfterPhaseEnd();
+    return this.persistenceModule.prepareDataToSaveAfterPhaseEnd(
+      this.activeModel
+    );
   };
 
   prepareDataToSaveAfterModelArrangement = (model: Model) => {
@@ -216,6 +225,7 @@ export class TrainInstruction {
             );
           }
         }
+        model.addConnectedMarkersIdToArray(foundModel.connectedMarkersIds);
       } else {
         this.clearNeededPartsListInAllModelPhases(model);
         model.setIsModelFinished(foundModel.isModelFinished);
@@ -259,13 +269,14 @@ export class TrainInstruction {
         const modelArrangementFunction =
           this.activeModel.getModelArrangementFunction();
 
-        // Arrange elements like doors and connectors
+        //?? Arrange elements like doors and connectors
 
         if (modelArrangementFunction) {
           otherModifiedModelsIds = modelArrangementFunction(modelRootMarker);
         }
 
         this.changeToNextActiveModel();
+
         return {
           oldModel,
           otherModifiedModelsIds,
@@ -280,6 +291,19 @@ export class TrainInstruction {
     }
     return null;
   };
+
+  checkIfSetIsFinished = () => {
+    return !this.models.find((model) => {
+      return !model.getIsModelArranged();
+    });
+  };
+
+  getShouldByHelperVisible() {
+    if (this.activeModel) {
+      return !this.activeModel.getConnectedMarkersIds().length;
+    }
+    return true;
+  }
 
   private clearNeededPartsInModelPhasesBeforePhaseId = (
     model: Model,
@@ -314,6 +338,7 @@ export class TrainInstruction {
 
     this.activeModel = newActiveModel;
   };
+
   getSceneLoader = (fn: () => Scene) => {
     this.sceneLoader = fn;
   };

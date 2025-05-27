@@ -4,7 +4,7 @@ import { TrainInstruction } from "./TrainInstruction";
 import { PartInfo } from "../Types/PartInfo";
 import { LegoBlock } from "../Types/LegoBlock";
 import { ArraignmentFunction } from "../Types/ArrangementFunction";
-import { PartsArraignmentFunctionsTypes } from "../Utilities/partsAfterConnectionFunctions";
+import { ArraignmentFunctionRegistrationEntry } from "../Types/ModelTypes";
 
 export type MarkersInfo = {
   markersPath: string;
@@ -18,6 +18,7 @@ export class Model {
   private activePhase: Phase | null = null;
   private instruction: TrainInstruction;
   private modelMarkersInfo: MarkersInfo;
+  private connectedMarkersIds: string[] = [];
   private arraignmentFunctionRegistrationEntries: ArraignmentFunctionRegistrationEntry[] =
     [];
   private modelArrangementFunction: ArraignmentFunction | undefined;
@@ -115,7 +116,7 @@ export class Model {
             }
           } else {
             for (let i = 0; i < part.depends.length; i++) {
-              if (!this.instruction.checkIfWasMarkerUsed(part.depends[i])) {
+              if (!this.checkIfWasMarkerUsed(part.depends[i])) {
                 return;
               }
             }
@@ -198,6 +199,20 @@ export class Model {
     this.modelArrangementFunction = modelArrangementFunction;
   };
 
+  addConnectedMarkerIdToArray = (markerId: string) => {
+    this.connectedMarkersIds.push(markerId);
+  };
+
+  addConnectedMarkersIdToArray = (markersId: string[]) => {
+    markersId.forEach((markerId) => {
+      this.addConnectedMarkerIdToArray(markerId);
+    });
+  };
+
+  getConnectedMarkersIds = () => {
+    return this.connectedMarkersIds;
+  };
+
   private getMarkerByName = (
     name: string,
     model: Object3D<Object3DEventMap>
@@ -233,9 +248,12 @@ export class Model {
       }) || this.phases[0];
     return firstPhase;
   };
-}
 
-type ArraignmentFunctionRegistrationEntry = {
-  markerId: string;
-  arraignmentFunctionName: PartsArraignmentFunctionsTypes;
-};
+  private checkIfWasMarkerUsed = (markerId: string) => {
+    const result = this.connectedMarkersIds.find((id) => {
+      return id === markerId;
+    });
+
+    return !!result;
+  };
+}

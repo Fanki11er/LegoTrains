@@ -5,7 +5,7 @@ import {
   plate_Speciality_2x2_with_Medium_Wheels_122c01MW,
   plate_Speciality_2x2_with_Small_Wheels_122c01SW,
   plate_Specialty_2x2_with_Towball_3731,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722ForkliftPhase4: LegoBlockType[] = [
   {

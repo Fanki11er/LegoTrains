@@ -6,7 +6,7 @@ import {
   plate_1x4_3710,
   plate_Specialty_1_x_8_with_Door_Rail_4510,
   turntable_2_x_2_Plate_Black_3680c01,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722PostCarPhase5: LegoBlockType[] = [
   {
@@ -78,6 +78,7 @@ export const steamLocomotive7722PostCarPhase5: LegoBlockType[] = [
     partStartPosition: new Vector3(180, 0, -80),
     partType: "3680c01",
     slotId: "ModelMarker.039",
+    multipart: true,
     depends: [],
   },
 ];

@@ -3,6 +3,7 @@ export const theme: Theme = {
     transparent: "rgba(30, 0, 0, 0)",
     black: "rgba(0, 0, 0, 1)",
     lightBlack: "rgba(17, 19, 21, 1)",
+    transparentLightBlack: "rgba(17, 19, 21, 0.9)",
     darkGray: "rgba(26, 29, 31, 1)",
     white: "#FFFFFF",
     purple: "rgba(102, 102, 252, 1 )",
@@ -17,6 +18,7 @@ export const theme: Theme = {
     greenGray: "rgba(64, 79, 67, 1)",
     purpleGray: "rgba(39, 53, 76, 1)",
     transparentBlack: "rgba(0, 0, 0, 0.8)",
+    nestBlue: "rgba(44, 66, 230, 1)",
   },
 
   defaultFontFamily: "Inter, sans-serif",
@@ -27,15 +29,6 @@ export const theme: Theme = {
     M: "1.5rem",
     L: "2.rem",
   },
-
-  // borderRadius: { },
-
-  // padding: {
-
-  // },
-  // devices: {
-  //   small: `max-width: 760px`,
-  // },
 };
 
 export type Theme = {
@@ -57,6 +50,8 @@ export type Theme = {
     greenGray: string;
     purpleGray: string;
     transparentBlack: string;
+    transparentLightBlack: string;
+    nestBlue: string;
   };
 
   fontSizes: {

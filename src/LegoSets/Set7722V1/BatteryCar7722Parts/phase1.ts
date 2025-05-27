@@ -3,7 +3,7 @@ import { LegoBlockType } from "../../../Types/LegoBlockType";
 import {
   battery_Car_Roof_bb54,
   train_Battery_Box_Car_x488c02,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722batteryCarPhase1: LegoBlockType[] = [
   {

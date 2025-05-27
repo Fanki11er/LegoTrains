@@ -6,7 +6,7 @@ import {
   minifig_Accessory_Seat_2x2_4079,
   slope_Brick_Inverted_2x2_3660,
   tile_1x2_with_Mail_Envelope_3069p01,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722PostCarPhase6: LegoBlockType[] = [
   {

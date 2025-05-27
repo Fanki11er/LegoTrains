@@ -1,6 +1,6 @@
 import { Vector3 } from "three";
 import { LegoBlockType } from "../../../Types/LegoBlockType";
-import { vehicle_Forklift_4518ac01 } from "../PartsImports";
+import { vehicle_Forklift_4518ac01 } from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722ForkliftPhase9: LegoBlockType[] = [
   {

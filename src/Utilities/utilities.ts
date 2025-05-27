@@ -8,8 +8,8 @@ import {
   Texture,
   Vector3,
 } from "three";
-import { SetLegoBlocks } from "../LegoSets/Set7722V1/SteamLocomotive7722Parts/SetLegoBlockTypes";
-import { ModelBlock } from "../Types/ModelBlock";
+// import { SetLegoBlocks } from "../LegoSets/Set7722V1/SteamLocomotive7722Parts/SetLegoBlockTypes";
+// import { ModelBlock } from "../Types/ModelBlock";
 import { saveErrorLog } from "../firebase/writeToDbFunctions";
 import { ObjectPersistenceDataWithChildren } from "../Classes/PersistenceModule";
 
@@ -49,19 +49,19 @@ export const setTextureOptions = (texture: Texture) => {
   texture.colorSpace = SRGBColorSpace;
 };
 
-export const addForModelPhaseBlocks = (
-  setLegoBlocks: SetLegoBlocks,
-  modelName: string,
-  blocks: ModelBlock[]
-) => {
-  blocks.forEach((block) => {
-    setLegoBlocks.addForModelPhaseBlocks(
-      modelName,
-      block.phaseId,
-      block.legoBlockTypes
-    );
-  });
-};
+// export const addForModelPhaseBlocks = (
+//   setLegoBlocks: SetLegoBlocks,
+//   modelName: string,
+//   blocks: ModelBlock[]
+// ) => {
+//   blocks.forEach((block) => {
+//     setLegoBlocks.addForModelPhaseBlocks(
+//       modelName,
+//       block.phaseId,
+//       block.legoBlockTypes
+//     );
+//   });
+// };
 
 export const convertToVector3 = (numbers: number[]) => {
   return new Vector3().fromArray(numbers);

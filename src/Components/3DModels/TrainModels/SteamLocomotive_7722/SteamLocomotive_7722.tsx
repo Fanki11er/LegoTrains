@@ -1,17 +1,5 @@
-import useTrainInstruction from "../../../../Hooks/useTrainInstruction";
-import { memo, useMemo } from "react";
-import LegoPart from "../../LegoPart/LegoPart";
-import ModelMarkers from "../../ModelMarkers/ModelMarkers";
 import Instruction from "../../Instruction/Instruction";
-import { LegoBlock } from "../../../../Types/LegoBlock";
-import {
-  ModelPersistenceData,
-  PartPersistenceData,
-} from "../../../../Classes/PersistenceModule";
 import SceneMarkers from "../../SceneMarkers/SceneMarkers";
-import { Model } from "../../../../Classes/Model";
-import usePersistenceDataProvider from "../../../../Hooks/usePersistenceDataProvider";
-import MaterialsProvider from "../../../../Providers/materialsProvider";
 import Floor from "../../Floor/Floor";
 import Tracks from "../../Tracks/Tracks";
 import OtherSceneElement from "../../OtherSceneElement/OtherSceneElement";
@@ -21,131 +9,67 @@ import {
   tracksMarkers_7722,
   train_Signal_Post,
   train_Direction_Switch_3218,
-} from "../../../../LegoSets/Set7722V1/PartsImports";
+} from "../../../../LegoSets/Set7722V1/Set7722V1PartsImports";
+import { instruction_textures_7722 } from "../../../../InstructionsTextures/Instruction_7722";
+import { TrainModelProps } from "../../TrainModel/TrainModel";
+import MaterialsProvider from "../../../../Providers/materialsProvider";
+import { SCENE_OFFSET } from "../../../../Constants/sceneOffset";
 
-const SteamLocomotive_7722 = memo(() => {
-  console.log("Rerender Locomotive");
+const tracksPaths = [straight_Track_Old, curved_Track_Old];
 
-  const {
-    handleGetPartsList,
-    handleGetSceneMarkersInfo,
-    handleGetSetModelsToRenderList,
-  } = useTrainInstruction();
+const [x, y, z] = SCENE_OFFSET;
 
-  const { modelsData } = usePersistenceDataProvider();
-
-  const partsList = useMemo(() => {
-    return handleGetPartsList();
-  }, [handleGetPartsList]);
-
-  const renderModels = (
-    models: Model[],
-    modelPersistenceData: ModelPersistenceData[] | null
-  ) => {
-    return models.map((model) => {
-      return (
-        <ModelMarkers
-          modelDataObject={model}
-          key={model.getModelName()}
-          persistenceData={getPersistenceDataForModel(
-            modelPersistenceData,
-            model.getModelName()
-          )}
-        />
-      );
-    });
-  };
-
-  const sceneMarkersInfo = handleGetSceneMarkersInfo();
-
-  const renderLegoParts = (
-    partsList: LegoBlock[],
-    persistentData: PartPersistenceData[] | null | undefined
-  ) => {
-    return partsList.map((block) => {
-      const savedData = persistentData?.find((part) => {
-        return part.userData.partId === block.partId;
-      });
-
-      return (
-        <LegoPart
-          partInfo={block}
-          key={block.partId}
-          persistenceData={savedData}
-        />
-      );
-    });
-  };
-
-  const getPersistenceDataForModel = (
-    modelPersistenceData: ModelPersistenceData[] | null,
-    modelMarkerId: string | undefined
-  ) => {
-    if (modelPersistenceData && modelMarkerId) {
-      const modelData =
-        modelPersistenceData.find((data) => {
-          return data.modelName === modelMarkerId;
-        }) || null;
-
-      return modelData;
-    }
-    return null;
-  };
-
-  const getPersistenceUsedPartsDataForModel = (
-    modelPersistenceData: ModelPersistenceData[] | null
-  ) => {
-    const usedPartsData: PartPersistenceData[] = [];
-    modelPersistenceData?.forEach((model) => {
-      const data = model.usedPartsData;
-      if (data) {
-        usedPartsData.push(...model.usedPartsData);
-      }
-    });
-    return usedPartsData;
-  };
-
+const SteamLocomotive_7722 = ({
+  modelsData,
+  partsList,
+  sceneMarkersInfo,
+  renderLegoParts,
+  renderModels,
+  handleGetSetModelsToRenderList,
+  getPersistenceUsedPartsDataForModel,
+}: TrainModelProps) => {
   return (
-    <>
-      {modelsData && sceneMarkersInfo && (
-        <>
-          <SceneMarkers
-            sceneMarkersInfo={sceneMarkersInfo}
-            position={[0, 0, -550]}
-          />
-          <Tracks
-            tracksMarkersFilePath={tracksMarkers_7722}
-            straightTrackFilePath={straight_Track_Old}
-            curvedTrackFilePath={curved_Track_Old}
-          />
+    sceneMarkersInfo && (
+      <>
+        <SceneMarkers
+          sceneMarkersInfo={sceneMarkersInfo}
+          position={[x, y, z]}
+        />
 
-          <OtherSceneElement
-            elementPath={train_Signal_Post}
-            markerId="SignalPost"
-            elementDescription="SignalPost"
-          />
+        <Tracks
+          tracksMarkersFilePath={tracksMarkers_7722}
+          tracksTypesFilePaths={tracksPaths}
+        />
 
-          <OtherSceneElement
-            elementPath={train_Direction_Switch_3218}
-            markerId="DestinationSwitch"
-            elementDescription="DestinationSwitch"
-          />
-          <Instruction position={[-170, 0.1, 0]} />
+        <OtherSceneElement
+          elementPath={train_Signal_Post}
+          markerId="SignalPost"
+          elementDescription="SignalPost"
+        />
 
-          <MaterialsProvider>
-            <Floor />
-            {renderModels(handleGetSetModelsToRenderList(), modelsData)}
-            <group name={"LeftBlocks"}>
-              {renderLegoParts(
-                partsList,
-                getPersistenceUsedPartsDataForModel(modelsData)
-              )}
-            </group>
-          </MaterialsProvider>
-        </>
-      )}
-    </>
+        <OtherSceneElement
+          elementPath={train_Direction_Switch_3218}
+          markerId="DestinationSwitch"
+          elementDescription="DestinationSwitch"
+        />
+
+        <MaterialsProvider>
+          <Floor />
+          <Instruction
+            position={[-170, 0.1, 0]}
+            instructionTextures={instruction_textures_7722}
+          />
+          {renderModels(handleGetSetModelsToRenderList(), modelsData)}
+          <group name={"LeftBlocks"}>
+            {renderLegoParts(
+              partsList,
+              getPersistenceUsedPartsDataForModel(modelsData)
+            )}
+          </group>
+        </MaterialsProvider>
+      </>
+    )
   );
-});
+};
 
 export default SteamLocomotive_7722;

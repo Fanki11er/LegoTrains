@@ -2,6 +2,7 @@ import { Model } from "../../../Classes/Model";
 import { TrainInstruction } from "../../../Classes/TrainInstruction";
 import { LegoBlock } from "../../../Types/LegoBlock";
 import { LegoBlockType } from "../../../Types/LegoBlockType";
+import { ModelBlock } from "../../../Types/ModelBlock";
 
 export class SetLegoBlocks {
   private setLegoBlocks: LegoBlock[] = [];
@@ -46,5 +47,15 @@ export class SetLegoBlocks {
 
   getSetLegoBlocks = () => {
     return this.setLegoBlocks;
+  };
+
+  addForModelBlocks = (modelName: string, blocks: ModelBlock[]) => {
+    blocks.forEach((block) => {
+      this.addForModelPhaseBlocks(
+        modelName,
+        block.phaseId,
+        block.legoBlockTypes
+      );
+    });
   };
 }

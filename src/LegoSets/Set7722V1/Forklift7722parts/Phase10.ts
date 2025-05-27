@@ -10,7 +10,7 @@ import {
   plate_2x4_3020,
   slope_Brick_45_2x2_3039,
   tile_Specialty_1x2_with_Vehicle_Steering_Stand_Blue_3829c01,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722ForkliftPhase10: LegoBlockType[] = [
   {

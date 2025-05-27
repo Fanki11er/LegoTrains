@@ -3,7 +3,7 @@ import { LegoBlockType } from "../../../Types/LegoBlockType";
 import {
   plate_4x8_3035,
   turntable_2_x_2_Plate_Blue_3680c01,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722ForkliftTrailerPhase1: LegoBlockType[] = [
   {
@@ -19,6 +19,7 @@ export const steamLocomotive7722ForkliftTrailerPhase1: LegoBlockType[] = [
     partStartPosition: new Vector3(210, 0, -80),
     partType: "3680c01",
     slotId: "ModelMarker.002",
+    multipart: true,
     depends: ["ModelMarker.001"],
   },
 ];

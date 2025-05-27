@@ -4,7 +4,7 @@ import {
   brick_1x4_3010,
   brick_1x6_3009,
   tile_1x2_with_Mail_Envelope_3069p01,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722PostCarPhase7: LegoBlockType[] = [
   {

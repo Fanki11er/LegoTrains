@@ -5,7 +5,7 @@ import {
   brick_1x2_3004,
   slope_Brick_45_2x3_3038,
   technic_Pin_Half_Length_4274,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722LocomotiveModelPhase9: LegoBlockType[] = [
   {

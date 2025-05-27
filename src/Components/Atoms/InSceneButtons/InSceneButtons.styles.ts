@@ -12,26 +12,27 @@ export const InSceneBaseButton = styled.button`
   font-weight: 700;
 `;
 
-export const InSceneRotateElementContextMenuButton = styled(InSceneBaseButton)`
-  width: 60px;
-  height: 30px;
-  background-color: green;
+export const InSceneRotateModelContextMenuButton = styled(InSceneBaseButton)`
+  width: 70px;
+  height: 35px;
+  background-color: ${theme.colors.purpleGray};
+  color: ${theme.colors.purple};
+  &:hover,
+  &:focus {
+    background-color: ${theme.colors.green};
+    color: ${theme.colors.transparentLightBlack};
+  }
 `;
 
-export const InSceneElementContextMenuButton = styled(InSceneBaseButton)`
+export const InSceneArrangeModelButton = styled(InSceneBaseButton)`
   width: 130px;
   height: 35px;
-  background-color: yellow;
-`;
-
-export const InSceneFinishModelButton = styled(InSceneBaseButton)`
-  width: 130px;
-  height: 35px;
-  background-color: #22469e;
-  border: 2px solid #22469e;
+  background-color: ${theme.colors.purpleGray};
+  color: ${theme.colors.purple};
 
   &:focus,
   &:hover {
-    border: 2px solid #fcec20;
+    background-color: ${theme.colors.green};
+    color: ${theme.colors.transparentLightBlack};
   }
 `;

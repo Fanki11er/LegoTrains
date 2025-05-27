@@ -1,9 +1,10 @@
-import { Color, Group, Mesh, Object3D, Object3DEventMap } from "three";
+import { Group, Mesh, Object3D, Object3DEventMap } from "three";
 import { nestMaterial } from "../../../Materials/NestMaterial";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { NestElementUserData } from "../../../Types/NestElementUserData";
 import useTrainInstruction from "../../../Hooks/useTrainInstruction";
 import usePersistenceDataProvider from "../../../Hooks/usePersistenceDataProvider";
+import { useSpringValue, animated } from "@react-spring/three";
 
 type NestProps = {
   marker: Object3D<Object3DEventMap>;
@@ -12,30 +13,40 @@ type NestProps = {
 
 const Nest = (props: NestProps) => {
   const { marker, mesh } = props;
-  const [isHovered, setIsHovered] = useState(false);
   const nestRef = useRef<Group>(null!);
-  const { handleFinishPartConnection, handleArrangePartAfterConnection } =
-    useTrainInstruction();
+  const {
+    handleFinishPartConnection,
+    handleArrangePartAfterConnection,
+    handleGetShouldByHelperVisible,
+  } = useTrainInstruction();
   const { handleSaveModelDataToDatabase } = usePersistenceDataProvider();
+
+  const opacity = useSpringValue(0, {
+    config: {
+      mass: 0.5,
+      tension: 20,
+      friction: 5,
+    },
+  });
 
   const material = useMemo(() => {
     const material = nestMaterial.clone();
-    material.opacity = isHovered ? 0.5 : 0;
-    material.color = new Color("blue");
+    const shouldByHelperVisible = handleGetShouldByHelperVisible();
+    shouldByHelperVisible && opacity.start(0.8);
     return material;
-  }, [isHovered]);
+  }, [handleGetShouldByHelperVisible, opacity]);
 
   useEffect(() => {
     const nest = nestRef.current;
 
     if (marker.parent && nest) {
-      marker.parent.add(nest);
       if (marker.userData.afterConnectionArraignmentFunctionName) {
         handleArrangePartAfterConnection(
-          nest,
+          nest.children[0],
           marker.userData.afterConnectionArraignmentFunctionName
         );
       }
+      marker.parent.add(nest);
     }
 
     return () => {
@@ -51,27 +62,24 @@ const Nest = (props: NestProps) => {
     return children.map((child) => {
       const childMesh = child as Mesh;
       return (
-        <mesh
+        <animated.mesh
           key={child.uuid}
           name={childMesh.name}
           geometry={childMesh.geometry}
-          position={
-            child.type === "Group" ? childMesh.position : child.position
-          }
-          quaternion={
-            child.type === "Group" ? childMesh.quaternion : child.quaternion
-          }
+          position={child.position}
+          quaternion={child.quaternion}
           material={material}
+          material-opacity={opacity}
         >
           {renderMultipartChildrenRecursively(childMesh.children)}
-        </mesh>
+        </animated.mesh>
       );
     });
   };
 
-  const renderMesh = (mesh: Mesh) => {
+  const renderMesh = (mesh: Mesh, marker: Object3D) => {
     return (
-      <mesh
+      <animated.mesh
         key={mesh.uuid}
         name={mesh.name}
         geometry={mesh.geometry}
@@ -79,15 +87,16 @@ const Nest = (props: NestProps) => {
         position={marker.position}
         quaternion={marker.quaternion}
         userData={{ markerId: marker.id } as NestElementUserData}
+        material-opacity={opacity}
         onPointerEnter={() => {
-          setIsHovered(true);
+          opacity.start(0.8);
         }}
         onPointerLeave={() => {
-          setIsHovered(false);
+          opacity.start(0);
         }}
       >
         {renderMultipartChildrenRecursively(mesh.children)}
-      </mesh>
+      </animated.mesh>
     );
   };
 
@@ -122,7 +131,7 @@ const Nest = (props: NestProps) => {
         }
       }}
     >
-      {renderMesh(mesh as Mesh)}
+      {renderMesh(mesh as Mesh, marker)}
     </group>
   );
 };

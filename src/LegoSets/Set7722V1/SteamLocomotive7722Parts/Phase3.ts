@@ -5,7 +5,7 @@ import {
   magnetCylindrical_73092,
   plate_3023,
   trainCoupling_4023,
-} from "../PartsImports";
+} from "../Set7722V1PartsImports";
 
 export const steamLocomotive7722LocomotiveModelPhase3: LegoBlockType[] = [
   {
