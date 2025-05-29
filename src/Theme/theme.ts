@@ -19,6 +19,7 @@ export const theme: Theme = {
     purpleGray: "rgba(39, 53, 76, 1)",
     transparentBlack: "rgba(0, 0, 0, 0.8)",
     nestBlue: "rgba(44, 66, 230, 1)",
+    floorBlue: "rgba(64, 110, 198, 1)",
   },
 
   defaultFontFamily: "Inter, sans-serif",
@@ -52,6 +53,7 @@ export type Theme = {
     transparentBlack: string;
     transparentLightBlack: string;
     nestBlue: string;
+    floorBlue: string;
   };
 
   fontSizes: {

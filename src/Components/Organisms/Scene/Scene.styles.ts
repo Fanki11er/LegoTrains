@@ -1,10 +1,11 @@
 import { Canvas } from "@react-three/fiber";
 import styled from "styled-components";
+import { theme } from "../../../Theme/theme";
 
 export const SceneSection = styled.section`
   width: 100vw;
   height: 100vh;
-  background-color: black;
+  background-color: ${theme.colors.darkGray};
   position: relative;
   overflow: hidden;
 `;
