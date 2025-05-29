@@ -6,12 +6,12 @@ const Floor = () => {
     <mesh
       name={"Floor"}
       material={materialsData.blueFloorMaterial}
-      position={[0, 0, -500]}
-      scale={[2000, 2000, 1]}
+      position={[0, -1, -500]}
+      scale={[2000, 3000, 2]}
       rotation={[-Math.PI / 2, 0, 0]}
       receiveShadow
     >
-      <planeGeometry />
+      <boxGeometry />
     </mesh>
   );
 };
