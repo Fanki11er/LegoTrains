@@ -9,14 +9,14 @@ body{
     height: 100vh;
     display: flex;
     flex-direction: column;
-    row-gap: 10px;
+    row-gap: 15px;
     justify-content: center;
     align-items: center;
     background-color: rgba(17, 19, 21, 1);
 }
 
 .preloader_image {
-    width: 15vw;
+    width: 10vw;
     animation-name: rotate;
     animation-duration: 2s;
     animation-iteration-count: infinite;

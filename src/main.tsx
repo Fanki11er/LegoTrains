@@ -12,7 +12,7 @@ import { ERROR_FALLBACK_TEXT } from "./Constants/constants.ts";
 import CookiesInformation from "./Components/Molecules/CookiesInformation/CookiesInformation.tsx";
 import { initializeAnalytics } from "./Utilities/analytics/analytics.ts";
 
-export const APP_VERSION = "24.10.28";
+export const APP_VERSION = "25.06.02";
 
 const queryClient = new QueryClient();
 
