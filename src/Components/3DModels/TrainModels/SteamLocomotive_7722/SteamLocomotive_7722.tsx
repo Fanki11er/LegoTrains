@@ -12,7 +12,7 @@ import {
 } from "../../../../LegoSets/Set7722V1/Set7722V1PartsImports";
 import { instruction_textures_7722 } from "../../../../InstructionsTextures/Instruction_7722";
 import { TrainModelProps } from "../../TrainModel/TrainModel";
-import MaterialsProvider from "../../../../Providers/materialsProvider";
+import MaterialsProvider from "../../../../Providers/MaterialsProvider";
 import { SCENE_OFFSET } from "../../../../Constants/sceneOffset";
 
 const tracksPaths = [straight_Track_Old, curved_Track_Old];

@@ -3,13 +3,14 @@ import { SceneSection, StyledCanvas } from "./Scene.styles";
 import { OrbitControls } from "@react-three/drei";
 import Loader from "../../Molecules/Loader/Loader";
 import { Perf } from "r3f-perf";
+const isProd = import.meta.env.PROD;
 
 const Scene = ({ children }: PropsWithChildren) => {
   return (
     <SceneSection>
       <StyledCanvas camera={{ near: 1, far: 2500, position: [0, 50, 250] }}>
         <Suspense fallback={<Loader />}>
-          <Perf position={"bottom-left"} />
+          {!isProd ? <Perf position={"bottom-left"} /> : null}
 
           <directionalLight position={[0, 50, 20]} intensity={5} />
           <ambientLight intensity={0.5} />

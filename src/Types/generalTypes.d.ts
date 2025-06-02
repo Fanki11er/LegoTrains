@@ -4,3 +4,7 @@ export type HtmlPosition = {
   positionTop?: number;
   positionBottom?: number;
 };
+
+export type Consent = {
+  analytics: boolean;
+};
