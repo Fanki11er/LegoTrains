@@ -1,0 +1,42 @@
+body{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.preloader_container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(17, 19, 21, 1);
+}
+
+.preloader_image {
+    width: 15vw;
+    animation-name: rotate;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+   
+}
+
+.preloader_text {
+    color: rgba(102, 102, 252, 1 );
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: "Inter, sans-serif";
+}
+
+ @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+        
+    }
