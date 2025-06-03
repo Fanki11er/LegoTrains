@@ -1,13 +1,11 @@
-import { FullCenterWrapper } from "../../Components/Atoms/FullCenterWrapper/FullCenterWrapper.styles";
-import Footer from "../../Components/Molecules/Footer/Footer";
 import UpgradeAccountForm from "../../Components/Molecules/UpgradeAccountForm/UpgradeAccountForm";
+import AccountViewTemplate from "../../Components/Organisms/AccountViewTemplate/AccountViewTemplate";
 
 const UpgradeAccountView = () => {
   return (
-    <FullCenterWrapper>
+    <AccountViewTemplate>
       <UpgradeAccountForm />
-      <Footer />
-    </FullCenterWrapper>
+    </AccountViewTemplate>
   );
 };
 

@@ -1,4 +1,5 @@
 import useAuth from "../../../Hooks/useAuth";
+import Logo from "../Logo/Logo";
 import Logout from "../Logout/Logout";
 import {
   UserDashboardTopNavigationElementContainer,
@@ -13,6 +14,7 @@ const UserDashboardTopNavigation = () => {
   return (
     <UserDashboardTopNavigationWrapper>
       <UserDashboardTopNavigationElementContainer>
+        <Logo />
         <h2>Dashboard</h2>
       </UserDashboardTopNavigationElementContainer>
       <UserDashboardTopNavigationElementContainer>

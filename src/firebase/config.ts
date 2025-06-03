@@ -16,9 +16,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
-if (location.hostname === "localhost") {
+if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
   connectFirestoreEmulator(db, "127.0.0.1", 8080);
   connectAuthEmulator(auth, "http://127.0.0.1:9099");
 }
-
-//const app = initializeApp(firebaseConfig);

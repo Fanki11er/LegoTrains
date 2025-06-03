@@ -1,13 +1,11 @@
-import { FullCenterWrapper } from "../../Components/Atoms/FullCenterWrapper/FullCenterWrapper.styles";
-import Footer from "../../Components/Molecules/Footer/Footer";
 import ResetPasswordForm from "../../Components/Molecules/ResetPasswordForm/ResetPasswordForm";
+import AccountViewTemplate from "../../Components/Organisms/AccountViewTemplate/AccountViewTemplate";
 
 const ResetPasswordView = () => {
   return (
-    <FullCenterWrapper>
+    <AccountViewTemplate>
       <ResetPasswordForm />
-      <Footer />
-    </FullCenterWrapper>
+    </AccountViewTemplate>
   );
 };
 
