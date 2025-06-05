@@ -59,7 +59,6 @@ const UserSetsList = () => {
             dashboardSetInformationData={setData}
             setInformationDTO={matchedSet}
             handleToggleResetModal={handleToggleModal}
-            //setId={setData.setId}
           />
         </li>
       );

@@ -13,12 +13,14 @@ import {
 import cookieImage from "../../../assets/svg/Cookie.svg";
 import { useEffect, useRef } from "react";
 import ConsentCheckbox from "../ConsentCheckbox/ConsentCheckbox";
-import { updateConsent } from "../../../Utilities/analytics/analytics";
 import { Consent } from "../../../Types/generalTypes";
+import useAnalytics from "../../../Hooks/useAnalytics";
 
 const CookiesInformation = () => {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
   const analyticsInputRef = useRef<HTMLInputElement | null>(null);
+
+  const { updateConsent } = useAnalytics();
 
   useEffect(() => {
     dialogRef.current?.showModal();

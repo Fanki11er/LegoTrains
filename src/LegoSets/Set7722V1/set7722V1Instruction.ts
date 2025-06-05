@@ -11,7 +11,10 @@ import { forklift7722Configuration } from "./Forklift7722parts/forklift7722Confi
 import { forkliftTrailer7722Configuration } from "./ForkliftTrailer7722Parts/forkliftTrailer7722Configuration";
 
 export const createSet7722V1Instruction = () => {
-  const set7722Instruction = new TrainInstruction("7722", set7722SceneMarkers);
+  const set7722Instruction = new TrainInstruction(
+    "Set_7722_V1",
+    set7722SceneMarkers
+  );
 
   //?? Steam Locomotive
   set7722Instruction.createModel(steamLocomotive7722Configuration);

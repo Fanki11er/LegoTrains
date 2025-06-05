@@ -16,6 +16,7 @@ import SubmitIndicator from "../SubmitIndicator/SubmitIndicator";
 import { paths } from "../../../router/routerPaths";
 import { EMAIL_FIELD, PASSWORD_FIELD } from "../../../Constants/constants";
 import { yupEmailValidationShape } from "../../../Utilities/validators/validators";
+import useAnalytics from "../../../Hooks/useAnalytics";
 
 const { userDashboardRouterPath, accountRegistrationPath, resetPasswordPath } =
   paths;
@@ -29,6 +30,7 @@ const AccountLoginForm = () => {
   const { loginUserWithEmailAndPassword, loginUserAnonymously } = useAuth();
   const [authError, setAuthError] = useState("");
   const navigate = useNavigate();
+  const { trackUserEvent } = useAnalytics();
 
   const initialValues = {
     [EMAIL_FIELD]: "",
@@ -41,6 +43,9 @@ const AccountLoginForm = () => {
       validationSchema={yupEmailValidationShape}
       onSubmit={(values, { resetForm, setSubmitting }) => {
         setAuthError("");
+
+        trackUserEvent("Account Login Event");
+
         setSubmitting(true);
         loginUserWithEmailAndPassword(
           values[EMAIL_FIELD],

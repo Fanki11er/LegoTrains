@@ -15,6 +15,8 @@ import { FormError } from "../../Atoms/FormError/FormError.styles";
 import SubmitIndicator from "../SubmitIndicator/SubmitIndicator";
 import { useQueryClient } from "@tanstack/react-query";
 import { All_SETS_DATA } from "../../../Api/queryKeys";
+import useTrackPageView from "../../../Hooks/useTrackPageView";
+import useAnalytics from "../../../Hooks/useAnalytics";
 
 type Props = {
   setId: string;
@@ -23,6 +25,10 @@ type Props = {
 const ResetSetModal = ({ setId, handleToggleModal }: Props) => {
   const queryClient = useQueryClient();
   const [status, setStatus] = useState("");
+  const { trackUserEvent } = useAnalytics();
+
+  useTrackPageView("Reset Set Modal");
+
   return (
     <ResetSetModalWrapper>
       <ResetSetModalContent>
@@ -44,9 +50,13 @@ const ResetSetModal = ({ setId, handleToggleModal }: Props) => {
               <ResetSetModalResetButton
                 onClick={() => {
                   setStatus("submitting");
+                  trackUserEvent(`Reset Set: ${setId}`);
                   resetSet(setId)
                     ?.then(() => {
                       setStatus("ok");
+                      localStorage.removeItem(
+                        `Model_${setId}_Finished_InformationRed`
+                      );
 
                       queryClient.invalidateQueries({
                         queryKey: [All_SETS_DATA],

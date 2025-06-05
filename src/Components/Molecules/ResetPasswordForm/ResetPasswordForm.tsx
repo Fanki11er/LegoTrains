@@ -14,6 +14,7 @@ import { paths } from "../../../router/routerPaths";
 import { OkStatus } from "../../../Components/Atoms/OkStatus/OkStatus.styles";
 import { EMAIL_FIELD } from "../../../Constants/constants";
 import { yupEmailValidationShape } from "../../../Utilities/validators/validators";
+import useAnalytics from "../../../Hooks/useAnalytics";
 
 const { loginPath } = paths;
 
@@ -25,6 +26,7 @@ const ResetPasswordForm = () => {
   const { resetPassword } = useAuth();
   const [authError, setAuthError] = useState("");
   const [status, setStatus] = useState("");
+  const { trackUserEvent } = useAnalytics();
 
   const initialValues = {
     [EMAIL_FIELD]: "",
@@ -37,6 +39,9 @@ const ResetPasswordForm = () => {
       onSubmit={async (values, { setSubmitting }) => {
         setAuthError("");
         setStatus("");
+
+        trackUserEvent("Reset Password Event");
+
         resetPassword(values[EMAIL_FIELD])
           .then(() => {
             setSubmitting(false);

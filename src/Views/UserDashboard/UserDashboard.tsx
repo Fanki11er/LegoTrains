@@ -3,12 +3,16 @@ import { AnonymousAccountWarningPlaceholder } from "../../Components/Molecules/A
 import Footer from "../../Components/Molecules/Footer/Footer";
 import UserDashboardTopNavigation from "../../Components/Molecules/UserDashboardTopNavigation/UserDashboardTopNavigation";
 import UserSetsList from "../../Components/Organisms/UserSetsList/UserSetsList";
+
 import useAuth from "../../Hooks/useAuth";
 import { UserDashboardWrapper } from "./UserDashboard.styles";
+import useTrackPageView from "../../Hooks/useTrackPageView";
 
 const UserDashboard = () => {
   const { currentUser } = useAuth();
   const isAnonymous = currentUser?.isAnonymous;
+
+  useTrackPageView("User Dashboard");
 
   return (
     <UserDashboardWrapper>
