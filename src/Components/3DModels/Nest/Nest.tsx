@@ -23,9 +23,7 @@ const Nest = (props: NestProps) => {
 
   const opacity = useSpringValue(0, {
     config: {
-      mass: 0.5,
-      tension: 20,
-      friction: 5,
+      duration: 200,
     },
   });
 

@@ -55,6 +55,7 @@ const PersistenceDataProvider = ({
   } = useQuery<SetPersistenceData | null>({
     queryKey: [SET_DATA, legoSetId],
     queryFn: () => getSetDataFromDatabase(legoSetId),
+    staleTime: 60000,
   });
 
   const {
@@ -64,6 +65,7 @@ const PersistenceDataProvider = ({
   } = useQuery<ModelPersistenceData[] | null>({
     queryKey: [MODELS_DATA, legoSetId],
     queryFn: () => getSetModelsDataFromDatabase(legoSetId),
+    staleTime: 60000,
   });
 
   const sendModelDataToDatabase = useCallback(
@@ -99,8 +101,8 @@ const PersistenceDataProvider = ({
           .catch((err) => {
             setStatus({ message: err.name, status: "error" });
             saveErrorLog(err.message, legoSetId);
-            //!!!
-            console.log(err);
+
+            console.error(err);
             timeout = setTimeout(() => {
               setStatus(null);
             }, 2000);

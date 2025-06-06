@@ -14,7 +14,7 @@ import { OkStatus } from "../../Atoms/OkStatus/OkStatus.styles";
 import { FormError } from "../../Atoms/FormError/FormError.styles";
 import SubmitIndicator from "../SubmitIndicator/SubmitIndicator";
 import { useQueryClient } from "@tanstack/react-query";
-import { All_SETS_DATA } from "../../../Api/queryKeys";
+import { All_SETS_DATA, MODELS_DATA, SET_DATA } from "../../../Api/queryKeys";
 import useTrackPageView from "../../../Hooks/useTrackPageView";
 import useAnalytics from "../../../Hooks/useAnalytics";
 
@@ -60,6 +60,12 @@ const ResetSetModal = ({ setId, handleToggleModal }: Props) => {
 
                       queryClient.invalidateQueries({
                         queryKey: [All_SETS_DATA],
+                      });
+                      queryClient.invalidateQueries({
+                        queryKey: [MODELS_DATA, setId],
+                      });
+                      queryClient.invalidateQueries({
+                        queryKey: [SET_DATA, setId],
                       });
                     })
                     .catch((err) => {

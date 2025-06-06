@@ -10,8 +10,11 @@ import ErrorBoundary from "./Components/Molecules/ErrorBoundary/ErrorBoundary.ts
 import ErrorFallback from "./Components/Molecules/ErrorFallback/ErrorFallback.tsx";
 import { ERROR_FALLBACK_TEXT } from "./Constants/constants.ts";
 import AnalyticsProvider from "./Providers/AnalyticsProvider.tsx";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-export const APP_VERSION = "25.06.05";
+const isProd = import.meta.env.PROD;
+
+export const APP_VERSION = "25.06.06";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +28,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <AuthProvider>
               <Router />
             </AuthProvider>
+            {!isProd ? <ReactQueryDevtools initialIsOpen={false} /> : null}
           </QueryClientProvider>
         </AnalyticsProvider>
       </ThemeProvider>
