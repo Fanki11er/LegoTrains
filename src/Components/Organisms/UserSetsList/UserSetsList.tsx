@@ -34,6 +34,7 @@ const UserSetsList = () => {
   >({
     queryKey: [All_SETS_DATA],
     queryFn: () => getAllSetsPersistenceData(),
+    staleTime: 60000,
   });
 
   const handleToggleModal = useCallback(
@@ -59,7 +60,6 @@ const UserSetsList = () => {
             dashboardSetInformationData={setData}
             setInformationDTO={matchedSet}
             handleToggleResetModal={handleToggleModal}
-            //setId={setData.setId}
           />
         </li>
       );

@@ -20,6 +20,7 @@ import {
 } from "../../../Constants/constants";
 import { yupRegistrationValidationShape } from "../../../Utilities/validators/validators";
 import { createUserData } from "../../../firebase/writeToDbFunctions";
+import useAnalytics from "../../../Hooks/useAnalytics";
 
 const { userDashboardRouterPath, loginPath } = paths;
 
@@ -34,6 +35,8 @@ const AccountRegistrationForm = () => {
   const { signUpWithEmailAndPassword, setUsername } = useAuth();
   const [authError, setAuthError] = useState("");
   const navigate = useNavigate();
+  const { trackUserEvent } = useAnalytics();
+
   const initialValues = {
     [NAME_FIELD]: "",
     [EMAIL_FIELD]: "",
@@ -47,6 +50,9 @@ const AccountRegistrationForm = () => {
       validationSchema={yupRegistrationValidationShape}
       onSubmit={(values, { resetForm, setSubmitting }) => {
         setAuthError("");
+
+        trackUserEvent("Account Registration");
+
         signUpWithEmailAndPassword(values[EMAIL_FIELD], values[PASSWORD_FIELD])
           .then(async (userCredentials) => {
             await setUsername(userCredentials.user, values[NAME_FIELD]).catch(

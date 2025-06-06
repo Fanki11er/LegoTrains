@@ -34,7 +34,7 @@ const Footer = () => {
           <FooterLogo src={youTubeLogo} alt={"Youtube logo"} />
         </FooterLogoLink>
         <FooterLogoLink
-          href={"https://dziedzic-about-me.firebaseapp.com"}
+          href={"https://dziedzic-about-me.vercel.app"}
           target={"_blank"}
         >
           <FooterLogo src={kdzLogo} alt={"Author logo"} />

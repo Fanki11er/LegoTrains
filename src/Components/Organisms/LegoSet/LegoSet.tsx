@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getUserSetsListFromDatabase } from "../../../firebase/readFromDbFunctions";
 import { ExistingDataInfo } from "../../../Classes/PersistenceModule";
 import { USER_SETS_LIST } from "../../../Api/queryKeys";
-import { useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import { createNewUserSet } from "../../../firebase/writeToDbFunctions";
 import ErrorIndicator from "../../Molecules/ErrorIndicator/ErrorIndicator";
 import SubmitIndicator from "../../Molecules/SubmitIndicator/SubmitIndicator";
@@ -18,7 +18,13 @@ import ErrorFallback from "../../Molecules/ErrorFallback/ErrorFallback";
 import { ERROR_FALLBACK_TEXT } from "../../../Constants/constants";
 import { createSet7722V1Instruction } from "../../../LegoSets/Set7722V1/set7722V1Instruction";
 import Experience from "../../3DModels/Experience/Experience";
-import SteamLocomotive_7722 from "../../3DModels/TrainModels/SteamLocomotive_7722/SteamLocomotive_7722";
+
+const SteamLocomotive_7722 = lazy(
+  () =>
+    import(
+      "../../3DModels/TrainModels/SteamLocomotive_7722/SteamLocomotive_7722"
+    )
+);
 
 const LegoSet = () => {
   const { id } = useParams();

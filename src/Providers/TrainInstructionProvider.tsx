@@ -15,6 +15,7 @@ import usePersistenceDataProvider from "../Hooks/usePersistenceDataProvider";
 import { PartsArraignmentFunctionsTypes } from "../Utilities/partsAfterConnectionFunctions";
 import { paths } from "../router/routerPaths";
 import { useNavigate } from "react-router-dom";
+import useAnalytics from "../Hooks/useAnalytics";
 
 export const TrainInstructionContext = createContext({
   handleGetPartsList: (): LegoBlock[] => [],
@@ -59,6 +60,8 @@ const TrainInstructionProvider = (
   const { scene } = useThree();
   const { handleSaveArrangedModelDataToDatabase } =
     usePersistenceDataProvider();
+
+  const { trackModelEvent } = useAnalytics();
 
   const getScene = () => {
     return scene;
@@ -144,6 +147,7 @@ const TrainInstructionProvider = (
     try {
       const result = instruction.setFinalModelArrangement();
       if (result) {
+        trackModelEvent("Model Arranged", result.oldModel.getModelName());
         const touchedModels = result.otherModifiedModelsIds.map((id) => {
           return instruction.getModelByName(id);
         });
@@ -163,7 +167,12 @@ const TrainInstructionProvider = (
         },
       });
     }
-  }, [handleSaveArrangedModelDataToDatabase, instruction, navigate]);
+  }, [
+    handleSaveArrangedModelDataToDatabase,
+    instruction,
+    navigate,
+    trackModelEvent,
+  ]);
 
   const handleGetSetRootMarker = useCallback(() => {
     return instruction.getSetRootMarker();

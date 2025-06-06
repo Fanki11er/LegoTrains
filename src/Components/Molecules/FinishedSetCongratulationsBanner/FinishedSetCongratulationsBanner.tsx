@@ -12,16 +12,24 @@ import { InSceneArrangeModelButton } from "../../Atoms/InSceneButtons/InSceneBut
 import congratulationsImage from "../../../assets/svg/CongratulationsBanner.svg"; // Adjust the path as necessary
 import useFocusCamera from "../../../Hooks/useFocusCamera";
 import { SCENE_OFFSET } from "../../../Constants/sceneOffset";
+import useAnalytics from "../../../Hooks/useAnalytics";
 
 export const FinishedSetCongratulationsBanner = () => {
-  const [isInformationRed, setIsInformationRed] = useState(false);
   const {
     handleCheckIfSetIsFinished,
     handleGetLegoSetNumber,
     handleGetSetRootMarker,
   } = useTrainInstruction();
 
+  const [isInformationRed, setIsInformationRed] = useState(() => {
+    const finishedSetCookie = localStorage.getItem(
+      `Model_${handleGetLegoSetNumber()}_Finished_InformationRed`
+    );
+    return !!finishedSetCookie;
+  });
+
   const { handleFocusCamera } = useFocusCamera();
+  const { trackModelEvent } = useAnalytics();
 
   useEffect(() => {
     const setRootMarker = handleGetSetRootMarker();
@@ -31,7 +39,12 @@ export const FinishedSetCongratulationsBanner = () => {
   }, [isInformationRed, handleGetSetRootMarker, handleFocusCamera]);
 
   const handleSetIsInformationRed = () => {
+    trackModelEvent("User Finished Set", handleGetLegoSetNumber());
     setIsInformationRed(true);
+    localStorage.setItem(
+      `Model_${handleGetLegoSetNumber()}_Finished_InformationRed`,
+      "true"
+    );
   };
 
   return (
@@ -45,7 +58,9 @@ export const FinishedSetCongratulationsBanner = () => {
                 Congratulations!
               </FinishedSetCongratulationsBannerHeader>
               <FinishedSetCongratulationsBannerText>
-                {`You have built ${handleGetLegoSetNumber()} set.`}
+                {`You have built ${
+                  handleGetLegoSetNumber().split("_")[1] || "????"
+                } set.`}
               </FinishedSetCongratulationsBannerText>
             </FinishedSetCongratulationsBannerTextWrapper>
             <InSceneArrangeModelButton

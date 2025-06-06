@@ -9,27 +9,28 @@ import AuthProvider from "./Providers/AuthProvider.tsx";
 import ErrorBoundary from "./Components/Molecules/ErrorBoundary/ErrorBoundary.tsx";
 import ErrorFallback from "./Components/Molecules/ErrorFallback/ErrorFallback.tsx";
 import { ERROR_FALLBACK_TEXT } from "./Constants/constants.ts";
-import CookiesInformation from "./Components/Molecules/CookiesInformation/CookiesInformation.tsx";
-import { initializeAnalytics } from "./Utilities/analytics/analytics.ts";
+import AnalyticsProvider from "./Providers/AnalyticsProvider.tsx";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-export const APP_VERSION = "25.06.02";
+const isProd = import.meta.env.PROD;
+
+export const APP_VERSION = "25.06.06";
 
 const queryClient = new QueryClient();
-
-const consentMode = initializeAnalytics();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ErrorBoundary fallback={<ErrorFallback message={ERROR_FALLBACK_TEXT} />}>
       <GlobalStyle />
-
       <ThemeProvider theme={theme}>
-        {!consentMode ? <CookiesInformation /> : null}
-        <QueryClientProvider client={queryClient}>
-          <AuthProvider>
-            <Router />
-          </AuthProvider>
-        </QueryClientProvider>
+        <AnalyticsProvider>
+          <QueryClientProvider client={queryClient}>
+            <AuthProvider>
+              <Router />
+            </AuthProvider>
+            {!isProd ? <ReactQueryDevtools initialIsOpen={false} /> : null}
+          </QueryClientProvider>
+        </AnalyticsProvider>
       </ThemeProvider>
     </ErrorBoundary>
   </React.StrictMode>

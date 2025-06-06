@@ -1,13 +1,14 @@
-import { FullCenterWrapper } from "../../Components/Atoms/FullCenterWrapper/FullCenterWrapper.styles";
 import AccountLoginForm from "../../Components/Molecules/AccountLoginForm/AccountLoginForm";
-import Footer from "../../Components/Molecules/Footer/Footer";
+import AccountViewTemplate from "../../Components/Organisms/AccountViewTemplate/AccountViewTemplate";
+import useTrackPageView from "../../Hooks/useTrackPageView";
 
 const AccountLoginFormView = () => {
+  useTrackPageView("User Login View");
+
   return (
-    <FullCenterWrapper>
+    <AccountViewTemplate>
       <AccountLoginForm />
-      <Footer />
-    </FullCenterWrapper>
+    </AccountViewTemplate>
   );
 };
 

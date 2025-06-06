@@ -14,6 +14,7 @@ import { instruction_textures_7722 } from "../../../../InstructionsTextures/Inst
 import { TrainModelProps } from "../../TrainModel/TrainModel";
 import MaterialsProvider from "../../../../Providers/MaterialsProvider";
 import { SCENE_OFFSET } from "../../../../Constants/sceneOffset";
+import useTrackPageView from "../../../../Hooks/useTrackPageView";
 
 const tracksPaths = [straight_Track_Old, curved_Track_Old];
 
@@ -28,6 +29,8 @@ const SteamLocomotive_7722 = ({
   handleGetSetModelsToRenderList,
   getPersistenceUsedPartsDataForModel,
 }: TrainModelProps) => {
+  useTrackPageView("SteamLocomotive_7722 Experience");
+
   return (
     sceneMarkersInfo && (
       <>

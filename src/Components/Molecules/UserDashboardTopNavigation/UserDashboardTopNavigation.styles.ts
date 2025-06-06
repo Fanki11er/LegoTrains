@@ -11,7 +11,7 @@ export const UserDashboardTopNavigationWrapper = styled.nav`
 export const UserDashboardTopNavigationElementContainer = styled.div`
   display: flex;
   width: fit-content;
-  align-items: start;
+  align-items: center;
   gap: 2rem;
   padding: 0 1rem;
 `;
