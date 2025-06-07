@@ -1,30 +1,41 @@
-# React + TypeScript + Vite
+ <div align="center" ><img src="https://github.com/Fanki11er/LegoTrains/blob/main/src/assets/svg/legoTrainsLogo.svg" width="170px"/></div>
+</br>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ <h1 align="center">Lego Trains</h1>
+ </br>
 
-Currently, two official plugins are available:
+<p>
+Lego Trains is a personal project focused on creating a web application for building and visualizing 3D models of Lego trains. The goal is to provide an interactive platform that enables users to virtually build existing Lego train sets using modern web technologies. 
+</p>
+</br>
+<div><img src="https://github.com/Fanki11er/LegoTrains/blob/main/src/assets/GitHub/Building.svg" width="80px"/></div> 
+ 
+[**Check it out now**](https://lego-trains.web.app/)
+ 
+ 
+ </br>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Used technologies:
 
-## Expanding the ESLint configuration
+- React Three Fiber
+- ThreeJs
+- TypeScript
+- Firebase
+- React Router
+- TanStack Query
+- Styled-components
+- Formik
+- Axios
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Sample screenshots:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+<div align="center" ><img src="https://github.com/Fanki11er/LegoTrains/blob/main/src/assets/GitHub/Z1.png" width="500px"/></div>
+</br>
+<div align="center" ><img src="https://github.com/Fanki11er/LegoTrains/blob/main/src/assets/GitHub/Z2.png" width="500px"/></div>
+</br>
+<div align="center" ><img src="https://github.com/Fanki11er/LegoTrains/blob/main/src/assets/GitHub/Z3.png" width="500px"/></div>
+</br>
+<div align="center" ><img src="https://github.com/Fanki11er/LegoTrains/blob/main/src/assets/GitHub/Z4.png" width="500px"/></div>
+</br>
+<div align="center" ><img src="https://github.com/Fanki11er/LegoTrains/blob/main/src/assets/GitHub/Z5.png" width="500px"/></div>
+<br/>
