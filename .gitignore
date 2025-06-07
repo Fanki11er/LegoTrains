@@ -26,3 +26,5 @@ dist-ssr
 firebase-export*
 EmulatorData*
 
+
+*.cache
