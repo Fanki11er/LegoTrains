@@ -33,8 +33,6 @@ type RenderProps = {
 };
 
 const TrainModel = memo(({ model }: RenderProps) => {
-  console.log("Rerender Locomotive");
-
   const {
     handleGetPartsList,
     handleGetSceneMarkersInfo,

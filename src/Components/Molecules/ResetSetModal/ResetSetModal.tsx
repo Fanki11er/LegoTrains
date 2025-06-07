@@ -61,10 +61,10 @@ const ResetSetModal = ({ setId, handleToggleModal }: Props) => {
                       queryClient.invalidateQueries({
                         queryKey: [All_SETS_DATA],
                       });
-                      queryClient.invalidateQueries({
+                      queryClient.removeQueries({
                         queryKey: [MODELS_DATA, setId],
                       });
-                      queryClient.invalidateQueries({
+                      queryClient.removeQueries({
                         queryKey: [SET_DATA, setId],
                       });
                     })
