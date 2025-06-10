@@ -5,10 +5,15 @@ export const AnonymousAccountWarningWrapper = styled.span`
   display: flex;
   width: fit-content;
   align-items: center;
+  align-self: center;
   column-gap: 2rem;
   border-radius: 1rem;
   padding: 0.4rem 0.4rem 0.4rem 1rem;
   background-color: ${({ theme }) => theme.colors.orange};
+
+  @media screen and (max-width: 560px) {
+    max-width: 90vw;
+  }
 `;
 
 export const UpgradeAccountLink = styled(Link)`
@@ -25,8 +30,4 @@ export const UpgradeAccountLink = styled(Link)`
   &:hover {
     background-color: ${({ theme }) => theme.colors.purple};
   }
-`;
-
-export const AnonymousAccountWarningPlaceholder = styled.span`
-  visibility: hidden;
 `;

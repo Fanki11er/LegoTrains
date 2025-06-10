@@ -15,4 +15,10 @@ export const BasicDashboardSetInformationWrapper = styled.div`
   animation-name: ${show};
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
+
+  @media screen and (max-width: 560px) {
+    width: 90vw;
+    max-width: 370px;
+    padding: 2.5rem 0.5rem 2rem 0.5rem;
+  }
 `;

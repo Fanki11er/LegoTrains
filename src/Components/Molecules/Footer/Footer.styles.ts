@@ -2,11 +2,16 @@ import styled from "styled-components";
 
 export const FooterWrapper = styled.footer`
   display: flex;
-  position: relative;
   justify-content: center;
-  width: 100%;
+  width: 100vw;
   height: 80px;
   background-color: ${({ theme }) => theme.colors.darkGray};
+  padding: 0 1rem;
+  align-self: flex-end;
+
+  @media screen and (max-width: 680px) {
+    height: 65px;
+  }
 `;
 
 export const FooterIconsWrapper = styled.span`
@@ -15,6 +20,11 @@ export const FooterIconsWrapper = styled.span`
   gap: 2rem;
   width: fit-content;
   align-items: center;
+  margin-left: auto;
+
+  @media screen and (max-width: 680px) {
+    gap: 0.5rem;
+  }
 `;
 
 export const FooterVersionInfo = styled.span`
@@ -23,10 +33,12 @@ export const FooterVersionInfo = styled.span`
   justify-content: center;
   align-items: center;
   width: fit-content;
-  position: absolute;
-  right: 2rem;
-  padding: auto 0;
+  margin-left: auto;
   color: ${({ theme }) => theme.colors.purple};
+
+  @media screen and (max-width: 680px) {
+    font-size: ${({ theme }) => theme.fontSizes.S};
+  }
 `;
 
 export const FooterLogoLink = styled.a`
@@ -43,4 +55,8 @@ export const FooterLogoLink = styled.a`
 
 export const FooterLogo = styled.img`
   height: 50px;
+
+  @media screen and (max-width: 680px) {
+    height: 40px;
+  }
 `;

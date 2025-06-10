@@ -16,13 +16,20 @@ body{
 }
 
 .preloader_image {
-    width: 10vw;
+    width: 150px;
     animation-name: rotate;
     animation-duration: 2s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-   
+  
 }
+
+    @media screen and (max-width: 960px) {
+        .preloader_image {
+            width: 100px;
+        }
+   
+  }
 
 .preloader_text {
     color: rgba(102, 102, 252, 1 );
