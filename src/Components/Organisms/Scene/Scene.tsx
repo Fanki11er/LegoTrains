@@ -10,7 +10,7 @@ const Scene = ({ children }: PropsWithChildren) => {
     <SceneSection>
       <StyledCanvas camera={{ near: 1, far: 2500, position: [0, 50, 250] }}>
         <Suspense fallback={<Loader />}>
-          {isProd ? <Perf position={"bottom-left"} /> : null}
+          {!isProd ? <Perf position={"bottom-left"} /> : null}
 
           <directionalLight position={[0, 50, 20]} intensity={5} />
           <ambientLight intensity={0.5} />

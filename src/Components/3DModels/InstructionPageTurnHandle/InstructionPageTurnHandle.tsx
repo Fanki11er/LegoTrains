@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import useMaterials from "../../../Hooks/useMaterials";
 import { useSpring, animated } from "@react-spring/three";
 import { theme } from "../../../Theme/theme";
+import useDetectMobile from "../../../Hooks/useDetectMobile";
 type Props = {
   height: number;
   width: number;
@@ -18,36 +19,37 @@ const InstructionPageTurnHandle = ({
   visible,
 }: Props) => {
   const { materialsData } = useMaterials();
+  const isMobile = useDetectMobile();
 
   const [fade, api] = useSpring(() => ({
-    opacity: 0,
+    opacity: isMobile ? 0.8 : 0,
     config: {
-      mass: 0.5,
-      tension: 20,
-      friction: 4,
+      duration: 300,
     },
   }));
 
   const [hover, hoverApi] = useSpring(() => ({
-    color: theme.colors.nestBlue,
+    color: isMobile ? theme.colors.green : theme.colors.nestBlue,
     config: {
-      mass: 0.5,
-      tension: 20,
-      friction: 4,
+      duration: 300,
     },
   }));
 
   useEffect(() => {
     if (visible) {
-      api.start({
-        opacity: 0.8,
-      });
+      if (!isMobile) {
+        api.start({
+          opacity: 0.8,
+        });
+      }
     } else {
-      api.start({
-        opacity: 0,
-      });
+      if (!isMobile) {
+        api.start({
+          opacity: 0,
+        });
+      }
     }
-  }, [visible, api]);
+  }, [visible, api, isMobile]);
 
   return (
     <animated.mesh
@@ -64,14 +66,18 @@ const InstructionPageTurnHandle = ({
       rotation={[-Math.PI / 2, 0, 0]}
       receiveShadow
       onPointerEnter={() => {
-        hoverApi.start({
-          color: theme.colors.green,
-        });
+        if (!isMobile) {
+          hoverApi.start({
+            color: theme.colors.green,
+          });
+        }
       }}
       onPointerLeave={() => {
-        hoverApi.start({
-          color: theme.colors.nestBlue,
-        });
+        if (!isMobile) {
+          hoverApi.start({
+            color: theme.colors.nestBlue,
+          });
+        }
       }}
     >
       <planeGeometry />
