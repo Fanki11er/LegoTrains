@@ -14,7 +14,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const isProd = import.meta.env.PROD;
 
-export const APP_VERSION = "25.06.06";
+export const APP_VERSION = "25.06.16";
 
 const queryClient = new QueryClient();
 

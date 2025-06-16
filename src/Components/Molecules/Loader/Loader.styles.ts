@@ -13,6 +13,11 @@ export const LoaderWrapper = styled.div`
   justify-content: center;
   row-gap: 1rem;
   transform: translateX(-50%);
+
+  @media screen and (max-width: 800px) {
+    width: 70vw;
+    max-width: 500px;
+  }
 `;
 
 export const LoaderIndicator = styled.div`

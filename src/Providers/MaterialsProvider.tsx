@@ -28,15 +28,17 @@ const MaterialsProvider = ({ children }: PropsWithChildren) => {
   const materialsData: CustomMaterials = useMemo(() => {
     return {
       redPlasticMaterial: materials.GlossyRedPlastic || missingMaterial,
-      blackPlasticMaterial: materials.GlossyPlastic || missingMaterial,
+      blackPlasticMaterial: materials.GlossyBlackPlastic || missingMaterial,
       whiteTransparentMaterial: materials.WhiteGlass || missingMaterial,
       redTransparentMaterial: materials.RedGlass || missingMaterial,
       yellowTransparentMaterial: materials.YellowGlass || missingMaterial,
+      blueTransparentMaterial: materials.BlueGlass || missingMaterial,
       oldGrayPlasticMaterial:
         materials.GlossyDirtyGrayPlastic || missingMaterial,
       yellowPLasticMaterial: materials.GlossyYellowPlastic || missingMaterial,
       whitePlasticMaterial: materials.GlossyWhitePlastic || missingMaterial,
       bluePlasticMaterial: materials.GlossyBluePlastic || missingMaterial,
+      greenPlasticMaterial: materials.GlossyGreenPlastic || missingMaterial,
       nestMaterial: nestMaterial,
       blueFloorMaterial: blueFloorMaterial,
       selectedElementMaterial: selectedElementMaterial,

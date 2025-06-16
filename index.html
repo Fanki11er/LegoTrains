@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/legoTrainsLogo.svg" />
+    <link rel="icon" type="image/svg+xml" href="/legoTrainsLogoFavicon.svg" />
     <link rel="stylesheet" href="/styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lego Trains</title>
@@ -16,11 +16,13 @@
     <meta content="website" property="og:type"/>
   </head>
   <body>
-    <div id="root"></div>
-    <div class="preloader_container">
+    <div id="root">
+       <div class="preloader_container">
       <img class="preloader_image" src="/workingIndicator.svg"/>
       <div class="preloader_text">Loading...</div>  
     </div>
+    </div>
+   
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

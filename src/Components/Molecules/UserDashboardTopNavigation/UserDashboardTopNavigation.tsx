@@ -15,7 +15,6 @@ const UserDashboardTopNavigation = () => {
     <UserDashboardTopNavigationWrapper>
       <UserDashboardTopNavigationElementContainer>
         <Logo />
-        <h2>Dashboard</h2>
       </UserDashboardTopNavigationElementContainer>
       <UserDashboardTopNavigationElementContainer>
         <UserDashboardTopNavigationUserInfo>

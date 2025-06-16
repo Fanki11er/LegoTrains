@@ -8,6 +8,7 @@ import {
 } from "../../Atoms/SelectedItemContextMenu/SelectedItemContextMenu.styles";
 import useFocusCamera from "../../../Hooks/useFocusCamera";
 import InSceneHTMLWrapper from "../../Atoms/InSceneHTMLWrapper/InSceneHTMLWrapper";
+import useDetectMobile from "../../../Hooks/useDetectMobile";
 
 type Props = {
   mesh: Object3D | Mesh;
@@ -17,8 +18,10 @@ type Props = {
 const SelectedElementContextMenu = ({ mesh, withHelper }: Props) => {
   const { handleFocusCamera } = useFocusCamera();
 
+  const isMobile = useDetectMobile();
+
   return (
-    <InSceneHTMLWrapper positionRight={30} positionBottom={30}>
+    <InSceneHTMLWrapper positionRight={30} positionBottom={isMobile ? 80 : 30}>
       <SelectedItemContextMenuWrapper>
         <SelectedItemMenuSection>
           <SelectedItemMenuSectionHeader>Camera</SelectedItemMenuSectionHeader>

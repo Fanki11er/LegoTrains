@@ -7,6 +7,10 @@ export const AccountViewTemplateWrapper = styled.div`
   grid-template-rows: auto 1fr 80px;
   align-items: center;
   justify-items: center;
+
+  @media screen and (max-width: 560px) {
+    row-gap: 2rem;
+  }
 `;
 
 export const AccountViewTemplateLogoWrapper = styled.div`

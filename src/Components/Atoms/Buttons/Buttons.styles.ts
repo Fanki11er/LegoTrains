@@ -21,6 +21,11 @@ export const LogoutButton = styled(BaseButton)`
   &:hover {
     background-color: ${({ theme }) => theme.colors.purple};
   }
+
+  @media screen and (max-width: 500px) {
+    font-size: ${({ theme }) => theme.fontSizes.S};
+    padding: 0.5rem 1.8rem;
+  }
 `;
 
 export const ReturnButton = styled(BaseButton)`

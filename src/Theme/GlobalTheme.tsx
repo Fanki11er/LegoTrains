@@ -14,12 +14,11 @@ body {
     color:${theme.colors.white}; 
     width: 100vw;
     min-height: 100dvh;
-    overflow: hidden;
 }
+
 html{
     width: 100vw;
     min-height: 100dvh;
-    overflow: hidden;
 }
 
 

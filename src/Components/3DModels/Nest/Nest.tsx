@@ -5,6 +5,7 @@ import { NestElementUserData } from "../../../Types/NestElementUserData";
 import useTrainInstruction from "../../../Hooks/useTrainInstruction";
 import usePersistenceDataProvider from "../../../Hooks/usePersistenceDataProvider";
 import { useSpringValue, animated } from "@react-spring/three";
+import useDetectMobile from "../../../Hooks/useDetectMobile";
 
 type NestProps = {
   marker: Object3D<Object3DEventMap>;
@@ -21,7 +22,9 @@ const Nest = (props: NestProps) => {
   } = useTrainInstruction();
   const { handleSaveModelDataToDatabase } = usePersistenceDataProvider();
 
-  const opacity = useSpringValue(0, {
+  const isMobile = useDetectMobile();
+
+  const opacity = useSpringValue(isMobile ? 0.8 : 0, {
     config: {
       duration: 200,
     },
@@ -87,10 +90,14 @@ const Nest = (props: NestProps) => {
         userData={{ markerId: marker.id } as NestElementUserData}
         material-opacity={opacity}
         onPointerEnter={() => {
-          opacity.start(0.8);
+          if (!isMobile) {
+            opacity.start(0.8);
+          }
         }}
         onPointerLeave={() => {
-          opacity.start(0);
+          if (!isMobile) {
+            opacity.start(0);
+          }
         }}
       >
         {renderMultipartChildrenRecursively(mesh.children)}
