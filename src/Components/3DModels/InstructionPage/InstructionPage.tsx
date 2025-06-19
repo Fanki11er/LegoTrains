@@ -15,6 +15,7 @@ import { setTextureOptions } from "../../../Utilities/utilities";
 import { useSpring, animated } from "@react-spring/three";
 import { ThreeEvent } from "@react-three/fiber";
 import InstructionPageTurnHandle from "../InstructionPageTurnHandle/InstructionPageTurnHandle";
+import useMaterials from "../../../Hooks/useMaterials";
 
 type Props = {
   pageTextures: InstructionPageTextures;
@@ -37,6 +38,8 @@ const InstructionPage = ({
     useState<Object3D<Object3DEventMap> | null>(null);
 
   const pageRef = useRef<Group<Object3DEventMap>>(null);
+
+  const { materialsData } = useMaterials();
 
   const instructionPage = useDeferredValue(instructionPagePath);
   const { nodes } = useGLTF(instructionPage);
@@ -106,13 +109,13 @@ const InstructionPage = ({
     setTextureOptions(frontPageTexture);
     setTextureOptions(backPageTexture);
 
-    const frontPageMaterial = new MeshStandardMaterial({
-      map: frontPageTexture,
-    });
+    const frontPageMaterial =
+      materialsData.instructionPageMaterial.clone() as MeshStandardMaterial;
+    frontPageMaterial.map = frontPageTexture;
 
-    const backPageMaterial = new MeshStandardMaterial({
-      map: backPageTexture,
-    });
+    const backPageMaterial =
+      materialsData.instructionPageMaterial.clone() as MeshStandardMaterial;
+    backPageMaterial.map = backPageTexture;
 
     return {
       frontPageMaterial,
