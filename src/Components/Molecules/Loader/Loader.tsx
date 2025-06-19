@@ -1,6 +1,7 @@
-import { Html, useProgress } from "@react-three/drei";
+import { useProgress } from "@react-three/drei";
 import {
   LoaderIndicator,
+  LoaderInSceneHTMLWrapper,
   LoaderProgressBar,
   LoaderWrapper,
 } from "./Loader.styles";
@@ -8,14 +9,14 @@ import {
 const Loader = () => {
   const { progress } = useProgress();
   return (
-    <Html>
+    <LoaderInSceneHTMLWrapper>
       <LoaderWrapper>
         <span>Loading</span>
         <LoaderIndicator>
           <LoaderProgressBar $progress={progress} />
         </LoaderIndicator>
       </LoaderWrapper>
-    </Html>
+    </LoaderInSceneHTMLWrapper>
   );
 };
 

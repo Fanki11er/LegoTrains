@@ -13,6 +13,7 @@ import { selectedElementMaterial } from "../Materials/SelectedElementMaterial";
 import { selectedElementMaterialOrange } from "../Materials/SelectElementMaterialOrange";
 import { blueFloorMaterial } from "../Materials/BlueFloorMaterial";
 import { missingMaterial } from "../Materials/MissingMaterial";
+import { instructionPageMaterial } from "../Materials/instructionPageMaterial";
 type CustomMaterials = {
   [materialId: string]: MeshStandardMaterial | MeshPhysicalMaterial | Material;
 };
@@ -43,6 +44,7 @@ const MaterialsProvider = ({ children }: PropsWithChildren) => {
       blueFloorMaterial: blueFloorMaterial,
       selectedElementMaterial: selectedElementMaterial,
       selectedElementMaterialOrange: selectedElementMaterialOrange,
+      instructionPageMaterial: instructionPageMaterial,
     };
   }, [materials]);
 

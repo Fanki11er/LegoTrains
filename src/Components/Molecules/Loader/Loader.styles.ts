@@ -1,8 +1,17 @@
 import styled from "styled-components";
 import { theme } from "../../../Theme/theme";
+import { Html } from "@react-three/drei";
 type Props = {
   $progress: number;
 };
+
+export const LoaderInSceneHTMLWrapper = styled(Html)`
+  width: 100vw;
+  height: 100dvh;
+  position: absolute;
+  left: 0;
+  top: 0;
+`;
 
 export const LoaderWrapper = styled.div`
   display: flex;
