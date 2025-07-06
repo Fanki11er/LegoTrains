@@ -1,6 +1,7 @@
 import { TrainInstruction } from "../../Classes/TrainInstruction";
 // @ts-expect-error Not a type
 import set4552SceneMarkers from "../../assets/Set_4552_V1/SceneMarkers/Scene_Markers.glb";
+import { car4552Configuration } from "./Car4552parts/car4552Configuration";
 import { torch4552Configuration } from "./Torch4552parts/torch4552Configuration";
 
 export const createSet4552V1Instruction = () => {
@@ -11,6 +12,9 @@ export const createSet4552V1Instruction = () => {
 
   //?? Torch
   set4552Instruction.createModel(torch4552Configuration);
+
+  //?? Car
+  set4552Instruction.createModel(car4552Configuration);
 
   return set4552Instruction;
 };

@@ -14,6 +14,10 @@ import minifig_Headgear_Helmet_Modern_Style_with_Curved_Sides_2446_model from ".
 import minifig_Headgear_Accessory_Helmet_Visor_2447_model from "../../assets/Blocks/Minifig_Headgear_Accessory_Helmet_Visor_2447/Minifig_Headgear_Accessory_Helmet_Visor_2447.glb";
 import train_Track_9V_Straight_2865_model from "../../assets/Blocks/Train_Track_9V_Straight_2865/Train_Track_9V_Straight_2865.glb";
 import tracksMarkers_4552_model from "../../assets/Set_4552_V1/ModelsMarkers/Tracks4552/TracksMarkers_4552.glb";
+import plate_4_x_6_3032_model from "../../assets/Blocks/Plate_4_x_6_3032/Plate_4_x_6_3032.glb";
+import plate_1x4_with_Wheels_Holder_2926_model from "../../assets/Blocks/Plate_1x4_with_Wheels_Holder_2926/Plate_1x4_with_Wheels_Holder_2926.glb";
+import plate_2_x_2_3022_model from "../../assets/Blocks/Plate_2_x_2_3022/Plate_2_x_2_3022.glb";
+import plate_1x3_3623_model from "../../assets/Blocks/Plate_1x3_3623/Plate_1x3_3623.glb";
 
 //?? Tracks
 export const tracksMarkers_4552 = tracksMarkers_4552_model;
@@ -41,3 +45,10 @@ export const minifig_Headgear_Helmet_Modern_Style_with_Curved_Sides_2446 =
   minifig_Headgear_Helmet_Modern_Style_with_Curved_Sides_2446_model;
 export const minifig_Headgear_Accessory_Helmet_Visor_2447 =
   minifig_Headgear_Accessory_Helmet_Visor_2447_model;
+
+//?? Car
+export const plate_4_x_6_3032 = plate_4_x_6_3032_model;
+export const plate_1x4_with_Wheels_Holder_2926 =
+  plate_1x4_with_Wheels_Holder_2926_model;
+export const plate_2_x_2_3022 = plate_2_x_2_3022_model;
+export const plate_1x3_3623 = plate_1x3_3623_model;
