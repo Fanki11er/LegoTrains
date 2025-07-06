@@ -4,9 +4,14 @@ import MaterialsProvider from "../../../../Providers/MaterialsProvider";
 import Floor from "../../Floor/Floor";
 import Instruction from "../../Instruction/Instruction";
 import SceneMarkers from "../../SceneMarkers/SceneMarkers";
+import Tracks from "../../Tracks/Tracks";
 import { TrainModelProps } from "../../TrainModel/TrainModel";
+import {
+  straight_Track_9V,
+  tracksMarkers_4552,
+} from "../../../../LegoSets/Set4552V1/set4552PartsImports";
 
-//const tracksPaths = [straight_Track_Old, curved_Track_Old];
+const tracksPaths = [straight_Track_9V];
 
 const [x, y, z] = SCENE_OFFSET;
 
@@ -29,10 +34,10 @@ const CargoCrain_4552 = ({
           position={[x, y, z]}
         />
 
-        {/* <Tracks
-          tracksMarkersFilePath={tracksMarkers_7722}
+        <Tracks
+          tracksMarkersFilePath={tracksMarkers_4552}
           tracksTypesFilePaths={tracksPaths}
-        /> */}
+        />
 
         {/* <OtherSceneElement
           elementPath={train_Signal_Post}

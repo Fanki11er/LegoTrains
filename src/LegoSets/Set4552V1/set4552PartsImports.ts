@@ -12,9 +12,12 @@ import plate_1x1_3024_model from "../../assets/Blocks/Plate_1x1_3024/Plate_1x1_3
 import plate_Specialty_1x2_With_Up_Arm_4623_model from "../../assets/Blocks/Plate_Specialty_1x2_With_Up_Arm_4623/Plate_Specialty_1x2_With_Up_Arm_4623.glb";
 import minifig_Headgear_Helmet_Modern_Style_with_Curved_Sides_2446_model from "../../assets/Blocks/Minifig_Headgear_Helmet_Modern_Style_with_Curved_Sides_2446/Minifig_Headgear_Helmet_Modern_Style_with_Curved_Sides_2446.glb";
 import minifig_Headgear_Accessory_Helmet_Visor_2447_model from "../../assets/Blocks/Minifig_Headgear_Accessory_Helmet_Visor_2447/Minifig_Headgear_Accessory_Helmet_Visor_2447.glb";
+import train_Track_9V_Straight_2865_model from "../../assets/Blocks/Train_Track_9V_Straight_2865/Train_Track_9V_Straight_2865.glb";
+import tracksMarkers_4552_model from "../../assets/Set_4552_V1/ModelsMarkers/Tracks4552/TracksMarkers_4552.glb";
 
 //?? Tracks
-//export const tracksMarkers_7722 = tracksMarkers_7722_model;
+export const tracksMarkers_4552 = tracksMarkers_4552_model;
+export const straight_Track_9V = train_Track_9V_Straight_2865_model;
 
 //?? Minifigs
 
