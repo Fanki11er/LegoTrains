@@ -430,7 +430,6 @@ export class ArrangementFunctionsHelper {
           nozzle!,
           "bent_1"
         );
-
         break;
       }
       case "bent_1": {
@@ -467,8 +466,8 @@ export class ArrangementFunctionsHelper {
         child.scale.set(1, 1, 1);
         child.visible = true;
       } else {
-        child.scale.set(0, 0, 0);
         child.visible = false;
+        child.scale.set(0, 0, 0);
       }
     });
   };

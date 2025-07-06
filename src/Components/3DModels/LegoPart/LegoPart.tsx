@@ -86,9 +86,8 @@ const LegoPart = (props: PartProps) => {
           isConnected: "",
           multipart: !!partInfo.multipart,
           multiPhases: partInfo.multiPhases || false,
-          activePhase: partInfo.activePhase || undefined,
+          activePhase: partInfo.activePhase || "",
         } as PartUserData;
-        //!! read multiphase from persistenceData
 
         if (modelRef.current.userData.multiPhases) {
           modelRef.current.children.forEach((child) => {
@@ -107,6 +106,24 @@ const LegoPart = (props: PartProps) => {
         );
 
         modelRef.current.userData = persistenceData.userData;
+
+        if (persistenceData.userData.multiPhases) {
+          modelRef.current.userData.activePhase =
+            persistenceData.userData?.activePhase;
+
+          modelRef.current.children.forEach((child) => {
+            if (
+              child.userData.isPhaseChild &&
+              child.userData.phaseName !==
+                modelRef.current.userData?.activePhase
+            ) {
+              child.scale.set(0, 0, 0); // Reset scale
+              child.visible = false;
+            } else {
+              child.visible = true;
+            }
+          });
+        }
 
         if (rootMarker) {
           modelRef.current.position.copy(

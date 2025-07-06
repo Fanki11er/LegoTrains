@@ -31,20 +31,19 @@ const moveHoseNozzleToNewPosition = (
       const helperMarker = findModelPartByName(model, "ModelHelperMarker001");
       const nozzle = findModelPartByName(model, "194cx1");
 
-      moveElementToNewNestPosition(nozzle, helperMarker);
-
       changeHoseNozzlePhase(model);
+      moveElementToNewNestPosition(nozzle, helperMarker);
 
       return [];
     }
 
     case 8: {
       const helperMarker = findModelPartByName(model, "ModelHelperMarker002");
-      const nozzle2 = findModelPartByName(model, "194cx1");
-
-      moveElementToNewNestPosition(nozzle2, helperMarker);
+      const nozzle = findModelPartByName(model, "194cx1");
 
       changeHoseNozzlePhase(model);
+      moveElementToNewNestPosition(nozzle, helperMarker);
+
       return [];
     }
     default:
