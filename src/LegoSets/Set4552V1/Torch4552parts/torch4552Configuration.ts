@@ -8,7 +8,6 @@ export const torch4552Configuration: ModelConfiguration = {
   modelMarkers: set4552TorchModelMarkers,
   modelBlocks: cargoCrain4552TorchModelBlocks,
   afterPhaseEndArraignmentFunction: torchModelAfterPhaseEndArrangementFunction,
-  //arrangementFunction: steamLocomotive7722ModelArrangementFunction,
   afterConnectArraignmentFunctionsNames: [
     {
       markerId: "ModelMarker.009",

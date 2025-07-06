@@ -141,7 +141,7 @@ const PersistenceDataProvider = ({
     if (instruction) {
       const data = instruction.prepareDataToSaveAfterPhaseEnd();
       if (data && setData) {
-        sendModelDataToDatabase(data, setData?.modelsList || []);
+        //sendModelDataToDatabase(data, setData?.modelsList || []);
       }
     }
   }, [sendModelDataToDatabase, instruction, setData]);

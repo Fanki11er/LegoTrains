@@ -256,8 +256,11 @@ export class TrainInstruction {
       const sceneRootMarker = this.getModelRootMarkerByName(
         this.sceneMarkersInfo.rootMarkerId
       );
+      console.log(sceneRootMarker);
+      console.log(modelRootMarker);
 
       if (modelRootMarker && sceneRootMarker) {
+        console.log(modelName);
         const destinationMarker = sceneRootMarker.children.find((child) => {
           return child.userData && child.userData.forModelId === modelName;
         });
