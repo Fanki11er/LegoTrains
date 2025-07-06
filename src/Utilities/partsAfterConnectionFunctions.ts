@@ -2,8 +2,12 @@ import { Object3D, Object3DEventMap } from "three";
 import { ArrangementFunctionsHelper } from "../Classes/ArrangementFunctionsHelper";
 import { ArraignmentFunction } from "../Types/ArrangementFunction";
 
-const { rotateLeg, rotateMinifigArm, rotateElementOnYAxis } =
-  ArrangementFunctionsHelper;
+const {
+  rotateLeg,
+  rotateMinifigArm,
+  rotateElementOnYAxis,
+  changeHoseNozzlePhase,
+} = ArrangementFunctionsHelper;
 
 export type PartsArraignmentFunctionsTypes =
   | "rightLeg30Forward"
@@ -11,7 +15,8 @@ export type PartsArraignmentFunctionsTypes =
   | "rotateHat30Left"
   | "rightArmForward60deg"
   | "minifigSit"
-  | "minifigArms60DegForward";
+  | "minifigArms60DegForward"
+  | "changeHoseNozzlePhase";
 
 export const getPartArrangementFunction = (
   name: PartsArraignmentFunctionsTypes
@@ -34,6 +39,9 @@ export const getPartArrangementFunction = (
     }
     case "minifigArms60DegForward": {
       return minifigArms60DegForward;
+    }
+    case "changeHoseNozzlePhase": {
+      return changeHoseNozzlePhase;
     }
 
     default: {

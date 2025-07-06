@@ -14,6 +14,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const isProd = import.meta.env.PROD;
 
+export const withHelper = isProd ? false : true; // Disable context menu helper in production
+
 export const APP_VERSION = "25.06.19";
 
 const queryClient = new QueryClient();

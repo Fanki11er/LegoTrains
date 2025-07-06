@@ -14,14 +14,14 @@ export const ALL_READY_SETS_INFORMATION_DATA: DashboardSetInformationData[] = [
     allModels: 7,
     imagePath: set_7722_image,
   },
+  {
+    setId: "Set_4552_V1",
+    setName: "LEGO 4552 Cargo Crain",
+    setVersion: 1,
+    allModels: 8,
+    imagePath: set_4552_image,
+  },
 ];
 
 export const FUTURE_SETS_INFORMATION_DATA: DashboardFutureSetInformationData[] =
-  [
-    {
-      setId: "Set_4552_V1",
-      setName: "LEGO 4552 Cargo Crain",
-      setVersion: 1,
-      imagePath: set_4552_image,
-    },
-  ];
+  [];

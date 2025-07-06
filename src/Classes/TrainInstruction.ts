@@ -43,22 +43,32 @@ export class TrainInstruction {
       modelMarkers,
       modelBlocks,
       arrangementFunction,
+      afterPhaseEndArraignmentFunction,
       afterConnectArraignmentFunctionsNames,
+      afterPhaseEndArraignmentFunctionsNames,
     } = modelConfiguration;
 
-    const steamLocomotive7722Model = new Model(modelName, modelMarkers, this);
+    const model = new Model(modelName, modelMarkers, this);
 
-    steamLocomotive7722Model.registerBlocksAfterConnectArraignmentsFunctionsNames(
+    model.registerBlocksAfterConnectArraignmentsFunctionsNames(
       afterConnectArraignmentFunctionsNames
     );
 
     if (arrangementFunction) {
-      steamLocomotive7722Model.registerModelArrangementFunction(
-        arrangementFunction
+      model.registerModelArrangementFunction(arrangementFunction);
+    }
+
+    if (afterPhaseEndArraignmentFunction) {
+      model.registerAfterPhaseEndArraignmentFunction(
+        afterPhaseEndArraignmentFunction
       );
     }
 
-    this.addModel(steamLocomotive7722Model);
+    model.registerAfterPhaseEndArraignmentFunctionsNames(
+      afterPhaseEndArraignmentFunctionsNames
+    );
+
+    this.addModel(model);
 
     this.setLegoBlocks.addForModelBlocks(modelName, modelBlocks);
   };
@@ -353,5 +363,20 @@ export class TrainInstruction {
     if (arraignmentFunction) {
       arraignmentFunction(model);
     }
+  };
+
+  partsArrangeAfterPhaseEnd = () => {
+    const rootModelMarker = this.getActiveModelMarkers();
+
+    if (!rootModelMarker) {
+      console.error("Error, root model marker not found");
+      saveErrorLog(
+        "Error, root model marker not found",
+        this.activeModel?.getModelName() || "Unknown Model"
+      );
+      return;
+    }
+
+    this.activeModel?.partsArrangeAfterPhaseEnd(rootModelMarker);
   };
 }

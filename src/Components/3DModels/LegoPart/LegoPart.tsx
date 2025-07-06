@@ -16,6 +16,7 @@ import {
 import { LegoBlock } from "../../../Types/LegoBlock";
 import { PartPersistenceData } from "../../../Classes/PersistenceModule";
 import useMaterials from "../../../Hooks/useMaterials";
+import { withHelper } from "../../../main";
 
 type PartProps = {
   partInfo: LegoBlock;
@@ -84,7 +85,22 @@ const LegoPart = (props: PartProps) => {
           partType: partInfo.partType,
           isConnected: "",
           multipart: !!partInfo.multipart,
+          multiPhases: partInfo.multiPhases || false,
+          activePhase: partInfo.activePhase || undefined,
         } as PartUserData;
+        //!! read multiphase from persistenceData
+
+        if (modelRef.current.userData.multiPhases) {
+          modelRef.current.children.forEach((child) => {
+            if (
+              child.userData.isPhaseChild &&
+              child.userData.phaseName !== modelRef.current.userData.activePhase
+            ) {
+              child.visible = false;
+              child.scale.set(0, 0, 0); // Reset scale
+            }
+          });
+        }
       } else {
         const rootMarker = handleGetRootModelMarkerByName(
           persistenceData.userData.modelId!
@@ -155,7 +171,9 @@ const LegoPart = (props: PartProps) => {
           }
         }}
       />
-      {isSelected && <SelectedElementContextMenu mesh={model} />}
+      {isSelected && (
+        <SelectedElementContextMenu mesh={model} withHelper={withHelper} />
+      )}
       <group name="NestsForThisPart">
         {modelRef.current && renderNests(markersList)}
       </group>

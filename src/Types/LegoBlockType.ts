@@ -12,4 +12,7 @@ export type LegoBlockType = {
   multipart?: boolean;
   childrenMaterialId?: string;
   propagateMainMaterialToChildren?: boolean;
+  multiPhases?: boolean;
+  activePhase?: string;
+  phases?: string[];
 };

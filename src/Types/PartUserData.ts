@@ -4,4 +4,6 @@ export type PartUserData = {
   isConnected: string;
   modelId: string | undefined;
   multipart: boolean;
+  multiPhases?: boolean;
+  activePhase?: string;
 };

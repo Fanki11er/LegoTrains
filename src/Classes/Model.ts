@@ -3,8 +3,14 @@ import { Phase } from "./Phase";
 import { TrainInstruction } from "./TrainInstruction";
 import { PartInfo } from "../Types/PartInfo";
 import { LegoBlock } from "../Types/LegoBlock";
-import { ArraignmentFunction } from "../Types/ArrangementFunction";
-import { ArraignmentFunctionRegistrationEntry } from "../Types/ModelTypes";
+import {
+  AfterPhaseEndArraignmentFunction,
+  ArraignmentFunction,
+} from "../Types/ArrangementFunction";
+import {
+  AfterPhaseEndArraignmentFunctionRegistrationEntry,
+  ArraignmentFunctionRegistrationEntry,
+} from "../Types/ModelTypes";
 
 export type MarkersInfo = {
   markersPath: string;
@@ -16,12 +22,18 @@ export class Model {
   private isModelArranged: boolean = false;
   private phases: Phase[] = [];
   private activePhase: Phase | null = null;
+  private previousPhaseId: number = 0;
   private instruction: TrainInstruction;
   private modelMarkersInfo: MarkersInfo;
   private connectedMarkersIds: string[] = [];
   private arraignmentFunctionRegistrationEntries: ArraignmentFunctionRegistrationEntry[] =
     [];
+  private afterPhaseEndArraignmentFunctionsNames: AfterPhaseEndArraignmentFunctionRegistrationEntry[] =
+    [];
   private modelArrangementFunction: ArraignmentFunction | undefined;
+  private afterPhaseEndArraignmentFunction:
+    | AfterPhaseEndArraignmentFunction
+    | undefined;
 
   constructor(
     modelName: string,
@@ -146,7 +158,9 @@ export class Model {
   incrementActivePhase = () => {
     if (this.activePhase) {
       const currentPhaseIndex = this.phases.indexOf(this.activePhase);
+      this.previousPhaseId = this.activePhase.getPhaseNumber();
       const newPhaseIndex = currentPhaseIndex + 1;
+
       if (newPhaseIndex < this.phases.length) {
         this.activePhase = this.phases[newPhaseIndex];
       } else {
@@ -182,6 +196,13 @@ export class Model {
       arraignmentFunctionRegistrationEntries;
   };
 
+  registerAfterPhaseEndArraignmentFunctionsNames = (
+    afterPhaseEndArraignmentFunctionsNames: AfterPhaseEndArraignmentFunctionRegistrationEntry[]
+  ) => {
+    this.afterPhaseEndArraignmentFunctionsNames =
+      afterPhaseEndArraignmentFunctionsNames;
+  };
+
   addArraignmentFunctionsToMarkers = (model: Object3D<Object3DEventMap>) => {
     this.arraignmentFunctionRegistrationEntries.forEach((entry) => {
       const marker = this.getMarkerByName(entry.markerId, model);
@@ -199,6 +220,12 @@ export class Model {
     this.modelArrangementFunction = modelArrangementFunction;
   };
 
+  registerAfterPhaseEndArraignmentFunction = (
+    afterPhaseEndArraignmentFunction: AfterPhaseEndArraignmentFunction
+  ) => {
+    this.afterPhaseEndArraignmentFunction = afterPhaseEndArraignmentFunction;
+  };
+
   addConnectedMarkerIdToArray = (markerId: string) => {
     this.connectedMarkersIds.push(markerId);
   };
@@ -211,6 +238,25 @@ export class Model {
 
   getConnectedMarkersIds = () => {
     return this.connectedMarkersIds;
+  };
+
+  partsArrangeAfterPhaseEnd = (model: Object3D<Object3DEventMap>) => {
+    const isAfterPhaseEndArraignmentFunctionRegistered =
+      this.afterPhaseEndArraignmentFunctionsNames.find((entry) => {
+        return entry.phaseId === this.previousPhaseId;
+      });
+
+    if (
+      this.afterPhaseEndArraignmentFunction &&
+      this.previousPhaseId &&
+      isAfterPhaseEndArraignmentFunctionRegistered
+    ) {
+      this.afterPhaseEndArraignmentFunction(
+        model,
+        this.previousPhaseId,
+        isAfterPhaseEndArraignmentFunctionRegistered.arraignmentFunctionName
+      );
+    }
   };
 
   private getMarkerByName = (

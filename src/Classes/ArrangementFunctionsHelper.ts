@@ -413,4 +413,63 @@ export class ArrangementFunctionsHelper {
       disconnectBarrel,
     };
   };
+
+  static changeHoseNozzlePhase = (model: Object3D<Object3DEventMap>) => {
+    const nozzle = model.getObjectByName("194cx1");
+
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      nozzle,
+      "Hose nozzle element is missing"
+    );
+
+    switch (nozzle!.userData.activePhase) {
+      case "base": {
+        nozzle!.userData.activePhase = "bent_1";
+
+        ArrangementFunctionsHelper.switchPhaseChildrenVisibilityAndScale(
+          nozzle!,
+          "bent_1"
+        );
+
+        break;
+      }
+      case "bent_1": {
+        nozzle!.userData.activePhase = "bent_2";
+
+        ArrangementFunctionsHelper.switchPhaseChildrenVisibilityAndScale(
+          nozzle!,
+          "bent_2"
+        );
+        break;
+      }
+      case "bent_2": {
+        nozzle!.userData.activePhase = "bent_3";
+        ArrangementFunctionsHelper.switchPhaseChildrenVisibilityAndScale(
+          nozzle!,
+          "bent_3"
+        );
+        break;
+      }
+
+      default:
+        break;
+    }
+
+    return [];
+  };
+
+  static switchPhaseChildrenVisibilityAndScale = (
+    model: Object3D<Object3DEventMap>,
+    activePhase: string
+  ) => {
+    model.children.forEach((child) => {
+      if (child.userData.phaseName === activePhase) {
+        child.scale.set(1, 1, 1);
+        child.visible = true;
+      } else {
+        child.scale.set(0, 0, 0);
+        child.visible = false;
+      }
+    });
+  };
 }

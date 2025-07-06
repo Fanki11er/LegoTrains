@@ -120,6 +120,10 @@ const TrainInstructionProvider = (
   const handleFinishPartConnection = useCallback(
     (marker: Object3D) => {
       const isPhaseEnded = trainInstruction.finishPartConnection(marker);
+
+      if (isPhaseEnded && marker) {
+        trainInstruction.partsArrangeAfterPhaseEnd();
+      }
       return isPhaseEnded;
     },
     [trainInstruction]
