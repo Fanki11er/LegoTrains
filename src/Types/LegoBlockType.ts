@@ -1,4 +1,5 @@
 import { Vector3 } from "three";
+import { MaterialsTypes } from "../Providers/MaterialsProvider";
 
 export type LegoBlockType = {
   partPath: string;
@@ -6,7 +7,7 @@ export type LegoBlockType = {
   slotId: string;
   depends: string[];
   partStartPosition: Vector3;
-  materialId?: string;
+  materialId?: MaterialsTypes;
   canNotBeRotated?: boolean;
   noAutomaticMoveToGroundLevel?: boolean;
   multipart?: boolean;
