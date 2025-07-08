@@ -1,5 +1,6 @@
 import { ModelBlock } from "../../../Types/ModelBlock";
 import { car4552Phase1 } from "./phase1";
+import { car4552Phase10 } from "./phase10";
 import { car4552Phase2 } from "./phase2";
 import { car4552Phase3 } from "./phase3";
 import { car4552Phase4 } from "./phase4";
@@ -45,5 +46,9 @@ export const cargoCrain4552CarModelBlocks: ModelBlock[] = [
   {
     phaseId: 9,
     legoBlockTypes: car4552Phase9,
+  },
+  {
+    phaseId: 10,
+    legoBlockTypes: car4552Phase10,
   },
 ];

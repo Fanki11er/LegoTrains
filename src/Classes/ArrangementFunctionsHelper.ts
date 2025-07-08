@@ -93,6 +93,20 @@ export class ArrangementFunctionsHelper {
     model.rotateY(convertDegreesToRadians(degree));
   };
 
+  static rotateElementOnXAxis = (
+    model: Object3D<Object3DEventMap>,
+    degree: number
+  ) => {
+    model.rotateX(convertDegreesToRadians(degree));
+  };
+
+  static rotateElementOnZAxis = (
+    model: Object3D<Object3DEventMap>,
+    degree: number
+  ) => {
+    model.rotateZ(convertDegreesToRadians(degree));
+  };
+
   static rotateMinifigArm = (
     model: Object3D<Object3DEventMap>,
     armSide: "Left" | "Right",

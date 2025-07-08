@@ -1,3 +1,4 @@
+import { PartsArraignmentFunctionsTypes } from "../Utilities/partsAfterConnectionFunctions";
 import { ModelBlock } from "./ModelBlock";
 
 export type ArraignmentFunctionRegistrationEntry = {

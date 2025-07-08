@@ -30,14 +30,30 @@ import hinge_Tile_1x4_4625_model from "../../assets/Blocks/Hinge_Tile_1x4_4625/H
 import hinge_Train_Gate_2x4_2873_model from "../../assets/Blocks/Hinge_Train_Gate_2x4_2873/Hinge_Train_Gate_2x4_2873.glb";
 import antenna_Small_Base_with_Lever_4592c02_model from "../../assets/Blocks/Antenna_Small_Base_with_Lever_4592c02/Antenna_Small_Base_with_Lever_4592c02.glb";
 import tile_Specialty_1x2_with_Handle_2432_model from "../../assets/Blocks/Tile_Specialty_1x2_with_Handle_2432/Tile_Specialty_1x2_with_Handle_2432.glb";
-import hinge_Brick_1x2_Base_3937_model from "../../assets/Blocks/Hinge_Brick_1x2_Base_3937/Hinge_Brick_1x2_Base_3937.glb";
+import hinge_Brick_1x2_Base_with_Sticker_3937_model from "../../assets/Blocks/Hinge_Brick_1x2_Base_with_Sticker_3937/Hinge_Brick_1x2_Base_with_Sticker_3937.glb";
 import hinge_Brick_1x2_Thin_Top_Plate_3938_model from "../../assets/Blocks/Hinge_Brick_1x2_Thin_Top_Plate_3938/Hinge_Brick_1x2_Thin_Top_Plate_3938.glb";
+import tile_1x2_with_Telemetry_Panel_Pattern_3069px2_model from "../../assets/Blocks/Tile_1x2_with_Telemetry_Panel_Pattern_3069px2/Tile_1x2_with_Telemetry_Panel_Pattern_3069px2.glb";
+import train_Wheel_Small_2927_model from "../../assets/Blocks/Train_Wheel_Small_2927/Train_Wheel_Small_2927.glb";
+import minifig_Hips_and_Legs_970c00_model from "../../assets/Blocks/Minifig_Hips_and_Legs_970c00/Minifig_Hips_and_Legs_970c00.glb";
+import minifig_Torso_Train_Red_Vest_Pattern_973px8c01_model from "../../assets/Blocks/Minifig_Torso_Train_Red_Vest_Pattern_973px8c01/Minifig_Torso_Train_Red_Vest_Pattern_973px8c01.glb";
+import minifig_Head_with_Pointed_Moustache_Pattern_3626bp03_model from "../../assets/Blocks/Minifig_Head_with_Pointed_Moustache_Pattern_3626bp03/Minifig_Head_with_Pointed_Moustache_Pattern_3626bp03.glb";
+import minifig_Headgear_Construction_Helmet_3833_model from "../../assets/Blocks/Minifig_Headgear_Construction_Helmet_3833/Minifig_Headgear_Construction_Helmet_3833.glb";
+import minifig_Accessory_Radio_with_Compact_Handle_3962a_model from "../../assets/Blocks/Minifig_Accessory_Radio_with_Compact_Handle_3962a/Minifig_Accessory_Radio_with_Compact_Handle_3962a.glb";
 
 //?? Tracks
 export const tracksMarkers_4552 = tracksMarkers_4552_model;
 export const straight_Track_9V = train_Track_9V_Straight_2865_model;
 
 //?? Minifigs
+export const minifig_Hips_and_Legs_970c00 = minifig_Hips_and_Legs_970c00_model;
+export const minifig_Torso_Train_Red_Vest_Pattern_973px8c01 =
+  minifig_Torso_Train_Red_Vest_Pattern_973px8c01_model;
+export const minifig_Head_with_Pointed_Moustache_Pattern_3626bp03 =
+  minifig_Head_with_Pointed_Moustache_Pattern_3626bp03_model;
+export const minifig_Headgear_Construction_Helmet_3833 =
+  minifig_Headgear_Construction_Helmet_3833_model;
+export const minifig_Accessory_Radio_with_Compact_Handle_3962a =
+  minifig_Accessory_Radio_with_Compact_Handle_3962a_model;
 
 //?? Torch
 export const plate_2x2_Round_with_Wheel_Holder_Thin_2655 =
@@ -85,6 +101,10 @@ export const antenna_Small_Base_with_Lever_4592c02 =
   antenna_Small_Base_with_Lever_4592c02_model;
 export const tile_Specialty_1x2_with_Handle_2432 =
   tile_Specialty_1x2_with_Handle_2432_model;
-export const hinge_Brick_1x2_Base_3937 = hinge_Brick_1x2_Base_3937_model;
+export const hinge_Brick_1x2_Base_with_Sticker_3937 =
+  hinge_Brick_1x2_Base_with_Sticker_3937_model;
 export const hinge_Brick_1x2_Thin_Top_Plate_3938 =
   hinge_Brick_1x2_Thin_Top_Plate_3938_model;
+export const tile_1x2_with_Telemetry_Panel_Pattern_3069px2 =
+  tile_1x2_with_Telemetry_Panel_Pattern_3069px2_model;
+export const train_Wheel_Small_2927 = train_Wheel_Small_2927_model;

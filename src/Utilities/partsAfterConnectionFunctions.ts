@@ -16,7 +16,8 @@ export type PartsArraignmentFunctionsTypes =
   | "rightArmForward60deg"
   | "minifigSit"
   | "minifigArms60DegForward"
-  | "changeHoseNozzlePhase";
+  | "changeHoseNozzlePhase"
+  | "minifigArms45DegForward";
 
 export const getPartArrangementFunction = (
   name: PartsArraignmentFunctionsTypes
@@ -42,6 +43,9 @@ export const getPartArrangementFunction = (
     }
     case "changeHoseNozzlePhase": {
       return changeHoseNozzlePhase;
+    }
+    case "minifigArms45DegForward": {
+      return minifigArms45DegForward;
     }
 
     default: {
@@ -79,5 +83,12 @@ const minifigSit = (model: Object3D<Object3DEventMap>) => {
 const minifigArms60DegForward = (model: Object3D<Object3DEventMap>) => {
   rotateMinifigArm(model, "Right", 20, 25);
   rotateMinifigArm(model, "Left", 25, 0);
+  return [];
+};
+``;
+
+const minifigArms45DegForward = (model: Object3D<Object3DEventMap>) => {
+  rotateMinifigArm(model, "Right", 45, 18);
+  rotateMinifigArm(model, "Left", 45, 18);
   return [];
 };
