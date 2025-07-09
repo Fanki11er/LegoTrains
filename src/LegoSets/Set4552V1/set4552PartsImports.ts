@@ -39,6 +39,22 @@ import minifig_Torso_Train_Red_Vest_Pattern_973px8c01_model from "../../assets/B
 import minifig_Head_with_Pointed_Moustache_Pattern_3626bp03_model from "../../assets/Blocks/Minifig_Head_with_Pointed_Moustache_Pattern_3626bp03/Minifig_Head_with_Pointed_Moustache_Pattern_3626bp03.glb";
 import minifig_Headgear_Construction_Helmet_3833_model from "../../assets/Blocks/Minifig_Headgear_Construction_Helmet_3833/Minifig_Headgear_Construction_Helmet_3833.glb";
 import minifig_Accessory_Radio_with_Compact_Handle_3962a_model from "../../assets/Blocks/Minifig_Accessory_Radio_with_Compact_Handle_3962a/Minifig_Accessory_Radio_with_Compact_Handle_3962a.glb";
+import plate_4x8_3035_model from "../../assets/Blocks/Plate_4x8_3035/Plate_4x8_3035.glb";
+import brick_Specialty_1x2_with_Grill_2877_model from "../../assets/Blocks/Brick_Specialty_1x2_with_Grill_2877/Brick_Specialty_1x2_with_Grill_2877.glb";
+import brick_Specialty_1x2x5_2454_model from "../../assets/Blocks/Brick_Specialty_1x2x5_2454/Brick_Specialty_1x2x5_2454.glb";
+import brick_Specialty_with_Train_Logo_Pattern_1x2x5_2454pb04_model from "../../assets/Blocks/Brick_Specialty_with_Train_Logo_Pattern_1x2x5_2454pb04/Brick_Specialty_with_Train_Logo_Pattern_1x2x5_2454pb04.glb";
+import brick_1x2_3004_model from "../../assets/Blocks/Brick_1x2_3004/Brick_1x2_3004.glb";
+import plate_Specialty_2x2_with_Pin_Hole_One_Side_Only_2444_model from "../../assets/Blocks/Plate_Specialty_2x2_with_Pin_Hole_One_Side_Only_2444/Plate_Specialty_2x2_with_Pin_Hole_One_Side_Only_2444.glb";
+import technic_Pin_Half_Length_4274_model from "../../assets/Blocks/Technic_Pin_Half_Length_4274/Technic_Pin_Half_Length_4274.glb";
+import train_Window_1x2x3_4035_model from "../../assets/Blocks/Train_Window_1x2x3_4035/Train_Window_1x2x3_4035.glb";
+import glass_For_Train_Window_1x2x3_4036_model from "../../assets/Blocks/Glass_For_Train_Window_1x2x3_4036/Glass_For_Train_Window_1x2x3_4036.glb";
+import train_Window_1x4x3_6556_model from "../../assets/Blocks/Train_Window_1x4x3_6556/Train_Window_1x4x3_6556.glb";
+import glass_for_Train_Window_1x4x3_4034_model from "../../assets/Blocks/Glass_for_Train_Window_1x4x3_4034/Glass_for_Train_Window_1x4x3_4034.glb";
+import Train_Door_1x4x5_Right_4182_model from "../../assets/Blocks/Train_Door_1x4x5_Right_4182/Train_Door_1x4x5_Right_4182.glb";
+import Train_Door_1x4x5_Left_4181_model from "../../assets/Blocks/Train_Door_1x4x5_Left_4181/Train_Door_1x4x5_Left_4181.glb";
+import glass_for_Train_Door_4183_model from "../../assets/Blocks/Glass_for_Train_Door_4183/Glass_for_Train_Door_4183.glb";
+import tile_2x2_Round_with_Lifting_Ring_2376_model from "../../assets/Blocks/Tile_2x2_Round_with_Lifting_Ring_2376/Tile_2x2_Round_with_Lifting_Ring_2376.glb";
+import tile_Specialty_1x2_Grille_2412_model from "../../assets/Blocks/Tile_Specialty_1x2_Grille_2412/Tile_Specialty_1x2_Grille_2412.glb";
 
 //?? Tracks
 export const tracksMarkers_4552 = tracksMarkers_4552_model;
@@ -108,3 +124,28 @@ export const hinge_Brick_1x2_Thin_Top_Plate_3938 =
 export const tile_1x2_with_Telemetry_Panel_Pattern_3069px2 =
   tile_1x2_with_Telemetry_Panel_Pattern_3069px2_model;
 export const train_Wheel_Small_2927 = train_Wheel_Small_2927_model;
+
+//?? Workshop
+export const plate_4x8_3035 = plate_4x8_3035_model;
+export const brick_Specialty_1x2_with_Grill_2877 =
+  brick_Specialty_1x2_with_Grill_2877_model;
+export const brick_Specialty_1x2x5_2454 = brick_Specialty_1x2x5_2454_model;
+export const brick_Specialty_with_Train_Logo_Pattern_1x2x5_2454pb04 =
+  brick_Specialty_with_Train_Logo_Pattern_1x2x5_2454pb04_model;
+export const brick_1x2_3004 = brick_1x2_3004_model;
+export const plate_Specialty_2x2_with_Pin_Hole_One_Side_Only_2444 =
+  plate_Specialty_2x2_with_Pin_Hole_One_Side_Only_2444_model;
+export const technic_Pin_Half_Length_4274 = technic_Pin_Half_Length_4274_model;
+export const train_Window_1x2x3_4035 = train_Window_1x2x3_4035_model;
+export const glass_For_Train_Window_1x2x3_4036 =
+  glass_For_Train_Window_1x2x3_4036_model;
+export const train_Window_1x4x3_6556 = train_Window_1x4x3_6556_model;
+export const glass_for_Train_Window_1x4x3_4034 =
+  glass_for_Train_Window_1x4x3_4034_model;
+export const Train_Door_1x4x5_Right_4182 = Train_Door_1x4x5_Right_4182_model;
+export const Train_Door_1x4x5_Left_4181 = Train_Door_1x4x5_Left_4181_model;
+export const glass_for_Train_Door_4183 = glass_for_Train_Door_4183_model;
+export const tile_2x2_Round_with_Lifting_Ring_2376 =
+  tile_2x2_Round_with_Lifting_Ring_2376_model;
+export const tile_Specialty_1x2_Grille_2412 =
+  tile_Specialty_1x2_Grille_2412_model;

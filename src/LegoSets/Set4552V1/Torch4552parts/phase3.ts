@@ -8,7 +8,7 @@ import {
 export const torch4552Phase3: LegoBlockType[] = [
   {
     partPath: plate_Specialty_1x1_with_Clip_Horizontal_6019,
-    partStartPosition: new Vector3(-175, 0, 150),
+    partStartPosition: new Vector3(-60, 0, 160),
     partType: "6019",
     materialId: "oldGrayPlasticMaterial",
     slotId: "ModelMarker.004",

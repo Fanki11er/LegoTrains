@@ -3,6 +3,7 @@ import { TrainInstruction } from "../../Classes/TrainInstruction";
 import set4552SceneMarkers from "../../assets/Set_4552_V1/SceneMarkers/Scene_Markers.glb";
 import { car4552Configuration } from "./Car4552parts/car4552Configuration";
 import { torch4552Configuration } from "./Torch4552parts/torch4552Configuration";
+import { workshop4552Configuration } from "./Workshop4552parts/workshop4552Configuration";
 
 export const createSet4552V1Instruction = () => {
   const set4552Instruction = new TrainInstruction(
@@ -15,6 +16,9 @@ export const createSet4552V1Instruction = () => {
 
   //?? Car
   set4552Instruction.createModel(car4552Configuration);
+
+  //?? Workshop
+  set4552Instruction.createModel(workshop4552Configuration);
 
   return set4552Instruction;
 };
