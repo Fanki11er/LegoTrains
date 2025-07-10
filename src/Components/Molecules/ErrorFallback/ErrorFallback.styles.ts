@@ -16,6 +16,6 @@ export const ErrorFallbackImage = styled.img`
 `;
 
 export const ErrorFallbackText = styled.span`
-  color: ${({ theme }) => theme.colors.orange};
+  color: rgba(254, 138, 24, 1);
   font-size: 2rem;
 `;
