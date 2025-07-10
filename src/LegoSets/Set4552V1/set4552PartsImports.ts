@@ -55,6 +55,8 @@ import train_Door_1x4x5_Left_With_Logo_4181_model from "../../assets/Blocks/Trai
 import glass_for_Train_Door_4183_model from "../../assets/Blocks/Glass_for_Train_Door_4183/Glass_for_Train_Door_4183.glb";
 import tile_2x2_Round_with_Lifting_Ring_2376_model from "../../assets/Blocks/Tile_2x2_Round_with_Lifting_Ring_2376/Tile_2x2_Round_with_Lifting_Ring_2376.glb";
 import tile_Specialty_1x2_Grille_2412_model from "../../assets/Blocks/Tile_Specialty_1x2_Grille_2412/Tile_Specialty_1x2_Grille_2412.glb";
+import plate_1x4_3710_model from "../../assets/Blocks/Plate_1x4_3710/Plate_1x4_3710.glb";
+import cone_2x2x1_Octagonal_6039_model from "../../assets/Blocks/Cone_2x2x1_Octagonal_6039/Cone_2x2x1_Octagonal_6039.glb";
 
 //?? Tracks
 export const tracksMarkers_4552 = tracksMarkers_4552_model;
@@ -150,3 +152,7 @@ export const tile_2x2_Round_with_Lifting_Ring_2376 =
   tile_2x2_Round_with_Lifting_Ring_2376_model;
 export const tile_Specialty_1x2_Grille_2412 =
   tile_Specialty_1x2_Grille_2412_model;
+
+//?? Palette
+export const plate_1x4_3710 = plate_1x4_3710_model;
+export const cone_2x2x1_Octagonal_6039 = cone_2x2x1_Octagonal_6039_model;
