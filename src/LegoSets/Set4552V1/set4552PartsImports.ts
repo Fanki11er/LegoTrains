@@ -71,6 +71,8 @@ import tile_1x4_2431_model from "../../assets/Blocks/Tile_1x4_2431/Tile_1x4_2431
 import brick_1x3_3622_model from "../../assets/Blocks/Brick_1x3_3622/Brick_1x3_3622.glb";
 import tile_1x2_with_Groove_3069b_model from "../../assets/Blocks/Tile_1x2_with_Groove_3069b/Tile_1x2_with_Groove_3069b.glb";
 import plate_Specialty_1x6_with_Train_Wagon_End_6583_model from "../../assets/Blocks/Plate_Specialty_1x6_with_Train_Wagon_End_6583/Plate_Specialty_1x6_with_Train_Wagon_End_6583.glb";
+import Train_Base_6x24_with_3_Round_Holes_Each_End_And_Stickers_6584a_model from "../../assets/Blocks/Train_Base_6x24_with_3_Round_Holes_Each_End_And_Stickers_6584a/Train_Base_6x24_with_3_Round_Holes_Each_End_And_Stickers_6584a.glb";
+import plate_1x6_3666_model from "../../assets/Blocks/Plate_1x6_3666/Plate_1x6_3666.glb";
 
 //?? Tracks
 export const tracksMarkers_4552 = tracksMarkers_4552_model;
@@ -188,3 +190,8 @@ export const brick_1x3_3622 = brick_1x3_3622_model;
 export const tile_1x2_with_Groove_3069b = tile_1x2_with_Groove_3069b_model;
 export const plate_Specialty_1x6_with_Train_Wagon_End_6583 =
   plate_Specialty_1x6_with_Train_Wagon_End_6583_model;
+
+//?? Crain Cart
+export const Train_Base_6x24_with_3_Round_Holes_Each_End_And_Stickers_6584a =
+  Train_Base_6x24_with_3_Round_Holes_Each_End_And_Stickers_6584a_model;
+export const plate_1x6_3666 = plate_1x6_3666_model;
