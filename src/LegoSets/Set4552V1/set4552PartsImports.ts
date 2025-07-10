@@ -50,8 +50,8 @@ import train_Window_1x2x3_4035_model from "../../assets/Blocks/Train_Window_1x2x
 import glass_For_Train_Window_1x2x3_4036_model from "../../assets/Blocks/Glass_For_Train_Window_1x2x3_4036/Glass_For_Train_Window_1x2x3_4036.glb";
 import train_Window_1x4x3_6556_model from "../../assets/Blocks/Train_Window_1x4x3_6556/Train_Window_1x4x3_6556.glb";
 import glass_for_Train_Window_1x4x3_4034_model from "../../assets/Blocks/Glass_for_Train_Window_1x4x3_4034/Glass_for_Train_Window_1x4x3_4034.glb";
-import Train_Door_1x4x5_Right_4182_model from "../../assets/Blocks/Train_Door_1x4x5_Right_4182/Train_Door_1x4x5_Right_4182.glb";
-import Train_Door_1x4x5_Left_4181_model from "../../assets/Blocks/Train_Door_1x4x5_Left_4181/Train_Door_1x4x5_Left_4181.glb";
+import train_Door_1x4x5_Right_4182_model from "../../assets/Blocks/Train_Door_1x4x5_Right_4182/Train_Door_1x4x5_Right_4182.glb";
+import train_Door_1x4x5_Left_With_Logo_4181_model from "../../assets/Blocks/Train_Door_1x4x5_Left_With_Logo_4181/Train_Door_1x4x5_Left_With_Logo_4181.glb";
 import glass_for_Train_Door_4183_model from "../../assets/Blocks/Glass_for_Train_Door_4183/Glass_for_Train_Door_4183.glb";
 import tile_2x2_Round_with_Lifting_Ring_2376_model from "../../assets/Blocks/Tile_2x2_Round_with_Lifting_Ring_2376/Tile_2x2_Round_with_Lifting_Ring_2376.glb";
 import tile_Specialty_1x2_Grille_2412_model from "../../assets/Blocks/Tile_Specialty_1x2_Grille_2412/Tile_Specialty_1x2_Grille_2412.glb";
@@ -142,8 +142,9 @@ export const glass_For_Train_Window_1x2x3_4036 =
 export const train_Window_1x4x3_6556 = train_Window_1x4x3_6556_model;
 export const glass_for_Train_Window_1x4x3_4034 =
   glass_for_Train_Window_1x4x3_4034_model;
-export const Train_Door_1x4x5_Right_4182 = Train_Door_1x4x5_Right_4182_model;
-export const Train_Door_1x4x5_Left_4181 = Train_Door_1x4x5_Left_4181_model;
+export const train_Door_1x4x5_Right_4182 = train_Door_1x4x5_Right_4182_model;
+export const train_Door_1x4x5_Left_With_Logo_4181 =
+  train_Door_1x4x5_Left_With_Logo_4181_model;
 export const glass_for_Train_Door_4183 = glass_for_Train_Door_4183_model;
 export const tile_2x2_Round_with_Lifting_Ring_2376 =
   tile_2x2_Round_with_Lifting_Ring_2376_model;

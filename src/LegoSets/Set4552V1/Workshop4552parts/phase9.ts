@@ -31,7 +31,3 @@ export const workshop4552Phase9: LegoBlockType[] = [
     depends: [],
   },
 ];
-
-//!! Add instruction pages
-//!! Add arraignment functions
-//!! Arrange parts in the scene

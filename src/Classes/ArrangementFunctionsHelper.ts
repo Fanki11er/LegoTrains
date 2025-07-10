@@ -485,4 +485,20 @@ export class ArrangementFunctionsHelper {
       }
     });
   };
+
+  static rotateSmallAntenna = (
+    model: Object3D<Object3DEventMap>,
+    degree: number
+  ) => {
+    const antennaLeverHandle = ArrangementFunctionsHelper.findModelPartByName(
+      model,
+      "Antenna_Small_Lever_Handle"
+    );
+
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      antennaLeverHandle,
+      "Antenna lever handle element not found"
+    );
+    ArrangementFunctionsHelper.rotateElementOnZAxis(antennaLeverHandle, degree);
+  };
 }

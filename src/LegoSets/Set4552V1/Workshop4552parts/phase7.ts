@@ -2,13 +2,13 @@ import { Vector3 } from "three";
 import { LegoBlockType } from "../../../Types/LegoBlockType";
 import {
   glass_for_Train_Door_4183,
-  Train_Door_1x4x5_Left_4181,
-  Train_Door_1x4x5_Right_4182,
+  train_Door_1x4x5_Left_With_Logo_4181,
+  train_Door_1x4x5_Right_4182,
 } from "../set4552PartsImports";
 
 export const workshop4552Phase7: LegoBlockType[] = [
   {
-    partPath: Train_Door_1x4x5_Right_4182,
+    partPath: train_Door_1x4x5_Right_4182,
     partStartPosition: new Vector3(-235, 0, 340),
     partType: "6182",
     materialId: "greenPlasticMaterial",
@@ -24,7 +24,7 @@ export const workshop4552Phase7: LegoBlockType[] = [
     depends: ["ModelMarker.028"],
   },
   {
-    partPath: Train_Door_1x4x5_Left_4181,
+    partPath: train_Door_1x4x5_Left_With_Logo_4181,
     partStartPosition: new Vector3(-160, 0, 340),
     partType: "6181",
     materialId: "greenPlasticMaterial",

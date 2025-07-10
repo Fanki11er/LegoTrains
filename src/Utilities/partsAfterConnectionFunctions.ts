@@ -7,6 +7,7 @@ const {
   rotateMinifigArm,
   rotateElementOnYAxis,
   changeHoseNozzlePhase,
+  rotateSmallAntenna,
 } = ArrangementFunctionsHelper;
 
 export type PartsArraignmentFunctionsTypes =
@@ -17,7 +18,8 @@ export type PartsArraignmentFunctionsTypes =
   | "minifigSit"
   | "minifigArms60DegForward"
   | "changeHoseNozzlePhase"
-  | "minifigArms45DegForward";
+  | "minifigArms45DegForward"
+  | "rotateSmallAntenna30DegBackward";
 
 export const getPartArrangementFunction = (
   name: PartsArraignmentFunctionsTypes
@@ -46,6 +48,9 @@ export const getPartArrangementFunction = (
     }
     case "minifigArms45DegForward": {
       return minifigArms45DegForward;
+    }
+    case "rotateSmallAntenna30DegBackward": {
+      return rotateSmallAntenna30DegBackward;
     }
 
     default: {
@@ -90,5 +95,10 @@ const minifigArms60DegForward = (model: Object3D<Object3DEventMap>) => {
 const minifigArms45DegForward = (model: Object3D<Object3DEventMap>) => {
   rotateMinifigArm(model, "Right", 45, 18);
   rotateMinifigArm(model, "Left", 45, 18);
+  return [];
+};
+
+const rotateSmallAntenna30DegBackward = (model: Object3D<Object3DEventMap>) => {
+  rotateSmallAntenna(model, -60);
   return [];
 };
