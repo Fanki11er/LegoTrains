@@ -29,7 +29,7 @@ export const crainCart4552Phase3: LegoBlockType[] = [
   },
   {
     partPath: brick_2x8_3007,
-    partStartPosition: new Vector3(95, 0, 390),
+    partStartPosition: new Vector3(160, 0, 390),
     partType: "3007",
     materialId: "blackPlasticMaterial",
     slotId: "ModelMarker.015",
@@ -37,7 +37,7 @@ export const crainCart4552Phase3: LegoBlockType[] = [
   },
   {
     partPath: brick_2x8_3007,
-    partStartPosition: new Vector3(95, 0, 415),
+    partStartPosition: new Vector3(160, 0, 415),
     partType: "3007",
     materialId: "blackPlasticMaterial",
     slotId: "ModelMarker.016",

@@ -1,12 +1,12 @@
 import { ModelConfiguration } from "../../../Types/ModelTypes";
 // @ts-expect-error Not a type
 import set4552CrainCartModelMarkers from "../../../assets/Set_4552_V1/ModelsMarkers/CrainCart4552/Markers.glb";
-import { crainCart4552ModelBlocks } from "./crainCart4552ModelBlocks";
+import { crainCabin4552ModelBlocks } from "./crainCabin4552ModelBlocks";
 
-export const crainCart4552Configuration: ModelConfiguration = {
-  modelName: "CrainCart4552Model",
+export const crainCabin4552Configuration: ModelConfiguration = {
+  modelName: "CrainCabin4552Model",
   modelMarkers: set4552CrainCartModelMarkers,
-  modelBlocks: crainCart4552ModelBlocks,
+  modelBlocks: crainCabin4552ModelBlocks,
   afterConnectArraignmentFunctionsNames: [],
   afterPhaseEndArraignmentFunctionsNames: [],
 };

@@ -81,6 +81,19 @@ import technic_Plate_1x6_with_Holes_Toothed_Ends_4262_model from "../../assets/B
 import technic_Pin_with_Friction_Ridges_and_Center_Slots_4459_model from "../../assets/Blocks/Technic_Pin_with_Friction_Ridges_and_Center_Slots_4459/Technic_Pin_with_Friction_Ridges_and_Center_Slots_4459.glb";
 import technic_Plate_1x4_with_Holes_Toothed_Ends_4263_model from "../../assets/Blocks/Technic_Plate_1x4_with_Holes_Toothed_Ends_4263/Technic_Plate_1x4_with_Holes_Toothed_Ends_4263.glb";
 import train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092_model from "../../assets/Blocks/Train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092/Train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092.glb";
+import plate_6x12_3028_model from "../../assets/Blocks/Plate_6x12_3028/Plate_6x12_3028.glb";
+import plate_Specialty_1x2_1x4_Bracket_2436_model from "../../assets/Blocks/Plate_Specialty_1x2_1x4_Bracket_2436/Plate_Specialty_1x2_1x4_Bracket_2436.glb";
+import brick_1x8_3008_model from "../../assets/Blocks/Brick_1x8_3008/Brick_1x8_3008.glb";
+import brick_Specialty_1x1_with_Handle_2921_model from "../../assets/Blocks/Brick_Specialty_1x_1_with_Handle_2921/Brick_Specialty_1x_1_with_Handle_2921.glb";
+import brick_Specialty_2x6x2_Weight_with_Plate_Bottom_73090b_model from "../../assets/Blocks/Brick_Specialty_2x6x2_Weight_with_Plate_Bottom_73090b/Brick_Specialty_2x6x2_Weight_with_Plate_Bottom_73090b.glb";
+import slope_Brick_3x4_33_Degrees_3297_model from "../../assets/Blocks/Slope_Brick_3x4_33_Degrees_3297/Slope_Brick_3x4_33_Degrees_3297.glb";
+import tile_2x2_With_Grove_3068b_model from "../../assets/Blocks/Tile_2x2_With_Grove_3068b/Tile_2x2_With_Grove_3068b.glb";
+import minifig_Accessory_Seat_2x2_4079_model from "../../assets/Blocks/Minifig_Accessory_Seat_2x2_4079/Minifig_Accessory_Seat_2x2_4079.glb";
+import brick_1x1_3005_model from "../../assets/Blocks/Brick_1x1_3005/Brick_1x1_3005.glb";
+import brick_2x6_2456_model from "../../assets/Blocks/Brick_2x6_2456/Brick_2x6_2456.glb";
+import slope_Brick_2x4_45_Degrees_3037_model from "../../assets/Blocks/Slope_Brick_2x4_45_Degrees_3037/Slope_Brick_2x4_45_Degrees_3037.glb";
+import winch_2x4x2_73037_model from "../../assets/Blocks/Winch_2x4x2_73037/Winch_2x4x2_73037.glb";
+import string_Cord_Thin_x77a_model from "../../assets/Blocks/String_Cord_Thin_x77a/String_Cord_Thin_x77a.glb";
 
 //?? Tracks
 export const tracksMarkers_4552 = tracksMarkers_4552_model;
@@ -218,3 +231,24 @@ export const technic_Plate_1x4_with_Holes_Toothed_Ends_4263 =
   technic_Plate_1x4_with_Holes_Toothed_Ends_4263_model;
 export const train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092 =
   train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092_model;
+
+//?? Crain Cabin
+export const plate_6x12_3028 = plate_6x12_3028_model;
+export const plate_Specialty_1x2_1x4_Bracket_2436 =
+  plate_Specialty_1x2_1x4_Bracket_2436_model;
+export const brick_1x8_3008 = brick_1x8_3008_model;
+export const brick_Specialty_1x1_with_Handle_2921 =
+  brick_Specialty_1x1_with_Handle_2921_model;
+export const brick_Specialty_2x6x2_Weight_with_Plate_Bottom_73090b =
+  brick_Specialty_2x6x2_Weight_with_Plate_Bottom_73090b_model;
+export const slope_Brick_3x4_33_Degrees_3297 =
+  slope_Brick_3x4_33_Degrees_3297_model;
+export const tile_2x2_With_Grove_3068b = tile_2x2_With_Grove_3068b_model;
+export const minifig_Accessory_Seat_2x2_4079 =
+  minifig_Accessory_Seat_2x2_4079_model;
+export const brick_1x1_3005 = brick_1x1_3005_model;
+export const brick_2x6_2456 = brick_2x6_2456_model;
+export const slope_Brick_2x4_45_Degrees_3037 =
+  slope_Brick_2x4_45_Degrees_3037_model;
+export const winch_2x4x2_73037 = winch_2x4x2_73037_model;
+export const string_Cord_Thin_x77a = string_Cord_Thin_x77a_model;

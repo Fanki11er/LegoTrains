@@ -5,7 +5,7 @@ import { crainCart4552Phase3 } from "./phase3";
 import { crainCart4552Phase4 } from "./phase4";
 import { crainCart4552Phase5 } from "./phase5";
 
-export const crainCart4552WorkshopModelBlocks: ModelBlock[] = [
+export const crainCart4552ModelBlocks: ModelBlock[] = [
   {
     phaseId: 1,
     legoBlockTypes: crainCart4552Phase1,
