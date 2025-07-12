@@ -98,7 +98,7 @@ export const crainCart4552Phase3: LegoBlockType[] = [
     partType: "4459",
     materialId: "blackPlasticMaterial",
     slotId: "ModelMarker.024",
-    depends: ["ModelMarker.021"],
+    depends: ["ModelMarker.019"],
   },
   {
     partPath: technic_Plate_1x4_with_Holes_Toothed_Ends_4263,

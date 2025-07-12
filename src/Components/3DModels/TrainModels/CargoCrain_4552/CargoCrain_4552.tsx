@@ -54,7 +54,7 @@ const CargoCrain_4552 = ({
         <MaterialsProvider>
           <Floor />
           <Instruction
-            position={[-170, 0.1, 0]}
+            position={[-200, 0.1, 0]}
             instructionTextures={instruction_textures_4552}
           />
           {renderModels(handleGetSetModelsToRenderList(), modelsData)}
