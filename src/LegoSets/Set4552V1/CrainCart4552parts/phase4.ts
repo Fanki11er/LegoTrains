@@ -1,0 +1,140 @@
+import { Vector3 } from "three";
+import { LegoBlockType } from "../../../Types/LegoBlockType";
+import {
+  magnet_Cylindrical_73092,
+  plate_1x2_3023,
+  plate_2_x_6_3795,
+  train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092,
+  train_Buffer_Beam_4022,
+  train_Coupling_4023,
+  train_Wheel_Holder_9V_with_Wheels_Complete_2878c01,
+} from "../set4552PartsImports";
+
+export const crainCart4552Phase4: LegoBlockType[] = [
+  {
+    partPath: train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092,
+    partStartPosition: new Vector3(-110, 0, 350),
+    partType: "4092",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.033",
+    depends: [],
+  },
+  {
+    partPath: train_Buffer_Beam_4022,
+    partStartPosition: new Vector3(430, 0, 390),
+    partType: "4022",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.035",
+    depends: ["ModelMarker.033"],
+  },
+  {
+    partPath: train_Coupling_4023,
+    partStartPosition: new Vector3(480, 0, 315),
+    partType: "4023",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.036",
+    depends: ["ModelMarker.035"],
+  },
+  {
+    partPath: magnet_Cylindrical_73092,
+    partStartPosition: new Vector3(500, 0, 305),
+    partType: "73092",
+    slotId: "ModelMarker.037",
+    depends: ["ModelMarker.036"],
+  },
+  //??
+  {
+    partPath: plate_1x2_3023,
+    partStartPosition: new Vector3(150, 0, 300),
+    partType: "3023",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.038",
+    depends: ["ModelMarker.033"],
+  },
+  {
+    partPath: plate_2_x_6_3795,
+    partStartPosition: new Vector3(25, 0, 415),
+    partType: "3795",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.039",
+    depends: ["ModelMarker.038", "ModelMarker.035"],
+  },
+  {
+    partPath: train_Wheel_Holder_9V_with_Wheels_Complete_2878c01,
+    partStartPosition: new Vector3(335, 0, 350),
+    partType: "2878c01",
+    slotId: "ModelMarker.040",
+    depends: ["ModelMarker.039"],
+  },
+  {
+    partPath: train_Wheel_Holder_9V_with_Wheels_Complete_2878c01,
+    partStartPosition: new Vector3(335, 0, 410),
+    partType: "2878c01",
+    slotId: "ModelMarker.041",
+    depends: ["ModelMarker.039"],
+  },
+
+  //!!!!
+  {
+    partPath: train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092,
+    partStartPosition: new Vector3(-110, 0, 310),
+    partType: "4092",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.034",
+    depends: [],
+  },
+  {
+    partPath: train_Buffer_Beam_4022,
+    partStartPosition: new Vector3(430, 0, 450),
+    partType: "4022",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.042",
+    depends: ["ModelMarker.034"],
+  },
+  {
+    partPath: train_Coupling_4023,
+    partStartPosition: new Vector3(480, 0, 345),
+    partType: "4023",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.043",
+    depends: ["ModelMarker.042"],
+  },
+  {
+    partPath: magnet_Cylindrical_73092,
+    partStartPosition: new Vector3(500, 0, 330),
+    partType: "73092",
+    slotId: "ModelMarker.044",
+    depends: ["ModelMarker.043"],
+  },
+  {
+    partPath: plate_1x2_3023,
+    partStartPosition: new Vector3(150, 0, 315),
+    partType: "3023",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.045",
+    depends: ["ModelMarker.034"],
+  },
+
+  {
+    partPath: plate_2_x_6_3795,
+    partStartPosition: new Vector3(25, 0, 440),
+    partType: "3795",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.046",
+    depends: ["ModelMarker.042", "ModelMarker.045"],
+  },
+  {
+    partPath: train_Wheel_Holder_9V_with_Wheels_Complete_2878c01,
+    partStartPosition: new Vector3(335, 0, 470),
+    partType: "2878c01",
+    slotId: "ModelMarker.047",
+    depends: ["ModelMarker.046"],
+  },
+  {
+    partPath: train_Wheel_Holder_9V_with_Wheels_Complete_2878c01,
+    partStartPosition: new Vector3(335, 0, 530),
+    partType: "2878c01",
+    slotId: "ModelMarker.048",
+    depends: ["ModelMarker.046"],
+  },
+];

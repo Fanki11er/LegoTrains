@@ -80,6 +80,7 @@ import brick_2x8_3007_model from "../../assets/Blocks/Brick_2x8_3007/Brick_2x8_3
 import technic_Plate_1x6_with_Holes_Toothed_Ends_4262_model from "../../assets/Blocks/Technic_Plate_1x6_with_Holes_Toothed_Ends_4262/Technic_Plate_1x6_with_Holes_Toothed_Ends_4262.glb";
 import technic_Pin_with_Friction_Ridges_and_Center_Slots_4459_model from "../../assets/Blocks/Technic_Pin_with_Friction_Ridges_and_Center_Slots_4459/Technic_Pin_with_Friction_Ridges_and_Center_Slots_4459.glb";
 import technic_Plate_1x4_with_Holes_Toothed_Ends_4263_model from "../../assets/Blocks/Technic_Plate_1x4_with_Holes_Toothed_Ends_4263/Technic_Plate_1x4_with_Holes_Toothed_Ends_4263.glb";
+import train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092_model from "../../assets/Blocks/Train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092/Train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092.glb";
 
 //?? Tracks
 export const tracksMarkers_4552 = tracksMarkers_4552_model;
@@ -215,3 +216,5 @@ export const technic_Pin_with_Friction_Ridges_and_Center_Slots_4459 =
   technic_Pin_with_Friction_Ridges_and_Center_Slots_4459_model;
 export const technic_Plate_1x4_with_Holes_Toothed_Ends_4263 =
   technic_Plate_1x4_with_Holes_Toothed_Ends_4263_model;
+export const train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092 =
+  train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092_model;
