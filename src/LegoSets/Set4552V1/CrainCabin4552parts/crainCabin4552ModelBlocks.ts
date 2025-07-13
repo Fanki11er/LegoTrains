@@ -2,6 +2,8 @@ import { ModelBlock } from "../../../Types/ModelBlock";
 import { crainCabin4552Phase1 } from "./phase1";
 import { crainCabin4552Phase10 } from "./phase10";
 import { crainCabin4552Phase11 } from "./phase11";
+import { crainCabin4552Phase12 } from "./phase12";
+import { crainCabin4552Phase13 } from "./phase13";
 import { crainCabin4552Phase2 } from "./phase2";
 import { crainCabin4552Phase3 } from "./phase3";
 import { crainCabin4552Phase4 } from "./phase4";
@@ -55,5 +57,13 @@ export const crainCabin4552ModelBlocks: ModelBlock[] = [
   {
     phaseId: 11,
     legoBlockTypes: crainCabin4552Phase11,
+  },
+  {
+    phaseId: 12,
+    legoBlockTypes: crainCabin4552Phase12,
+  },
+  {
+    phaseId: 13,
+    legoBlockTypes: crainCabin4552Phase13,
   },
 ];

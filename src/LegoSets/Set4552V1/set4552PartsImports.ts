@@ -94,6 +94,14 @@ import brick_2x6_2456_model from "../../assets/Blocks/Brick_2x6_2456/Brick_2x6_2
 import slope_Brick_2x4_45_Degrees_3037_model from "../../assets/Blocks/Slope_Brick_2x4_45_Degrees_3037/Slope_Brick_2x4_45_Degrees_3037.glb";
 import winch_2x4x2_73037_model from "../../assets/Blocks/Winch_2x4x2_73037/Winch_2x4x2_73037.glb";
 import string_Cord_Thin_x77a_model from "../../assets/Blocks/String_Cord_Thin_x77a/String_Cord_Thin_x77a.glb";
+import slope_3040_model from "../../assets/Blocks/Slope_3040/Slope_3040.glb";
+import windscreen_3x4x4_Inverted_4872_model from "../../assets/Blocks/Windscreen_3x4x4_Inverted_4872/Windscreen_3x4x4_Inverted_4872.glb";
+import hinge_Car_Roof_Holder_1x4x2_4214_model from "../../assets/Blocks/Hinge_Car_Roof_Holder_1x4x2_4214/Hinge_Car_Roof_Holder_1x4x2_4214.glb";
+import hinge_Car_Roof_4x4_Sunroof_2349_model from "../../assets/Blocks/Hinge_Car_Roof_4x4_Sunroof_2349/Hinge_Car_Roof_4x4_Sunroof_2349.glb";
+import glass_for_Hinge_Car_Roof_4x4_Sunroof_with_Ridges_2348b_model from "../../assets/Blocks/Glass_for_Hinge_Car_Roof_4x4_Sunroof_with_Ridges_2348b/Glass_for_Hinge_Car_Roof_4x4_Sunroof_with_Ridges_2348b.glb";
+import tile_Specialty_1x1_with_Clip_2555_model from "../../assets/Blocks/Tile_Specialty_1x1_with_Clip_2555/Tile_Specialty_1x1_with_Clip_2555.glb";
+import round_Plate_4073_model from "../../assets/Blocks/Round_Plate_4073/Round_Plate_4073.glb";
+import brick_1x8_Yellow_With_Red_Train_Logo_Pattern_3008_model from "../../assets/Blocks/Brick_1x8_Yellow_With_Red_Train_Logo_Pattern_3008/Brick_1x8_Yellow_With_Red_Train_Logo_Pattern_3008.glb";
 
 //?? Tracks
 export const tracksMarkers_4552 = tracksMarkers_4552_model;
@@ -252,3 +260,17 @@ export const slope_Brick_2x4_45_Degrees_3037 =
   slope_Brick_2x4_45_Degrees_3037_model;
 export const winch_2x4x2_73037 = winch_2x4x2_73037_model;
 export const string_Cord_Thin_x77a = string_Cord_Thin_x77a_model;
+export const slope_3040 = slope_3040_model;
+export const windscreen_3x4x4_Inverted_4872 =
+  windscreen_3x4x4_Inverted_4872_model;
+export const hinge_Car_Roof_Holder_1x4x2_4214 =
+  hinge_Car_Roof_Holder_1x4x2_4214_model;
+export const hinge_Car_Roof_4x4_Sunroof_2349 =
+  hinge_Car_Roof_4x4_Sunroof_2349_model;
+export const glass_for_Hinge_Car_Roof_4x4_Sunroof_with_Ridges_2348b =
+  glass_for_Hinge_Car_Roof_4x4_Sunroof_with_Ridges_2348b_model;
+export const tile_Specialty_1x1_with_Clip_2555 =
+  tile_Specialty_1x1_with_Clip_2555_model;
+export const round_Plate_4073 = round_Plate_4073_model;
+export const brick_1x8_Yellow_With_Red_Train_Logo_Pattern_3008 =
+  brick_1x8_Yellow_With_Red_Train_Logo_Pattern_3008_model;

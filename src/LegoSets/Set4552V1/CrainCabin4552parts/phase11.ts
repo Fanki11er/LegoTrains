@@ -33,6 +33,6 @@ export const crainCabin4552Phase11: LegoBlockType[] = [
     partStartPosition: new Vector3(520, 0, -10),
     partType: "x77a",
     slotId: "ModelMarker.048",
-    depends: [],
+    depends: ["ModelMarker.047"],
   },
 ];

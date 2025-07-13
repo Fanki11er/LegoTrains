@@ -10,7 +10,7 @@ import {
 export const crainCabin4552Phase9: LegoBlockType[] = [
   {
     partPath: minifig_Accessory_Seat_2x2_4079,
-    partStartPosition: new Vector3(10, 0, 185),
+    partStartPosition: new Vector3(10, 0, 210),
     partType: "4079",
     materialId: "whitePlasticMaterial",
     slotId: "ModelMarker.030",
