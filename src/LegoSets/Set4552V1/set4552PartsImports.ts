@@ -102,6 +102,14 @@ import glass_for_Hinge_Car_Roof_4x4_Sunroof_with_Ridges_2348b_model from "../../
 import tile_Specialty_1x1_with_Clip_2555_model from "../../assets/Blocks/Tile_Specialty_1x1_with_Clip_2555/Tile_Specialty_1x1_with_Clip_2555.glb";
 import round_Plate_4073_model from "../../assets/Blocks/Round_Plate_4073/Round_Plate_4073.glb";
 import brick_1x8_Yellow_With_Red_Train_Logo_Pattern_3008_model from "../../assets/Blocks/Brick_1x8_Yellow_With_Red_Train_Logo_Pattern_3008/Brick_1x8_Yellow_With_Red_Train_Logo_Pattern_3008.glb";
+import plate_2x3_3021_model from "../../assets/Blocks/Plate_2x3_3021/Plate_2x3_3021.glb";
+import technic_Pin_Smooth_without_Friction_Ridges_3673_model from "../../assets/Blocks/Technic_Pin_Smooth_without_Friction_Ridges_3673/Technic_Pin_Smooth_without_Friction_Ridges_3673.glb";
+import plate_Specialty_1x2_With_One_Stud_On_Center_3794_model from "../../assets/Blocks/Plate_Specialty_1x2_With_One_Stud_On_Center_3794/Plate_Specialty_1x2_With_One_Stud_On_Center_3794.glb";
+import technic_Connector_Axle_and_Pin_3651_model from "../../assets/Blocks/Technic_Connector_Axle_and_Pin_3651/Technic_Connector_Axle_and_Pin_3651.glb";
+import technic_Axle_6_3706_model from "../../assets/Blocks/Technic_Axle_6_3706/Technic_Axle_6_3706.glb";
+import technic_Bush_1_2_Type_II_Toothed_4265b_model from "../../assets/Blocks/Technic_Bush_1_2_Type_II_Toothed_4265b/Technic_Bush_1_2_Type_II_Toothed_4265b.glb";
+import crane_Arm_Outside_New_Wide_with_End_Notch_2350bpb01_model from "../../assets/Blocks/Crane_Arm_Outside_New_Wide_with_End_Notch_2350bpb01/Crane_Arm_Outside_New_Wide_with_End_Notch_2350bpb01.glb";
+import crane_Arm_Center_2351_model from "../../assets/Blocks/Crane_Arm_Center_2351/Crane_Arm_Center_2351.glb";
 
 //?? Tracks
 export const tracksMarkers_4552 = tracksMarkers_4552_model;
@@ -274,3 +282,18 @@ export const tile_Specialty_1x1_with_Clip_2555 =
 export const round_Plate_4073 = round_Plate_4073_model;
 export const brick_1x8_Yellow_With_Red_Train_Logo_Pattern_3008 =
   brick_1x8_Yellow_With_Red_Train_Logo_Pattern_3008_model;
+
+//?? Crain Boom
+export const plate_2x3_3021 = plate_2x3_3021_model;
+export const technic_Pin_Smooth_without_Friction_Ridges_3673 =
+  technic_Pin_Smooth_without_Friction_Ridges_3673_model;
+export const plate_Specialty_1x2_With_One_Stud_On_Center_3794 =
+  plate_Specialty_1x2_With_One_Stud_On_Center_3794_model;
+export const technic_Connector_Axle_and_Pin_3651 =
+  technic_Connector_Axle_and_Pin_3651_model;
+export const technic_Axle_6_3706 = technic_Axle_6_3706_model;
+export const technic_Bush_1_2_Type_II_Toothed_4265b =
+  technic_Bush_1_2_Type_II_Toothed_4265b_model;
+export const crane_Arm_Outside_New_Wide_with_End_Notch_2350bpb01 =
+  crane_Arm_Outside_New_Wide_with_End_Notch_2350bpb01_model;
+export const crane_Arm_Center_2351 = crane_Arm_Center_2351_model;

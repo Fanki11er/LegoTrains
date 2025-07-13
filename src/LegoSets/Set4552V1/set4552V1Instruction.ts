@@ -2,6 +2,7 @@ import { TrainInstruction } from "../../Classes/TrainInstruction";
 // @ts-expect-error Not a type
 import set4552SceneMarkers from "../../assets/Set_4552_V1/SceneMarkers/Scene_Markers.glb";
 import { car4552Configuration } from "./Car4552parts/car4552Configuration";
+import { crainBoom4552Configuration } from "./CrainBoom4552parts/crainBoom4552Configuration";
 import { crainCabin4552Configuration } from "./CrainCabin4552parts/crainCabin4552Configuration";
 import { crainCart4552Configuration } from "./CrainCart4552parts/crainCart4552Configuration";
 import { palette4552Configuration } from "./Palette4552parts/palette4552Configuration";
@@ -35,6 +36,9 @@ export const createSet4552V1Instruction = () => {
 
   //?? Crain Cabin
   set4552Instruction.createModel(crainCabin4552Configuration);
+
+  //?? Crain Boom
+  set4552Instruction.createModel(crainBoom4552Configuration);
 
   return set4552Instruction;
 };
