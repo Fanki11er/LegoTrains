@@ -6,4 +6,5 @@ export type PartUserData = {
   multipart: boolean;
   multiPhases?: boolean;
   activePhase?: string;
+  doNotArrangeAfterConnectionInNest?: boolean;
 };

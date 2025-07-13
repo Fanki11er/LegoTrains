@@ -30,9 +30,10 @@ export const crainCabin4552Phase11: LegoBlockType[] = [
   },
   {
     partPath: string_Cord_Thin_x77a,
-    partStartPosition: new Vector3(520, 0, -10),
+    partStartPosition: new Vector3(460, 0, 10),
     partType: "x77a",
     slotId: "ModelMarker.048",
+    doNotArrangeAfterConnectionInNest: true,
     depends: ["ModelMarker.047"],
   },
 ];

@@ -1,6 +1,9 @@
 import { Object3D, Object3DEventMap } from "three";
 import { ArrangementFunctionsHelper } from "../Classes/ArrangementFunctionsHelper";
-import { ArraignmentFunction } from "../Types/ArrangementFunction";
+import {
+  ArraignmentFunction,
+  ModelArraignmentFunction,
+} from "../Types/ArrangementFunction";
 
 const {
   rotateLeg,
@@ -8,6 +11,9 @@ const {
   rotateElementOnYAxis,
   changeHoseNozzlePhase,
   rotateSmallAntenna,
+  changeWinchPhase,
+  hideElement,
+  throwErrorIfElementIsMissing,
 } = ArrangementFunctionsHelper;
 
 export type PartsArraignmentFunctionsTypes =
@@ -19,11 +25,12 @@ export type PartsArraignmentFunctionsTypes =
   | "minifigArms60DegForward"
   | "changeHoseNozzlePhase"
   | "minifigArms45DegForward"
-  | "rotateSmallAntenna30DegBackward";
+  | "rotateSmallAntenna30DegBackward"
+  | "hideStringModelAndChangePhaseInWinch";
 
 export const getPartArrangementFunction = (
   name: PartsArraignmentFunctionsTypes
-): ArraignmentFunction | undefined => {
+): ArraignmentFunction | ModelArraignmentFunction | undefined => {
   switch (name) {
     case "rightLeg30Forward": {
       return rightLeg30Forward;
@@ -51,6 +58,9 @@ export const getPartArrangementFunction = (
     }
     case "rotateSmallAntenna30DegBackward": {
       return rotateSmallAntenna30DegBackward;
+    }
+    case "hideStringModelAndChangePhaseInWinch": {
+      return hideStringModelAndChangePhaseInWinch;
     }
 
     default: {
@@ -100,5 +110,19 @@ const minifigArms45DegForward = (model: Object3D<Object3DEventMap>) => {
 
 const rotateSmallAntenna30DegBackward = (model: Object3D<Object3DEventMap>) => {
   rotateSmallAntenna(model, -60);
+  return [];
+};
+
+const hideStringModelAndChangePhaseInWinch = (
+  model: Object3D<Object3DEventMap>,
+  modelRootMarker?: Object3D<Object3DEventMap>
+) => {
+  throwErrorIfElementIsMissing(
+    modelRootMarker,
+    "Model root marker is missing in hideStringModelAndChangePhaseInWinch function"
+  );
+
+  hideElement(model);
+  changeWinchPhase(modelRootMarker!);
   return [];
 };

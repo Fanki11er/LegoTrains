@@ -476,10 +476,16 @@ export class ArrangementFunctionsHelper {
     activePhase: string
   ) => {
     model.children.forEach((child) => {
-      if (child.userData.phaseName === activePhase) {
+      if (
+        child.userData.phaseName === activePhase &&
+        child.userData.isPhaseChild
+      ) {
         child.scale.set(1, 1, 1);
         child.visible = true;
-      } else {
+      } else if (
+        child.userData.isPhaseChild &&
+        child.userData.phaseName !== activePhase
+      ) {
         child.visible = false;
         child.scale.set(0, 0, 0);
       }
@@ -500,5 +506,35 @@ export class ArrangementFunctionsHelper {
       "Antenna lever handle element not found"
     );
     ArrangementFunctionsHelper.rotateElementOnZAxis(antennaLeverHandle, degree);
+  };
+
+  static hideElement = (model: Object3D<Object3DEventMap>) => {
+    model.visible = false;
+  };
+
+  static changeWinchPhase = (model: Object3D<Object3DEventMap>) => {
+    const winch = model.getObjectByName("73037");
+
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      winch,
+      "Hose winch element is missing"
+    );
+
+    switch (winch!.userData.activePhase) {
+      case "": {
+        winch!.userData.activePhase = "layOnGround";
+
+        ArrangementFunctionsHelper.switchPhaseChildrenVisibilityAndScale(
+          winch!,
+          "layOnGround"
+        );
+        break;
+      }
+
+      default:
+        break;
+    }
+
+    return [];
   };
 }

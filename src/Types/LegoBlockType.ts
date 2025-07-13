@@ -16,4 +16,5 @@ export type LegoBlockType = {
   multiPhases?: boolean;
   activePhase?: string;
   phases?: string[];
+  doNotArrangeAfterConnectionInNest?: boolean;
 };

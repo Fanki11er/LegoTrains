@@ -9,6 +9,12 @@ import page_07 from "../assets/Textures/Instruction_4552/Page_07.jpg";
 import page_08 from "../assets/Textures/Instruction_4552/Page_08.jpg";
 import page_09 from "../assets/Textures/Instruction_4552/Page_09.jpg";
 import page_10 from "../assets/Textures/Instruction_4552/Page_10.jpg";
+import page_11 from "../assets/Textures/Instruction_4552/Page_11.jpg";
+import page_12 from "../assets/Textures/Instruction_4552/Page_12.jpg";
+import page_13 from "../assets/Textures/Instruction_4552/Page_13.jpg";
+import page_14 from "../assets/Textures/Instruction_4552/Page_14.jpg";
+import page_15 from "../assets/Textures/Instruction_4552/Page_15.jpg";
+import page_16 from "../assets/Textures/Instruction_4552/Page_16.jpg";
 
 export const instruction_textures_4552: InstructionPageTextures[] = [
   {
@@ -30,5 +36,17 @@ export const instruction_textures_4552: InstructionPageTextures[] = [
   {
     frontPageTexturePath: page_09,
     backPageTexturePath: page_10,
+  },
+  {
+    frontPageTexturePath: page_11,
+    backPageTexturePath: page_12,
+  },
+  {
+    frontPageTexturePath: page_13,
+    backPageTexturePath: page_14,
+  },
+  {
+    frontPageTexturePath: page_15,
+    backPageTexturePath: page_16,
   },
 ];

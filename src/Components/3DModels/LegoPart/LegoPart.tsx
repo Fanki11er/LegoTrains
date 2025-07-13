@@ -87,6 +87,8 @@ const LegoPart = (props: PartProps) => {
           multipart: !!partInfo.multipart,
           multiPhases: partInfo.multiPhases || false,
           activePhase: partInfo.activePhase || "",
+          doNotArrangeAfterConnectionInNest:
+            partInfo.doNotArrangeAfterConnectionInNest || false,
         } as PartUserData;
 
         if (modelRef.current.userData.multiPhases) {

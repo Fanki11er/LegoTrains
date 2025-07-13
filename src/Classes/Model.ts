@@ -6,6 +6,7 @@ import { LegoBlock } from "../Types/LegoBlock";
 import {
   AfterPhaseEndArraignmentFunction,
   ArraignmentFunction,
+  ModelArraignmentFunction,
 } from "../Types/ArrangementFunction";
 import {
   AfterPhaseEndArraignmentFunctionRegistrationEntry,
@@ -30,7 +31,7 @@ export class Model {
     [];
   private afterPhaseEndArraignmentFunctionsNames: AfterPhaseEndArraignmentFunctionRegistrationEntry[] =
     [];
-  private modelArrangementFunction: ArraignmentFunction | undefined;
+  private modelArrangementFunction: ModelArraignmentFunction | undefined;
   private afterPhaseEndArraignmentFunction:
     | AfterPhaseEndArraignmentFunction
     | undefined;

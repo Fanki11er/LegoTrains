@@ -363,8 +363,10 @@ export class TrainInstruction {
     const arraignmentFunction = getPartArrangementFunction(
       arraignmentFunctionName
     );
+
     if (arraignmentFunction) {
-      arraignmentFunction(model);
+      const modelRootMarker = this.getActiveModelMarkers();
+      arraignmentFunction(model, modelRootMarker);
     }
   };
 

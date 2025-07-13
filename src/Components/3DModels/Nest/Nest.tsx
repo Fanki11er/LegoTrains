@@ -85,10 +85,12 @@ const Nest = (props: NestProps) => {
   const renderMesh = (mesh: Mesh, marker: Object3D) => {
     //!!! Changed, test on 7722 if it works
     const clonedMesh = mesh.clone();
-    handleArrangePartAfterConnection(
-      clonedMesh,
-      marker.userData.afterConnectionArraignmentFunctionName
-    );
+    if (!mesh.userData.doNotArrangeAfterConnectionInNest) {
+      handleArrangePartAfterConnection(
+        clonedMesh,
+        marker.userData.afterConnectionArraignmentFunctionName
+      );
+    }
     return (
       <animated.mesh
         key={clonedMesh.uuid}

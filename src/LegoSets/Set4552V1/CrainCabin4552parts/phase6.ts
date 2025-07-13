@@ -23,6 +23,22 @@ export const crainCabin4552Phase6: LegoBlockType[] = [
     depends: [],
   },
   {
+    partPath: brick_1x2_3004,
+    partStartPosition: new Vector3(300, 0, 350),
+    partType: "3004",
+    materialId: "yellowPLasticMaterial",
+    slotId: "ModelMarker.066",
+    depends: [],
+  },
+  {
+    partPath: brick_1x2_3004,
+    partStartPosition: new Vector3(300, 0, 365),
+    partType: "3004",
+    materialId: "yellowPLasticMaterial",
+    slotId: "ModelMarker.067",
+    depends: [],
+  },
+  {
     partPath: brick_Specialty_1x1_with_Handle_2921,
     partStartPosition: new Vector3(40, 0, 195),
     partType: "2921",

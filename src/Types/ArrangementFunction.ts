@@ -1,7 +1,12 @@
 import { Object3D, Object3DEventMap } from "three";
 
 export type ArraignmentFunction = (
-  model: Object3D<Object3DEventMap>
+  model: Object3D<Object3DEventMap>,
+  modelRootMarker?: Object3D<Object3DEventMap>
+) => string[];
+
+export type ModelArraignmentFunction = (
+  modelRootMarker: Object3D<Object3DEventMap>
 ) => string[];
 
 export type AfterPhaseEndArraignmentFunction = (
