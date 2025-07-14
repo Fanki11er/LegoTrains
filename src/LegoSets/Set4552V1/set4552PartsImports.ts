@@ -110,6 +110,7 @@ import technic_Axle_6_3706_model from "../../assets/Blocks/Technic_Axle_6_3706/T
 import technic_Bush_1_2_Type_II_Toothed_4265b_model from "../../assets/Blocks/Technic_Bush_1_2_Type_II_Toothed_4265b/Technic_Bush_1_2_Type_II_Toothed_4265b.glb";
 import crane_Arm_Outside_New_Wide_with_End_Notch_2350bpb01_model from "../../assets/Blocks/Crane_Arm_Outside_New_Wide_with_End_Notch_2350bpb01/Crane_Arm_Outside_New_Wide_with_End_Notch_2350bpb01.glb";
 import crane_Arm_Center_2351_model from "../../assets/Blocks/Crane_Arm_Center_2351/Crane_Arm_Center_2351.glb";
+import brick_Specialty_1_x_2_with_Pin_2458_model from "../../assets/Blocks/Brick_Specialty_1_x_2_with_Pin_2458/Brick_Specialty_1_x_2_with_Pin_2458.glb";
 
 //?? Tracks
 export const tracksMarkers_4552 = tracksMarkers_4552_model;
@@ -297,3 +298,5 @@ export const technic_Bush_1_2_Type_II_Toothed_4265b =
 export const crane_Arm_Outside_New_Wide_with_End_Notch_2350bpb01 =
   crane_Arm_Outside_New_Wide_with_End_Notch_2350bpb01_model;
 export const crane_Arm_Center_2351 = crane_Arm_Center_2351_model;
+export const brick_Specialty_1_x_2_with_Pin_2458 =
+  brick_Specialty_1_x_2_with_Pin_2458_model;

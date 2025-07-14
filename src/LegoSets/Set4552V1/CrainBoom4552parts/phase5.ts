@@ -12,7 +12,7 @@ export const crainBoom4552Phase5: LegoBlockType[] = [
     partPath: plate_2_x_2_3022,
     partStartPosition: new Vector3(-20, 0, 200),
     partType: "3022",
-    materialId: "oldGrayPlasticMaterial",
+    materialId: "redPlasticMaterial",
     slotId: "ModelMarker.009",
     depends: [],
   },
@@ -54,7 +54,7 @@ export const crainBoom4552Phase5: LegoBlockType[] = [
     partType: "3706",
     materialId: "blackPlasticMaterial",
     slotId: "ModelMarker.014",
-    depends: [],
+    depends: ["ModelMarker.012"],
   },
   {
     partPath: technic_Axle_6_3706,
@@ -62,6 +62,6 @@ export const crainBoom4552Phase5: LegoBlockType[] = [
     partType: "3706",
     materialId: "blackPlasticMaterial",
     slotId: "ModelMarker.015",
-    depends: [],
+    depends: ["ModelMarker.013"],
   },
 ];
