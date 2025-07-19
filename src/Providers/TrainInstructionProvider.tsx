@@ -3,7 +3,7 @@ import {
   createContext,
   useCallback,
   useEffect,
-  useMemo,
+  useState,
 } from "react";
 import { TrainInstruction } from "../Classes/TrainInstruction";
 import { useThree } from "@react-three/fiber";
@@ -67,21 +67,39 @@ const TrainInstructionProvider = (
     return scene;
   };
 
-  const trainInstruction = useMemo(() => {
-    return instruction;
-  }, [instruction]);
+  const [activeModel, setActiveModel] = useState<Model | null>(() => {
+    return instruction.getActiveModel();
+  });
 
-  trainInstruction.getSceneLoader(getScene);
+  const afterModelCreationFunction = useCallback(() => {
+    const afterModelCreationFunction =
+      activeModel?.getAfterModelCreationFunction();
+
+    if (afterModelCreationFunction) {
+      const modelRootMarker = instruction.getActiveModelMarkers();
+      afterModelCreationFunction(modelRootMarker, scene);
+    }
+  }, [activeModel, instruction, scene]);
+
+  useEffect(() => {
+    afterModelCreationFunction();
+  }, [afterModelCreationFunction]);
+
+  // const instruction = useMemo(() => {
+  //   return instruction;
+  // }, [instruction]);
+
+  instruction.getSceneLoader(getScene);
 
   const { modelsData } = usePersistenceDataProvider();
 
   const updateInstructionWithPersistenceData = useCallback(
     (data: ModelPersistenceData[]) => {
-      if (trainInstruction) {
-        trainInstruction.usePersistenceData(data);
+      if (instruction) {
+        instruction.usePersistenceData(data);
       }
     },
-    [trainInstruction]
+    [instruction]
   );
 
   useEffect(() => {
@@ -93,54 +111,54 @@ const TrainInstructionProvider = (
   }, [modelsData, updateInstructionWithPersistenceData, instruction]);
 
   const handleGetPartsList = useCallback(() => {
-    if (trainInstruction) {
-      return trainInstruction.getActiveModelPartsList();
+    if (instruction) {
+      return instruction.getActiveModelPartsList();
     }
     return [];
-  }, [trainInstruction]);
+  }, [instruction]);
 
   const handleGetMarkerById = useCallback(
     (id: number) => {
-      return trainInstruction.getMarkerById(id);
+      return instruction.getMarkerById(id);
     },
-    [trainInstruction]
+    [instruction]
   );
 
   const handleGetMarkersForSelectedPart = useCallback(
     (partType: string): Object3D<Object3DEventMap>[] => {
-      const activeModel = trainInstruction.getActiveModel();
+      //const activeModel = instruction.getActiveModel();
       if (activeModel) {
         return activeModel.getMarkersForSelectedPart(partType);
       }
       return [];
     },
-    [trainInstruction]
+    [activeModel]
   );
 
   const handleFinishPartConnection = useCallback(
     (marker: Object3D) => {
-      const isPhaseEnded = trainInstruction.finishPartConnection(marker);
+      const isPhaseEnded = instruction.finishPartConnection(marker);
 
       if (isPhaseEnded && marker) {
-        trainInstruction.partsArrangeAfterPhaseEnd();
+        instruction.partsArrangeAfterPhaseEnd();
       }
       return isPhaseEnded;
     },
-    [trainInstruction]
+    [instruction]
   );
 
   const handleGetSceneMarkersInfo = useCallback(() => {
-    return trainInstruction.getSceneMarkersInfo();
-  }, [trainInstruction]);
+    return instruction.getSceneMarkersInfo();
+  }, [instruction]);
 
   const handleGetRootModelMarkerByName = useCallback(
     (rootMarkerName: string) => {
-      if (trainInstruction) {
-        return trainInstruction.getModelRootMarkerByName(rootMarkerName);
+      if (instruction) {
+        return instruction.getModelRootMarkerByName(rootMarkerName);
       }
       return undefined;
     },
-    [trainInstruction]
+    [instruction]
   );
 
   const handleGetSetModelsToRenderList = useCallback(() => {
@@ -162,6 +180,7 @@ const TrainInstructionProvider = (
             handleSaveArrangedModelDataToDatabase(model, true);
           }
         });
+        setActiveModel(instruction.getActiveModel());
       }
     } catch (err) {
       const error = err as Error;

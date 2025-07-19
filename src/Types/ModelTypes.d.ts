@@ -1,4 +1,5 @@
 import { PartsArraignmentFunctionsTypes } from "../Utilities/partsAfterConnectionFunctions";
+import { AfterModelCreationFunction } from "./ArrangementFunction";
 import { ModelBlock } from "./ModelBlock";
 
 export type ArraignmentFunctionRegistrationEntry = {
@@ -16,6 +17,7 @@ export type ModelConfiguration = {
   modelMarkers: string;
   modelBlocks: ModelBlock[];
   arrangementFunction?: (model: Object3D<Object3DEventMap>) => string[];
+  afterModelCreationFunction?: AfterModelCreationFunction;
   afterPhaseEndArraignmentFunction?: AfterPhaseEndArraignmentFunction;
   afterConnectArraignmentFunctionsNames: ArraignmentFunctionRegistrationEntry[];
   afterPhaseEndArraignmentFunctionsNames: AfterPhaseEndArraignmentFunctionRegistrationEntry[];

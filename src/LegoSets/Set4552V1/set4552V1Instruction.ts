@@ -2,6 +2,7 @@ import { TrainInstruction } from "../../Classes/TrainInstruction";
 // @ts-expect-error Not a type
 import set4552SceneMarkers from "../../assets/Set_4552_V1/SceneMarkers/Scene_Markers.glb";
 import { car4552Configuration } from "./Car4552parts/car4552Configuration";
+import { completeCargoCrain4552Configuration } from "./CompleteCargoCrain/completeCargoCrain4552Configuration";
 import { crainBoom4552Configuration } from "./CrainBoom4552parts/crainBoom4552Configuration";
 import { crainCabin4552Configuration } from "./CrainCabin4552parts/crainCabin4552Configuration";
 import { crainCart4552Configuration } from "./CrainCart4552parts/crainCart4552Configuration";
@@ -16,29 +17,32 @@ export const createSet4552V1Instruction = () => {
     set4552SceneMarkers
   );
 
-  //?? Torch
-  set4552Instruction.createModel(torch4552Configuration);
+  // //?? Torch
+  // set4552Instruction.createModel(torch4552Configuration);
 
-  //?? Car
-  set4552Instruction.createModel(car4552Configuration);
+  // //?? Car
+  // set4552Instruction.createModel(car4552Configuration);
 
-  //?? Workshop
-  set4552Instruction.createModel(workshop4552Configuration);
+  // //?? Workshop
+  // set4552Instruction.createModel(workshop4552Configuration);
 
-  //?? Palette
-  set4552Instruction.createModel(palette4552Configuration);
+  // //?? Palette
+  // set4552Instruction.createModel(palette4552Configuration);
 
-  //?? Platform Cart
-  set4552Instruction.createModel(platformCart4552Configuration);
+  // //?? Platform Cart
+  // set4552Instruction.createModel(platformCart4552Configuration);
 
-  //?? Crain Cart
-  set4552Instruction.createModel(crainCart4552Configuration);
+  // //?? Crain Cart
+  // set4552Instruction.createModel(crainCart4552Configuration);
 
   //?? Crain Cabin
   set4552Instruction.createModel(crainCabin4552Configuration);
 
-  //?? Crain Boom
+  // //?? Crain Boom
   set4552Instruction.createModel(crainBoom4552Configuration);
+
+  //?? Complete Cargo Crain
+  set4552Instruction.createModel(completeCargoCrain4552Configuration);
 
   return set4552Instruction;
 };

@@ -3,7 +3,7 @@ import { LegoBlockType } from "../../../Types/LegoBlockType";
 import {
   slope_Brick_2x4_45_Degrees_3037,
   string_Cord_Thin_x77a,
-  winch_2x4x2_73037,
+  winch_For_4552_2x4x2_73037,
 } from "../set4552PartsImports";
 
 export const crainCabin4552Phase11: LegoBlockType[] = [
@@ -16,7 +16,7 @@ export const crainCabin4552Phase11: LegoBlockType[] = [
     depends: [],
   },
   {
-    partPath: winch_2x4x2_73037,
+    partPath: winch_For_4552_2x4x2_73037,
     partStartPosition: new Vector3(410, 0, 0),
     partType: "73037",
     materialId: "yellowPLasticMaterial",
@@ -24,7 +24,7 @@ export const crainCabin4552Phase11: LegoBlockType[] = [
     multipart: true,
     multiPhases: true,
     propagateMainMaterialToChildren: false,
-    phases: ["layOnGround"],
+    phases: ["layOnGround", "position_1"],
     slotId: "ModelMarker.047",
     depends: [],
   },

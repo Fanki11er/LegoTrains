@@ -8,6 +8,7 @@ import {
   PartsArraignmentFunctionsTypes,
 } from "../Utilities/partsAfterConnectionFunctions";
 import { ModelConfiguration } from "../Types/ModelTypes";
+//import { CompleteModel } from "./CompleteModel";
 export class TrainInstruction {
   private legoSetNumber: string;
   private models: Model[] = [];
@@ -43,6 +44,7 @@ export class TrainInstruction {
       modelMarkers,
       modelBlocks,
       arrangementFunction,
+      afterModelCreationFunction,
       afterPhaseEndArraignmentFunction,
       afterConnectArraignmentFunctionsNames,
       afterPhaseEndArraignmentFunctionsNames,
@@ -56,6 +58,10 @@ export class TrainInstruction {
 
     if (arrangementFunction) {
       model.registerModelArrangementFunction(arrangementFunction);
+    }
+
+    if (afterModelCreationFunction) {
+      model.registerAfterModelCreationFunction(afterModelCreationFunction);
     }
 
     if (afterPhaseEndArraignmentFunction) {
@@ -100,6 +106,7 @@ export class TrainInstruction {
     const arrangedModels = this.models.filter((model) => {
       return model.getIsModelArranged();
     });
+
     if (this.activeModel) {
       return [...arrangedModels, this.activeModel];
     }
@@ -242,6 +249,10 @@ export class TrainInstruction {
         model.setIsModelArranged(foundModel.isModelArranged);
       }
     });
+    console.log(
+      "Using persistence data for models:",
+      this.activeModel?.getModelName()
+    );
     this.changeToNextActiveModel();
     this.isPersistenceDataLoaded = true;
   };
@@ -256,11 +267,8 @@ export class TrainInstruction {
       const sceneRootMarker = this.getModelRootMarkerByName(
         this.sceneMarkersInfo.rootMarkerId
       );
-      console.log(sceneRootMarker);
-      console.log(modelRootMarker);
 
       if (modelRootMarker && sceneRootMarker) {
-        console.log(modelName);
         const destinationMarker = sceneRootMarker.children.find((child) => {
           return child.userData && child.userData.forModelId === modelName;
         });
@@ -287,7 +295,7 @@ export class TrainInstruction {
         if (modelArrangementFunction) {
           otherModifiedModelsIds = modelArrangementFunction(modelRootMarker);
         }
-
+        console.log("Change active model after arrangement");
         this.changeToNextActiveModel();
 
         return {
@@ -341,7 +349,7 @@ export class TrainInstruction {
 
   private changeToNextActiveModel = () => {
     let newActiveModel: Model | null = null;
-
+    console.log("Changing to next active model");
     for (let i = 0; i < this.models.length; i++) {
       if (!this.models[i].getIsModelArranged()) {
         newActiveModel = this.models[i];
@@ -383,5 +391,10 @@ export class TrainInstruction {
     }
 
     this.activeModel?.partsArrangeAfterPhaseEnd(rootModelMarker);
+  };
+  test = () => {
+    const rootModelMarker = this.getActiveModelMarkers();
+    console.log("Root model marker in test:", rootModelMarker);
+    console.log("Active model in test:", this.activeModel);
   };
 }

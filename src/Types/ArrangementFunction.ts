@@ -1,4 +1,4 @@
-import { Object3D, Object3DEventMap } from "three";
+import { Object3D, Object3DEventMap, Scene } from "three";
 
 export type ArraignmentFunction = (
   model: Object3D<Object3DEventMap>,
@@ -13,4 +13,9 @@ export type AfterPhaseEndArraignmentFunction = (
   model: Object3D<Object3DEventMap>,
   phaseId: number,
   functionName: string
+) => string[];
+
+export type AfterModelCreationFunction = (
+  model?: Object3D<Object3DEventMap>,
+  scene?: Scene
 ) => string[];

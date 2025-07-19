@@ -92,7 +92,7 @@ import minifig_Accessory_Seat_2x2_4079_model from "../../assets/Blocks/Minifig_A
 import brick_1x1_3005_model from "../../assets/Blocks/Brick_1x1_3005/Brick_1x1_3005.glb";
 import brick_2x6_2456_model from "../../assets/Blocks/Brick_2x6_2456/Brick_2x6_2456.glb";
 import slope_Brick_2x4_45_Degrees_3037_model from "../../assets/Blocks/Slope_Brick_2x4_45_Degrees_3037/Slope_Brick_2x4_45_Degrees_3037.glb";
-import winch_2x4x2_73037_model from "../../assets/Blocks/Winch_2x4x2_73037/Winch_2x4x2_73037.glb";
+import winch_For_4552_2x4x2_73037_model from "../../assets/Blocks/Winch_For_4552_2x4x2_73037/Winch_For_4552_2x4x2_73037.glb";
 import string_Cord_Thin_x77a_model from "../../assets/Blocks/String_Cord_Thin_x77a/String_Cord_Thin_x77a.glb";
 import slope_3040_model from "../../assets/Blocks/Slope_3040/Slope_3040.glb";
 import windscreen_3x4x4_Inverted_4872_model from "../../assets/Blocks/Windscreen_3x4x4_Inverted_4872/Windscreen_3x4x4_Inverted_4872.glb";
@@ -111,6 +111,7 @@ import technic_Bush_1_2_Type_II_Toothed_4265b_model from "../../assets/Blocks/Te
 import crane_Arm_Outside_New_Wide_with_End_Notch_2350bpb01_model from "../../assets/Blocks/Crane_Arm_Outside_New_Wide_with_End_Notch_2350bpb01/Crane_Arm_Outside_New_Wide_with_End_Notch_2350bpb01.glb";
 import crane_Arm_Center_2351_model from "../../assets/Blocks/Crane_Arm_Center_2351/Crane_Arm_Center_2351.glb";
 import brick_Specialty_1_x_2_with_Pin_2458_model from "../../assets/Blocks/Brick_Specialty_1_x_2_with_Pin_2458/Brick_Specialty_1_x_2_with_Pin_2458.glb";
+import plate_1x2_with_Crane_Hook_Modified_Left_3127_model from "../../assets/Blocks/Plate_1x2_with_Crane_Hook_Modified_Left_3127/Plate_1x2_with_Crane_Hook_Modified_Left_3127.glb";
 
 //?? Tracks
 export const tracksMarkers_4552 = tracksMarkers_4552_model;
@@ -267,7 +268,7 @@ export const brick_1x1_3005 = brick_1x1_3005_model;
 export const brick_2x6_2456 = brick_2x6_2456_model;
 export const slope_Brick_2x4_45_Degrees_3037 =
   slope_Brick_2x4_45_Degrees_3037_model;
-export const winch_2x4x2_73037 = winch_2x4x2_73037_model;
+export const winch_For_4552_2x4x2_73037 = winch_For_4552_2x4x2_73037_model;
 export const string_Cord_Thin_x77a = string_Cord_Thin_x77a_model;
 export const slope_3040 = slope_3040_model;
 export const windscreen_3x4x4_Inverted_4872 =
@@ -300,3 +301,5 @@ export const crane_Arm_Outside_New_Wide_with_End_Notch_2350bpb01 =
 export const crane_Arm_Center_2351 = crane_Arm_Center_2351_model;
 export const brick_Specialty_1_x_2_with_Pin_2458 =
   brick_Specialty_1_x_2_with_Pin_2458_model;
+export const plate_1x2_with_Crane_Hook_Modified_Left_3127 =
+  plate_1x2_with_Crane_Hook_Modified_Left_3127_model;

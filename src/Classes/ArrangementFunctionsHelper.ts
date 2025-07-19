@@ -1,5 +1,8 @@
 import { Object3D, Object3DEventMap } from "three";
-import { convertDegreesToRadians } from "../Utilities/utilities";
+import {
+  convertDegreesToRadians,
+  moveElementToFloorLevel,
+} from "../Utilities/utilities";
 import { saveErrorLog } from "../firebase/writeToDbFunctions";
 import {
   BarrelMarkersData,
@@ -18,6 +21,32 @@ export class ArrangementFunctionsHelper {
       saveErrorLog(errorMessage);
       throw new Error(errorMessage);
     }
+  };
+
+  static findModelRootMarker = (
+    model: Object3D<Object3DEventMap>,
+    modelName: string
+  ) => {
+    const modelRootMarker = model.children.find((child) => {
+      return child.name === `${modelName}_ModelRootMarker`;
+    });
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      modelRootMarker,
+      `Model root marker not found for ${modelName}`
+    );
+    return modelRootMarker;
+  };
+
+  static findElementByName = (
+    model: Object3D<Object3DEventMap>,
+    name: string
+  ) => {
+    const element = model.getObjectByName(name);
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      element,
+      `${name} element not found`
+    );
+    return element;
   };
 
   static findModelPartByName = (
@@ -530,11 +559,45 @@ export class ArrangementFunctionsHelper {
         );
         break;
       }
+      case "layOnGround": {
+        winch!.userData.activePhase = "position_1";
+
+        ArrangementFunctionsHelper.switchPhaseChildrenVisibilityAndScale(
+          winch!,
+          "position_1"
+        );
+        break;
+      }
 
       default:
         break;
     }
 
     return [];
+  };
+
+  static movePartialModelToCompletedModel = (
+    completeModel: Object3D<Object3DEventMap>,
+    sceneRootMarker: Object3D<Object3DEventMap>,
+    partialModelId: string,
+    targetMarkerId: string
+  ) => {
+    const crainCabin = ArrangementFunctionsHelper.findModelRootMarker(
+      sceneRootMarker!,
+      partialModelId
+    );
+
+    const crainCabinTargetMarker = ArrangementFunctionsHelper.findElementByName(
+      completeModel,
+      targetMarkerId
+    );
+
+    completeModel!.add(crainCabin!);
+
+    crainCabin!.position.copy(crainCabinTargetMarker!.position);
+
+    completeModel.remove(crainCabinTargetMarker!);
+
+    moveElementToFloorLevel(completeModel!);
   };
 }

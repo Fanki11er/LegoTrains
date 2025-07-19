@@ -4,6 +4,7 @@ import { TrainInstruction } from "./TrainInstruction";
 import { PartInfo } from "../Types/PartInfo";
 import { LegoBlock } from "../Types/LegoBlock";
 import {
+  AfterModelCreationFunction,
   AfterPhaseEndArraignmentFunction,
   ArraignmentFunction,
   ModelArraignmentFunction,
@@ -12,7 +13,6 @@ import {
   AfterPhaseEndArraignmentFunctionRegistrationEntry,
   ArraignmentFunctionRegistrationEntry,
 } from "../Types/ModelTypes";
-
 export type MarkersInfo = {
   markersPath: string;
   rootMarkerId: string;
@@ -32,6 +32,7 @@ export class Model {
   private afterPhaseEndArraignmentFunctionsNames: AfterPhaseEndArraignmentFunctionRegistrationEntry[] =
     [];
   private modelArrangementFunction: ModelArraignmentFunction | undefined;
+  private afterModelCreationFunction: AfterModelCreationFunction | undefined;
   private afterPhaseEndArraignmentFunction:
     | AfterPhaseEndArraignmentFunction
     | undefined;
@@ -83,6 +84,10 @@ export class Model {
 
   getModelArrangementFunction = () => {
     return this.modelArrangementFunction;
+  };
+
+  getAfterModelCreationFunction = () => {
+    return this.afterModelCreationFunction;
   };
 
   setIsModelFinished = (isFinished: boolean) => {
@@ -219,6 +224,12 @@ export class Model {
     modelArrangementFunction: ArraignmentFunction
   ) => {
     this.modelArrangementFunction = modelArrangementFunction;
+  };
+
+  registerAfterModelCreationFunction = (
+    afterModelCreationFunction: (model?: Object3D<Object3DEventMap>) => string[]
+  ) => {
+    this.afterModelCreationFunction = afterModelCreationFunction;
   };
 
   registerAfterPhaseEndArraignmentFunction = (
