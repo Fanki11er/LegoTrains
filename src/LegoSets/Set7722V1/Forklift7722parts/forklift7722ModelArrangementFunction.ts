@@ -1,6 +1,6 @@
 import { Object3D, Object3DEventMap } from "three";
 import { ArrangementFunctionsHelper } from "../../../Classes/ArrangementFunctionsHelper";
-import { ArraignmentFunction } from "../../../Types/ArrangementFunction";
+import { ModelArraignmentFunction } from "../../../Types/ArrangementFunction";
 import { BarrelMarkersData } from "../../../Types/ArrangeablePartsTypes";
 
 const {
@@ -12,11 +12,14 @@ const {
   throwErrorIfElementIsMissing,
 } = ArrangementFunctionsHelper;
 
-export const forklift7722ModelArrangementFunction: ArraignmentFunction = (
+export const forklift7722ModelArrangementFunction: ModelArraignmentFunction = (
   model: Object3D<Object3DEventMap>
 ) => {
   movePaletteWithBarrelsToNewPosition(model);
-  return ["PlatformCar7722Model"];
+  return {
+    touchedModels: ["PlatformCar7722Model"],
+    status: "success",
+  };
 };
 
 export const movePaletteWithBarrelsToNewPosition = (

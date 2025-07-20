@@ -9,4 +9,5 @@ export const forkliftTrailer7722Configuration: ModelConfiguration = {
   modelBlocks: steamLocomotive7722ForkliftTrailerModelBlocks,
   arrangementFunction: undefined,
   afterConnectArraignmentFunctionsNames: [],
+  afterPhaseEndArraignmentFunctionsNames: [],
 };

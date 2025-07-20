@@ -6,7 +6,6 @@ import { LegoBlock } from "../Types/LegoBlock";
 import {
   AfterModelCreationFunction,
   AfterPhaseEndArraignmentFunction,
-  ArraignmentFunction,
   ModelArraignmentFunction,
 } from "../Types/ArrangementFunction";
 import {
@@ -248,7 +247,7 @@ export class Model {
   };
 
   registerModelArrangementFunction = (
-    modelArrangementFunction: ArraignmentFunction
+    modelArrangementFunction: ModelArraignmentFunction
   ) => {
     this.modelArrangementFunction = modelArrangementFunction;
   };

@@ -262,6 +262,7 @@ export class TrainInstruction {
 
   setFinalModelArrangement = () => {
     let otherModifiedModelsIds: string[] = [];
+    let status = "success";
     if (this.activeModel) {
       const oldModel = this.activeModel;
       const modelName = this.activeModel.getModelName();
@@ -296,13 +297,16 @@ export class TrainInstruction {
         //?? Arrange elements like doors and connectors
 
         if (modelArrangementFunction) {
-          otherModifiedModelsIds = modelArrangementFunction(modelRootMarker);
+          const result = modelArrangementFunction(modelRootMarker);
+          otherModifiedModelsIds = result.touchedModels;
+          status = result.status;
         }
         this.changeToNextActiveModel();
 
         return {
           oldModel,
           otherModifiedModelsIds,
+          status,
         };
       } else {
         saveErrorLog(

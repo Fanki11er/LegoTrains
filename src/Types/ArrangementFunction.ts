@@ -12,7 +12,7 @@ export type ArraignmentFunction = (
 
 export type ModelArraignmentFunction = (
   modelRootMarker: Object3D<Object3DEventMap>
-) => string[];
+) => ArraignmentFunctionResult;
 
 export type AfterPhaseEndArraignmentFunction = (
   model: Object3D<Object3DEventMap>,

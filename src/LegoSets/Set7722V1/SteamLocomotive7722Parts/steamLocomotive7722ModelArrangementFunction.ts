@@ -1,6 +1,7 @@
 import { Object3D, Object3DEventMap } from "three";
 import { convertDegreesToRadians } from "../../../Utilities/utilities";
 import { ArrangementFunctionsHelper } from "../../../Classes/ArrangementFunctionsHelper";
+import { ModelArraignmentFunction } from "../../../Types/ArrangementFunction";
 
 const {
   findElementConnectedToMarker,
@@ -11,16 +12,18 @@ const {
   rotateCoupling,
 } = ArrangementFunctionsHelper;
 
-export const steamLocomotive7722ModelArrangementFunction = (
-  model: Object3D<Object3DEventMap>
-) => {
-  openLeftDoor(model);
-  rotateCoupling(model, 15, "ModelMarker.013", "ModelMarker.014");
-  hideWire(model);
-  arrangeMinifig(model);
+export const steamLocomotive7722ModelArrangementFunction: ModelArraignmentFunction =
+  (model: Object3D<Object3DEventMap>) => {
+    openLeftDoor(model);
+    rotateCoupling(model, 15, "ModelMarker.013", "ModelMarker.014");
+    hideWire(model);
+    arrangeMinifig(model);
 
-  return [];
-};
+    return {
+      touchedModels: [],
+      status: "success",
+    };
+  };
 
 const openLeftDoor = (model: Object3D<Object3DEventMap>) => {
   const door = findElementConnectedToMarker(model, "ModelMarker.069");

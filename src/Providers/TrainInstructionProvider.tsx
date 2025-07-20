@@ -187,7 +187,6 @@ const TrainInstructionProvider = (
       const isPhaseEnded = instruction.finishPartConnection(marker);
 
       if (isPhaseEnded && marker) {
-        //!!!!!!!!!!!!
         const result = instruction.partsArrangeAfterPhaseEnd();
 
         if (result.status === "error") {
@@ -225,7 +224,7 @@ const TrainInstructionProvider = (
   const handleMoveReadyModelToSetArrangement = useCallback(() => {
     try {
       const result = instruction.setFinalModelArrangement();
-      if (result) {
+      if (result?.status === "success") {
         trackModelEvent("Model Arranged", result.oldModel.getModelName());
         // const touchedModels = result.otherModifiedModelsIds.map((id) => {
         //   return instruction.getModelByName(id);

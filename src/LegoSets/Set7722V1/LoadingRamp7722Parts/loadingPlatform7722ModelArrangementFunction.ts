@@ -1,6 +1,6 @@
 import { Object3D, Object3DEventMap } from "three";
 import { ArrangementFunctionsHelper } from "../../../Classes/ArrangementFunctionsHelper";
-import { ArraignmentFunction } from "../../../Types/ArrangementFunction";
+import { ModelArraignmentFunction } from "../../../Types/ArrangementFunction";
 
 const {
   arrangePalette,
@@ -10,25 +10,27 @@ const {
   rotateLeg,
 } = ArrangementFunctionsHelper;
 
-export const loadingRamp7722ModelArrangementFunction: ArraignmentFunction = (
-  model: Object3D<Object3DEventMap>
-) => {
-  arrangePalette(model, "PlatformPalette.001", {
-    paletteBaseMarkerId: "ModelMarker.020",
-    paletteLegsMarkersIds: ["ModelMarker.018", "ModelMarker.019"],
-  });
-  arrangePostPackage(model, "PostPackage.002", {
-    postPackageBaseMarkerId: "ModelMarker.021",
-    postPackageEnvelopeMarkerId: "ModelMarker.023",
-  });
-  arrangePostPackage(model, "PostPackage.001", {
-    postPackageBaseMarkerId: "ModelMarker.022",
-    postPackageEnvelopeMarkerId: "ModelMarker.024",
-  });
-  arrangePostmanMinifig(model);
+export const loadingRamp7722ModelArrangementFunction: ModelArraignmentFunction =
+  (model: Object3D<Object3DEventMap>) => {
+    arrangePalette(model, "PlatformPalette.001", {
+      paletteBaseMarkerId: "ModelMarker.020",
+      paletteLegsMarkersIds: ["ModelMarker.018", "ModelMarker.019"],
+    });
+    arrangePostPackage(model, "PostPackage.002", {
+      postPackageBaseMarkerId: "ModelMarker.021",
+      postPackageEnvelopeMarkerId: "ModelMarker.023",
+    });
+    arrangePostPackage(model, "PostPackage.001", {
+      postPackageBaseMarkerId: "ModelMarker.022",
+      postPackageEnvelopeMarkerId: "ModelMarker.024",
+    });
+    arrangePostmanMinifig(model);
 
-  return [];
-};
+    return {
+      touchedModels: [],
+      status: "success",
+    };
+  };
 
 const arrangePostmanMinifig = (model: Object3D<Object3DEventMap>) => {
   const minifig = moveMinifigToNewPosition(model, "Minifig.002", {

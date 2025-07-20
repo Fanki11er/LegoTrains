@@ -21,7 +21,7 @@ export type ModelConfiguration = {
   modelBlocks: ModelBlock[];
   isPartialModel?: boolean;
   completeModelId?: string;
-  arrangementFunction?: (model: Object3D<Object3DEventMap>) => string[];
+  arrangementFunction?: ModelArraignmentFunction;
   afterModelCreationFunction?: AfterModelCreationFunction;
   afterPhaseEndArraignmentFunction?: AfterPhaseEndArraignmentFunction;
   afterConnectArraignmentFunctionsNames: ArraignmentFunctionRegistrationEntry[];
