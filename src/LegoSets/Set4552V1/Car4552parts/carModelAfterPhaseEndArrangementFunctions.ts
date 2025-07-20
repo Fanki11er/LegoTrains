@@ -34,5 +34,8 @@ const rotateTileWithTelemetryPanel30degOnZ = (
 
   attachModelToNewParent(telemetryPanel, parent);
 
-  return [];
+  return {
+    touchedModels: [],
+    status: "success",
+  };
 };

@@ -32,8 +32,8 @@ export const createSet4552V1Instruction = () => {
   // //?? Platform Cart
   // set4552Instruction.createModel(platformCart4552Configuration);
 
-  // //?? Crain Cart
-  // set4552Instruction.createModel(crainCart4552Configuration);
+  //?? Crain Cart
+  set4552Instruction.createModel(crainCart4552Configuration);
 
   //?? Crain Cabin
   set4552Instruction.createModel(crainCabin4552Configuration);
@@ -43,6 +43,6 @@ export const createSet4552V1Instruction = () => {
 
   //?? Complete Cargo Crain
   set4552Instruction.createModel(completeCargoCrain4552Configuration);
-
+  //Todo Check arrangements in 7722
   return set4552Instruction;
 };

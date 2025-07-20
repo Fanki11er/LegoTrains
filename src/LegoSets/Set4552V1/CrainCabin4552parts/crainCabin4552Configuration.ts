@@ -7,6 +7,8 @@ export const crainCabin4552Configuration: ModelConfiguration = {
   modelName: "CrainCabin4552Model",
   modelMarkers: set4552CrainCabinModelMarkers,
   modelBlocks: crainCabin4552ModelBlocks,
+  isPartialModel: true,
+  completeModelId: "CompleteCargoCrain4552Model",
   afterConnectArraignmentFunctionsNames: [
     {
       markerId: "ModelMarker.048",

@@ -112,6 +112,7 @@ import crane_Arm_Outside_New_Wide_with_End_Notch_2350bpb01_model from "../../ass
 import crane_Arm_Center_2351_model from "../../assets/Blocks/Crane_Arm_Center_2351/Crane_Arm_Center_2351.glb";
 import brick_Specialty_1_x_2_with_Pin_2458_model from "../../assets/Blocks/Brick_Specialty_1_x_2_with_Pin_2458/Brick_Specialty_1_x_2_with_Pin_2458.glb";
 import plate_1x2_with_Crane_Hook_Modified_Left_3127_model from "../../assets/Blocks/Plate_1x2_with_Crane_Hook_Modified_Left_3127/Plate_1x2_with_Crane_Hook_Modified_Left_3127.glb";
+import minifig_Head_with_Standard_Grin_and_Sunglasses_Pattern_3626bp04_model from "../../assets/Blocks/Minifig_Head_with_Standard_Grin_and_Sunglasses_Pattern_3626bp04/Minifig_Head_with_Standard_Grin_and_Sunglasses_Pattern_3626bp04.glb";
 
 //?? Tracks
 export const tracksMarkers_4552 = tracksMarkers_4552_model;
@@ -127,6 +128,8 @@ export const minifig_Headgear_Construction_Helmet_3833 =
   minifig_Headgear_Construction_Helmet_3833_model;
 export const minifig_Accessory_Radio_with_Compact_Handle_3962a =
   minifig_Accessory_Radio_with_Compact_Handle_3962a_model;
+export const minifig_Head_with_Standard_Grin_and_Sunglasses_Pattern_3626bp04 =
+  minifig_Head_with_Standard_Grin_and_Sunglasses_Pattern_3626bp04_model;
 
 //?? Torch
 export const plate_2x2_Round_with_Wheel_Holder_Thin_2655 =

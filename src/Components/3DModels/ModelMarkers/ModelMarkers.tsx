@@ -30,7 +30,6 @@ const ModelMarkers = ({ persistenceData, modelDataObject }: Props) => {
   const markersPath = useDeferredValue(modelDataObject.getModelMarkersPath());
   const { scene } = useGLTF(markersPath);
   const { handleGetSetRootMarker } = useTrainInstruction();
-
   const model = useMemo(() => {
     return scene.children[0];
   }, [scene]);
@@ -99,10 +98,16 @@ const ModelMarkers = ({ persistenceData, modelDataObject }: Props) => {
         ref={modelRef}
         onClick={() => {
           const isModelArranged = modelDataObject.getIsModelArranged();
+          const isPartialModel = modelDataObject.getIsPartialModel();
+
           if (modelRef.current && !isModelArranged) {
             handleSelect(modelRef.current, true);
-          } else if (modelRef.current && isModelArranged) {
+          } else if (modelRef.current && isModelArranged && !isPartialModel) {
             handleFocusCamera(modelRef.current, SCENE_OFFSET);
+          } else if (modelRef.current && isModelArranged && isPartialModel) {
+            handleSelect(modelRef.current, true);
+
+            //handleFocusCamera(modelRef.current);
           }
         }}
         onPointerMissed={() => {
@@ -118,6 +123,10 @@ const ModelMarkers = ({ persistenceData, modelDataObject }: Props) => {
       {modelRef.current &&
         isSelected &&
         modelDataObject.getIsModelFinished() && <ArrangeModelContextMenu />}
+      {modelRef.current &&
+        modelDataObject.checkIfPartialModelParentIsCompleted() && (
+          <ArrangeModelContextMenu />
+        )}
     </>
   );
 };

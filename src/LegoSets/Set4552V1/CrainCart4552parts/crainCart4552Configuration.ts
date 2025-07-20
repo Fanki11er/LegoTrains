@@ -7,6 +7,8 @@ export const crainCart4552Configuration: ModelConfiguration = {
   modelName: "CrainCart4552Model",
   modelMarkers: set4552CrainCartModelMarkers,
   modelBlocks: crainCart4552ModelBlocks,
+  isPartialModel: true,
+  completeModelId: "CompleteCargoCrain4552Model",
   afterConnectArraignmentFunctionsNames: [],
   afterPhaseEndArraignmentFunctionsNames: [],
 };

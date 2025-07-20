@@ -71,15 +71,57 @@ const TrainInstructionProvider = (
     return instruction.getActiveModel();
   });
 
+  const saveActiveModelWithTouchedModels = useCallback(
+    (touchedModels: string[]) => {
+      const models = touchedModels.map((id) => {
+        return instruction.getModelByName(id);
+      });
+
+      handleSaveArrangedModelDataToDatabase(activeModel!);
+      models.forEach((model) => {
+        if (model) {
+          handleSaveArrangedModelDataToDatabase(model, true);
+        }
+      });
+    },
+    [activeModel, handleSaveArrangedModelDataToDatabase, instruction]
+  );
+
   const afterModelCreationFunction = useCallback(() => {
     const afterModelCreationFunction =
       activeModel?.getAfterModelCreationFunction();
 
-    if (afterModelCreationFunction) {
+    if (
+      afterModelCreationFunction &&
+      !activeModel?.getIsArrangedAfterCreation()
+    ) {
       const modelRootMarker = instruction.getActiveModelMarkers();
-      afterModelCreationFunction(modelRootMarker, scene);
+
+      const result = afterModelCreationFunction(modelRootMarker, scene);
+
+      activeModel?.setIsArrangedAfterCreation(true);
+
+      if (result.status === "error") {
+        throw new Error(
+          `Error in afterModelCreationFunction: ${result.touchedModels.join(
+            ", "
+          )}`
+        );
+      }
+      //!!
+      // const touchedModels = result.touchedModels.map((id) => {
+      //   return instruction.getModelByName(id);
+      // });
+
+      // handleSaveArrangedModelDataToDatabase(activeModel!);
+      // touchedModels.forEach((model) => {
+      //   if (model) {
+      //     handleSaveArrangedModelDataToDatabase(model, true);
+      //   }
+      // });
+      saveActiveModelWithTouchedModels(result.touchedModels);
     }
-  }, [activeModel, instruction, scene]);
+  }, [activeModel, instruction, scene, saveActiveModelWithTouchedModels]);
 
   useEffect(() => {
     afterModelCreationFunction();
@@ -97,6 +139,11 @@ const TrainInstructionProvider = (
     (data: ModelPersistenceData[]) => {
       if (instruction) {
         instruction.usePersistenceData(data);
+        const isDataLoaded = instruction.getIsPersistenceDataLoaded();
+        if (isDataLoaded) {
+          console.log("Persistence data loaded successfully.");
+          setActiveModel(instruction.getActiveModel());
+        }
       }
     },
     [instruction]
@@ -140,11 +187,21 @@ const TrainInstructionProvider = (
       const isPhaseEnded = instruction.finishPartConnection(marker);
 
       if (isPhaseEnded && marker) {
-        instruction.partsArrangeAfterPhaseEnd();
+        //!!!!!!!!!!!!
+        const result = instruction.partsArrangeAfterPhaseEnd();
+
+        if (result.status === "error") {
+          throw new Error(
+            `Error in afterPhaseEndArraignmentFunction: ${result.touchedModels.join(
+              ", "
+            )}`
+          );
+        }
+        saveActiveModelWithTouchedModels(result.touchedModels);
       }
       return isPhaseEnded;
     },
-    [instruction]
+    [instruction, saveActiveModelWithTouchedModels]
   );
 
   const handleGetSceneMarkersInfo = useCallback(() => {
@@ -170,16 +227,17 @@ const TrainInstructionProvider = (
       const result = instruction.setFinalModelArrangement();
       if (result) {
         trackModelEvent("Model Arranged", result.oldModel.getModelName());
-        const touchedModels = result.otherModifiedModelsIds.map((id) => {
-          return instruction.getModelByName(id);
-        });
+        // const touchedModels = result.otherModifiedModelsIds.map((id) => {
+        //   return instruction.getModelByName(id);
+        // });
+        saveActiveModelWithTouchedModels(result.otherModifiedModelsIds);
 
-        handleSaveArrangedModelDataToDatabase(result.oldModel);
-        touchedModels.forEach((model) => {
-          if (model) {
-            handleSaveArrangedModelDataToDatabase(model, true);
-          }
-        });
+        // handleSaveArrangedModelDataToDatabase(result.oldModel);
+        // touchedModels.forEach((model) => {
+        //   if (model) {
+        //     handleSaveArrangedModelDataToDatabase(model, true);
+        //   }
+        // });
         setActiveModel(instruction.getActiveModel());
       }
     } catch (err) {
@@ -191,10 +249,10 @@ const TrainInstructionProvider = (
       });
     }
   }, [
-    handleSaveArrangedModelDataToDatabase,
     instruction,
     navigate,
     trackModelEvent,
+    saveActiveModelWithTouchedModels,
   ]);
 
   const handleGetSetRootMarker = useCallback(() => {
@@ -206,6 +264,7 @@ const TrainInstructionProvider = (
     arraignmentFunctionName: PartsArraignmentFunctionsTypes
   ) => {
     try {
+      //!!!!!
       instruction.arrangePartAfterConnection(model, arraignmentFunctionName);
     } catch (err) {
       const error = err as Error;

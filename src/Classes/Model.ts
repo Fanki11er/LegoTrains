@@ -1,4 +1,4 @@
-import { Object3D, Object3DEventMap } from "three";
+import { Object3D, Object3DEventMap, Scene } from "three";
 import { Phase } from "./Phase";
 import { TrainInstruction } from "./TrainInstruction";
 import { PartInfo } from "../Types/PartInfo";
@@ -13,6 +13,7 @@ import {
   AfterPhaseEndArraignmentFunctionRegistrationEntry,
   ArraignmentFunctionRegistrationEntry,
 } from "../Types/ModelTypes";
+
 export type MarkersInfo = {
   markersPath: string;
   rootMarkerId: string;
@@ -21,6 +22,9 @@ export class Model {
   private modelName: string;
   private isFinished: boolean = false;
   private isModelArranged: boolean = false;
+  private isPartialModel: boolean = false;
+  private completeModelId: string;
+  private isArrangedAfterCreation: boolean = false;
   private phases: Phase[] = [];
   private activePhase: Phase | null = null;
   private previousPhaseId: number = 0;
@@ -40,15 +44,26 @@ export class Model {
   constructor(
     modelName: string,
     modelMarkersPath: string,
-    instruction: TrainInstruction
+    instruction: TrainInstruction,
+    isPartialModel: boolean = false,
+    completeModelId: string = ""
   ) {
     this.instruction = instruction;
     this.modelName = modelName;
+    this.isPartialModel = isPartialModel;
+    this.completeModelId = completeModelId;
     this.modelMarkersInfo = {
       markersPath: modelMarkersPath,
       rootMarkerId: `${modelName}_ModelRootMarker`,
     };
   }
+
+  checkIfPartialModelParentIsCompleted = (): boolean => {
+    const model = this.instruction.getModels().find((model) => {
+      return model.getModelName() === this.completeModelId;
+    });
+    return model ? model.getIsModelFinished() : false;
+  };
 
   getActivePhase = () => {
     return this.activePhase;
@@ -56,6 +71,10 @@ export class Model {
 
   getIsModelArranged = () => {
     return this.isModelArranged;
+  };
+
+  getIsPartialModel = () => {
+    return this.isPartialModel;
   };
 
   getModelName = () => {
@@ -72,6 +91,10 @@ export class Model {
 
   getModelMarkersInfo = () => {
     return this.modelMarkersInfo;
+  };
+
+  getIsArrangedAfterCreation = () => {
+    return this.isArrangedAfterCreation;
   };
 
   getIsModelFinished = () => {
@@ -96,6 +119,10 @@ export class Model {
 
   setIsModelArranged = (isModelArranged: boolean) => {
     this.isModelArranged = isModelArranged;
+  };
+
+  setIsArrangedAfterCreation = (isArrangedAfterCreation: boolean) => {
+    this.isArrangedAfterCreation = isArrangedAfterCreation;
   };
 
   addPhase = (phaseNumber: number, legoBlocks: LegoBlock[]) => {
@@ -227,7 +254,7 @@ export class Model {
   };
 
   registerAfterModelCreationFunction = (
-    afterModelCreationFunction: (model?: Object3D<Object3DEventMap>) => string[]
+    afterModelCreationFunction: AfterModelCreationFunction
   ) => {
     this.afterModelCreationFunction = afterModelCreationFunction;
   };
@@ -252,23 +279,45 @@ export class Model {
     return this.connectedMarkersIds;
   };
 
-  partsArrangeAfterPhaseEnd = (model: Object3D<Object3DEventMap>) => {
-    const isAfterPhaseEndArraignmentFunctionRegistered =
-      this.afterPhaseEndArraignmentFunctionsNames.find((entry) => {
+  partsArrangeAfterPhaseEnd = (
+    model: Object3D<Object3DEventMap>,
+    scene: Scene
+  ) => {
+    const touchedModels: string[] = [];
+
+    const areAfterPhaseEndArraignmentFunctionsRegistered =
+      this.afterPhaseEndArraignmentFunctionsNames.filter((entry) => {
         return entry.phaseId === this.previousPhaseId;
       });
-
     if (
       this.afterPhaseEndArraignmentFunction &&
       this.previousPhaseId &&
-      isAfterPhaseEndArraignmentFunctionRegistered
+      areAfterPhaseEndArraignmentFunctionsRegistered.length
     ) {
-      this.afterPhaseEndArraignmentFunction(
-        model,
-        this.previousPhaseId,
-        isAfterPhaseEndArraignmentFunctionRegistered.arraignmentFunctionName
-      );
+      areAfterPhaseEndArraignmentFunctionsRegistered.forEach((entry) => {
+        const result = this.afterPhaseEndArraignmentFunction!(
+          model,
+          this.previousPhaseId,
+          entry.arraignmentFunctionName,
+          scene
+        );
+        if (result.status === "error") {
+          console.error(
+            `Error in after phase end arraignment function: ${entry.arraignmentFunctionName}`
+          );
+          return;
+        }
+        result.touchedModels.forEach((modelName) => {
+          if (!touchedModels.includes(modelName)) {
+            touchedModels.push(modelName);
+          }
+        });
+      });
     }
+    return {
+      touchedModels,
+      status: "success",
+    };
   };
 
   private getMarkerByName = (

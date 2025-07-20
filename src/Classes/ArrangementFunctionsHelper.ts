@@ -1,8 +1,5 @@
 import { Object3D, Object3DEventMap } from "three";
-import {
-  convertDegreesToRadians,
-  moveElementToFloorLevel,
-} from "../Utilities/utilities";
+import { convertDegreesToRadians } from "../Utilities/utilities";
 import { saveErrorLog } from "../firebase/writeToDbFunctions";
 import {
   BarrelMarkersData,
@@ -582,22 +579,31 @@ export class ArrangementFunctionsHelper {
     partialModelId: string,
     targetMarkerId: string
   ) => {
-    const crainCabin = ArrangementFunctionsHelper.findModelRootMarker(
+    const partialModel = ArrangementFunctionsHelper.findModelRootMarker(
       sceneRootMarker!,
       partialModelId
     );
 
-    const crainCabinTargetMarker = ArrangementFunctionsHelper.findElementByName(
-      completeModel,
-      targetMarkerId
+    const partialModelTargetMarker =
+      ArrangementFunctionsHelper.findElementByName(
+        completeModel,
+        targetMarkerId
+      );
+
+    const originalParent = ArrangementFunctionsHelper.attachModelToNewParent(
+      partialModel!,
+      completeModel
     );
 
-    completeModel!.add(crainCabin!);
+    partialModel!.position.copy(partialModelTargetMarker!.position);
 
-    crainCabin!.position.copy(crainCabinTargetMarker!.position);
+    const finishPartialModelConnection = () => {
+      ArrangementFunctionsHelper.attachModelToNewParent(
+        partialModel!,
+        originalParent
+      );
+    };
 
-    completeModel.remove(crainCabinTargetMarker!);
-
-    moveElementToFloorLevel(completeModel!);
+    return finishPartialModelConnection;
   };
 }

@@ -1,5 +1,7 @@
 import { Object3D, Object3DEventMap, Scene } from "three";
 import { ArrangementFunctionsHelper } from "../../../Classes/ArrangementFunctionsHelper";
+import { ArraignmentFunctionResult } from "../../../Types/ArrangementFunction";
+import { moveElementToFloorLevel } from "../../../Utilities/utilities";
 
 const {
   changeWinchPhase,
@@ -15,7 +17,7 @@ const {
 export const completeCargoCrain4552afterModelCreationFunction = (
   model?: Object3D<Object3DEventMap>,
   scene?: Scene
-): string[] => {
+): ArraignmentFunctionResult => {
   throwErrorIfElementIsMissing(
     model,
     "Model is missing in completeCargoCrain4552afterModelCreationFunction"
@@ -28,14 +30,16 @@ export const completeCargoCrain4552afterModelCreationFunction = (
 
   const sceneRootMarker = findElementByName(scene!, "SceneRootMarker");
 
-  movePartialModelToCompletedModel(
+  const finishCrainCabinConnection = movePartialModelToCompletedModel(
     model!,
     sceneRootMarker!,
     "CrainCabin4552Model",
     "CompleteModelMarker001"
   );
 
-  movePartialModelToCompletedModel(
+  moveElementToFloorLevel(model!);
+
+  const finishCrainBoomConnection = movePartialModelToCompletedModel(
     model!,
     sceneRootMarker!,
     "CrainBoom4552Model",
@@ -60,7 +64,15 @@ export const completeCargoCrain4552afterModelCreationFunction = (
     140
   );
 
-  return [];
+  moveElementToFloorLevel(model!);
+
+  finishCrainCabinConnection();
+  finishCrainBoomConnection();
+
+  return {
+    touchedModels: ["CrainCabin4552Model", "CrainBoom4552Model"],
+    status: "success",
+  };
 };
 
 const moveInnerCrainBoomArmToPlace = (model: Object3D<Object3DEventMap>) => {

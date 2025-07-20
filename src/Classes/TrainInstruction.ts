@@ -43,6 +43,7 @@ export class TrainInstruction {
       modelName,
       modelMarkers,
       modelBlocks,
+      isPartialModel,
       arrangementFunction,
       afterModelCreationFunction,
       afterPhaseEndArraignmentFunction,
@@ -50,7 +51,7 @@ export class TrainInstruction {
       afterPhaseEndArraignmentFunctionsNames,
     } = modelConfiguration;
 
-    const model = new Model(modelName, modelMarkers, this);
+    const model = new Model(modelName, modelMarkers, this, isPartialModel);
 
     model.registerBlocksAfterConnectArraignmentsFunctionsNames(
       afterConnectArraignmentFunctionsNames
@@ -222,6 +223,8 @@ export class TrainInstruction {
 
   usePersistenceData = (data: ModelPersistenceData[]) => {
     this.models.forEach((model) => {
+      //!!!!!!!!!!!!!!!!!
+
       const foundModel = data.find((modelData) => {
         return modelData.modelName === model.getModelName();
       });
@@ -243,16 +246,16 @@ export class TrainInstruction {
           }
         }
         model.addConnectedMarkersIdToArray(foundModel.connectedMarkersIds);
+        model.setIsModelArranged(foundModel.isModelArranged);
+        model.setIsArrangedAfterCreation(foundModel.isArrangedAfterCreation);
       } else {
         this.clearNeededPartsListInAllModelPhases(model);
         model.setIsModelFinished(foundModel.isModelFinished);
         model.setIsModelArranged(foundModel.isModelArranged);
+        model.setIsArrangedAfterCreation(foundModel.isArrangedAfterCreation);
       }
     });
-    console.log(
-      "Using persistence data for models:",
-      this.activeModel?.getModelName()
-    );
+
     this.changeToNextActiveModel();
     this.isPersistenceDataLoaded = true;
   };
@@ -295,7 +298,6 @@ export class TrainInstruction {
         if (modelArrangementFunction) {
           otherModifiedModelsIds = modelArrangementFunction(modelRootMarker);
         }
-        console.log("Change active model after arrangement");
         this.changeToNextActiveModel();
 
         return {
@@ -349,7 +351,6 @@ export class TrainInstruction {
 
   private changeToNextActiveModel = () => {
     let newActiveModel: Model | null = null;
-    console.log("Changing to next active model");
     for (let i = 0; i < this.models.length; i++) {
       if (!this.models[i].getIsModelArranged()) {
         newActiveModel = this.models[i];
@@ -380,6 +381,7 @@ export class TrainInstruction {
 
   partsArrangeAfterPhaseEnd = () => {
     const rootModelMarker = this.getActiveModelMarkers();
+    const scene = this.sceneLoader();
 
     if (!rootModelMarker) {
       console.error("Error, root model marker not found");
@@ -387,14 +389,23 @@ export class TrainInstruction {
         "Error, root model marker not found",
         this.activeModel?.getModelName() || "Unknown Model"
       );
-      return;
+      return {
+        touchedModels: [],
+        status: "error",
+      };
     }
-
-    this.activeModel?.partsArrangeAfterPhaseEnd(rootModelMarker);
-  };
-  test = () => {
-    const rootModelMarker = this.getActiveModelMarkers();
-    console.log("Root model marker in test:", rootModelMarker);
-    console.log("Active model in test:", this.activeModel);
+    const result = this.activeModel?.partsArrangeAfterPhaseEnd(
+      rootModelMarker,
+      scene
+    );
+    return result?.status === "success"
+      ? {
+          touchedModels: result.touchedModels,
+          status: "success",
+        }
+      : {
+          touchedModels: [],
+          status: "error",
+        };
   };
 }

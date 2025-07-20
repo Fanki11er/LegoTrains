@@ -32,5 +32,3 @@ export const completeCargoCrain4552Phase1: LegoBlockType[] = [
     depends: ["ModelMarker.001"],
   },
 ];
-
-//Todo: relocate parts to correct positions

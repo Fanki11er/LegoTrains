@@ -7,6 +7,8 @@ export const crainBoom4552Configuration: ModelConfiguration = {
   modelName: "CrainBoom4552Model",
   modelMarkers: set4552CrainBoomModelMarkers,
   modelBlocks: crainBoom4552ModelBlocks,
+  isPartialModel: true,
+  completeModelId: "CompleteCargoCrain4552Model",
   afterConnectArraignmentFunctionsNames: [],
   afterPhaseEndArraignmentFunctionsNames: [],
 };

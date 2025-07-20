@@ -141,7 +141,7 @@ const PersistenceDataProvider = ({
     if (instruction) {
       const data = instruction.prepareDataToSaveAfterPhaseEnd();
       if (data && setData) {
-        //sendModelDataToDatabase(data, setData?.modelsList || []);
+        sendModelDataToDatabase(data, setData?.modelsList || []);
       }
     }
   }, [sendModelDataToDatabase, instruction, setData]);
@@ -151,11 +151,11 @@ const PersistenceDataProvider = ({
       if (instruction) {
         const data = instruction.prepareDataToSaveAfterModelArrangement(model);
         if (data && setData) {
-          // sendModelDataToDatabase(
-          //   data,
-          //   setData?.modelsList || [],
-          //   doNotIncrementFinishedModelsNumber
-          // );
+          sendModelDataToDatabase(
+            data,
+            setData?.modelsList || [],
+            doNotIncrementFinishedModelsNumber
+          );
         }
       }
     },
