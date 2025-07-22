@@ -40,7 +40,11 @@ const ModelMarkers = ({ persistenceData, modelDataObject }: Props) => {
   const { handleFocusCamera } = useFocusCamera();
 
   const handleMoveElementToFloorLevel = useCallback(() => {
-    if (modelRef && !modelDataObject.getIsModelArranged()) {
+    if (
+      modelRef &&
+      !modelDataObject.getIsModelArranged() &&
+      !modelDataObject.getDoNotMoveToTheFloorLevel()
+    ) {
       moveElementToFloorLevel(modelRef.current);
     }
   }, [modelDataObject, modelRef]);

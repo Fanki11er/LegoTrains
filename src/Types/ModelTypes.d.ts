@@ -21,6 +21,7 @@ export type ModelConfiguration = {
   modelBlocks: ModelBlock[];
   isPartialModel?: boolean;
   completeModelId?: string;
+  doNotMoveToTheFloorLevel?: boolean;
   arrangementFunction?: ModelArraignmentFunction;
   afterModelCreationFunction?: AfterModelCreationFunction;
   afterPhaseEndArraignmentFunction?: AfterPhaseEndArraignmentFunction;

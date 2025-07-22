@@ -30,8 +30,6 @@ export const completeCargoCrainModelAfterPhaseEndArrangementFunction = (
   }
 };
 
-//Todo fix loading data from database (add used models to array)
-
 const connectAndArrangeCrainCartToCrainCompleteModel = (
   model: Object3D<Object3DEventMap>,
   scene?: Scene

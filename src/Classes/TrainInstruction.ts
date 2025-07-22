@@ -45,13 +45,22 @@ export class TrainInstruction {
       modelBlocks,
       isPartialModel,
       arrangementFunction,
+      doNotMoveToTheFloorLevel,
       afterModelCreationFunction,
       afterPhaseEndArraignmentFunction,
       afterConnectArraignmentFunctionsNames,
       afterPhaseEndArraignmentFunctionsNames,
+      completeModelId,
     } = modelConfiguration;
 
-    const model = new Model(modelName, modelMarkers, this, isPartialModel);
+    const model = new Model(
+      modelName,
+      modelMarkers,
+      this,
+      isPartialModel,
+      doNotMoveToTheFloorLevel,
+      completeModelId
+    );
 
     model.registerBlocksAfterConnectArraignmentsFunctionsNames(
       afterConnectArraignmentFunctionsNames

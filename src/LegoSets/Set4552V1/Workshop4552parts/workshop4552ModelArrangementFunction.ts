@@ -12,7 +12,10 @@ export const workshop4552ModelArrangementFunction = (
   openRightDoor(model);
   rotateSmallAntenna(model);
 
-  return [];
+  return {
+    touchedModels: [],
+    status: "success",
+  };
 };
 
 const openLeftDoor = (model: Object3D<Object3DEventMap>) => {

@@ -108,17 +108,7 @@ const TrainInstructionProvider = (
           )}`
         );
       }
-      //!!
-      // const touchedModels = result.touchedModels.map((id) => {
-      //   return instruction.getModelByName(id);
-      // });
-
-      // handleSaveArrangedModelDataToDatabase(activeModel!);
-      // touchedModels.forEach((model) => {
-      //   if (model) {
-      //     handleSaveArrangedModelDataToDatabase(model, true);
-      //   }
-      // });
+      //!! Off for development
       saveActiveModelWithTouchedModels(result.touchedModels);
     }
   }, [activeModel, instruction, scene, saveActiveModelWithTouchedModels]);
@@ -126,10 +116,6 @@ const TrainInstructionProvider = (
   useEffect(() => {
     afterModelCreationFunction();
   }, [afterModelCreationFunction]);
-
-  // const instruction = useMemo(() => {
-  //   return instruction;
-  // }, [instruction]);
 
   instruction.getSceneLoader(getScene);
 
@@ -141,7 +127,6 @@ const TrainInstructionProvider = (
         instruction.usePersistenceData(data);
         const isDataLoaded = instruction.getIsPersistenceDataLoaded();
         if (isDataLoaded) {
-          console.log("Persistence data loaded successfully.");
           setActiveModel(instruction.getActiveModel());
         }
       }
@@ -196,6 +181,7 @@ const TrainInstructionProvider = (
             )}`
           );
         }
+        //!! Off for development
         saveActiveModelWithTouchedModels(result.touchedModels);
       }
       return isPhaseEnded;
@@ -226,17 +212,9 @@ const TrainInstructionProvider = (
       const result = instruction.setFinalModelArrangement();
       if (result?.status === "success") {
         trackModelEvent("Model Arranged", result.oldModel.getModelName());
-        // const touchedModels = result.otherModifiedModelsIds.map((id) => {
-        //   return instruction.getModelByName(id);
-        // });
+        //!! Off for development
         saveActiveModelWithTouchedModels(result.otherModifiedModelsIds);
 
-        // handleSaveArrangedModelDataToDatabase(result.oldModel);
-        // touchedModels.forEach((model) => {
-        //   if (model) {
-        //     handleSaveArrangedModelDataToDatabase(model, true);
-        //   }
-        // });
         setActiveModel(instruction.getActiveModel());
       }
     } catch (err) {
@@ -263,7 +241,6 @@ const TrainInstructionProvider = (
     arraignmentFunctionName: PartsArraignmentFunctionsTypes
   ) => {
     try {
-      //!!!!!
       instruction.arrangePartAfterConnection(model, arraignmentFunctionName);
     } catch (err) {
       const error = err as Error;

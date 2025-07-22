@@ -37,8 +37,6 @@ export const completeCargoCrain4552afterModelCreationFunction = (
     "CompleteModelMarker001"
   );
 
-  moveElementToFloorLevel(model!);
-
   const finishCrainBoomConnection = movePartialModelToCompletedModel(
     model!,
     sceneRootMarker!,
@@ -66,8 +64,8 @@ export const completeCargoCrain4552afterModelCreationFunction = (
 
   moveElementToFloorLevel(model!);
 
-  finishCrainCabinConnection();
   finishCrainBoomConnection();
+  finishCrainCabinConnection();
 
   return {
     touchedModels: ["CrainCabin4552Model", "CrainBoom4552Model"],

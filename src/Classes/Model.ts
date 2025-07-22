@@ -30,6 +30,7 @@ export class Model {
   private instruction: TrainInstruction;
   private modelMarkersInfo: MarkersInfo;
   private connectedMarkersIds: string[] = [];
+  private doNotMoveToTheFloorLevel: boolean;
   private arraignmentFunctionRegistrationEntries: ArraignmentFunctionRegistrationEntry[] =
     [];
   private afterPhaseEndArraignmentFunctionsNames: AfterPhaseEndArraignmentFunctionRegistrationEntry[] =
@@ -45,12 +46,14 @@ export class Model {
     modelMarkersPath: string,
     instruction: TrainInstruction,
     isPartialModel: boolean = false,
+    doNotMoveToTheFloorLevel: boolean = false,
     completeModelId: string = ""
   ) {
     this.instruction = instruction;
     this.modelName = modelName;
     this.isPartialModel = isPartialModel;
     this.completeModelId = completeModelId;
+    this.doNotMoveToTheFloorLevel = doNotMoveToTheFloorLevel;
     this.modelMarkersInfo = {
       markersPath: modelMarkersPath,
       rootMarkerId: `${modelName}_ModelRootMarker`,
@@ -62,6 +65,10 @@ export class Model {
       return model.getModelName() === this.completeModelId;
     });
     return model ? model.getIsModelFinished() : false;
+  };
+
+  getDoNotMoveToTheFloorLevel = () => {
+    return this.doNotMoveToTheFloorLevel;
   };
 
   getActivePhase = () => {
