@@ -1,9 +1,6 @@
 import { Object3D, Object3DEventMap } from "three";
 import { ArrangementFunctionsHelper } from "../Classes/ArrangementFunctionsHelper";
-import {
-  ArraignmentFunction,
-  ModelArraignmentFunction,
-} from "../Types/ArrangementFunction";
+import { ArraignmentFunction } from "../Types/ArrangementFunction";
 
 const {
   rotateLeg,
@@ -30,7 +27,7 @@ export type PartsArraignmentFunctionsTypes =
 
 export const getPartArrangementFunction = (
   name: PartsArraignmentFunctionsTypes
-): ArraignmentFunction | ModelArraignmentFunction | undefined => {
+): ArraignmentFunction | undefined => {
   switch (name) {
     case "rightLeg30Forward": {
       return rightLeg30Forward;

@@ -11,7 +11,8 @@ export type ArraignmentFunction = (
 ) => string[];
 
 export type ModelArraignmentFunction = (
-  modelRootMarker: Object3D<Object3DEventMap>
+  modelRootMarker: Object3D<Object3DEventMap>,
+  sceneRootMarker: Object3D<Object3DEventMap>
 ) => ArraignmentFunctionResult;
 
 export type AfterPhaseEndArraignmentFunction = (

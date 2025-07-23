@@ -232,8 +232,6 @@ export class TrainInstruction {
 
   usePersistenceData = (data: ModelPersistenceData[]) => {
     this.models.forEach((model) => {
-      //!!!!!!!!!!!!!!!!!
-
       const foundModel = data.find((modelData) => {
         return modelData.modelName === model.getModelName();
       });
@@ -306,7 +304,10 @@ export class TrainInstruction {
         //?? Arrange elements like doors and connectors
 
         if (modelArrangementFunction) {
-          const result = modelArrangementFunction(modelRootMarker);
+          const result = modelArrangementFunction(
+            modelRootMarker,
+            sceneRootMarker
+          );
           otherModifiedModelsIds = result.touchedModels;
           status = result.status;
         }
