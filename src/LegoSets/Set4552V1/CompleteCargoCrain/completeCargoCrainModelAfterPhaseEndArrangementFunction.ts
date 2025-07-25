@@ -3,13 +3,12 @@ import { ArrangementFunctionsHelper } from "../../../Classes/ArrangementFunction
 import { Scene } from "three";
 import { ArraignmentFunctionResult } from "../../../Types/ArrangementFunction";
 import { moveElementToFloorLevel } from "../../../Utilities/utilities";
+import { rotateCrainBlockadeHandle } from "./helperFunctions";
 
 const {
-  findElementConnectedToMarker,
   throwErrorIfElementIsMissing,
   movePartialModelToCompletedModel,
   findElementByName,
-  rotateElementOnXAxis,
   findModelRootMarker,
 } = ArrangementFunctionsHelper;
 
@@ -45,28 +44,44 @@ const connectAndArrangeCrainCartToCrainCompleteModel = (
 
   const sceneRootMarker = findElementByName(scene!, "SceneRootMarker");
 
+  const cargoCrainCabinModel = findModelRootMarker(
+    sceneRootMarker!,
+    "CrainCabin4552Model"
+  );
+
+  const cargoCrainBoomModel = findModelRootMarker(
+    sceneRootMarker!,
+    "CrainBoom4552Model"
+  );
+
+  const cargoCrainCartModel = findModelRootMarker(
+    sceneRootMarker!,
+    "CrainCart4552Model"
+  );
+
   const finishCrainCartConnection = movePartialModelToCompletedModel(
     model,
-    sceneRootMarker!,
-    "CrainCart4552Model",
+    cargoCrainCartModel!,
     "CompleteModelMarker003"
   );
 
   const finishCrainCabinConnection = movePartialModelToCompletedModel(
     model,
-    sceneRootMarker!,
-    "CrainCabin4552Model",
+    cargoCrainCabinModel!,
     "CompleteModelMarker001"
   );
 
   const finishCrainBoomConnection = movePartialModelToCompletedModel(
     model,
-    sceneRootMarker!,
-    "CrainBoom4552Model",
+    cargoCrainBoomModel!,
     "CompleteModelMarker002"
   );
 
-  rotateCrainBlockadeHandleUp(model);
+  rotateCrainBlockadeHandle(
+    cargoCrainCartModel!,
+    ["ModelMarker.010", "ModelMarker.012"],
+    [-85, 85]
+  );
 
   moveElementToFloorLevel(model!);
 
@@ -82,21 +97,4 @@ const connectAndArrangeCrainCartToCrainCompleteModel = (
     ],
     status: "success",
   };
-};
-
-const rotateCrainBlockadeHandleUp = (model: Object3D<Object3DEventMap>) => {
-  const rootCartMarker = findModelRootMarker(model, "CrainCart4552Model");
-
-  const leftBlockadeHandle = findElementConnectedToMarker(
-    rootCartMarker!,
-    "ModelMarker.012"
-  );
-
-  const rightBlockadeHandle = findElementConnectedToMarker(
-    rootCartMarker!,
-    "ModelMarker.010"
-  );
-
-  rotateElementOnXAxis(leftBlockadeHandle, 85);
-  rotateElementOnXAxis(rightBlockadeHandle, -85);
 };

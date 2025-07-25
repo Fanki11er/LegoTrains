@@ -27,6 +27,7 @@ export class ArrangementFunctionsHelper {
     const modelRootMarker = model.children.find((child) => {
       return child.name === `${modelName}_ModelRootMarker`;
     });
+
     ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
       modelRootMarker,
       `Model root marker not found for ${modelName}`
@@ -575,15 +576,9 @@ export class ArrangementFunctionsHelper {
 
   static movePartialModelToCompletedModel = (
     completeModel: Object3D<Object3DEventMap>,
-    sceneRootMarker: Object3D<Object3DEventMap>,
-    partialModelId: string,
+    partialModel: Object3D<Object3DEventMap>,
     targetMarkerId: string
   ) => {
-    const partialModel = ArrangementFunctionsHelper.findModelRootMarker(
-      sceneRootMarker!,
-      partialModelId
-    );
-
     const partialModelTargetMarker =
       ArrangementFunctionsHelper.findElementByName(
         completeModel,
@@ -591,15 +586,15 @@ export class ArrangementFunctionsHelper {
       );
 
     const originalParent = ArrangementFunctionsHelper.attachModelToNewParent(
-      partialModel!,
+      partialModel,
       completeModel
     );
 
-    partialModel!.position.copy(partialModelTargetMarker!.position);
+    partialModel.position.copy(partialModelTargetMarker!.position);
 
     const finishPartialModelConnection = () => {
       ArrangementFunctionsHelper.attachModelToNewParent(
-        partialModel!,
+        partialModel,
         originalParent
       );
     };
