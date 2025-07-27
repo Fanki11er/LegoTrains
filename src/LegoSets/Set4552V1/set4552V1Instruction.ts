@@ -23,14 +23,14 @@ export const createSet4552V1Instruction = () => {
   //?? Car
   set4552Instruction.createModel(car4552Configuration);
 
-  // //?? Workshop
-  // set4552Instruction.createModel(workshop4552Configuration);
+  //?? Workshop
+  set4552Instruction.createModel(workshop4552Configuration);
 
   //?? Palette
   set4552Instruction.createModel(palette4552Configuration);
 
-  // //?? Platform Cart
-  // set4552Instruction.createModel(platformCart4552Configuration);
+  //?? Platform Cart
+  set4552Instruction.createModel(platformCart4552Configuration);
 
   //?? Crain Cart
   set4552Instruction.createModel(crainCart4552Configuration);

@@ -109,7 +109,7 @@ const TrainInstructionProvider = (
         );
       }
       //!! Off for development
-      //saveActiveModelWithTouchedModels(result.touchedModels);
+      saveActiveModelWithTouchedModels(result.touchedModels);
     }
   }, [activeModel, instruction, scene, saveActiveModelWithTouchedModels]);
 
@@ -182,7 +182,7 @@ const TrainInstructionProvider = (
           );
         }
         //!! Off for development
-        //saveActiveModelWithTouchedModels(result.touchedModels);
+        saveActiveModelWithTouchedModels(result.touchedModels);
       }
       return isPhaseEnded;
     },
@@ -213,7 +213,7 @@ const TrainInstructionProvider = (
       if (result?.status === "success") {
         trackModelEvent("Model Arranged", result.oldModel.getModelName());
         //!! Off for development
-        //saveActiveModelWithTouchedModels(result.otherModifiedModelsIds);
+        saveActiveModelWithTouchedModels(result.otherModifiedModelsIds);
 
         setActiveModel(instruction.getActiveModel());
       }

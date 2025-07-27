@@ -18,7 +18,7 @@ export const ALL_READY_SETS_INFORMATION_DATA: DashboardSetInformationData[] = [
     setId: "Set_4552_V1",
     setName: "LEGO 4552 Cargo Crane",
     setVersion: 1,
-    allModels: 8,
+    allModels: 9,
     imagePath: set_4552_image,
   },
 ];

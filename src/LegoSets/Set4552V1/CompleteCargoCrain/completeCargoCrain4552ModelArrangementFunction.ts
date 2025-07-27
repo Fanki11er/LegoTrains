@@ -264,6 +264,7 @@ export const completeCargoCrain4552ModelArrangementFunction: ModelArraignmentFun
         "CrainBoom4552Model",
         "Palette4552Model",
         "Car4552Model",
+        "Torch4552Model",
       ],
       status: "success",
     };

@@ -22,6 +22,7 @@ export class Model {
   private isFinished: boolean = false;
   private isModelArranged: boolean = false;
   private isPartialModel: boolean = false;
+  private isCollectiveModel: boolean = false;
   private completeModelId: string;
   private isArrangedAfterCreation: boolean = false;
   private phases: Phase[] = [];
@@ -46,12 +47,14 @@ export class Model {
     modelMarkersPath: string,
     instruction: TrainInstruction,
     isPartialModel: boolean = false,
+    isCollectiveModel: boolean = false,
     doNotMoveToTheFloorLevel: boolean = false,
     completeModelId: string = ""
   ) {
     this.instruction = instruction;
     this.modelName = modelName;
     this.isPartialModel = isPartialModel;
+    this.isCollectiveModel = isCollectiveModel;
     this.completeModelId = completeModelId;
     this.doNotMoveToTheFloorLevel = doNotMoveToTheFloorLevel;
     this.modelMarkersInfo = {
@@ -61,10 +64,27 @@ export class Model {
   }
 
   checkIfPartialModelParentIsCompleted = (): boolean => {
+    if (!this.isPartialModel) {
+      return true;
+    }
+
     const model = this.instruction.getModels().find((model) => {
       return model.getModelName() === this.completeModelId;
     });
+
     return model ? model.getIsModelFinished() : false;
+  };
+
+  checkIfPartialModelParentIsArranged = (): boolean => {
+    if (!this.isPartialModel) {
+      return true;
+    }
+
+    const model = this.instruction.getModels().find((model) => {
+      return model.getModelName() === this.completeModelId;
+    });
+
+    return model ? model.getIsModelArranged() : false;
   };
 
   getDoNotMoveToTheFloorLevel = () => {
@@ -117,6 +137,10 @@ export class Model {
 
   getAfterModelCreationFunction = () => {
     return this.afterModelCreationFunction;
+  };
+
+  getIsCollectiveModel = () => {
+    return this.isCollectiveModel;
   };
 
   setIsModelFinished = (isFinished: boolean) => {

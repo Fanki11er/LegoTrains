@@ -6,7 +6,7 @@ import {
   useMemo,
   useRef,
 } from "react";
-import { Object3D } from "three";
+import { Object3D, Vector3 } from "three";
 import useSelectModel from "../../../Hooks/useSelectModel";
 import {
   convertToEuler,
@@ -95,6 +95,31 @@ const ModelMarkers = ({ persistenceData, modelDataObject }: Props) => {
     modelDataObject.addArraignmentFunctionsToMarkers(model);
   }, [model, modelDataObject]);
 
+  const isParentModelCompleted =
+    modelDataObject.checkIfPartialModelParentIsCompleted();
+
+  const isParentModelArranged =
+    modelDataObject.checkIfPartialModelParentIsArranged();
+
+  const checkIfArrangementContextMenuShouldBeShown = useCallback(() => {
+    if (modelRef.current && isSelected) {
+      if (
+        modelDataObject.getIsModelFinished() &&
+        !modelDataObject.getIsPartialModel() &&
+        !modelDataObject.getIsModelArranged()
+      ) {
+        return true;
+      } else if (
+        modelDataObject.getIsModelFinished() &&
+        modelDataObject.getIsPartialModel() &&
+        !isParentModelArranged
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }, [isSelected, modelDataObject, isParentModelArranged]);
+
   return (
     <>
       <primitive
@@ -108,10 +133,18 @@ const ModelMarkers = ({ persistenceData, modelDataObject }: Props) => {
             handleSelect(modelRef.current, true);
           } else if (modelRef.current && isModelArranged && !isPartialModel) {
             handleFocusCamera(modelRef.current, SCENE_OFFSET);
-          } else if (modelRef.current && isModelArranged && isPartialModel) {
+          } else if (
+            modelRef.current &&
+            isModelArranged &&
+            isPartialModel &&
+            isParentModelCompleted
+          ) {
             handleSelect(modelRef.current, true);
 
-            //handleFocusCamera(modelRef.current);
+            handleFocusCamera(
+              modelRef.current,
+              isParentModelCompleted ? SCENE_OFFSET : new Vector3(0, 0, 0)
+            );
           }
         }}
         onPointerMissed={() => {
@@ -124,13 +157,9 @@ const ModelMarkers = ({ persistenceData, modelDataObject }: Props) => {
         !modelDataObject.getIsModelFinished() && (
           <SelectedModelContextMenu mesh={modelRef.current} />
         )}
-      {modelRef.current &&
-        isSelected &&
-        modelDataObject.getIsModelFinished() && <ArrangeModelContextMenu />}
-      {modelRef.current &&
-        modelDataObject.checkIfPartialModelParentIsCompleted() && (
-          <ArrangeModelContextMenu />
-        )}
+      {checkIfArrangementContextMenuShouldBeShown() && (
+        <ArrangeModelContextMenu />
+      )}
     </>
   );
 };

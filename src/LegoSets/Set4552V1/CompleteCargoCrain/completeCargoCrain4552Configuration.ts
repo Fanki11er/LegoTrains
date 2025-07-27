@@ -11,6 +11,7 @@ export const completeCargoCrain4552Configuration: ModelConfiguration = {
   modelMarkers: set4552completeCargoCrainModelMarkers,
   modelBlocks: completeCargoCrain4552ModelBlocks,
   doNotMoveToTheFloorLevel: true,
+  isCollectiveModel: true,
   arrangementFunction: completeCargoCrain4552ModelArrangementFunction,
   afterModelCreationFunction: completeCargoCrain4552afterModelCreationFunction,
   afterPhaseEndArraignmentFunction:
