@@ -2,9 +2,7 @@ import { Object3D, Object3DEventMap } from "three";
 import { ArrangementFunctionsHelper } from "../../../Classes/ArrangementFunctionsHelper";
 import { ModelArraignmentFunction } from "../../../Types/ArrangementFunction";
 import {
-  changeConstructionHelmetPosition,
   changeHelmetPosition,
-  changeRadioPosition,
   changeWinchPhaseFunction,
   leverUpCraneBoom,
   moveCarToNewPosition,
@@ -24,6 +22,7 @@ const {
   findModelRootMarker,
   movePartialModelToCompletedModel,
   throwErrorIfElementIsMissing,
+  changeElementPosition,
 } = ArrangementFunctionsHelper;
 
 export const completeCargoCrain4552ModelArrangementFunction: ModelArraignmentFunction =
@@ -222,23 +221,41 @@ export const completeCargoCrain4552ModelArrangementFunction: ModelArraignmentFun
       -135
     );
 
-    changeConstructionHelmetPosition(
+    //?? Construction helmet
+    changeElementPosition(
       sceneRootMarker,
       cargoCraneCarModel!,
       "ModelMarker.038",
       "SceneHelperMarker.011"
     );
 
-    changeRadioPosition(
+    //?? Radio
+    changeElementPosition(
       sceneRootMarker,
       cargoCraneCarModel!,
       "ModelMarker.039",
       "SceneHelperMarker.012"
     );
 
-    // finishCrainCartConnection();
-    // finishCrainCabinConnection();
-    // finishCrainBoomConnection();
+    //?? Hammer
+    changeElementPosition(
+      sceneRootMarker,
+      cargoCraneCarModel!,
+      "ModelMarker.021",
+      "SceneHelperMarker.013"
+    );
+
+    //?? Wrench
+    changeElementPosition(
+      sceneRootMarker,
+      cargoCraneCarModel!,
+      "ModelMarker.022",
+      "SceneHelperMarker.014"
+    );
+
+    finishCrainCartConnection();
+    finishCrainCabinConnection();
+    finishCrainBoomConnection();
 
     return {
       touchedModels: [

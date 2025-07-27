@@ -719,4 +719,28 @@ export class ArrangementFunctionsHelper {
       disconnectHelmet,
     };
   };
+
+  static changeElementPosition = (
+    sceneRootMarker: Object3D<Object3DEventMap>,
+    parentModel: Object3D<Object3DEventMap>,
+    elementMarkerId: string,
+    newPositionMarkerId: string
+  ) => {
+    const element = ArrangementFunctionsHelper.findElementConnectedToMarker(
+      parentModel,
+      elementMarkerId
+    );
+
+    const newPositionMarker = ArrangementFunctionsHelper.findMarkerByName(
+      sceneRootMarker,
+      newPositionMarkerId
+    );
+
+    ArrangementFunctionsHelper.attachModelToNewParent(element, sceneRootMarker);
+
+    element.position!.copy(newPositionMarker!.position);
+    element.rotation!.copy(newPositionMarker!.rotation);
+
+    ArrangementFunctionsHelper.attachModelToNewParent(element, parentModel);
+  };
 }

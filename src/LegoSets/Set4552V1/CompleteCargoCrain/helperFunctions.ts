@@ -242,7 +242,7 @@ export const moveWorkerMinifigToNewPosition = (
   );
 
   rotateElementOnYAxis(workerMinifig.minifigHeaps, 15);
-  rotateMinifigArm(workerMinifig.minifigTorso, "Left", 30, 12, -12);
+  rotateMinifigArm(workerMinifig.minifigTorso, "Left", 40, 12, -12);
   rotateMinifigArm(workerMinifig.minifigTorso, "Right", 0, 0, -7);
   rotateLeg(workerMinifig.minifigHeaps, -30, "Right");
   rotateLeg(workerMinifig.minifigHeaps, -30, "Left");
@@ -310,52 +310,4 @@ export const changeHelmetPosition = (
 
   attachModelToNewParent(helmet, parentModel);
   disconnectHelmet();
-};
-
-export const changeConstructionHelmetPosition = (
-  sceneRootMarker: Object3D<Object3DEventMap>,
-  parentModel: Object3D<Object3DEventMap>,
-  helmetMarkerId: string,
-  newPositionMarkerId: string
-) => {
-  const helmet = ArrangementFunctionsHelper.findElementConnectedToMarker(
-    parentModel,
-    helmetMarkerId
-  );
-
-  const newPositionMarker = ArrangementFunctionsHelper.findMarkerByName(
-    sceneRootMarker,
-    newPositionMarkerId
-  );
-
-  attachModelToNewParent(helmet, sceneRootMarker);
-
-  helmet.position!.copy(newPositionMarker!.position);
-  helmet.rotation!.copy(newPositionMarker!.rotation);
-
-  attachModelToNewParent(helmet, parentModel);
-};
-
-export const changeRadioPosition = (
-  sceneRootMarker: Object3D<Object3DEventMap>,
-  parentModel: Object3D<Object3DEventMap>,
-  radioMarkerId: string,
-  newPositionMarkerId: string
-) => {
-  const radio = ArrangementFunctionsHelper.findElementConnectedToMarker(
-    parentModel,
-    radioMarkerId
-  );
-
-  const newPositionMarker = ArrangementFunctionsHelper.findMarkerByName(
-    sceneRootMarker,
-    newPositionMarkerId
-  );
-
-  attachModelToNewParent(radio, sceneRootMarker);
-
-  radio.position!.copy(newPositionMarker!.position);
-  radio.rotation!.copy(newPositionMarker!.rotation);
-
-  attachModelToNewParent(radio, parentModel);
 };
