@@ -3,6 +3,7 @@ import { convertDegreesToRadians } from "../Utilities/utilities";
 import { saveErrorLog } from "../firebase/writeToDbFunctions";
 import {
   BarrelMarkersData,
+  HelmetMarkersData,
   MinifigMarkersData,
   PaletteMarkersData,
   PostPackageMarkersData,
@@ -40,6 +41,18 @@ export class ArrangementFunctionsHelper {
     name: string
   ) => {
     const element = model.getObjectByName(name);
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      element,
+      `${name} element not found`
+    );
+    return element;
+  };
+
+  static findMarkerByName = (
+    model: Object3D<Object3DEventMap>,
+    name: string
+  ) => {
+    const element = model.getObjectByName(name.replace(".", ""));
     ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
       element,
       `${name} element not found`
@@ -302,9 +315,11 @@ export class ArrangementFunctionsHelper {
       minifigTorsoMarkerId,
       minifigHeadMarkerId,
       minifigHutMarkerId,
-    }: MinifigMarkersData
+    }: MinifigMarkersData,
+    sceneRootMarker?: Object3D<Object3DEventMap>
   ) => {
-    const scene = model.parent;
+    const scene = sceneRootMarker || model.parent;
+
     ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
       scene,
       "Scene element not found"
@@ -348,6 +363,63 @@ export class ArrangementFunctionsHelper {
     minifigHeaps.position.copy(markerForMinifig.position);
     minifigHeaps.quaternion.copy(markerForMinifig.quaternion);
     scene!.add(minifigHeaps);
+
+    const disconnectMinifig = () => {
+      ArrangementFunctionsHelper.attachModelToNewParent(minifigHut, model);
+      ArrangementFunctionsHelper.attachModelToNewParent(minifigHead, model);
+      ArrangementFunctionsHelper.attachModelToNewParent(minifigTorso, model);
+      ArrangementFunctionsHelper.attachModelToNewParent(minifigHeaps, model);
+    };
+
+    return {
+      minifigHeaps,
+      minifigTorso,
+      minifigHead,
+      minifigHut,
+      disconnectMinifig,
+    };
+  };
+
+  static connectMinifig = (
+    model: Object3D<Object3DEventMap>,
+    minifigMarkersData: MinifigMarkersData
+  ) => {
+    const {
+      minifigHeapsMarkerId,
+      minifigTorsoMarkerId,
+      minifigHeadMarkerId,
+      minifigHutMarkerId,
+    } = minifigMarkersData;
+
+    const minifigHeaps =
+      ArrangementFunctionsHelper.findElementConnectedToMarker(
+        model,
+        minifigHeapsMarkerId,
+        "Minifig heaps element not found"
+      );
+
+    const minifigTorso =
+      ArrangementFunctionsHelper.findElementConnectedToMarker(
+        model,
+        minifigTorsoMarkerId,
+        "Minifig torso element not found"
+      );
+
+    const minifigHead = ArrangementFunctionsHelper.findElementConnectedToMarker(
+      model,
+      minifigHeadMarkerId,
+      "Minifig head element not found"
+    );
+
+    const minifigHut = ArrangementFunctionsHelper.findElementConnectedToMarker(
+      model,
+      minifigHutMarkerId,
+      "Minifig hut element not found"
+    );
+
+    minifigHeaps.attach(minifigTorso);
+    minifigHeaps.attach(minifigHead);
+    minifigHeaps.attach(minifigHut);
 
     const disconnectMinifig = () => {
       ArrangementFunctionsHelper.attachModelToNewParent(minifigHut, model);
@@ -490,6 +562,14 @@ export class ArrangementFunctionsHelper {
         );
         break;
       }
+      case "bent_3": {
+        nozzle!.userData.activePhase = "bent_4";
+        ArrangementFunctionsHelper.switchPhaseChildrenVisibilityAndScale(
+          nozzle!,
+          "bent_4"
+        );
+        break;
+      }
 
       default:
         break;
@@ -566,6 +646,15 @@ export class ArrangementFunctionsHelper {
         );
         break;
       }
+      case "position_1": {
+        winch!.userData.activePhase = "position_2";
+
+        ArrangementFunctionsHelper.switchPhaseChildrenVisibilityAndScale(
+          winch!,
+          "position_2"
+        );
+        break;
+      }
 
       default:
         break;
@@ -580,7 +669,7 @@ export class ArrangementFunctionsHelper {
     targetMarkerId: string
   ) => {
     const partialModelTargetMarker =
-      ArrangementFunctionsHelper.findElementByName(
+      ArrangementFunctionsHelper.findMarkerByName(
         completeModel,
         targetMarkerId
       );
@@ -600,5 +689,34 @@ export class ArrangementFunctionsHelper {
     };
 
     return finishPartialModelConnection;
+  };
+
+  static connectHelmet = (
+    parentModel: Object3D<Object3DEventMap>,
+    helmetMarkersData: HelmetMarkersData
+  ) => {
+    const helmet = ArrangementFunctionsHelper.findElementConnectedToMarker(
+      parentModel,
+      helmetMarkersData.helmetMarkerId
+    );
+    const helmetVisor = ArrangementFunctionsHelper.findElementConnectedToMarker(
+      parentModel,
+      helmetMarkersData.helmetVisorMarkerId
+    );
+
+    ArrangementFunctionsHelper.attachModelToNewParent(helmetVisor, helmet);
+
+    const disconnectHelmet = () => {
+      ArrangementFunctionsHelper.attachModelToNewParent(
+        helmetVisor,
+        parentModel
+      );
+    };
+
+    return {
+      helmet,
+      helmetVisor,
+      disconnectHelmet,
+    };
   };
 }

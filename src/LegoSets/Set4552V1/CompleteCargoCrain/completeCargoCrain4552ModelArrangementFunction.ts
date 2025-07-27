@@ -2,12 +2,22 @@ import { Object3D, Object3DEventMap } from "three";
 import { ArrangementFunctionsHelper } from "../../../Classes/ArrangementFunctionsHelper";
 import { ModelArraignmentFunction } from "../../../Types/ArrangementFunction";
 import {
+  changeConstructionHelmetPosition,
+  changeHelmetPosition,
+  changeRadioPosition,
+  changeWinchPhaseFunction,
   leverUpCraneBoom,
+  moveCarToNewPosition,
+  moveCraneOperatorToNewPosition,
+  moveHookToNewPosition,
+  moveHoseNozzleAndChangeHosePhase,
   moveInnerCrainBoomArmToPlace,
   moveSupportBaseToNewPosition,
+  moveWorkerMinifigToNewPosition,
   rotateCartSupport,
   rotateCrainBlockadeHandle,
   rotateCrainBoomHandle,
+  rotateCraneCabinAndBoom,
 } from "./helperFunctions";
 
 const {
@@ -29,7 +39,6 @@ export const completeCargoCrain4552ModelArrangementFunction: ModelArraignmentFun
       sceneRootMarker,
       "Scene root marker is missing in connectCrainCartToCrainCompleteModel"
     );
-    console.log(sceneRootMarker);
 
     const cargoCrainCabinModel = findModelRootMarker(
       sceneRootMarker,
@@ -46,27 +55,37 @@ export const completeCargoCrain4552ModelArrangementFunction: ModelArraignmentFun
       "CrainCart4552Model"
     );
 
-    const paletteModel = findModelRootMarker(
+    const cargoCranePaletteModel = findModelRootMarker(
       sceneRootMarker,
       "Palette4552Model"
+    );
+
+    const cargoCraneCarModel = findModelRootMarker(
+      sceneRootMarker,
+      "Car4552Model"
+    );
+
+    const cargoCraneTorchModel = findModelRootMarker(
+      sceneRootMarker,
+      "Torch4552Model"
     );
 
     const finishCrainCartConnection = movePartialModelToCompletedModel(
       model,
       cargoCrainCartModel!,
-      "CompleteModelMarker003"
+      "CompleteModelMarker.003"
     );
 
     const finishCrainCabinConnection = movePartialModelToCompletedModel(
       model,
       cargoCrainCabinModel!,
-      "CompleteModelMarker001"
+      "CompleteModelMarker.001"
     );
 
     const finishCrainBoomConnection = movePartialModelToCompletedModel(
       model,
       cargoCrainBoomModel!,
-      "CompleteModelMarker002"
+      "CompleteModelMarker.002"
     );
 
     rotateCartSupport(
@@ -95,28 +114,28 @@ export const completeCargoCrain4552ModelArrangementFunction: ModelArraignmentFun
     );
 
     moveSupportBaseToNewPosition(
-      paletteModel!,
+      cargoCranePaletteModel!,
       "ModelMarker.005",
       sceneRootMarker,
-      "SceneHelperMarker001"
+      "SceneHelperMarker.001"
     );
     moveSupportBaseToNewPosition(
-      paletteModel!,
+      cargoCranePaletteModel!,
       "ModelMarker.006",
       sceneRootMarker,
-      "SceneHelperMarker002"
+      "SceneHelperMarker.002"
     );
     moveSupportBaseToNewPosition(
-      paletteModel!,
+      cargoCranePaletteModel!,
       "ModelMarker.007",
       sceneRootMarker,
-      "SceneHelperMarker003"
+      "SceneHelperMarker.003"
     );
     moveSupportBaseToNewPosition(
-      paletteModel!,
+      cargoCranePaletteModel!,
       "ModelMarker.008",
       sceneRootMarker,
-      "SceneHelperMarker004"
+      "SceneHelperMarker.004"
     );
 
     rotateCrainBlockadeHandle(
@@ -143,6 +162,80 @@ export const completeCargoCrain4552ModelArrangementFunction: ModelArraignmentFun
       -5
     );
 
+    changeWinchPhaseFunction(cargoCrainCabinModel!, "ModelMarker.047");
+
+    rotateCraneCabinAndBoom(cargoCrainCabinModel!, cargoCrainBoomModel!, 180);
+
+    moveHookToNewPosition(
+      sceneRootMarker,
+      model,
+      "ModelMarker.001",
+      ["ModelMarker.002", "ModelMarker.003"],
+      "SceneHelperMarker.005"
+    );
+
+    moveCraneOperatorToNewPosition(
+      sceneRootMarker,
+      model,
+      "SceneHelperMarker.006",
+      {
+        minifigHeapsMarkerId: "ModelMarker.004",
+        minifigTorsoMarkerId: "ModelMarker.005",
+        minifigHeadMarkerId: "ModelMarker.006",
+        minifigHutMarkerId: "ModelMarker.007",
+      }
+    );
+
+    moveCarToNewPosition(
+      sceneRootMarker,
+      cargoCraneCarModel!,
+      "SceneHelperMarker.007"
+    );
+
+    moveWorkerMinifigToNewPosition(
+      sceneRootMarker!,
+      cargoCraneCarModel!,
+      {
+        minifigHeapsMarkerId: "ModelMarker.035",
+        minifigTorsoMarkerId: "ModelMarker.036",
+        minifigHeadMarkerId: "ModelMarker.037",
+        minifigHutMarkerId: "ModelMarker.038",
+      },
+      "SceneHelperMarker.009"
+    );
+
+    moveHoseNozzleAndChangeHosePhase(
+      sceneRootMarker,
+      cargoCraneTorchModel!,
+      "ModelMarker.009",
+      "SceneHelperMarker.008"
+    );
+
+    changeHelmetPosition(
+      sceneRootMarker,
+      cargoCraneTorchModel!,
+      {
+        helmetMarkerId: "ModelMarker.013",
+        helmetVisorMarkerId: "ModelMarker.014",
+      },
+      "SceneHelperMarker.010",
+      -135
+    );
+
+    changeConstructionHelmetPosition(
+      sceneRootMarker,
+      cargoCraneCarModel!,
+      "ModelMarker.038",
+      "SceneHelperMarker.011"
+    );
+
+    changeRadioPosition(
+      sceneRootMarker,
+      cargoCraneCarModel!,
+      "ModelMarker.039",
+      "SceneHelperMarker.012"
+    );
+
     // finishCrainCartConnection();
     // finishCrainCabinConnection();
     // finishCrainBoomConnection();
@@ -152,22 +245,12 @@ export const completeCargoCrain4552ModelArrangementFunction: ModelArraignmentFun
         "CrainCart4552Model",
         "CrainCabin4552Model",
         "CrainBoom4552Model",
+        "Palette4552Model",
+        "Car4552Model",
       ],
       status: "success",
     };
   };
 
-// todo change winch phase
-// todo rotate crane cabin
-// todo move hook to new position
-// todo move car to new position
-// todo: move minifig to crane cabin
-// todo: rotate minifig arms
-// todo: move radio to new position
-// todo move minifig construction helmet to new position
-// todo move minifig helmet to new position
-// todo rotate helmet glass
-// todo arrange minifig
-// todo change torch phase
 // todo move hammer to new position
 // todo move wrench to new position

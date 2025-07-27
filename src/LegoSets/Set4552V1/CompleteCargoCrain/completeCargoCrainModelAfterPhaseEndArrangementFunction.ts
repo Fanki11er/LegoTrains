@@ -62,19 +62,19 @@ const connectAndArrangeCrainCartToCrainCompleteModel = (
   const finishCrainCartConnection = movePartialModelToCompletedModel(
     model,
     cargoCrainCartModel!,
-    "CompleteModelMarker003"
+    "CompleteModelMarker.003"
   );
 
   const finishCrainCabinConnection = movePartialModelToCompletedModel(
     model,
     cargoCrainCabinModel!,
-    "CompleteModelMarker001"
+    "CompleteModelMarker.001"
   );
 
   const finishCrainBoomConnection = movePartialModelToCompletedModel(
     model,
     cargoCrainBoomModel!,
-    "CompleteModelMarker002"
+    "CompleteModelMarker.002"
   );
 
   rotateCrainBlockadeHandle(

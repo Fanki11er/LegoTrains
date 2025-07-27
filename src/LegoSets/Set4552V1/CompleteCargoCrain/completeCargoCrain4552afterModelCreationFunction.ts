@@ -12,6 +12,7 @@ const {
   throwErrorIfElementIsMissing,
   movePartialModelToCompletedModel,
   findModelRootMarker,
+  findElementByName,
 } = ArrangementFunctionsHelper;
 
 export const completeCargoCrain4552afterModelCreationFunction = (
@@ -27,27 +28,32 @@ export const completeCargoCrain4552afterModelCreationFunction = (
     scene,
     "Scene is missing in completeCargoCrain4552afterModelCreationFunction"
   );
+  const sceneRootMarker = findElementByName(scene!, "SceneRootMarker");
 
-  const crainBoomModel = findModelRootMarker(model!, "CrainBoom4552Model");
+  const crainBoomModel = findModelRootMarker(
+    sceneRootMarker!,
+    "CrainBoom4552Model"
+  );
 
-  const crainCabinModel = findModelRootMarker(model!, "CrainCabin4552Model");
-
-  //const sceneRootMarker = findElementByName(scene!, "SceneRootMarker");
+  const crainCabinModel = findModelRootMarker(
+    sceneRootMarker!,
+    "CrainCabin4552Model"
+  );
 
   const finishCrainCabinConnection = movePartialModelToCompletedModel(
     model!,
     crainCabinModel!,
 
-    "CompleteModelMarker001"
+    "CompleteModelMarker.001"
   );
 
   const finishCrainBoomConnection = movePartialModelToCompletedModel(
     model!,
     crainBoomModel!,
-    "CompleteModelMarker002"
+    "CompleteModelMarker.002"
   );
 
-  moveInnerCrainBoomArmToPlace(crainBoomModel!, 25, "ModelMarker.24");
+  moveInnerCrainBoomArmToPlace(crainBoomModel!, 25, "ModelMarker.024");
 
   changeWinchPhaseFunction(crainCabinModel!, "ModelMarker.047");
 
