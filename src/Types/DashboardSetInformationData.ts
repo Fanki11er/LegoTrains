@@ -15,4 +15,6 @@ export type SetInformationDTO = {
 export type DashboardFutureSetInformationData = Omit<
   DashboardSetInformationData,
   "allModels"
->;
+> & {
+  informationText?: string;
+};

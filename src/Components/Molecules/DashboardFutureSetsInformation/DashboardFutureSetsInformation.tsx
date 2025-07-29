@@ -12,14 +12,15 @@ type Props = {
 const DashboardFutureSetsInformation = ({
   dashboardFutureSetInformationData,
 }: Props) => {
-  const { setName, setVersion, imagePath } = dashboardFutureSetInformationData;
+  const { setName, setVersion, imagePath, informationText } =
+    dashboardFutureSetInformationData;
   return (
     <DashboardFutureSetsInformationWrapper>
       <h3>{setName}</h3>
       <span>{`Set version: ${setVersion}`}</span>
       <DashboardFutureSetInformationImage src={imagePath} alt={"Cover image"} />
       <DashboardFutureSetInformationSpan>
-        Available soon...
+        {informationText || "Available soon..."}
       </DashboardFutureSetInformationSpan>
     </DashboardFutureSetsInformationWrapper>
   );
