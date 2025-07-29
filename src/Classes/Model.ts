@@ -337,7 +337,7 @@ export class Model {
           );
           return;
         }
-        result.touchedModels.forEach((modelName) => {
+        result.touchedModels?.forEach((modelName) => {
           if (!touchedModels.includes(modelName)) {
             touchedModels.push(modelName);
           }

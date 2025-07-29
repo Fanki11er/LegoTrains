@@ -158,7 +158,6 @@ const TrainInstructionProvider = (
 
   const handleGetMarkersForSelectedPart = useCallback(
     (partType: string): Object3D<Object3DEventMap>[] => {
-      //const activeModel = instruction.getActiveModel();
       if (activeModel) {
         return activeModel.getMarkersForSelectedPart(partType);
       }

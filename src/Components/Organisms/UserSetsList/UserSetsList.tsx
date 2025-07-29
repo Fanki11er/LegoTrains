@@ -34,7 +34,7 @@ const UserSetsList = () => {
   >({
     queryKey: [All_SETS_DATA],
     queryFn: () => getAllSetsPersistenceData(),
-    staleTime: 60000,
+    staleTime: 0,
   });
 
   const handleToggleModal = useCallback(

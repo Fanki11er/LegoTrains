@@ -269,6 +269,3 @@ export const completeCargoCrain4552ModelArrangementFunction: ModelArraignmentFun
       status: "success",
     };
   };
-
-// todo move hammer to new position
-// todo move wrench to new position

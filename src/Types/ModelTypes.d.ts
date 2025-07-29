@@ -2,6 +2,7 @@ import { PartsArraignmentFunctionsTypes } from "../Utilities/partsAfterConnectio
 import {
   AfterModelCreationFunction,
   AfterPhaseEndArraignmentFunction,
+  ModelArraignmentFunction,
 } from "./ArrangementFunction";
 import { ModelBlock } from "./ModelBlock";
 

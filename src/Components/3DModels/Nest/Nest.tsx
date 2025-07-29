@@ -41,13 +41,6 @@ const Nest = (props: NestProps) => {
     const nest = nestRef.current;
 
     if (marker.parent && nest) {
-      //!!! Changed, test on 7722 if it works
-      // if (marker.userData.afterConnectionArraignmentFunctionName) {
-      //   handleArrangePartAfterConnection(
-      //     nest.children[0],
-      //     marker.userData.afterConnectionArraignmentFunctionName
-      //   );
-      // }
       marker.parent.add(nest);
     }
 
@@ -83,7 +76,6 @@ const Nest = (props: NestProps) => {
   };
 
   const renderMesh = (mesh: Mesh, marker: Object3D) => {
-    //!!! Changed, test on 7722 if it works
     const clonedMesh = mesh.clone();
     if (!mesh.userData.doNotArrangeAfterConnectionInNest) {
       handleArrangePartAfterConnection(
