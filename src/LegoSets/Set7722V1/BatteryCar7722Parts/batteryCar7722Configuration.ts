@@ -10,4 +10,5 @@ export const batteryCar7722Configuration: ModelConfiguration = {
   modelBlocks: steamLocomotive7722BatteryCarModelBlocks,
   arrangementFunction: batteryCar7722ModelArrangementFunction,
   afterConnectArraignmentFunctionsNames: [],
+  afterPhaseEndArraignmentFunctionsNames: [],
 };

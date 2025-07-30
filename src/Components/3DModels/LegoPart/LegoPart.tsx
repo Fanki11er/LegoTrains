@@ -16,6 +16,7 @@ import {
 import { LegoBlock } from "../../../Types/LegoBlock";
 import { PartPersistenceData } from "../../../Classes/PersistenceModule";
 import useMaterials from "../../../Hooks/useMaterials";
+import { withHelper } from "../../../main";
 
 type PartProps = {
   partInfo: LegoBlock;
@@ -84,13 +85,47 @@ const LegoPart = (props: PartProps) => {
           partType: partInfo.partType,
           isConnected: "",
           multipart: !!partInfo.multipart,
+          multiPhases: partInfo.multiPhases || false,
+          activePhase: partInfo.activePhase || "",
+          doNotArrangeAfterConnectionInNest:
+            partInfo.doNotArrangeAfterConnectionInNest || false,
         } as PartUserData;
+
+        if (modelRef.current.userData.multiPhases) {
+          modelRef.current.children.forEach((child) => {
+            if (
+              child.userData.isPhaseChild &&
+              child.userData.phaseName !== modelRef.current.userData.activePhase
+            ) {
+              child.visible = false;
+              child.scale.set(0, 0, 0); // Reset scale
+            }
+          });
+        }
       } else {
         const rootMarker = handleGetRootModelMarkerByName(
           persistenceData.userData.modelId!
         );
 
         modelRef.current.userData = persistenceData.userData;
+
+        if (persistenceData.userData.multiPhases) {
+          modelRef.current.userData.activePhase =
+            persistenceData.userData?.activePhase;
+
+          modelRef.current.children.forEach((child) => {
+            if (
+              child.userData.isPhaseChild &&
+              child.userData.phaseName !==
+                modelRef.current.userData?.activePhase
+            ) {
+              child.scale.set(0, 0, 0); // Reset scale
+              child.visible = false;
+            } else {
+              child.visible = true;
+            }
+          });
+        }
 
         if (rootMarker) {
           modelRef.current.position.copy(
@@ -155,7 +190,9 @@ const LegoPart = (props: PartProps) => {
           }
         }}
       />
-      {isSelected && <SelectedElementContextMenu mesh={model} />}
+      {isSelected && (
+        <SelectedElementContextMenu mesh={model} withHelper={withHelper} />
+      )}
       <group name="NestsForThisPart">
         {modelRef.current && renderNests(markersList)}
       </group>

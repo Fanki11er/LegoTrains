@@ -55,7 +55,7 @@ const PersistenceDataProvider = ({
   } = useQuery<SetPersistenceData | null>({
     queryKey: [SET_DATA, legoSetId],
     queryFn: () => getSetDataFromDatabase(legoSetId),
-    staleTime: 60000,
+    staleTime: Infinity,
   });
 
   const {
@@ -65,7 +65,7 @@ const PersistenceDataProvider = ({
   } = useQuery<ModelPersistenceData[] | null>({
     queryKey: [MODELS_DATA, legoSetId],
     queryFn: () => getSetModelsDataFromDatabase(legoSetId),
-    staleTime: 60000,
+    staleTime: Infinity,
   });
 
   const sendModelDataToDatabase = useCallback(
@@ -88,9 +88,6 @@ const PersistenceDataProvider = ({
         )
           .then(() => {
             queryClient.invalidateQueries({
-              queryKey: [MODELS_DATA, legoSetId],
-            });
-            queryClient.invalidateQueries({
               queryKey: [SET_DATA, legoSetId],
             });
 
@@ -110,9 +107,6 @@ const PersistenceDataProvider = ({
       } else {
         createNewModelData(legoSetId, data)
           .then(() => {
-            queryClient.invalidateQueries({
-              queryKey: [MODELS_DATA, legoSetId],
-            });
             queryClient.invalidateQueries({
               queryKey: [SET_DATA, legoSetId],
             });

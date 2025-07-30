@@ -3,7 +3,7 @@ import {
   createContext,
   useCallback,
   useEffect,
-  useMemo,
+  useState,
 } from "react";
 import { TrainInstruction } from "../Classes/TrainInstruction";
 import { useThree } from "@react-three/fiber";
@@ -67,21 +67,71 @@ const TrainInstructionProvider = (
     return scene;
   };
 
-  const trainInstruction = useMemo(() => {
-    return instruction;
-  }, [instruction]);
+  const [activeModel, setActiveModel] = useState<Model | null>(() => {
+    return instruction.getActiveModel();
+  });
 
-  trainInstruction.getSceneLoader(getScene);
+  const saveActiveModelWithTouchedModels = useCallback(
+    (touchedModels: string[]) => {
+      const models = touchedModels.map((id) => {
+        return instruction.getModelByName(id);
+      });
+
+      handleSaveArrangedModelDataToDatabase(activeModel!);
+      models.forEach((model) => {
+        if (model) {
+          handleSaveArrangedModelDataToDatabase(model, true);
+        }
+      });
+    },
+    [activeModel, handleSaveArrangedModelDataToDatabase, instruction]
+  );
+
+  const afterModelCreationFunction = useCallback(() => {
+    const afterModelCreationFunction =
+      activeModel?.getAfterModelCreationFunction();
+
+    if (
+      afterModelCreationFunction &&
+      !activeModel?.getIsArrangedAfterCreation()
+    ) {
+      const modelRootMarker = instruction.getActiveModelMarkers();
+
+      const result = afterModelCreationFunction(modelRootMarker, scene);
+
+      activeModel?.setIsArrangedAfterCreation(true);
+
+      if (result.status === "error") {
+        throw new Error(
+          `Error in afterModelCreationFunction: ${result.touchedModels.join(
+            ", "
+          )}`
+        );
+      }
+      //!! Off for development
+      saveActiveModelWithTouchedModels(result.touchedModels);
+    }
+  }, [activeModel, instruction, scene, saveActiveModelWithTouchedModels]);
+
+  useEffect(() => {
+    afterModelCreationFunction();
+  }, [afterModelCreationFunction]);
+
+  instruction.getSceneLoader(getScene);
 
   const { modelsData } = usePersistenceDataProvider();
 
   const updateInstructionWithPersistenceData = useCallback(
     (data: ModelPersistenceData[]) => {
-      if (trainInstruction) {
-        trainInstruction.usePersistenceData(data);
+      if (instruction) {
+        instruction.usePersistenceData(data);
+        const isDataLoaded = instruction.getIsPersistenceDataLoaded();
+        if (isDataLoaded) {
+          setActiveModel(instruction.getActiveModel());
+        }
       }
     },
-    [trainInstruction]
+    [instruction]
   );
 
   useEffect(() => {
@@ -93,50 +143,63 @@ const TrainInstructionProvider = (
   }, [modelsData, updateInstructionWithPersistenceData, instruction]);
 
   const handleGetPartsList = useCallback(() => {
-    if (trainInstruction) {
-      return trainInstruction.getActiveModelPartsList();
+    if (instruction) {
+      return instruction.getActiveModelPartsList();
     }
     return [];
-  }, [trainInstruction]);
+  }, [instruction]);
 
   const handleGetMarkerById = useCallback(
     (id: number) => {
-      return trainInstruction.getMarkerById(id);
+      return instruction.getMarkerById(id);
     },
-    [trainInstruction]
+    [instruction]
   );
 
   const handleGetMarkersForSelectedPart = useCallback(
     (partType: string): Object3D<Object3DEventMap>[] => {
-      const activeModel = trainInstruction.getActiveModel();
       if (activeModel) {
         return activeModel.getMarkersForSelectedPart(partType);
       }
       return [];
     },
-    [trainInstruction]
+    [activeModel]
   );
 
   const handleFinishPartConnection = useCallback(
     (marker: Object3D) => {
-      const isPhaseEnded = trainInstruction.finishPartConnection(marker);
+      const isPhaseEnded = instruction.finishPartConnection(marker);
+
+      if (isPhaseEnded && marker) {
+        const result = instruction.partsArrangeAfterPhaseEnd();
+
+        if (result.status === "error") {
+          throw new Error(
+            `Error in afterPhaseEndArraignmentFunction: ${result.touchedModels.join(
+              ", "
+            )}`
+          );
+        }
+        //!! Off for development
+        saveActiveModelWithTouchedModels(result.touchedModels);
+      }
       return isPhaseEnded;
     },
-    [trainInstruction]
+    [instruction, saveActiveModelWithTouchedModels]
   );
 
   const handleGetSceneMarkersInfo = useCallback(() => {
-    return trainInstruction.getSceneMarkersInfo();
-  }, [trainInstruction]);
+    return instruction.getSceneMarkersInfo();
+  }, [instruction]);
 
   const handleGetRootModelMarkerByName = useCallback(
     (rootMarkerName: string) => {
-      if (trainInstruction) {
-        return trainInstruction.getModelRootMarkerByName(rootMarkerName);
+      if (instruction) {
+        return instruction.getModelRootMarkerByName(rootMarkerName);
       }
       return undefined;
     },
-    [trainInstruction]
+    [instruction]
   );
 
   const handleGetSetModelsToRenderList = useCallback(() => {
@@ -146,18 +209,12 @@ const TrainInstructionProvider = (
   const handleMoveReadyModelToSetArrangement = useCallback(() => {
     try {
       const result = instruction.setFinalModelArrangement();
-      if (result) {
+      if (result?.status === "success") {
         trackModelEvent("Model Arranged", result.oldModel.getModelName());
-        const touchedModels = result.otherModifiedModelsIds.map((id) => {
-          return instruction.getModelByName(id);
-        });
+        //!! Off for development
+        saveActiveModelWithTouchedModels(result.otherModifiedModelsIds);
 
-        handleSaveArrangedModelDataToDatabase(result.oldModel);
-        touchedModels.forEach((model) => {
-          if (model) {
-            handleSaveArrangedModelDataToDatabase(model, true);
-          }
-        });
+        setActiveModel(instruction.getActiveModel());
       }
     } catch (err) {
       const error = err as Error;
@@ -168,10 +225,10 @@ const TrainInstructionProvider = (
       });
     }
   }, [
-    handleSaveArrangedModelDataToDatabase,
     instruction,
     navigate,
     trackModelEvent,
+    saveActiveModelWithTouchedModels,
   ]);
 
   const handleGetSetRootMarker = useCallback(() => {

@@ -14,8 +14,31 @@ import { selectedElementMaterialOrange } from "../Materials/SelectElementMateria
 import { blueFloorMaterial } from "../Materials/BlueFloorMaterial";
 import { missingMaterial } from "../Materials/MissingMaterial";
 import { instructionPageMaterial } from "../Materials/instructionPageMaterial";
+
+export type MaterialsTypes =
+  | "redPlasticMaterial"
+  | "blackPlasticMaterial"
+  | "whiteTransparentMaterial"
+  | "redTransparentMaterial"
+  | "yellowTransparentMaterial"
+  | "blueTransparentMaterial"
+  | "oldGrayPlasticMaterial"
+  | "darkGrayPlasticMaterial"
+  | "yellowPLasticMaterial"
+  | "whitePlasticMaterial"
+  | "bluePlasticMaterial"
+  | "greenPlasticMaterial"
+  | "nestMaterial"
+  | "blueFloorMaterial"
+  | "selectedElementMaterial"
+  | "selectedElementMaterialOrange"
+  | "instructionPageMaterial";
+
 type CustomMaterials = {
-  [materialId: string]: MeshStandardMaterial | MeshPhysicalMaterial | Material;
+  [materialId in MaterialsTypes]:
+    | MeshStandardMaterial
+    | MeshPhysicalMaterial
+    | Material;
 };
 
 export const MaterialsProviderContext = createContext({
@@ -36,6 +59,8 @@ const MaterialsProvider = ({ children }: PropsWithChildren) => {
       blueTransparentMaterial: materials.BlueGlass || missingMaterial,
       oldGrayPlasticMaterial:
         materials.GlossyDirtyGrayPlastic || missingMaterial,
+      darkGrayPlasticMaterial:
+        materials.GlossyDarkGrayPlastic || missingMaterial,
       yellowPLasticMaterial: materials.GlossyYellowPlastic || missingMaterial,
       whitePlasticMaterial: materials.GlossyWhitePlastic || missingMaterial,
       bluePlasticMaterial: materials.GlossyBluePlastic || missingMaterial,

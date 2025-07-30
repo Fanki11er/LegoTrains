@@ -1,10 +1,17 @@
-import { Object3D, Object3DEventMap } from "three";
+import { Object3D, Object3DEventMap, Scene } from "three";
 import { Phase } from "./Phase";
 import { TrainInstruction } from "./TrainInstruction";
 import { PartInfo } from "../Types/PartInfo";
 import { LegoBlock } from "../Types/LegoBlock";
-import { ArraignmentFunction } from "../Types/ArrangementFunction";
-import { ArraignmentFunctionRegistrationEntry } from "../Types/ModelTypes";
+import {
+  AfterModelCreationFunction,
+  AfterPhaseEndArraignmentFunction,
+  ModelArraignmentFunction,
+} from "../Types/ArrangementFunction";
+import {
+  AfterPhaseEndArraignmentFunctionRegistrationEntry,
+  ArraignmentFunctionRegistrationEntry,
+} from "../Types/ModelTypes";
 
 export type MarkersInfo = {
   markersPath: string;
@@ -14,27 +21,75 @@ export class Model {
   private modelName: string;
   private isFinished: boolean = false;
   private isModelArranged: boolean = false;
+  private isPartialModel: boolean = false;
+  private isCollectiveModel: boolean = false;
+  private completeModelId: string;
+  private isArrangedAfterCreation: boolean = false;
   private phases: Phase[] = [];
   private activePhase: Phase | null = null;
+  private previousPhaseId: number = 0;
   private instruction: TrainInstruction;
   private modelMarkersInfo: MarkersInfo;
   private connectedMarkersIds: string[] = [];
+  private doNotMoveToTheFloorLevel: boolean;
   private arraignmentFunctionRegistrationEntries: ArraignmentFunctionRegistrationEntry[] =
     [];
-  private modelArrangementFunction: ArraignmentFunction | undefined;
+  private afterPhaseEndArraignmentFunctionsNames: AfterPhaseEndArraignmentFunctionRegistrationEntry[] =
+    [];
+  private modelArrangementFunction: ModelArraignmentFunction | undefined;
+  private afterModelCreationFunction: AfterModelCreationFunction | undefined;
+  private afterPhaseEndArraignmentFunction:
+    | AfterPhaseEndArraignmentFunction
+    | undefined;
 
   constructor(
     modelName: string,
     modelMarkersPath: string,
-    instruction: TrainInstruction
+    instruction: TrainInstruction,
+    isPartialModel: boolean = false,
+    isCollectiveModel: boolean = false,
+    doNotMoveToTheFloorLevel: boolean = false,
+    completeModelId: string = ""
   ) {
     this.instruction = instruction;
     this.modelName = modelName;
+    this.isPartialModel = isPartialModel;
+    this.isCollectiveModel = isCollectiveModel;
+    this.completeModelId = completeModelId;
+    this.doNotMoveToTheFloorLevel = doNotMoveToTheFloorLevel;
     this.modelMarkersInfo = {
       markersPath: modelMarkersPath,
       rootMarkerId: `${modelName}_ModelRootMarker`,
     };
   }
+
+  checkIfPartialModelParentIsCompleted = (): boolean => {
+    if (!this.isPartialModel) {
+      return true;
+    }
+
+    const model = this.instruction.getModels().find((model) => {
+      return model.getModelName() === this.completeModelId;
+    });
+
+    return model ? model.getIsModelFinished() : false;
+  };
+
+  checkIfPartialModelParentIsArranged = (): boolean => {
+    if (!this.isPartialModel) {
+      return true;
+    }
+
+    const model = this.instruction.getModels().find((model) => {
+      return model.getModelName() === this.completeModelId;
+    });
+
+    return model ? model.getIsModelArranged() : false;
+  };
+
+  getDoNotMoveToTheFloorLevel = () => {
+    return this.doNotMoveToTheFloorLevel;
+  };
 
   getActivePhase = () => {
     return this.activePhase;
@@ -42,6 +97,10 @@ export class Model {
 
   getIsModelArranged = () => {
     return this.isModelArranged;
+  };
+
+  getIsPartialModel = () => {
+    return this.isPartialModel;
   };
 
   getModelName = () => {
@@ -60,6 +119,10 @@ export class Model {
     return this.modelMarkersInfo;
   };
 
+  getIsArrangedAfterCreation = () => {
+    return this.isArrangedAfterCreation;
+  };
+
   getIsModelFinished = () => {
     return this.isFinished;
   };
@@ -72,12 +135,24 @@ export class Model {
     return this.modelArrangementFunction;
   };
 
+  getAfterModelCreationFunction = () => {
+    return this.afterModelCreationFunction;
+  };
+
+  getIsCollectiveModel = () => {
+    return this.isCollectiveModel;
+  };
+
   setIsModelFinished = (isFinished: boolean) => {
     this.isFinished = isFinished;
   };
 
   setIsModelArranged = (isModelArranged: boolean) => {
     this.isModelArranged = isModelArranged;
+  };
+
+  setIsArrangedAfterCreation = (isArrangedAfterCreation: boolean) => {
+    this.isArrangedAfterCreation = isArrangedAfterCreation;
   };
 
   addPhase = (phaseNumber: number, legoBlocks: LegoBlock[]) => {
@@ -146,7 +221,9 @@ export class Model {
   incrementActivePhase = () => {
     if (this.activePhase) {
       const currentPhaseIndex = this.phases.indexOf(this.activePhase);
+      this.previousPhaseId = this.activePhase.getPhaseNumber();
       const newPhaseIndex = currentPhaseIndex + 1;
+
       if (newPhaseIndex < this.phases.length) {
         this.activePhase = this.phases[newPhaseIndex];
       } else {
@@ -182,6 +259,13 @@ export class Model {
       arraignmentFunctionRegistrationEntries;
   };
 
+  registerAfterPhaseEndArraignmentFunctionsNames = (
+    afterPhaseEndArraignmentFunctionsNames: AfterPhaseEndArraignmentFunctionRegistrationEntry[]
+  ) => {
+    this.afterPhaseEndArraignmentFunctionsNames =
+      afterPhaseEndArraignmentFunctionsNames;
+  };
+
   addArraignmentFunctionsToMarkers = (model: Object3D<Object3DEventMap>) => {
     this.arraignmentFunctionRegistrationEntries.forEach((entry) => {
       const marker = this.getMarkerByName(entry.markerId, model);
@@ -194,9 +278,21 @@ export class Model {
   };
 
   registerModelArrangementFunction = (
-    modelArrangementFunction: ArraignmentFunction
+    modelArrangementFunction: ModelArraignmentFunction
   ) => {
     this.modelArrangementFunction = modelArrangementFunction;
+  };
+
+  registerAfterModelCreationFunction = (
+    afterModelCreationFunction: AfterModelCreationFunction
+  ) => {
+    this.afterModelCreationFunction = afterModelCreationFunction;
+  };
+
+  registerAfterPhaseEndArraignmentFunction = (
+    afterPhaseEndArraignmentFunction: AfterPhaseEndArraignmentFunction
+  ) => {
+    this.afterPhaseEndArraignmentFunction = afterPhaseEndArraignmentFunction;
   };
 
   addConnectedMarkerIdToArray = (markerId: string) => {
@@ -211,6 +307,47 @@ export class Model {
 
   getConnectedMarkersIds = () => {
     return this.connectedMarkersIds;
+  };
+
+  partsArrangeAfterPhaseEnd = (
+    model: Object3D<Object3DEventMap>,
+    scene: Scene
+  ) => {
+    const touchedModels: string[] = [];
+
+    const areAfterPhaseEndArraignmentFunctionsRegistered =
+      this.afterPhaseEndArraignmentFunctionsNames.filter((entry) => {
+        return entry.phaseId === this.previousPhaseId;
+      });
+    if (
+      this.afterPhaseEndArraignmentFunction &&
+      this.previousPhaseId &&
+      areAfterPhaseEndArraignmentFunctionsRegistered.length
+    ) {
+      areAfterPhaseEndArraignmentFunctionsRegistered.forEach((entry) => {
+        const result = this.afterPhaseEndArraignmentFunction!(
+          model,
+          this.previousPhaseId,
+          entry.arraignmentFunctionName,
+          scene
+        );
+        if (result.status === "error") {
+          console.error(
+            `Error in after phase end arraignment function: ${entry.arraignmentFunctionName}`
+          );
+          return;
+        }
+        result.touchedModels?.forEach((modelName) => {
+          if (!touchedModels.includes(modelName)) {
+            touchedModels.push(modelName);
+          }
+        });
+      });
+    }
+    return {
+      touchedModels,
+      status: "success",
+    };
   };
 
   private getMarkerByName = (

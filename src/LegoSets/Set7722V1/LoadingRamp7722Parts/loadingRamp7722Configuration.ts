@@ -15,4 +15,5 @@ export const loadingRamp7722Configuration: ModelConfiguration = {
       arraignmentFunctionName: "rightArmForward60deg",
     },
   ],
+  afterPhaseEndArraignmentFunctionsNames: [],
 };

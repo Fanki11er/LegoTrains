@@ -6,7 +6,7 @@ import {
   useMemo,
   useRef,
 } from "react";
-import { Object3D } from "three";
+import { Object3D, Vector3 } from "three";
 import useSelectModel from "../../../Hooks/useSelectModel";
 import {
   convertToEuler,
@@ -30,7 +30,6 @@ const ModelMarkers = ({ persistenceData, modelDataObject }: Props) => {
   const markersPath = useDeferredValue(modelDataObject.getModelMarkersPath());
   const { scene } = useGLTF(markersPath);
   const { handleGetSetRootMarker } = useTrainInstruction();
-
   const model = useMemo(() => {
     return scene.children[0];
   }, [scene]);
@@ -41,7 +40,11 @@ const ModelMarkers = ({ persistenceData, modelDataObject }: Props) => {
   const { handleFocusCamera } = useFocusCamera();
 
   const handleMoveElementToFloorLevel = useCallback(() => {
-    if (modelRef && !modelDataObject.getIsModelArranged()) {
+    if (
+      modelRef &&
+      !modelDataObject.getIsModelArranged() &&
+      !modelDataObject.getDoNotMoveToTheFloorLevel()
+    ) {
       moveElementToFloorLevel(modelRef.current);
     }
   }, [modelDataObject, modelRef]);
@@ -92,6 +95,31 @@ const ModelMarkers = ({ persistenceData, modelDataObject }: Props) => {
     modelDataObject.addArraignmentFunctionsToMarkers(model);
   }, [model, modelDataObject]);
 
+  const isParentModelCompleted =
+    modelDataObject.checkIfPartialModelParentIsCompleted();
+
+  const isParentModelArranged =
+    modelDataObject.checkIfPartialModelParentIsArranged();
+
+  const checkIfArrangementContextMenuShouldBeShown = useCallback(() => {
+    if (modelRef.current && isSelected) {
+      if (
+        modelDataObject.getIsModelFinished() &&
+        !modelDataObject.getIsPartialModel() &&
+        !modelDataObject.getIsModelArranged()
+      ) {
+        return true;
+      } else if (
+        modelDataObject.getIsModelFinished() &&
+        modelDataObject.getIsPartialModel() &&
+        !isParentModelArranged
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }, [isSelected, modelDataObject, isParentModelArranged]);
+
   return (
     <>
       <primitive
@@ -99,10 +127,24 @@ const ModelMarkers = ({ persistenceData, modelDataObject }: Props) => {
         ref={modelRef}
         onClick={() => {
           const isModelArranged = modelDataObject.getIsModelArranged();
+          const isPartialModel = modelDataObject.getIsPartialModel();
+
           if (modelRef.current && !isModelArranged) {
             handleSelect(modelRef.current, true);
-          } else if (modelRef.current && isModelArranged) {
+          } else if (modelRef.current && isModelArranged && !isPartialModel) {
             handleFocusCamera(modelRef.current, SCENE_OFFSET);
+          } else if (
+            modelRef.current &&
+            isModelArranged &&
+            isPartialModel &&
+            isParentModelCompleted
+          ) {
+            handleSelect(modelRef.current, true);
+
+            handleFocusCamera(
+              modelRef.current,
+              isParentModelCompleted ? SCENE_OFFSET : new Vector3(0, 0, 0)
+            );
           }
         }}
         onPointerMissed={() => {
@@ -115,9 +157,9 @@ const ModelMarkers = ({ persistenceData, modelDataObject }: Props) => {
         !modelDataObject.getIsModelFinished() && (
           <SelectedModelContextMenu mesh={modelRef.current} />
         )}
-      {modelRef.current &&
-        isSelected &&
-        modelDataObject.getIsModelFinished() && <ArrangeModelContextMenu />}
+      {checkIfArrangementContextMenuShouldBeShown() && (
+        <ArrangeModelContextMenu />
+      )}
     </>
   );
 };

@@ -23,4 +23,5 @@ export const steamLocomotive7722Configuration: ModelConfiguration = {
       arraignmentFunctionName: "rotateHat30Left",
     },
   ],
+  afterPhaseEndArraignmentFunctionsNames: [],
 };

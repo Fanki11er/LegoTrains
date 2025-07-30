@@ -10,4 +10,5 @@ export const platformCar7722Configuration: ModelConfiguration = {
   modelBlocks: steamLocomotive7722PlatformCarModelBlocks,
   arrangementFunction: platformCar7722ModelArrangementFunction,
   afterConnectArraignmentFunctionsNames: [],
+  afterPhaseEndArraignmentFunctionsNames: [],
 };

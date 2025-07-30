@@ -8,6 +8,7 @@ import {
   PartsArraignmentFunctionsTypes,
 } from "../Utilities/partsAfterConnectionFunctions";
 import { ModelConfiguration } from "../Types/ModelTypes";
+//import { CompleteModel } from "./CompleteModel";
 export class TrainInstruction {
   private legoSetNumber: string;
   private models: Model[] = [];
@@ -42,23 +43,50 @@ export class TrainInstruction {
       modelName,
       modelMarkers,
       modelBlocks,
+      isPartialModel,
       arrangementFunction,
+      doNotMoveToTheFloorLevel,
+      afterModelCreationFunction,
+      afterPhaseEndArraignmentFunction,
       afterConnectArraignmentFunctionsNames,
+      afterPhaseEndArraignmentFunctionsNames,
+      isCollectiveModel = false,
+      completeModelId,
     } = modelConfiguration;
 
-    const steamLocomotive7722Model = new Model(modelName, modelMarkers, this);
+    const model = new Model(
+      modelName,
+      modelMarkers,
+      this,
+      isPartialModel,
+      isCollectiveModel,
+      doNotMoveToTheFloorLevel,
+      completeModelId
+    );
 
-    steamLocomotive7722Model.registerBlocksAfterConnectArraignmentsFunctionsNames(
+    model.registerBlocksAfterConnectArraignmentsFunctionsNames(
       afterConnectArraignmentFunctionsNames
     );
 
     if (arrangementFunction) {
-      steamLocomotive7722Model.registerModelArrangementFunction(
-        arrangementFunction
+      model.registerModelArrangementFunction(arrangementFunction);
+    }
+
+    if (afterModelCreationFunction) {
+      model.registerAfterModelCreationFunction(afterModelCreationFunction);
+    }
+
+    if (afterPhaseEndArraignmentFunction) {
+      model.registerAfterPhaseEndArraignmentFunction(
+        afterPhaseEndArraignmentFunction
       );
     }
 
-    this.addModel(steamLocomotive7722Model);
+    model.registerAfterPhaseEndArraignmentFunctionsNames(
+      afterPhaseEndArraignmentFunctionsNames
+    );
+
+    this.addModel(model);
 
     this.setLegoBlocks.addForModelBlocks(modelName, modelBlocks);
   };
@@ -90,6 +118,7 @@ export class TrainInstruction {
     const arrangedModels = this.models.filter((model) => {
       return model.getIsModelArranged();
     });
+
     if (this.activeModel) {
       return [...arrangedModels, this.activeModel];
     }
@@ -226,18 +255,23 @@ export class TrainInstruction {
           }
         }
         model.addConnectedMarkersIdToArray(foundModel.connectedMarkersIds);
+        model.setIsModelArranged(foundModel.isModelArranged);
+        model.setIsArrangedAfterCreation(foundModel.isArrangedAfterCreation);
       } else {
         this.clearNeededPartsListInAllModelPhases(model);
         model.setIsModelFinished(foundModel.isModelFinished);
         model.setIsModelArranged(foundModel.isModelArranged);
+        model.setIsArrangedAfterCreation(foundModel.isArrangedAfterCreation);
       }
     });
+
     this.changeToNextActiveModel();
     this.isPersistenceDataLoaded = true;
   };
 
   setFinalModelArrangement = () => {
     let otherModifiedModelsIds: string[] = [];
+    let status = "success";
     if (this.activeModel) {
       const oldModel = this.activeModel;
       const modelName = this.activeModel.getModelName();
@@ -272,14 +306,19 @@ export class TrainInstruction {
         //?? Arrange elements like doors and connectors
 
         if (modelArrangementFunction) {
-          otherModifiedModelsIds = modelArrangementFunction(modelRootMarker);
+          const result = modelArrangementFunction(
+            modelRootMarker,
+            sceneRootMarker
+          );
+          otherModifiedModelsIds = result.touchedModels;
+          status = result.status;
         }
-
         this.changeToNextActiveModel();
 
         return {
           oldModel,
           otherModifiedModelsIds,
+          status,
         };
       } else {
         saveErrorLog(
@@ -328,7 +367,6 @@ export class TrainInstruction {
 
   private changeToNextActiveModel = () => {
     let newActiveModel: Model | null = null;
-
     for (let i = 0; i < this.models.length; i++) {
       if (!this.models[i].getIsModelArranged()) {
         newActiveModel = this.models[i];
@@ -350,8 +388,40 @@ export class TrainInstruction {
     const arraignmentFunction = getPartArrangementFunction(
       arraignmentFunctionName
     );
+
     if (arraignmentFunction) {
-      arraignmentFunction(model);
+      const modelRootMarker = this.getActiveModelMarkers();
+      arraignmentFunction(model, modelRootMarker);
     }
+  };
+
+  partsArrangeAfterPhaseEnd = () => {
+    const rootModelMarker = this.getActiveModelMarkers();
+    const scene = this.sceneLoader();
+
+    if (!rootModelMarker) {
+      console.error("Error, root model marker not found");
+      saveErrorLog(
+        "Error, root model marker not found",
+        this.activeModel?.getModelName() || "Unknown Model"
+      );
+      return {
+        touchedModels: [],
+        status: "error",
+      };
+    }
+    const result = this.activeModel?.partsArrangeAfterPhaseEnd(
+      rootModelMarker,
+      scene
+    );
+    return result?.status === "success"
+      ? {
+          touchedModels: result.touchedModels,
+          status: "success",
+        }
+      : {
+          touchedModels: [],
+          status: "error",
+        };
   };
 }

@@ -3,6 +3,7 @@ import { convertDegreesToRadians } from "../Utilities/utilities";
 import { saveErrorLog } from "../firebase/writeToDbFunctions";
 import {
   BarrelMarkersData,
+  HelmetMarkersData,
   MinifigMarkersData,
   PaletteMarkersData,
   PostPackageMarkersData,
@@ -18,6 +19,45 @@ export class ArrangementFunctionsHelper {
       saveErrorLog(errorMessage);
       throw new Error(errorMessage);
     }
+  };
+
+  static findModelRootMarker = (
+    model: Object3D<Object3DEventMap>,
+    modelName: string
+  ) => {
+    const modelRootMarker = model.children.find((child) => {
+      return child.name === `${modelName}_ModelRootMarker`;
+    });
+
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      modelRootMarker,
+      `Model root marker not found for ${modelName}`
+    );
+    return modelRootMarker;
+  };
+
+  static findElementByName = (
+    model: Object3D<Object3DEventMap>,
+    name: string
+  ) => {
+    const element = model.getObjectByName(name);
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      element,
+      `${name} element not found`
+    );
+    return element;
+  };
+
+  static findMarkerByName = (
+    model: Object3D<Object3DEventMap>,
+    name: string
+  ) => {
+    const element = model.getObjectByName(name.replace(".", ""));
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      element,
+      `${name} element not found`
+    );
+    return element;
   };
 
   static findModelPartByName = (
@@ -91,6 +131,20 @@ export class ArrangementFunctionsHelper {
     degree: number
   ) => {
     model.rotateY(convertDegreesToRadians(degree));
+  };
+
+  static rotateElementOnXAxis = (
+    model: Object3D<Object3DEventMap>,
+    degree: number
+  ) => {
+    model.rotateX(convertDegreesToRadians(degree));
+  };
+
+  static rotateElementOnZAxis = (
+    model: Object3D<Object3DEventMap>,
+    degree: number
+  ) => {
+    model.rotateZ(convertDegreesToRadians(degree));
   };
 
   static rotateMinifigArm = (
@@ -261,9 +315,11 @@ export class ArrangementFunctionsHelper {
       minifigTorsoMarkerId,
       minifigHeadMarkerId,
       minifigHutMarkerId,
-    }: MinifigMarkersData
+    }: MinifigMarkersData,
+    sceneRootMarker?: Object3D<Object3DEventMap>
   ) => {
-    const scene = model.parent;
+    const scene = sceneRootMarker || model.parent;
+
     ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
       scene,
       "Scene element not found"
@@ -307,6 +363,63 @@ export class ArrangementFunctionsHelper {
     minifigHeaps.position.copy(markerForMinifig.position);
     minifigHeaps.quaternion.copy(markerForMinifig.quaternion);
     scene!.add(minifigHeaps);
+
+    const disconnectMinifig = () => {
+      ArrangementFunctionsHelper.attachModelToNewParent(minifigHut, model);
+      ArrangementFunctionsHelper.attachModelToNewParent(minifigHead, model);
+      ArrangementFunctionsHelper.attachModelToNewParent(minifigTorso, model);
+      ArrangementFunctionsHelper.attachModelToNewParent(minifigHeaps, model);
+    };
+
+    return {
+      minifigHeaps,
+      minifigTorso,
+      minifigHead,
+      minifigHut,
+      disconnectMinifig,
+    };
+  };
+
+  static connectMinifig = (
+    model: Object3D<Object3DEventMap>,
+    minifigMarkersData: MinifigMarkersData
+  ) => {
+    const {
+      minifigHeapsMarkerId,
+      minifigTorsoMarkerId,
+      minifigHeadMarkerId,
+      minifigHutMarkerId,
+    } = minifigMarkersData;
+
+    const minifigHeaps =
+      ArrangementFunctionsHelper.findElementConnectedToMarker(
+        model,
+        minifigHeapsMarkerId,
+        "Minifig heaps element not found"
+      );
+
+    const minifigTorso =
+      ArrangementFunctionsHelper.findElementConnectedToMarker(
+        model,
+        minifigTorsoMarkerId,
+        "Minifig torso element not found"
+      );
+
+    const minifigHead = ArrangementFunctionsHelper.findElementConnectedToMarker(
+      model,
+      minifigHeadMarkerId,
+      "Minifig head element not found"
+    );
+
+    const minifigHut = ArrangementFunctionsHelper.findElementConnectedToMarker(
+      model,
+      minifigHutMarkerId,
+      "Minifig hut element not found"
+    );
+
+    minifigHeaps.attach(minifigTorso);
+    minifigHeaps.attach(minifigHead);
+    minifigHeaps.attach(minifigHut);
 
     const disconnectMinifig = () => {
       ArrangementFunctionsHelper.attachModelToNewParent(minifigHut, model);
@@ -412,5 +525,222 @@ export class ArrangementFunctionsHelper {
       barrelBottomPart,
       disconnectBarrel,
     };
+  };
+
+  static changeHoseNozzlePhase = (model: Object3D<Object3DEventMap>) => {
+    const nozzle = model.getObjectByName("194cx1");
+
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      nozzle,
+      "Hose nozzle element is missing"
+    );
+
+    switch (nozzle!.userData.activePhase) {
+      case "base": {
+        nozzle!.userData.activePhase = "bent_1";
+
+        ArrangementFunctionsHelper.switchPhaseChildrenVisibilityAndScale(
+          nozzle!,
+          "bent_1"
+        );
+        break;
+      }
+      case "bent_1": {
+        nozzle!.userData.activePhase = "bent_2";
+
+        ArrangementFunctionsHelper.switchPhaseChildrenVisibilityAndScale(
+          nozzle!,
+          "bent_2"
+        );
+        break;
+      }
+      case "bent_2": {
+        nozzle!.userData.activePhase = "bent_3";
+        ArrangementFunctionsHelper.switchPhaseChildrenVisibilityAndScale(
+          nozzle!,
+          "bent_3"
+        );
+        break;
+      }
+      case "bent_3": {
+        nozzle!.userData.activePhase = "bent_4";
+        ArrangementFunctionsHelper.switchPhaseChildrenVisibilityAndScale(
+          nozzle!,
+          "bent_4"
+        );
+        break;
+      }
+
+      default:
+        break;
+    }
+
+    return [];
+  };
+
+  static switchPhaseChildrenVisibilityAndScale = (
+    model: Object3D<Object3DEventMap>,
+    activePhase: string
+  ) => {
+    model.children.forEach((child) => {
+      if (
+        child.userData.phaseName === activePhase &&
+        child.userData.isPhaseChild
+      ) {
+        child.scale.set(1, 1, 1);
+        child.visible = true;
+      } else if (
+        child.userData.isPhaseChild &&
+        child.userData.phaseName !== activePhase
+      ) {
+        child.visible = false;
+        child.scale.set(0, 0, 0);
+      }
+    });
+  };
+
+  static rotateSmallAntenna = (
+    model: Object3D<Object3DEventMap>,
+    degree: number
+  ) => {
+    const antennaLeverHandle = ArrangementFunctionsHelper.findModelPartByName(
+      model,
+      "Antenna_Small_Lever_Handle"
+    );
+
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      antennaLeverHandle,
+      "Antenna lever handle element not found"
+    );
+    ArrangementFunctionsHelper.rotateElementOnZAxis(antennaLeverHandle, degree);
+  };
+
+  static hideElement = (model: Object3D<Object3DEventMap>) => {
+    model.visible = false;
+  };
+
+  static changeWinchPhase = (model: Object3D<Object3DEventMap>) => {
+    const winch = model.getObjectByName("73037");
+
+    ArrangementFunctionsHelper.throwErrorIfElementIsMissing(
+      winch,
+      "Hose winch element is missing"
+    );
+
+    switch (winch!.userData.activePhase) {
+      case "": {
+        winch!.userData.activePhase = "layOnGround";
+
+        ArrangementFunctionsHelper.switchPhaseChildrenVisibilityAndScale(
+          winch!,
+          "layOnGround"
+        );
+        break;
+      }
+      case "layOnGround": {
+        winch!.userData.activePhase = "position_1";
+
+        ArrangementFunctionsHelper.switchPhaseChildrenVisibilityAndScale(
+          winch!,
+          "position_1"
+        );
+        break;
+      }
+      case "position_1": {
+        winch!.userData.activePhase = "position_2";
+
+        ArrangementFunctionsHelper.switchPhaseChildrenVisibilityAndScale(
+          winch!,
+          "position_2"
+        );
+        break;
+      }
+
+      default:
+        break;
+    }
+
+    return [];
+  };
+
+  static movePartialModelToCompletedModel = (
+    completeModel: Object3D<Object3DEventMap>,
+    partialModel: Object3D<Object3DEventMap>,
+    targetMarkerId: string
+  ) => {
+    const partialModelTargetMarker =
+      ArrangementFunctionsHelper.findMarkerByName(
+        completeModel,
+        targetMarkerId
+      );
+
+    const originalParent = ArrangementFunctionsHelper.attachModelToNewParent(
+      partialModel,
+      completeModel
+    );
+
+    partialModel.position.copy(partialModelTargetMarker!.position);
+
+    const finishPartialModelConnection = () => {
+      ArrangementFunctionsHelper.attachModelToNewParent(
+        partialModel,
+        originalParent
+      );
+    };
+
+    return finishPartialModelConnection;
+  };
+
+  static connectHelmet = (
+    parentModel: Object3D<Object3DEventMap>,
+    helmetMarkersData: HelmetMarkersData
+  ) => {
+    const helmet = ArrangementFunctionsHelper.findElementConnectedToMarker(
+      parentModel,
+      helmetMarkersData.helmetMarkerId
+    );
+    const helmetVisor = ArrangementFunctionsHelper.findElementConnectedToMarker(
+      parentModel,
+      helmetMarkersData.helmetVisorMarkerId
+    );
+
+    ArrangementFunctionsHelper.attachModelToNewParent(helmetVisor, helmet);
+
+    const disconnectHelmet = () => {
+      ArrangementFunctionsHelper.attachModelToNewParent(
+        helmetVisor,
+        parentModel
+      );
+    };
+
+    return {
+      helmet,
+      helmetVisor,
+      disconnectHelmet,
+    };
+  };
+
+  static changeElementPosition = (
+    sceneRootMarker: Object3D<Object3DEventMap>,
+    parentModel: Object3D<Object3DEventMap>,
+    elementMarkerId: string,
+    newPositionMarkerId: string
+  ) => {
+    const element = ArrangementFunctionsHelper.findElementConnectedToMarker(
+      parentModel,
+      elementMarkerId
+    );
+
+    const newPositionMarker = ArrangementFunctionsHelper.findMarkerByName(
+      sceneRootMarker,
+      newPositionMarkerId
+    );
+
+    ArrangementFunctionsHelper.attachModelToNewParent(element, sceneRootMarker);
+
+    element.position!.copy(newPositionMarker!.position);
+    element.rotation!.copy(newPositionMarker!.rotation);
+
+    ArrangementFunctionsHelper.attachModelToNewParent(element, parentModel);
   };
 }

@@ -1,8 +1,8 @@
 import { Object3D, Object3DEventMap } from "three";
 import { ArrangementFunctionsHelper } from "../../../Classes/ArrangementFunctionsHelper";
-import { ArraignmentFunction } from "../../../Types/ArrangementFunction";
+import { ModelArraignmentFunction } from "../../../Types/ArrangementFunction";
 
-export const postCar7722ModelArrangementFunction: ArraignmentFunction = (
+export const postCar7722ModelArrangementFunction: ModelArraignmentFunction = (
   model: Object3D<Object3DEventMap>
 ) => {
   ArrangementFunctionsHelper.rotateCoupling(
@@ -13,7 +13,10 @@ export const postCar7722ModelArrangementFunction: ArraignmentFunction = (
   );
   movePostCarSlidingDoor(model, -42);
 
-  return [];
+  return {
+    touchedModels: [],
+    status: "success",
+  };
 };
 
 const movePostCarSlidingDoor = (

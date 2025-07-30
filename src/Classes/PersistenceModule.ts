@@ -28,6 +28,7 @@ export type ModelPersistenceData = {
   activePhaseId: number | null | undefined;
   isModelFinished: boolean;
   isModelArranged: boolean;
+  isArrangedAfterCreation: boolean;
 };
 
 export type ExistingDataInfo = string;
@@ -75,6 +76,7 @@ export class PersistenceModule {
     const partsPreparedToSave = this.prepareModelPartsDataToSave(markers);
 
     const connectedMarkersIds = model.getConnectedMarkersIds();
+    const isArrangedAfterCreation = model.getIsArrangedAfterCreation();
 
     return {
       modelName: modelName,
@@ -84,6 +86,7 @@ export class PersistenceModule {
       activePhaseId: activePhaseId || null,
       isModelFinished: isModelFinished,
       isModelArranged: isModelArranged,
+      isArrangedAfterCreation: isArrangedAfterCreation,
     };
   };
 
@@ -116,6 +119,7 @@ export class PersistenceModule {
     const partsPreparedToSave = this.prepareModelPartsDataToSave(markers);
 
     const connectedMarkersIds = model.getConnectedMarkersIds();
+    const isArrangedAfterCreation = model.getIsArrangedAfterCreation();
 
     return {
       modelName: modelName,
@@ -125,6 +129,7 @@ export class PersistenceModule {
       activePhaseId: activePhaseId,
       isModelFinished: isModelFinished,
       isModelArranged: isModelArranged,
+      isArrangedAfterCreation: isArrangedAfterCreation,
     };
   };
 

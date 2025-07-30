@@ -41,12 +41,6 @@ const Nest = (props: NestProps) => {
     const nest = nestRef.current;
 
     if (marker.parent && nest) {
-      if (marker.userData.afterConnectionArraignmentFunctionName) {
-        handleArrangePartAfterConnection(
-          nest.children[0],
-          marker.userData.afterConnectionArraignmentFunctionName
-        );
-      }
       marker.parent.add(nest);
     }
 
@@ -63,27 +57,37 @@ const Nest = (props: NestProps) => {
     return children.map((child) => {
       const childMesh = child as Mesh;
       return (
-        <animated.mesh
-          key={child.uuid}
-          name={childMesh.name}
-          geometry={childMesh.geometry}
-          position={child.position}
-          quaternion={child.quaternion}
-          material={material}
-          material-opacity={opacity}
-        >
-          {renderMultipartChildrenRecursively(childMesh.children)}
-        </animated.mesh>
+        childMesh.visible && (
+          <animated.mesh
+            key={child.uuid}
+            name={childMesh.name}
+            geometry={childMesh.geometry}
+            position={child.position}
+            quaternion={child.quaternion}
+            material={material}
+            material-opacity={opacity}
+            visible={childMesh.visible}
+          >
+            {renderMultipartChildrenRecursively(childMesh.children)}
+          </animated.mesh>
+        )
       );
     });
   };
 
   const renderMesh = (mesh: Mesh, marker: Object3D) => {
+    const clonedMesh = mesh.clone();
+    if (!mesh.userData.doNotArrangeAfterConnectionInNest) {
+      handleArrangePartAfterConnection(
+        clonedMesh,
+        marker.userData.afterConnectionArraignmentFunctionName
+      );
+    }
     return (
       <animated.mesh
-        key={mesh.uuid}
-        name={mesh.name}
-        geometry={mesh.geometry}
+        key={clonedMesh.uuid}
+        name={clonedMesh.name}
+        geometry={clonedMesh.geometry}
         material={material}
         position={marker.position}
         quaternion={marker.quaternion}
@@ -100,7 +104,7 @@ const Nest = (props: NestProps) => {
           }
         }}
       >
-        {renderMultipartChildrenRecursively(mesh.children)}
+        {renderMultipartChildrenRecursively(clonedMesh.children)}
       </animated.mesh>
     );
   };

@@ -20,3 +20,8 @@ export type BarrelMarkersData = {
   barrelRingMarkerId: string;
   barrelTopPartMarkerId: string;
 };
+
+export type HelmetMarkersData = {
+  helmetMarkerId: string;
+  helmetVisorMarkerId: string;
+};

@@ -19,4 +19,5 @@ export const forklift7722Configuration: ModelConfiguration = {
       arraignmentFunctionName: "minifigArms60DegForward",
     },
   ],
+  afterPhaseEndArraignmentFunctionsNames: [],
 };
