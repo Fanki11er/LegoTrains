@@ -1,11 +1,12 @@
 import { Object3D, Object3DEventMap } from "three";
 import { convertDegreesToRadians } from "../../../Utilities/utilities";
 import { ArrangementFunctionsHelper } from "../../../Classes/ArrangementFunctionsHelper";
+import { ModelArraignmentFunction } from "../../../Types/ArrangementFunction";
 
 const { findElementConnectedToMarker, throwErrorIfElementIsMissing } =
   ArrangementFunctionsHelper;
 
-export const workshop4552ModelArrangementFunction = (
+export const workshop4552ModelArrangementFunction: ModelArraignmentFunction = (
   model: Object3D<Object3DEventMap>
 ) => {
   openLeftDoor(model);

@@ -1,5 +1,6 @@
 import { Object3D, Object3DEventMap } from "three/src/core/Object3D.js";
 import { ArrangementFunctionsHelper } from "../../../Classes/ArrangementFunctionsHelper";
+import { ArraignmentFunctionResult } from "../../../Types/ArrangementFunction";
 
 const {
   findElementConnectedToMarker,
@@ -24,7 +25,7 @@ export const carModelAfterPhaseEndArrangementFunction = (
 
 const rotateTileWithTelemetryPanel30degOnZ = (
   model: Object3D<Object3DEventMap>
-) => {
+): ArraignmentFunctionResult => {
   const telemetryPanel = findElementConnectedToMarker(model, "ModelMarker.030");
 
   const tile = findElementConnectedToMarker(model, "ModelMarker.029");

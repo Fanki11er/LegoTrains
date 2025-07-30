@@ -4,7 +4,7 @@ import { palette4552Phase2 } from "./phase2";
 import { palette4552Phase3 } from "./phase3";
 import { palette4552Phase4 } from "./phase4";
 
-export const cargoCrain4552PaletteModelBlocks: ModelBlock[] = [
+export const cargoCrane4552PaletteModelBlocks: ModelBlock[] = [
   {
     phaseId: 1,
     legoBlockTypes: palette4552Phase1,

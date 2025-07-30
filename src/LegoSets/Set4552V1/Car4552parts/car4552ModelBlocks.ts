@@ -10,7 +10,7 @@ import { car4552Phase7 } from "./phase7";
 import { car4552Phase8 } from "./phase8";
 import { car4552Phase9 } from "./phase9";
 
-export const cargoCrain4552CarModelBlocks: ModelBlock[] = [
+export const cargoCrane4552CarModelBlocks: ModelBlock[] = [
   {
     phaseId: 1,
     legoBlockTypes: car4552Phase1,

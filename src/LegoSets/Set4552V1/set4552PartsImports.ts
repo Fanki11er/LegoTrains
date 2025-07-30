@@ -233,7 +233,7 @@ export const tile_1x2_with_Groove_3069b = tile_1x2_with_Groove_3069b_model;
 export const plate_Specialty_1x6_with_Train_Wagon_End_6583 =
   plate_Specialty_1x6_with_Train_Wagon_End_6583_model;
 
-//?? Crain Cart
+//?? Crane Cart
 export const Train_Base_6x24_with_3_Round_Holes_Each_End_And_Stickers_6584a =
   Train_Base_6x24_with_3_Round_Holes_Each_End_And_Stickers_6584a_model;
 export const plate_1x6_3666 = plate_1x6_3666_model;
@@ -253,7 +253,7 @@ export const technic_Plate_1x4_with_Holes_Toothed_Ends_4263 =
 export const train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092 =
   train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092_model;
 
-//?? Crain Cabin
+//?? Crane Cabin
 export const plate_6x12_3028 = plate_6x12_3028_model;
 export const plate_Specialty_1x2_1x4_Bracket_2436 =
   plate_Specialty_1x2_1x4_Bracket_2436_model;
@@ -288,7 +288,7 @@ export const round_Plate_4073 = round_Plate_4073_model;
 export const brick_1x8_Yellow_With_Red_Train_Logo_Pattern_3008 =
   brick_1x8_Yellow_With_Red_Train_Logo_Pattern_3008_model;
 
-//?? Crain Boom
+//?? Crane Boom
 export const plate_2x3_3021 = plate_2x3_3021_model;
 export const technic_Pin_Smooth_without_Friction_Ridges_3673 =
   technic_Pin_Smooth_without_Friction_Ridges_3673_model;

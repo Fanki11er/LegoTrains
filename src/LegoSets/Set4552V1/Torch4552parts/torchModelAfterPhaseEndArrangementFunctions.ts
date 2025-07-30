@@ -1,5 +1,6 @@
 import { Object3D, Object3DEventMap } from "three/src/core/Object3D.js";
 import { ArrangementFunctionsHelper } from "../../../Classes/ArrangementFunctionsHelper";
+import { ArraignmentFunctionResult } from "../../../Types/ArrangementFunction";
 
 const {
   changeHoseNozzlePhase,
@@ -25,7 +26,7 @@ export const torchModelAfterPhaseEndArrangementFunction = (
 const moveHoseNozzleToNewPosition = (
   model: Object3D<Object3DEventMap>,
   phaseId: number
-) => {
+): ArraignmentFunctionResult => {
   switch (phaseId) {
     case 6: {
       const helperMarker = findModelPartByName(model, "ModelHelperMarker001");
@@ -34,7 +35,10 @@ const moveHoseNozzleToNewPosition = (
       changeHoseNozzlePhase(model);
       moveElementToNewNestPosition(nozzle, helperMarker);
 
-      return [];
+      return {
+        status: "success",
+        touchedModels: [],
+      };
     }
 
     case 8: {
@@ -44,9 +48,15 @@ const moveHoseNozzleToNewPosition = (
       changeHoseNozzlePhase(model);
       moveElementToNewNestPosition(nozzle, helperMarker);
 
-      return [];
+      return {
+        status: "success",
+        touchedModels: [],
+      };
     }
     default:
-      return [];
+      return {
+        status: "success",
+        touchedModels: [],
+      };
   }
 };
