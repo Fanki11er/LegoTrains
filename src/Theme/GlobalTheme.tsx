@@ -12,14 +12,13 @@ body {
     font-family: ${theme.defaultFontFamily} ;
     background-color: ${theme.colors.lightBlack};
     color:${theme.colors.white}; 
-    width: 100vw;
-    max-width: 100vw;
+    width: 100%  ;
     min-height: 100dvh;
     
 }
 
 html{
-    width: 100vw;
+    width: 100%;
     min-height: 100dvh;
 }
 
@@ -63,7 +62,7 @@ input {
 #root{
     display: flex ;
     flex-direction: column ;
-    width: 100vw;
+    width: 100%;
     min-height: 100dvh;
     overflow: hidden;
 }
