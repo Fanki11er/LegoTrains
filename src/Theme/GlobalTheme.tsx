@@ -13,7 +13,9 @@ body {
     background-color: ${theme.colors.lightBlack};
     color:${theme.colors.white}; 
     width: 100vw;
+    max-width: 100vw;
     min-height: 100dvh;
+    
 }
 
 html{
