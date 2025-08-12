@@ -256,12 +256,18 @@ export class TrainInstruction {
         }
         model.addConnectedMarkersIdToArray(foundModel.connectedMarkersIds);
         model.setIsModelArranged(foundModel.isModelArranged);
-        model.setIsArrangedAfterCreation(foundModel.isArrangedAfterCreation);
+        // ?? || false for backward compatibility for 7722 models
+        model.setIsArrangedAfterCreation(
+          foundModel.isArrangedAfterCreation || false
+        );
       } else {
         this.clearNeededPartsListInAllModelPhases(model);
         model.setIsModelFinished(foundModel.isModelFinished);
         model.setIsModelArranged(foundModel.isModelArranged);
-        model.setIsArrangedAfterCreation(foundModel.isArrangedAfterCreation);
+        // ?? || false for backward compatibility for 7722 models
+        model.setIsArrangedAfterCreation(
+          foundModel.isArrangedAfterCreation || false
+        );
       }
     });
 
