@@ -10,5 +10,5 @@ export const set4564minifigsConfiguration: ModelConfiguration = {
   modelBlocks: set4564minifigsModelBlocks,
   afterConnectArraignmentFunctionsNames: [],
   afterPhaseEndArraignmentFunctionsNames: [],
-  //!! Do Not Count as a model!!
+  doNotCountAsModel: true,
 };

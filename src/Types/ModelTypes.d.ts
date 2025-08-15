@@ -24,6 +24,7 @@ export type ModelConfiguration = {
   completeModelId?: string;
   isCollectiveModel?: boolean;
   doNotMoveToTheFloorLevel?: boolean;
+  doNotCountAsModel?: boolean;
   arrangementFunction?: ModelArraignmentFunction;
   afterModelCreationFunction?: AfterModelCreationFunction;
   afterPhaseEndArraignmentFunction?: AfterPhaseEndArraignmentFunction;

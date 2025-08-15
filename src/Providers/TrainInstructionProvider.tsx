@@ -77,7 +77,10 @@ const TrainInstructionProvider = (
         return instruction.getModelByName(id);
       });
 
-      handleSaveArrangedModelDataToDatabase(activeModel!);
+      handleSaveArrangedModelDataToDatabase(
+        activeModel!,
+        activeModel!.getDoNotCountAsModel()
+      );
       models.forEach((model) => {
         if (model) {
           handleSaveArrangedModelDataToDatabase(model, true);
