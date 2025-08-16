@@ -743,4 +743,28 @@ export class ArrangementFunctionsHelper {
 
     ArrangementFunctionsHelper.attachModelToNewParent(element, parentModel);
   };
+
+  static rotateHingeTrainGate = (
+    rootMarker: Object3D<Object3DEventMap>,
+    elementSlotId: string,
+    axis: "X" | "Y" | "Z",
+    degree: number
+  ) => {
+    const hingeGate = ArrangementFunctionsHelper.findElementConnectedToMarker(
+      rootMarker,
+      elementSlotId
+    );
+
+    switch (axis) {
+      case "X":
+        ArrangementFunctionsHelper.rotateElementOnXAxis(hingeGate, degree);
+        break;
+      case "Y":
+        ArrangementFunctionsHelper.rotateElementOnYAxis(hingeGate, degree);
+        break;
+      case "Z":
+        ArrangementFunctionsHelper.rotateElementOnZAxis(hingeGate, degree);
+        break;
+    }
+  };
 }

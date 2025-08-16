@@ -1,6 +1,7 @@
 import { TrainInstruction } from "../../Classes/TrainInstruction";
 // @ts-expect-error Not a type
 import set4564SceneMarkers from "../../assets/Set_4564_V1/SceneMarkers/Scene_Markers.glb";
+import { set4564carContainerRedConfiguration } from "./CarContainerRed4564parts/set4564carContainerRedConfiguration";
 import { set4564carContainerYellowConfiguration } from "./CarContainerYellow4564parts/set4564carContainerYellowConfiguration";
 import { set4564minifigsConfiguration } from "./Minifigs4564parts/set4564minifigsConfiguration";
 import { set4564trolleyConfiguration } from "./Trolley4564parts/set4564trolleyConfiguration";
@@ -19,6 +20,9 @@ export const createSet4564V1Instruction = () => {
 
   //?? CarContainerYellow
   set4564Instruction.createModel(set4564carContainerYellowConfiguration);
+
+  //?? CarContainerRed
+  set4564Instruction.createModel(set4564carContainerRedConfiguration);
 
   return set4564Instruction;
 };

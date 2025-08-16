@@ -4,7 +4,7 @@ import { ArrangementFunctionsHelper } from "../../../Classes/ArrangementFunction
 
 const { rotateHingeTrainGate } = ArrangementFunctionsHelper;
 
-export const carContainerYellow4564ModelAfterPhaseEndArrangementFunction = (
+export const carContainerRed4564ModelAfterPhaseEndArrangementFunction = (
   model: Object3D<Object3DEventMap>,
   phaseId: number,
   functionName: string

@@ -21,6 +21,8 @@ import hinge_Train_Gate_2x4_Yellow_With_Logo_2873_model from "../../assets/Block
 import slope_Brick_2x4_45_Degrees_Yellow_With_Logo_3037_model from "../../assets/Blocks/Slope_Brick_2x4_45_Degrees_Yellow_With_Logo_3037/Slope_Brick_2x4_45_Degrees_Yellow_With_Logo_3037.glb";
 import plate_Specialty_1x2_with_Handle_on_Side_2540_model from "../../assets/Blocks/Plate_Specialty_1x2_with_Handle_on_Side_2540/Plate_Specialty_1x2_with_Handle_on_Side_2540.glb";
 import plate_1x1_3024_model from "../../assets/Blocks/Plate_1x1_3024/Plate_1x1_3024.glb";
+import hinge_Train_Gate_2x4_Red_With_Envelope_2873_model from "../../assets/Blocks/Hinge_Train_Gate_2x4_Red_With_Envelope_2873/Hinge_Train_Gate_2x4_Red_With_Envelope_2873.glb";
+import slope_Brick_2x4_45_Degrees_Red_With_Envelope_3037_model from "../../assets/Blocks/Slope_Brick_2x4_45_Degrees_Red_With_Envelope_3037/Slope_Brick_2x4_45_Degrees_Red_With_Envelope_3037.glb";
 
 //?? Tracks
 export const tracksMarkers_4564 = tracksMarkers_4564_model;
@@ -65,3 +67,9 @@ export const hinge_Train_Gate_2x4_Yellow_With_Logo_2873 =
   hinge_Train_Gate_2x4_Yellow_With_Logo_2873_model;
 export const slope_Brick_2x4_45_Degrees_Yellow_With_Logo_3037 =
   slope_Brick_2x4_45_Degrees_Yellow_With_Logo_3037_model;
+
+//?? CarContainerRed
+export const hinge_Train_Gate_2x4_Red_With_Envelope_2873 =
+  hinge_Train_Gate_2x4_Red_With_Envelope_2873_model;
+export const slope_Brick_2x4_45_Degrees_Red_With_Envelope_3037 =
+  slope_Brick_2x4_45_Degrees_Red_With_Envelope_3037_model;
