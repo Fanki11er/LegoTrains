@@ -23,7 +23,10 @@ export type PartsArraignmentFunctionsTypes =
   | "changeHoseNozzlePhase"
   | "minifigArms45DegForward"
   | "rotateSmallAntenna30DegBackward"
-  | "hideStringModelAndChangePhaseInWinch";
+  | "hideStringModelAndChangePhaseInWinch"
+  | "rotateHingeHookSliderBase"
+  | "changeRubberBandPhaseAfterConnection"
+  | "stretchRubberBand";
 
 export const getPartArrangementFunction = (
   name: PartsArraignmentFunctionsTypes

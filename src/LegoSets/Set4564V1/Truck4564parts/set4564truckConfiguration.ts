@@ -11,11 +11,23 @@ export const set4564truckConfiguration: ModelConfiguration = {
   modelBlocks: set4564truckModelBlocks,
   afterPhaseEndArraignmentFunction:
     truck4564ModelAfterPhaseEndArrangementFunction,
-  afterConnectArraignmentFunctionsNames: [],
+  afterConnectArraignmentFunctionsNames: [
+    //   {
+    //   markerId: "ModelMarker.048",
+    //   arraignmentFunctionName: "hideStringModelAndChangePhaseInWinch",
+    // },
+    //!! 9
+    //   {
+    //   markerId: "ModelMarker.048",
+    //   arraignmentFunctionName: "hideStringModelAndChangePhaseInWinch",
+    // },
+    //!! 11
+  ],
   afterPhaseEndArraignmentFunctionsNames: [
     {
       phaseId: 4,
       arraignmentFunctionName: "closeCarContainerHingeTrainGates",
     },
+    //!! 9
   ],
 };
