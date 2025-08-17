@@ -23,6 +23,14 @@ import plate_Specialty_1x2_with_Handle_on_Side_2540_model from "../../assets/Blo
 import plate_1x1_3024_model from "../../assets/Blocks/Plate_1x1_3024/Plate_1x1_3024.glb";
 import hinge_Train_Gate_2x4_Red_With_Envelope_2873_model from "../../assets/Blocks/Hinge_Train_Gate_2x4_Red_With_Envelope_2873/Hinge_Train_Gate_2x4_Red_With_Envelope_2873.glb";
 import slope_Brick_2x4_45_Degrees_Red_With_Envelope_3037_model from "../../assets/Blocks/Slope_Brick_2x4_45_Degrees_Red_With_Envelope_3037/Slope_Brick_2x4_45_Degrees_Red_With_Envelope_3037.glb";
+import plate_2_x_6_3795_model from "../../assets/Blocks/Plate_2_x_6_3795/Plate_2_x_6_3795.glb";
+import plate_Specialty_1x1_with_Clip_Light_4081b_model from "../../assets/Blocks/Plate_Specialty_1x1_with_Clip_Light_4081b/Plate_Specialty_1x1_with_Clip_Light_4081b.glb";
+import plate_3023_model from "../../assets/Blocks/Plate_3023/Plate_3023.glb";
+import roundOpenStud_3062b_model from "../../assets/Blocks/RoundOpenStud_3062b/RoundOpenStud_3062b.glb";
+import plate_Specialty_2x2_with_Wheels_Holder_4600_model from "../../assets/Blocks/Plate_Specialty_2x2_with_Wheels_Holder_4600/Plate_Specialty_2x2_with_Wheels_Holder_4600.glb";
+import technic_Plate_2x8_with_7_Holes_3738_model from "../../assets/Blocks/Technic_Plate_2x8_with_7_Holes_3738/Technic_Plate_2x8_with_7_Holes_3738.glb";
+import plate_2x4_3020_model from "../../assets/Blocks/Plate_2x4_3020/Plate_2x4_3020.glb";
+import plate_2_x_2_3022_model from "../../assets/Blocks/Plate_2_x_2_3022/Plate_2_x_2_3022.glb";
 
 //?? Tracks
 export const tracksMarkers_4564 = tracksMarkers_4564_model;
@@ -73,3 +81,16 @@ export const hinge_Train_Gate_2x4_Red_With_Envelope_2873 =
   hinge_Train_Gate_2x4_Red_With_Envelope_2873_model;
 export const slope_Brick_2x4_45_Degrees_Red_With_Envelope_3037 =
   slope_Brick_2x4_45_Degrees_Red_With_Envelope_3037_model;
+
+//?? Truck
+export const plate_2_x_6_3795 = plate_2_x_6_3795_model;
+export const plate_Specialty_1x1_with_Clip_Light_4081b =
+  plate_Specialty_1x1_with_Clip_Light_4081b_model;
+export const plate_3023 = plate_3023_model;
+export const roundOpenStud_3062b = roundOpenStud_3062b_model;
+export const plate_Specialty_2x2_with_Wheels_Holder_4600 =
+  plate_Specialty_2x2_with_Wheels_Holder_4600_model;
+export const technic_Plate_2x8_with_7_Holes_3738 =
+  technic_Plate_2x8_with_7_Holes_3738_model;
+export const plate_2x4_3020 = plate_2x4_3020_model;
+export const plate_2_x_2_3022 = plate_2_x_2_3022_model;
