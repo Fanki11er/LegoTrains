@@ -1,0 +1,4 @@
+import Tile_Specialty_1x2_with_Vehicle_Steering_Stand_Black_3829c01_model from "../assets/Blocks/Tile_Specialty_1x2_with_Vehicle_Steering_Stand_Black_3829c01/Tile_Specialty_1x2_with_Vehicle_Steering_Stand_Black_3829c01.glb";
+
+export const tile_Specialty_1x2_with_Vehicle_Steering_Stand_Black_3829c01 =
+  Tile_Specialty_1x2_with_Vehicle_Steering_Stand_Black_3829c01_model;
