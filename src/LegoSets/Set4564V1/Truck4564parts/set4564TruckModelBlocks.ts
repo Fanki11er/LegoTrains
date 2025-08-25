@@ -6,6 +6,10 @@ import { truck4564Phase12 } from "./phase12";
 import { truck4564Phase13 } from "./phase13";
 import { truck4564Phase14 } from "./phase14";
 import { truck4564Phase15 } from "./phase15";
+import { truck4564Phase16 } from "./phase16";
+import { truck4564Phase17 } from "./phase17";
+import { truck4564Phase18 } from "./phase18";
+import { truck4564Phase19 } from "./phase19";
 import { truck4564Phase2 } from "./phase2";
 import { truck4564Phase3 } from "./phase3";
 import { truck4564Phase4 } from "./phase4";
@@ -75,5 +79,21 @@ export const set4564truckModelBlocks: ModelBlock[] = [
   {
     phaseId: 15,
     legoBlockTypes: truck4564Phase15,
+  },
+  {
+    phaseId: 16,
+    legoBlockTypes: truck4564Phase16,
+  },
+  {
+    phaseId: 17,
+    legoBlockTypes: truck4564Phase17,
+  },
+  {
+    phaseId: 18,
+    legoBlockTypes: truck4564Phase18,
+  },
+  {
+    phaseId: 19,
+    legoBlockTypes: truck4564Phase19,
   },
 ];

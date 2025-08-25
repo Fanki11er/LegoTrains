@@ -1,0 +1,4 @@
+import Wheel_11_5mm_D_x12mm_hole_round_for_wheels_holder_pin_6014a_model from "../assets/Blocks/Wheel_11.5mm_D_x12mm_hole_round_for_wheels_holder_pin_6014a/Wheel_11.5mm_D_x12mm_hole_round_for_wheels_holder_pin_6014a.glb";
+
+export const wheel_11_5mm_D_x12mm_hole_round_for_wheels_holder_pin_6014a =
+  Wheel_11_5mm_D_x12mm_hole_round_for_wheels_holder_pin_6014a_model;

@@ -1,0 +1,4 @@
+import Hinge_Vehicle_Roof_Plate_Specialty_4x4_4213_model from "../assets/Blocks/Hinge_Vehicle_Roof_Plate_Specialty_4x4_4213/Hinge_Vehicle_Roof_Plate_Specialty_4x4_4213.glb";
+
+export const hinge_vehicle_roof_plate_specialty_4x4_4213 =
+  Hinge_Vehicle_Roof_Plate_Specialty_4x4_4213_model;
