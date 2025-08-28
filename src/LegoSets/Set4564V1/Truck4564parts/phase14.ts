@@ -66,6 +66,7 @@ export const truck4564Phase14: LegoBlockType[] = [
     partStartPosition: new Vector3(-395, 0, 450),
     partType: "x77aw2",
     slotId: "ModelMarker.052",
+    doNotArrangeAfterConnectionInNest: true,
     depends: [],
   },
 ];

@@ -59,6 +59,7 @@ export const truck4564Phase9: LegoBlockType[] = [
     phases: ["connected", "pulled", "stretched"],
     noAutomaticMoveToGroundLevel: true,
     slotId: "ModelMarker.031",
+    doNotArrangeAfterConnectionInNest: true,
     depends: ["ModelMarker.030"],
   },
   {
@@ -67,6 +68,7 @@ export const truck4564Phase9: LegoBlockType[] = [
     partType: "0001tr",
     materialId: "blackPlasticMaterial",
     slotId: "ModelMarker.032",
+    doNotArrangeAfterConnectionInNest: true,
     depends: ["ModelMarker.031"],
   },
   {
@@ -75,6 +77,7 @@ export const truck4564Phase9: LegoBlockType[] = [
     partType: "2651",
     materialId: "redPlasticMaterial",
     slotId: "ModelMarker.033",
+    doNotArrangeAfterConnectionInNest: true,
     depends: ["ModelMarker.032"],
   },
 ];

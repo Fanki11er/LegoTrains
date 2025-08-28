@@ -12,6 +12,7 @@ export const truck4564Phase11: LegoBlockType[] = [
     partType: "2540",
     materialId: "redPlasticMaterial",
     slotId: "ModelMarker.035",
+    doNotArrangeAfterConnectionInNest: true,
     depends: [],
   },
   {
