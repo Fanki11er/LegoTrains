@@ -1,13 +1,11 @@
 import { Vector3 } from "three";
 import { LegoBlockType } from "../../../Types/LegoBlockType";
-import {
-  hinge_Hook_Arm_Slider_2651,
-  hinge_Hook_Base_Slider_Arm_with_Three_Finger_And_Rubber_2650w,
-  hinge_Tile_1x2_with_2_Fingers_4531,
-  plate_3023,
-  plate_Specialty_2_x_2_Corner_2420,
-  rubber_Band_0001tr,
-} from "../set4564PartsImports";
+import { plate_Specialty_2_x_2_Corner_2420 } from "../../Set4552V1/set4552PartsImports";
+import { plate_1x2_3023 } from "../../../PartsImports/Plate_1x2_3023";
+import { hinge_Tile_1x2_with_2_Fingers_4531 } from "../../../PartsImports/Hinge_Tile_1x2_with_2_Fingers_4531";
+import { hinge_Hook_Base_Slider_Arm_with_Three_Finger_And_Rubber_2650w } from "../../../PartsImports/Hinge_Hook_Base_Slider_Arm_with_Three_Finger_And_Rubber_2650w";
+import { rubber_Band_0001tr } from "../../../PartsImports/Rubber_Band_0001tr";
+import { hinge_Hook_Arm_Slider_2651 } from "../../../PartsImports/Hinge_Hook_Arm_Slider_2651";
 
 export const truck4564Phase9: LegoBlockType[] = [
   {
@@ -27,7 +25,7 @@ export const truck4564Phase9: LegoBlockType[] = [
     depends: [],
   },
   {
-    partPath: plate_3023,
+    partPath: plate_1x2_3023,
     partStartPosition: new Vector3(185, 0, 165),
     partType: "3023",
     materialId: "redPlasticMaterial",
@@ -35,7 +33,7 @@ export const truck4564Phase9: LegoBlockType[] = [
     depends: [],
   },
   {
-    partPath: plate_3023,
+    partPath: plate_1x2_3023,
     partStartPosition: new Vector3(210, 0, 165),
     partType: "3023",
     materialId: "redPlasticMaterial",

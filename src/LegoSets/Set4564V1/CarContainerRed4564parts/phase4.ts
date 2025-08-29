@@ -1,11 +1,9 @@
 import { Vector3 } from "three";
 import { LegoBlockType } from "../../../Types/LegoBlockType";
-import {
-  plate_1x1_3024,
-  plate_1x4_3710,
-  plate_Specialty_1x2_with_Handle_on_Side_2540,
-  slope_Brick_2x4_45_Degrees_Red_With_Envelope_3037,
-} from "../set4564PartsImports";
+import { plate_1x4_3710 } from "../../../PartsImports/Plate_1x4_3710";
+import { plate_Specialty_1x2_with_Handle_on_Side_2540 } from "../../../PartsImports/Plate_Specialty_1x2_with_Handle_on_Side_2540";
+import { plate_1x1_3024 } from "../../../PartsImports/Plate_1x1_3024";
+import { slope_Brick_2x4_45_Degrees_Red_With_Envelope_3037 } from "../../../PartsImports/Slope_Brick_2x4_45_Degrees_Red_With_Envelope_3037";
 
 export const carContainerRed4564Phase4: LegoBlockType[] = [
   {

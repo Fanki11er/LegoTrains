@@ -1,0 +1,3 @@
+import Plate_Specialty_1x2_with_Handle_on_Side_2540_model from "../assets/Blocks/Plate_Specialty_1x2_with_Handle_on_Side_2540/Plate_Specialty_1x2_with_Handle_on_Side_2540.glb";
+export const plate_Specialty_1x2_with_Handle_on_Side_2540 =
+  Plate_Specialty_1x2_with_Handle_on_Side_2540_model;

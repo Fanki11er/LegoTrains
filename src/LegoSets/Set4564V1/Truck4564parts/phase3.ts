@@ -1,9 +1,7 @@
 import { Vector3 } from "three";
 import { LegoBlockType } from "../../../Types/LegoBlockType";
-import {
-  plate_Specialty_2x2_with_Wheels_Holder_4600,
-  roundOpenStud_3062b,
-} from "../set4564PartsImports";
+import { roundOpenStud_3062b } from "../../../PartsImports/RoundOpenStud_3062b";
+import { plate_Specialty_2x2_with_Wheels_Holder_4600 } from "../../../PartsImports/Plate_Specialty_2x2_with_Wheels_Holder_4600";
 
 export const truck4564Phase3: LegoBlockType[] = [
   {

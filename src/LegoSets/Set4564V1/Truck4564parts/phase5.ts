@@ -1,10 +1,8 @@
 import { Vector3 } from "three";
 import { LegoBlockType } from "../../../Types/LegoBlockType";
-import {
-  plate_2_x_2_3022,
-  plate_2x4_3020,
-  plate_3023,
-} from "../set4564PartsImports";
+import { plate_2x4_3020 } from "../../../PartsImports/Plate_2x4_3020";
+import { plate_1x2_3023 } from "../../../PartsImports/Plate_1x2_3023";
+import { plate_2_x_2_3022 } from "../../../PartsImports/Plate_2_x_2_3022";
 
 export const truck4564Phase5: LegoBlockType[] = [
   {
@@ -16,7 +14,7 @@ export const truck4564Phase5: LegoBlockType[] = [
     depends: [],
   },
   {
-    partPath: plate_3023,
+    partPath: plate_1x2_3023,
     partStartPosition: new Vector3(210, 0, 150),
     partType: "3023",
     materialId: "blackPlasticMaterial",

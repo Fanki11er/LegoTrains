@@ -1,12 +1,10 @@
 import { Vector3 } from "three";
 import { LegoBlockType } from "../../../Types/LegoBlockType";
-import {
-  brick_1x2_3004,
-  brick_Specialty_1x2_with_Grill_2877,
-  plate_Specialty_1x2_1x4_Bracket_2436,
-  technic_Brick_1x2_With_Pin_Hole_3700,
-  tile_1x1_with_Groove_3070b,
-} from "../set4564PartsImports";
+import { brick_Specialty_1x2_with_Grill_2877 } from "../../../PartsImports/Brick_Specialty_1x2_with_Grill_2877";
+import { brick_1x2_3004 } from "../../../PartsImports/Brick_1x2_3004";
+import { technic_Brick_1x2_With_Pin_Hole_3700 } from "../../../PartsImports/Technic_Brick_1x2_With_Pin_Hole_3700";
+import { plate_Specialty_1x2_1x4_Bracket_2436 } from "../../../PartsImports/Plate_Specialty_1x2_1x4_Bracket_2436";
+import { tile_1x1_with_Groove_3070b } from "../../../PartsImports/Tile_1x1_with_Groove_3070b";
 
 export const truck4564Phase13: LegoBlockType[] = [
   {

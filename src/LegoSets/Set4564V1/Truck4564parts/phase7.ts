@@ -1,9 +1,7 @@
 import { Vector3 } from "three";
 import { LegoBlockType } from "../../../Types/LegoBlockType";
-import {
-  tile_2x2_With_Grove_3068b,
-  vehicle_Mudguard_2x4_With_Arch_3788,
-} from "../set4564PartsImports";
+import { vehicle_Mudguard_2x4_With_Arch_3788 } from "../../../PartsImports/Vehicle_Mudguard_2x4_With_Arch_3788";
+import { tile_2x2_With_Grove_3068b } from "../../../PartsImports/Tile_2x2_With_Grove_3068b";
 
 export const truck4564Phase7: LegoBlockType[] = [
   {

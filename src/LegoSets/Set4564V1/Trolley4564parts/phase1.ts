@@ -1,9 +1,7 @@
 import { Vector3 } from "three";
 import { LegoBlockType } from "../../../Types/LegoBlockType";
-import {
-  minifig_Accessory_Tool_Hand_Truck_Frame_2495,
-  wheel_Trolley_Skateboard_Old_2496,
-} from "../set4564PartsImports";
+import { wheel_Trolley_Skateboard_Old_2496 } from "../../../PartsImports/Wheel_Trolley_Skateboard_Old_2496";
+import { minifig_Accessory_Tool_Hand_Truck_Frame_2495 } from "../../../PartsImports/Minifig_Accessory_Tool_Hand_Truck_Frame_2495";
 
 export const trolley4564Phase1: LegoBlockType[] = [
   {

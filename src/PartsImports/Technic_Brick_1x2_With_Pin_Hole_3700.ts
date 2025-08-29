@@ -1,0 +1,3 @@
+import Technic_Brick_1x2_With_Pin_Hole_3700_model from "../assets/Blocks/Technic_Brick_1x2_With_Pin_Hole_3700/Technic_Brick_1x2_With_Pin_Hole_3700.glb";
+export const technic_Brick_1x2_With_Pin_Hole_3700 =
+  Technic_Brick_1x2_With_Pin_Hole_3700_model;

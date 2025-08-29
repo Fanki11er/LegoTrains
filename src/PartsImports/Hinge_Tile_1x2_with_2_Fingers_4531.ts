@@ -1,0 +1,3 @@
+import Hinge_Tile_1x2_with_2_Fingers_4531_model from "../assets/Blocks/Hinge_Tile_1x2_with_2_Fingers_4531/Hinge_Tile_1x2_with_2_Fingers_4531.glb";
+export const hinge_Tile_1x2_with_2_Fingers_4531 =
+  Hinge_Tile_1x2_with_2_Fingers_4531_model;

@@ -1,0 +1,4 @@
+import Minifig_Headgear_Construction_Helmet_3833_model from "../assets/Blocks/Minifig_Headgear_Construction_Helmet_3833/Minifig_Headgear_Construction_Helmet_3833.glb";
+
+export const minifig_Headgear_Construction_Helmet_3833 =
+  Minifig_Headgear_Construction_Helmet_3833_model;

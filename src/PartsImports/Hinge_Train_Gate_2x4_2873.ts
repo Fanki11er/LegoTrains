@@ -1,0 +1,2 @@
+import Hinge_Train_Gate_2x4_2873_model from "../assets/Blocks/Hinge_Train_Gate_2x4_2873/Hinge_Train_Gate_2x4_2873.glb";
+export const hinge_Train_Gate_2x4_2873 = Hinge_Train_Gate_2x4_2873_model;

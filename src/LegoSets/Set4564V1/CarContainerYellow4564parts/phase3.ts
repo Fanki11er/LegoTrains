@@ -1,9 +1,7 @@
 import { Vector3 } from "three";
 import { LegoBlockType } from "../../../Types/LegoBlockType";
-import {
-  hinge_Plate_1x4_Vehicle_Roof_Holder_4315,
-  hinge_Train_Gate_2x4_Yellow_With_Logo_2873,
-} from "../set4564PartsImports";
+import { hinge_Plate_1x4_Vehicle_Roof_Holder_4315 } from "../../../PartsImports/Hinge_Plate_1x4_Vehicle_Roof_Holder_4315";
+import { hinge_Train_Gate_2x4_Yellow_With_Logo_2873 } from "../../../PartsImports/Hinge_Train_Gate_2x4_Yellow_With_Logo_2873";
 
 export const carContainerYellow4564Phase3: LegoBlockType[] = [
   {

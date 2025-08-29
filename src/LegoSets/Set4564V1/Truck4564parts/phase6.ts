@@ -1,11 +1,9 @@
 import { Vector3 } from "three";
 import { LegoBlockType } from "../../../Types/LegoBlockType";
-import {
-  plate_2x3_3021,
-  plate_Specialty_1x2_With_One_Stud_On_Center_3794,
-  round_Plate_4073,
-  tile_1x1_with_Groove_3070b,
-} from "../set4564PartsImports";
+import { plate_2x3_3021 } from "../../../PartsImports/Plate_2x3_3021";
+import { plate_Specialty_1x2_With_One_Stud_On_Center_3794 } from "../../../PartsImports/Plate_Specialty_1x2_With_One_Stud_On_Center_3794";
+import { round_plate_4073 } from "../../../PartsImports/Round_Plate_4073";
+import { tile_1x1_with_Groove_3070b } from "../../../PartsImports/Tile_1x1_with_Groove_3070b";
 
 export const truck4564Phase6: LegoBlockType[] = [
   {
@@ -41,7 +39,7 @@ export const truck4564Phase6: LegoBlockType[] = [
     depends: [],
   },
   {
-    partPath: round_Plate_4073,
+    partPath: round_plate_4073,
     partStartPosition: new Vector3(390, 0, 145),
     partType: "4073",
     materialId: "blackPlasticMaterial",

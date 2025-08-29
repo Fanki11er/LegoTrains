@@ -1,15 +1,13 @@
 import { Vector3 } from "three";
 import { LegoBlockType } from "../../../Types/LegoBlockType";
-import {
-  minifig_Accessory_Headgear_Cap_4485,
-  minifig_Head_with_Standard_Grin_Pattern_Stud_Solid_3626ap01,
-  minifig_Headgear_Construction_Helmet_3833,
-  minifig_Headgear_Hat_Peaked_Cap_3624,
-  minifig_Hips_and_Legs_970c00,
-  minifig_Torso_Overalls_Blue_Pattern_973pb201c01,
-  minifig_Torso_Train_Red_Chevron_Pattern_973p19c01,
-  minifig_Torso_Train_Suit_Red_Tie_973px1c01,
-} from "../set4564PartsImports";
+import { minifig_Hips_and_Legs_970c00 } from "../../../PartsImports/Minifig_Hips_and_Legs_970c00";
+import { minifig_Torso_Overalls_Blue_Pattern_973pb201c01 } from "../../../PartsImports/Minifig_Torso_Overalls_Blue_Pattern_973pb201c01";
+import { minifig_Head_with_Standard_Grin_Pattern_Stud_Solid_3626ap01 } from "../../../PartsImports/Minifig_Head_with_Standard_Grin_Pattern_Stud_Solid_3626ap01";
+import { minifig_Accessory_Headgear_Cap_4485 } from "../../../PartsImports/Minifig_Accessory_Headgear_Cap_4485";
+import { minifig_Torso_Train_Red_Chevron_Pattern_973p19c01 } from "../../../PartsImports/Minifig_Torso_Train_Red_Chevron_Pattern_973p19c01";
+import { minifig_Headgear_Construction_Helmet_3833 } from "../../../PartsImports/Minifig_Headgear_Construction_Helmet_3833";
+import { minifig_Torso_Train_Suit_Red_Tie_973px1c01 } from "../../../PartsImports/Minifig_Torso_Train_Suit_Red_Tie_973px1c01";
+import { minifig_Headgear_Hat_Peaked_Cap_3624 } from "../../../PartsImports/Minifig_Headgear_Hat_Peaked_Cap_3624";
 
 export const minifigs4564Phase1: LegoBlockType[] = [
   {

@@ -1,6 +1,6 @@
 import { Vector3 } from "three";
 import { LegoBlockType } from "../../../Types/LegoBlockType";
-import { plate_2_x_6_3795 } from "../set4564PartsImports";
+import { plate_2_x_6_3795 } from "../../../PartsImports/Plate_2_x_6_3795";
 
 export const truck4564Phase1: LegoBlockType[] = [
   {

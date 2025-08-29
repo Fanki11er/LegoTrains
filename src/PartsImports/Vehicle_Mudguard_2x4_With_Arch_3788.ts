@@ -1,0 +1,3 @@
+import Vehicle_Mudguard_2x4_With_Arch_3788_model from "../assets/Blocks/Vehicle_Mudguard_2x4_With_Arch_3788/Vehicle_Mudguard_2x4_With_Arch_3788.glb";
+export const vehicle_Mudguard_2x4_With_Arch_3788 =
+  Vehicle_Mudguard_2x4_With_Arch_3788_model;

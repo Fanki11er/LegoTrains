@@ -1,0 +1,3 @@
+import Hose_Reel_2x2_Holder_String_2584_model from "../assets/Blocks/Hose_Reel_2x2_Holder_String_2584/Hose_Reel_2x2_Holder_String_2584.glb";
+export const hose_Reel_2x2_Holder_String_2584 =
+  Hose_Reel_2x2_Holder_String_2584_model;
