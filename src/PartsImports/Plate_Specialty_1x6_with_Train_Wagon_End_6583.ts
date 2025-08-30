@@ -1,0 +1,4 @@
+import Plate_Specialty_1x6_with_Train_Wagon_End_6583_model from "../assets/Blocks/Plate_Specialty_1x6_with_Train_Wagon_End_6583/Plate_Specialty_1x6_with_Train_Wagon_End_6583.glb";
+
+export const plate_Specialty_1x6_with_Train_Wagon_End_6583 =
+  Plate_Specialty_1x6_with_Train_Wagon_End_6583_model;

@@ -1,0 +1,4 @@
+import Hinge_2x2_Top_Brick_Plate_Thin_6134_model from "../assets/Blocks/Hinge_2x2_Top_Brick_Plate_Thin_6134/Hinge_2x2_Top_Brick_Plate_Thin_6134.glb";
+
+export const hinge_2x2_Top_Brick_Plate_Thin_6134 =
+  Hinge_2x2_Top_Brick_Plate_Thin_6134_model;
