@@ -1,0 +1,4 @@
+import Train_Base_6x24_with_3_Round_Holes_Each_End_6584a_model from "../assets/Blocks/Train_Base_6x24_with_3_Round_Holes_Each_End_6584a/Train_Base_6x24_with_3_Round_Holes_Each_End_6584a.glb";
+
+export const train_Base_6x24_with_3_Round_Holes_Each_End_6584a =
+  Train_Base_6x24_with_3_Round_Holes_Each_End_6584a_model;

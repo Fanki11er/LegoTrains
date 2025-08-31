@@ -1,0 +1,4 @@
+import Plate_Specialty_2_x_2_Round_with_Axle_Hole_4032_model from "../assets/Blocks/Plate_Specialty_2_x_2_Round_with_Axle_Hole_4032/Plate_Specialty_2_x_2_Round_with_Axle_Hole_4032.glb";
+
+export const plate_Specialty_2x2_Round_with_Axle_Hole_4032 =
+  Plate_Specialty_2_x_2_Round_with_Axle_Hole_4032_model;
