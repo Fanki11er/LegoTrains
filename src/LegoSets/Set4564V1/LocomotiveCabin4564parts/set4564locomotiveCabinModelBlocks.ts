@@ -1,6 +1,7 @@
 import { ModelBlock } from "../../../Types/ModelBlock";
 import { locomotiveCabin4564Phase1 } from "./phase1";
 import { locomotiveCabin4564Phase10 } from "./phase10";
+import { locomotiveCabin4564Phase11 } from "./phase11";
 import { locomotiveCabin4564Phase2 } from "./phase2";
 import { locomotiveCabin4564Phase3 } from "./phase3";
 import { locomotiveCabin4564Phase4 } from "./phase4";
@@ -52,5 +53,9 @@ export const set4564locomotiveCabinModelBlocks: ModelBlock[] = [
   {
     phaseId: 10,
     legoBlockTypes: locomotiveCabin4564Phase10,
+  },
+  {
+    phaseId: 11,
+    legoBlockTypes: locomotiveCabin4564Phase11,
   },
 ];
