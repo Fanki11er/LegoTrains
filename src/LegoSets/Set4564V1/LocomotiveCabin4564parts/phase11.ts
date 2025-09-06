@@ -2,8 +2,8 @@ import { Vector3 } from "three";
 import { LegoBlockType } from "../../../Types/LegoBlockType";
 import { train_Window_1x4x3_6556 } from "../../../PartsImports/Train_Window_1x4x3_6556";
 import { door_1x2x3_pane_with_vertical_handle_6546 } from "../../../PartsImports/Door_1x2x3_Pane_with_Vertical_Handle_6546";
-import { electric_Train_Light_Prism_1x4_Holder_2928 } from "../../../PartsImports/Electric_Train_Light_Prism_1x4_Holder_2928";
 import { electric_Train_Light_Prism_1x4_2919 } from "../../../PartsImports/Electric_Train_Light_Prism_1x4_2919";
+import { electric_Train_Light_Prism_1x4_Holder_With_Train_Sticker_2928 } from "../../../PartsImports/Electric_Train_Light_Prism_1x4_Holder_Wirh_Train_Sticker_2928";
 
 export const locomotiveCabin4564Phase11: LegoBlockType[] = [
   {
@@ -103,7 +103,7 @@ export const locomotiveCabin4564Phase11: LegoBlockType[] = [
     depends: ["ModelMarker.099"],
   },
   {
-    partPath: electric_Train_Light_Prism_1x4_Holder_2928,
+    partPath: electric_Train_Light_Prism_1x4_Holder_With_Train_Sticker_2928,
     partStartPosition: new Vector3(-310, 0, 640),
     partType: "2928",
     materialId: "blackPlasticMaterial",
@@ -111,7 +111,7 @@ export const locomotiveCabin4564Phase11: LegoBlockType[] = [
     depends: [],
   },
   {
-    partPath: electric_Train_Light_Prism_1x4_Holder_2928,
+    partPath: electric_Train_Light_Prism_1x4_Holder_With_Train_Sticker_2928,
     partStartPosition: new Vector3(-310, 0, 670),
     partType: "2928",
     materialId: "blackPlasticMaterial",
