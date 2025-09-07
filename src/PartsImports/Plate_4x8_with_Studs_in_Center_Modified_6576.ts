@@ -1,0 +1,4 @@
+import Plate_4x8_with_Studs_in_Center_Modified_6576_model from "../assets/Blocks/Plate_4x8_with_Studs_in_Center_Modified_6576/Plate_4x8_with_Studs_in_Center_Modified_6576.glb";
+
+export const plate_4x8_with_Studs_in_Center_Modified_6576 =
+  Plate_4x8_with_Studs_in_Center_Modified_6576_model;

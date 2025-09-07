@@ -1,0 +1,4 @@
+import Plate_Specialty_1x8_with_Door_Rail_4510_model from "../assets/Blocks/Plate_Specialty_1_x_8_with_Door_Rail_4510/Plate_Specialty_1_x_8_with_Door_Rail_4510.glb";
+
+export const plate_Specialty_1x8_with_Door_Rail_4510 =
+  Plate_Specialty_1x8_with_Door_Rail_4510_model;

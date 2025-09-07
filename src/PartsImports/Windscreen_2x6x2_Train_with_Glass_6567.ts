@@ -1,0 +1,4 @@
+import Windscreen_2x6x2_Train_with_Glass_6567_model from "../assets/Blocks/Windscreen_2x6x2_Train_with_Glass_6567/Windscreen_2x6x2_Train_with_Glass_6567.glb";
+
+export const windscreen_2x6x2_Train_with_Glass_6567 =
+  Windscreen_2x6x2_Train_with_Glass_6567_model;

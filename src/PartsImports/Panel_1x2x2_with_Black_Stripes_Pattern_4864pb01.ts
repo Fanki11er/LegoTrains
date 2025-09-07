@@ -1,0 +1,4 @@
+import Panel_1x2x2_with_Black_Stripes_Pattern_4864pb01_model from "../assets/Blocks/Panel_1x2x2_with_Black_Stripes_Pattern_4864pb01/Panel_1x2x2_with_Black_Stripes_Pattern_4864pb01.glb";
+
+export const panel_1x2x2_with_black_stripes_pattern_4864pb01 =
+  Panel_1x2x2_with_Black_Stripes_Pattern_4864pb01_model;
