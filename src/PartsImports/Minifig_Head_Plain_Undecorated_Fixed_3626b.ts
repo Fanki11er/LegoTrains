@@ -1,0 +1,4 @@
+import Minifig_Head_Plain_Undecorated_Fixed_3626b_model from "../assets/Blocks/Minifig_Head_Plain_Undecorated_Fixed_3626b/Minifig_Head_Plain_Undecorated_Fixed_3626b.glb";
+
+export const minifig_Head_Plain_Undecorated_Fixed_3626b =
+  Minifig_Head_Plain_Undecorated_Fixed_3626b_model;

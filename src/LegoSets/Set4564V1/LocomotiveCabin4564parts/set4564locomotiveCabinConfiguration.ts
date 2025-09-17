@@ -8,7 +8,7 @@ export const set4564locomotiveCabinConfiguration: ModelConfiguration = {
   modelMarkers: set4564locomotiveCabinModelMarkers,
   modelBlocks: set4564locomotiveCabinModelBlocks,
   isPartialModel: true,
-  completeModelId: "CompleteLocomotive4564Model",
+  completeModelId: "Locomotive4564Model",
   afterConnectArraignmentFunctionsNames: [],
   afterPhaseEndArraignmentFunctionsNames: [],
 };

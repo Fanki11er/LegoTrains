@@ -1,0 +1,4 @@
+import Electric_Train_Motor_9V_Modern_590_model from "../assets/Blocks/Electric_Train_Motor_9V_Modern_590/Electric_Train_Motor_9V_Modern_590.glb";
+
+export const electric_Train_Motor_9V_Modern_590 =
+  Electric_Train_Motor_9V_Modern_590_model;
