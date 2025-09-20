@@ -4,6 +4,7 @@ import set4564SceneMarkers from "../../assets/Set_4564_V1/SceneMarkers/Scene_Mar
 import { set4564carContainerRedConfiguration } from "./CarContainerRed4564parts/set4564carContainerRedConfiguration";
 import { set4564carContainerYellowConfiguration } from "./CarContainerYellow4564parts/set4564carContainerYellowConfiguration";
 import { set4564loadingRampConfiguration } from "./LoadingRamp4564parts/set4564loadingRampConfiguration";
+import { locomotive4564Configuration } from "./Locomotive4564parts/locomotive4564Configuration";
 import { set4564locomotiveCabinConfiguration } from "./LocomotiveCabin4564parts/set4564locomotiveCabinConfiguration";
 import { set4564locomotiveEngineTrolleyConfiguration } from "./LocomotiveEngineTrolley4564parts/set4564locomotiveEngineTrolleyConfiguration";
 import { set4564locomotiveTrolleyConfiguration } from "./LocomotiveTrolley4564parts/set4564locomotiveTrolleyConfiguration";
@@ -20,7 +21,7 @@ export const createSet4564V1Instruction = () => {
   //?? Minifigs
   set4564Instruction.createModel(set4564minifigsConfiguration);
 
-  //?? Trolley
+  // //?? Trolley
   set4564Instruction.createModel(set4564trolleyConfiguration);
 
   //?? CarContainerYellow
@@ -43,6 +44,9 @@ export const createSet4564V1Instruction = () => {
 
   //?? LocomotiveEngineTrolley
   set4564Instruction.createModel(set4564locomotiveEngineTrolleyConfiguration);
+
+  //?? Locomotive
+  set4564Instruction.createModel(locomotive4564Configuration);
 
   return set4564Instruction;
 };

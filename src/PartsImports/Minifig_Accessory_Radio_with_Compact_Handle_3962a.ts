@@ -1,0 +1,4 @@
+import Minifig_Accessory_Radio_with_Compact_Handle_3962a_model from "../assets/Blocks/Minifig_Accessory_Radio_with_Compact_Handle_3962a/Minifig_Accessory_Radio_with_Compact_Handle_3962a.glb";
+
+export const minifig_Accessory_Radio_with_Compact_Handle_3962a =
+  Minifig_Accessory_Radio_with_Compact_Handle_3962a_model;

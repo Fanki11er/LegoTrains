@@ -680,6 +680,7 @@ export class ArrangementFunctionsHelper {
     );
 
     partialModel.position.copy(partialModelTargetMarker!.position);
+    partialModel.quaternion.copy(partialModelTargetMarker!.quaternion);
 
     const finishPartialModelConnection = () => {
       ArrangementFunctionsHelper.attachModelToNewParent(

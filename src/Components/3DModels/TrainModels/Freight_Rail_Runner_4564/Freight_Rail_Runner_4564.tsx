@@ -42,6 +42,7 @@ const FreightRailRunner_4564 = ({
             position={[-200, 0.1, 0]}
             instructionTextures={instruction_textures_4564}
           />
+
           {renderModels(handleGetSetModelsToRenderList(), modelsData)}
           <group name={"LeftBlocks"}>
             {renderLegoParts(
