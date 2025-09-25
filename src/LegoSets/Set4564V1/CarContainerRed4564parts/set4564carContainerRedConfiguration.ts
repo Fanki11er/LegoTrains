@@ -1,6 +1,4 @@
 import { ModelConfiguration } from "../../../Types/ModelTypes";
-
-// @ts-expect-error Not a type
 import set4564carContainerRedModelMarkers from "../../../assets/Set_4564_V1/ModelsMarkers/CarContainerRed4564/Markers.glb";
 import { carContainerRed4564ModelAfterPhaseEndArrangementFunction } from "./carContainerRedModelAfterPhaseEndArrangementFunctions";
 import { set4564carContainerRedModelBlocks } from "./set4564carContainerRedModelBlocks";
