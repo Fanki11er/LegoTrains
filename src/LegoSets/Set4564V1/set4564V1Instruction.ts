@@ -9,6 +9,7 @@ import { set4564locomotiveCabinConfiguration } from "./LocomotiveCabin4564parts/
 import { set4564locomotiveEngineTrolleyConfiguration } from "./LocomotiveEngineTrolley4564parts/set4564locomotiveEngineTrolleyConfiguration";
 import { set4564locomotiveTrolleyConfiguration } from "./LocomotiveTrolley4564parts/set4564locomotiveTrolleyConfiguration";
 import { set4564minifigsConfiguration } from "./Minifigs4564parts/set4564minifigsConfiguration";
+import { set4564platformCartConfiguration } from "./PlatformCart4564parts/set4564platformCartConfiguration";
 import { set4564trolleyConfiguration } from "./Trolley4564parts/set4564trolleyConfiguration";
 import { set4564truckConfiguration } from "./Truck4564parts/set4564truckConfiguration";
 
@@ -47,6 +48,9 @@ export const createSet4564V1Instruction = () => {
 
   //?? Locomotive
   set4564Instruction.createModel(locomotive4564Configuration);
+
+  //?? PlatformCart
+  set4564Instruction.createModel(set4564platformCartConfiguration);
 
   return set4564Instruction;
 };

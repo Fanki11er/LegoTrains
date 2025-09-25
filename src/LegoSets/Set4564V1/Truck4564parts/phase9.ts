@@ -42,7 +42,7 @@ export const truck4564Phase9: LegoBlockType[] = [
   },
   {
     partPath: hinge_Tile_1x2_with_2_Fingers_4531,
-    partStartPosition: new Vector3(-395, 0, 280),
+    partStartPosition: new Vector3(-395, 0, 715),
     partType: "4531",
     materialId: "blackPlasticMaterial",
     slotId: "ModelMarker.030",
