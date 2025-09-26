@@ -2,19 +2,22 @@ import { Object3D, Object3DEventMap } from "three";
 import { ArrangementFunctionsHelper } from "../../../Classes/ArrangementFunctionsHelper";
 import { ModelArraignmentFunction } from "../../../Types/ArrangementFunction";
 import {
+  arrangeLocomotiveWorkerMinifig,
   arrangeMinifigAccessoryRadioWithHandle,
   arrangeTrainWorkerMinifig,
+  openCabinDoor,
+  openEngineDoor,
 } from "./locomotive4564helperFunctions";
 
 const {
   findModelRootMarker,
   movePartialModelToCompletedModel,
   throwErrorIfElementIsMissing,
+  rotateElementOnYAxis,
+  rotateCoupling,
 } = ArrangementFunctionsHelper;
 
-//Todo: Open Doors
-//Todo: Open engine doors
-//Todo: Move minifig to cabin
+//Todo: Rotate couplings
 
 export const locomotive4564ModelArrangementFunction: ModelArraignmentFunction =
   (
@@ -67,13 +70,27 @@ export const locomotive4564ModelArrangementFunction: ModelArraignmentFunction =
     const finishLocomotiveCabinConnection = movePartialModelToCompletedModel(
       model!,
       locomotiveCabin!,
-
       "CompleteModelMarker.003"
     );
 
     finishTrolleyConnection();
     finishEngineTrolleyConnection();
     finishLocomotiveCabinConnection();
+
+    rotateElementOnYAxis(locomotiveEngineTrolley!, -9);
+    rotateElementOnYAxis(locomotiveTrolley!, 8);
+
+    openEngineDoor(locomotiveCabin!);
+    openCabinDoor(locomotiveCabin!);
+
+    arrangeLocomotiveWorkerMinifig(minifigs!, sceneRootMarker!);
+
+    rotateCoupling(
+      locomotiveTrolley!,
+      14,
+      "ModelMarker.022",
+      "ModelMarker.023"
+    );
 
     return {
       touchedModels: [

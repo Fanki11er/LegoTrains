@@ -6,6 +6,9 @@ const {
   findMarkerByName,
   findElementConnectedToMarker,
   attachModelToNewParent,
+  rotateElementOnYAxis,
+  rotateElementOnZAxis,
+  rotateMinifigArm,
 } = ArrangementFunctionsHelper;
 
 export const moveTrainWorkerMinifig = (
@@ -74,4 +77,56 @@ export const arrangeMinifigAccessoryRadioWithHandle = (
   minifigAccessory!.quaternion.copy(destinationMarker!.quaternion);
 
   attachModelToNewParent(minifigAccessory!, modelRootMarker);
+};
+
+export const openEngineDoor = (model: Object3D<Object3DEventMap>) => {
+  const engineDoor = findElementConnectedToMarker(
+    model,
+    "ModelMarker.107",
+    "Engine door not found"
+  );
+
+  rotateElementOnZAxis(engineDoor!, -115);
+};
+
+export const openCabinDoor = (model: Object3D<Object3DEventMap>) => {
+  const cabinDoor = findElementConnectedToMarker(
+    model,
+    "ModelMarker.120",
+    "Cabin door not found"
+  );
+
+  rotateElementOnYAxis(cabinDoor!, -45);
+};
+
+export const arrangeLocomotiveWorkerMinifig = (
+  modelRootMarker: Object3D<Object3DEventMap>,
+  sceneRootMarker: Object3D<Object3DEventMap>
+) => {
+  const destinationMarker = findMarkerByName(
+    sceneRootMarker,
+    "SceneHelperMarker.005"
+  );
+
+  const { minifigHeaps, minifigTorso, disconnectMinifig } = connectMinifig(
+    modelRootMarker,
+    {
+      minifigHeapsMarkerId: "ModelMarker.009",
+      minifigTorsoMarkerId: "ModelMarker.010",
+      minifigHeadMarkerId: "ModelMarker.011",
+      minifigHutMarkerId: "ModelMarker.012",
+    }
+  );
+
+  rotateMinifigArm(minifigTorso!, "Left", 60, 4, 0);
+  rotateMinifigArm(minifigTorso!, "Right", -30);
+
+  attachModelToNewParent(minifigHeaps!, sceneRootMarker);
+
+  minifigHeaps!.position.copy(destinationMarker!.position);
+  minifigHeaps!.quaternion.copy(destinationMarker!.quaternion);
+
+  attachModelToNewParent(minifigHeaps!, modelRootMarker);
+
+  disconnectMinifig();
 };

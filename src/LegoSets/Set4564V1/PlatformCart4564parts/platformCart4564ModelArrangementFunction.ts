@@ -11,6 +11,7 @@ const {
   findModelRootMarker,
   moveModelToNewPositionInScene,
   throwErrorIfElementIsMissing,
+  rotateCoupling,
 } = ArrangementFunctionsHelper;
 
 export const platformCart4564ModelArrangementFunction: ModelArraignmentFunction =
@@ -27,6 +28,8 @@ export const platformCart4564ModelArrangementFunction: ModelArraignmentFunction 
       sceneRootMarker,
       "Scene root marker is missing in connectCraneCartToCraneCompleteModel"
     );
+
+    rotateCoupling(model!, -4, "ModelMarker.005", "ModelMarker.007");
 
     turnBlockadeUp(model);
 
