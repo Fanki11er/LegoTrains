@@ -24,7 +24,7 @@ export const locomotiveTrolley4564Phase6: LegoBlockType[] = [
   },
   {
     partPath: brick_1x2_3004,
-    partStartPosition: new Vector3(210, 0, 330),
+    partStartPosition: new Vector3(485, 0, 310),
     partType: "3004",
     materialId: "blackPlasticMaterial",
     slotId: "ModelMarker.013",

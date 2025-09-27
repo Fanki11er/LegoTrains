@@ -3,6 +3,7 @@ import { TrainInstruction } from "../../Classes/TrainInstruction";
 import set4564SceneMarkers from "../../assets/Set_4564_V1/SceneMarkers/Scene_Markers.glb";
 import { set4564carContainerRedConfiguration } from "./CarContainerRed4564parts/set4564carContainerRedConfiguration";
 import { set4564carContainerYellowConfiguration } from "./CarContainerYellow4564parts/set4564carContainerYellowConfiguration";
+import { set4564coalCartConfiguration } from "./CoalCart4564parts/set4564platformCartConfiguration";
 import { set4564loadingRampConfiguration } from "./LoadingRamp4564parts/set4564loadingRampConfiguration";
 import { locomotive4564Configuration } from "./Locomotive4564parts/locomotive4564Configuration";
 import { set4564locomotiveCabinConfiguration } from "./LocomotiveCabin4564parts/set4564locomotiveCabinConfiguration";
@@ -51,6 +52,9 @@ export const createSet4564V1Instruction = () => {
 
   //?? PlatformCart
   set4564Instruction.createModel(set4564platformCartConfiguration);
+
+  //?? CoalCart
+  set4564Instruction.createModel(set4564coalCartConfiguration);
 
   return set4564Instruction;
 };
