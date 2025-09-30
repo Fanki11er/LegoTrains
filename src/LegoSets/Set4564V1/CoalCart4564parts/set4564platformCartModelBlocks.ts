@@ -3,6 +3,8 @@ import { coalCart4564Phase1 } from "./phase1";
 import { coalCart4564Phase10 } from "./phase10";
 import { coalCart4564Phase11 } from "./phase11";
 import { coalCart4564Phase12 } from "./phase12";
+import { coalCart4564Phase13 } from "./phase13";
+import { coalCart4564Phase14 } from "./phase14";
 import { coalCart4564Phase2 } from "./phase2";
 import { coalCart4564Phase3 } from "./phase3";
 import { coalCart4564Phase4 } from "./phase4";
@@ -62,5 +64,14 @@ export const set4564coalCartModelBlocks: ModelBlock[] = [
   {
     phaseId: 12,
     legoBlockTypes: coalCart4564Phase12,
+  },
+  {
+    phaseId: 13,
+    legoBlockTypes: coalCart4564Phase13,
+  },
+
+  {
+    phaseId: 14,
+    legoBlockTypes: coalCart4564Phase14,
   },
 ];
