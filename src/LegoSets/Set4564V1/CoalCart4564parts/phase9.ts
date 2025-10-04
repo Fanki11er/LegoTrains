@@ -10,7 +10,7 @@ export const coalCart4564Phase9: LegoBlockType[] = [
   {
     partPath: technic_Brick_1x2_With_Pin_Hole_3700,
     partStartPosition: new Vector3(510, 0, 160),
-    partType: "3040",
+    partType: "3700",
     materialId: "redPlasticMaterial",
     slotId: "ModelMarker.035",
     depends: [],
@@ -139,7 +139,7 @@ export const coalCart4564Phase9: LegoBlockType[] = [
   {
     partPath: technic_Brick_1x2_With_Pin_Hole_3700,
     partStartPosition: new Vector3(510, 0, 175),
-    partType: "3040",
+    partType: "3700",
     materialId: "redPlasticMaterial",
     slotId: "ModelMarker.051",
     depends: ["ModelMarker.050"],

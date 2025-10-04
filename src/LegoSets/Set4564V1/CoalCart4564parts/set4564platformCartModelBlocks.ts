@@ -69,7 +69,6 @@ export const set4564coalCartModelBlocks: ModelBlock[] = [
     phaseId: 13,
     legoBlockTypes: coalCart4564Phase13,
   },
-
   {
     phaseId: 14,
     legoBlockTypes: coalCart4564Phase14,

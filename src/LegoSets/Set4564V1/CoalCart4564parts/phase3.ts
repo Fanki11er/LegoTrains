@@ -101,12 +101,4 @@ export const coalCart4564Phase3: LegoBlockType[] = [
     slotId: "ModelMarker.014",
     depends: [],
   },
-  {
-    partPath: slope_Brick_Inverted_3665,
-    partStartPosition: new Vector3(460, 0, 515),
-    partType: "3665",
-    materialId: "blackPlasticMaterial",
-    slotId: "ModelMarker.011",
-    depends: [],
-  },
 ];

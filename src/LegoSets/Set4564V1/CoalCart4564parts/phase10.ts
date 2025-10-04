@@ -90,7 +90,7 @@ export const coalCart4564Phase10: LegoBlockType[] = [
     partType: "3660",
     materialId: "redPlasticMaterial",
     slotId: "ModelMarker.061",
-    depends: ["ModelMarker.053", "ModelMarker.054"],
+    depends: ["ModelMarker.053", "ModelMarker.055"],
   },
   {
     partPath: slope_Brick_Inverted_2x2_3660,
@@ -98,7 +98,7 @@ export const coalCart4564Phase10: LegoBlockType[] = [
     partType: "3660",
     materialId: "redPlasticMaterial",
     slotId: "ModelMarker.062",
-    depends: ["ModelMarker.054", "ModelMarker.055"],
+    depends: ["ModelMarker.055", "ModelMarker.056"],
   },
   {
     partPath: slope_Brick_Inverted_2x2_3660,
@@ -106,7 +106,7 @@ export const coalCart4564Phase10: LegoBlockType[] = [
     partType: "3660",
     materialId: "redPlasticMaterial",
     slotId: "ModelMarker.063",
-    depends: ["ModelMarker.055", "ModelMarker.056"],
+    depends: ["ModelMarker.054", "ModelMarker.056"],
   },
   {
     partPath: plate_1x6_3666,
@@ -146,7 +146,7 @@ export const coalCart4564Phase10: LegoBlockType[] = [
     partType: "3660",
     materialId: "redPlasticMaterial",
     slotId: "ModelMarker.068",
-    depends: ["ModelMarker.054"],
+    depends: ["ModelMarker.064"],
   },
   {
     partPath: plate_1x6_3666,
@@ -191,7 +191,7 @@ export const coalCart4564Phase10: LegoBlockType[] = [
     partType: "3660",
     materialId: "redPlasticMaterial",
     slotId: "ModelMarker.073",
-    depends: ["ModelMarker.065", "ModelMarker.066"],
+    depends: ["ModelMarker.065", "ModelMarker.067"],
   },
   {
     partPath: slope_Brick_Inverted_2x2_3660,
@@ -199,7 +199,7 @@ export const coalCart4564Phase10: LegoBlockType[] = [
     partType: "3660",
     materialId: "redPlasticMaterial",
     slotId: "ModelMarker.074",
-    depends: ["ModelMarker.066", "ModelMarker.067"],
+    depends: ["ModelMarker.067", "ModelMarker.068"],
   },
   {
     partPath: slope_Brick_Inverted_2x2_3660,
@@ -207,6 +207,6 @@ export const coalCart4564Phase10: LegoBlockType[] = [
     partType: "3660",
     materialId: "redPlasticMaterial",
     slotId: "ModelMarker.075",
-    depends: ["ModelMarker.067", "ModelMarker.068"],
+    depends: ["ModelMarker.066", "ModelMarker.068"],
   },
 ];
