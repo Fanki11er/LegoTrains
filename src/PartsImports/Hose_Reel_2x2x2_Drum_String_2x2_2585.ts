@@ -1,0 +1,3 @@
+import Hose_Reel_2x2x2_Drum_String_2x2_2585_model from "../assets/Blocks/Hose_Reel_2x2x2_Drum_String_2x2_2585/Hose_Reel_2x2x2_Drum_String_2x2_2585.glb";
+export const hose_Reel_2x2x2_Drum_String_2x2_2585 =
+  Hose_Reel_2x2x2_Drum_String_2x2_2585_model;
