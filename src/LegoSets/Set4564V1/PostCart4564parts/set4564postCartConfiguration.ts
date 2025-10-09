@@ -8,5 +8,9 @@ export const set4564postCartConfiguration: ModelConfiguration = {
   modelMarkers: set4564postCartModelMarkers,
   modelBlocks: set4564postCartModelBlocks,
   afterConnectArraignmentFunctionsNames: [],
-  afterPhaseEndArraignmentFunctionsNames: [],
+  afterPhaseEndArraignmentFunctionsNames: [
+    //Todo rotate loading space after phase 9
+    //Todo move trolley after phase 13
+    //Todo close doors after phase 14
+  ],
 };

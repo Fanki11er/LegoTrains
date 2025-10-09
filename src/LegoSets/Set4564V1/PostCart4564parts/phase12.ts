@@ -1,0 +1,148 @@
+import { Vector3 } from "three";
+import { LegoBlockType } from "../../../Types/LegoBlockType";
+import { plate_1x6_3666 } from "../../../PartsImports/Plate_1x6_3666";
+import { panel_1x2x2x2_with_Solid_Studs_Closed_4864b } from "../../../PartsImports/Panel_1x2x2_with_Solid_Studs_Closed_4864b";
+import { brick_1x1_3005 } from "../../../PartsImports/Brick_1x1_3005";
+
+export const postCart4564Phase12: LegoBlockType[] = [
+  {
+    partPath: plate_1x6_3666,
+    partStartPosition: new Vector3(370, 0, -50),
+    partType: "3666",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.062",
+    depends: [],
+  },
+  {
+    partPath: panel_1x2x2x2_with_Solid_Studs_Closed_4864b,
+    partStartPosition: new Vector3(215, 0, 690),
+    partType: "4864b",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.063",
+    depends: ["ModelMarker.062"],
+  },
+  {
+    partPath: panel_1x2x2x2_with_Solid_Studs_Closed_4864b,
+    partStartPosition: new Vector3(215, 0, 675),
+    partType: "4864b",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.064",
+    depends: ["ModelMarker.062"],
+  },
+  {
+    partPath: brick_1x1_3005,
+    partStartPosition: new Vector3(535, 0, 295),
+    partType: "3005",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.065",
+    depends: ["ModelMarker.062"],
+  },
+  {
+    partPath: brick_1x1_3005,
+    partStartPosition: new Vector3(535, 0, 310),
+    partType: "3005",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.066",
+    depends: ["ModelMarker.065"],
+  },
+  {
+    partPath: brick_1x1_3005,
+    partStartPosition: new Vector3(535, 0, 325),
+    partType: "3005",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.067",
+    depends: ["ModelMarker.062"],
+  },
+  {
+    partPath: brick_1x1_3005,
+    partStartPosition: new Vector3(535, 0, 340),
+    partType: "3005",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.068",
+    depends: ["ModelMarker.067"],
+  },
+  {
+    partPath: plate_1x6_3666,
+    partStartPosition: new Vector3(370, 0, -65),
+    partType: "3666",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.069",
+    depends: [
+      "ModelMarker.063",
+      "ModelMarker.064",
+      "ModelMarker.066",
+      "ModelMarker.068",
+    ],
+  },
+
+  ///!!
+  {
+    partPath: plate_1x6_3666,
+    partStartPosition: new Vector3(370, 0, -80),
+    partType: "3666",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.070",
+    depends: [],
+  },
+  {
+    partPath: panel_1x2x2x2_with_Solid_Studs_Closed_4864b,
+    partStartPosition: new Vector3(215, 0, 690),
+    partType: "4864b",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.071",
+    depends: ["ModelMarker.070"],
+  },
+  {
+    partPath: panel_1x2x2x2_with_Solid_Studs_Closed_4864b,
+    partStartPosition: new Vector3(215, 0, 675),
+    partType: "4864b",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.072",
+    depends: ["ModelMarker.070"],
+  },
+  {
+    partPath: brick_1x1_3005,
+    partStartPosition: new Vector3(535, 0, 355),
+    partType: "3005",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.073",
+    depends: ["ModelMarker.070"],
+  },
+  {
+    partPath: brick_1x1_3005,
+    partStartPosition: new Vector3(535, 0, 370),
+    partType: "3005",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.074",
+    depends: ["ModelMarker.073"],
+  },
+  {
+    partPath: brick_1x1_3005,
+    partStartPosition: new Vector3(535, 0, 385),
+    partType: "3005",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.075",
+    depends: ["ModelMarker.070"],
+  },
+  {
+    partPath: brick_1x1_3005,
+    partStartPosition: new Vector3(535, 0, 400),
+    partType: "3005",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.076",
+    depends: ["ModelMarker.075"],
+  },
+  {
+    partPath: plate_1x6_3666,
+    partStartPosition: new Vector3(370, 0, -95),
+    partType: "3666",
+    materialId: "bluePlasticMaterial",
+    slotId: "ModelMarker.077",
+    depends: [
+      "ModelMarker.071",
+      "ModelMarker.072",
+      "ModelMarker.074",
+      "ModelMarker.076",
+    ],
+  },
+];

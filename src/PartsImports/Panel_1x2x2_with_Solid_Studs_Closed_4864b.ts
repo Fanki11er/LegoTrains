@@ -1,0 +1,4 @@
+import Panel_1x2x2_with_Solid_Studs_Closed_4864b_model from "../assets/Blocks/Panel_1x2x2_with_Solid_Studs_Closed_4864b/Panel_1x2x2_with_Solid_Studs_Closed_4864b.glb";
+
+export const panel_1x2x2x2_with_Solid_Studs_Closed_4864b =
+  Panel_1x2x2_with_Solid_Studs_Closed_4864b_model;
