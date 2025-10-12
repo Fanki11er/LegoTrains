@@ -1,6 +1,5 @@
 import { ModelConfiguration } from "../../../Types/ModelTypes";
 
-// @ts-expect-error Not a type
 import set4564MinifigsModelMarkers from "../../../assets/Set_4564_V1/ModelsMarkers/Minifigs4564/Markers.glb";
 import { set4564minifigsModelBlocks } from "./set4564minifigsModelBlocks";
 

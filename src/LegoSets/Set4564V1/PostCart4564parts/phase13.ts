@@ -9,14 +9,14 @@ import { plate_Specialty_1_x_8_with_Door_Rail_4510 } from "../../Set7722V1/Set77
 export const postCart4564Phase13: LegoBlockType[] = [
   {
     partPath: train_Door_Sliding_Type_2_Sticker_Front_Left_2874,
-    partStartPosition: new Vector3(340, 0, 315),
+    partStartPosition: new Vector3(340, 0, 370),
     partType: "2874",
     slotId: "ModelMarker.078",
     depends: [],
   },
   {
     partPath: train_Door_Sliding_Type_2_Sticker_Back_Left_2874,
-    partStartPosition: new Vector3(340, 0, 370),
+    partStartPosition: new Vector3(340, 0, 315),
     partType: "2874",
     slotId: "ModelMarker.079",
     depends: ["ModelMarker.078"],

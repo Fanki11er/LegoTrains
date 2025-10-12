@@ -5,6 +5,8 @@ import { postCart4564Phase11 } from "./phase11";
 import { postCart4564Phase12 } from "./phase12";
 import { postCart4564Phase13 } from "./phase13";
 import { postCart4564Phase14 } from "./phase14";
+import { postCart4564Phase15 } from "./phase15";
+import { postCart4564Phase16 } from "./phase16";
 import { postCart4564Phase2 } from "./phase2";
 import { postCart4564Phase3 } from "./phase3";
 import { postCart4564Phase4 } from "./phase4";
@@ -67,5 +69,16 @@ export const set4564postCartModelBlocks: ModelBlock[] = [
     phaseId: 13,
     legoBlockTypes: postCart4564Phase13,
   },
-  { phaseId: 14, legoBlockTypes: postCart4564Phase14 },
+  {
+    phaseId: 14,
+    legoBlockTypes: postCart4564Phase14,
+  },
+  {
+    phaseId: 15,
+    legoBlockTypes: postCart4564Phase15,
+  },
+  {
+    phaseId: 16,
+    legoBlockTypes: postCart4564Phase16,
+  },
 ];

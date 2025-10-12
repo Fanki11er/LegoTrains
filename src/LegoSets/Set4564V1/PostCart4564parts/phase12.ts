@@ -15,7 +15,7 @@ export const postCart4564Phase12: LegoBlockType[] = [
   },
   {
     partPath: panel_1x2x2x2_with_Solid_Studs_Closed_4864b,
-    partStartPosition: new Vector3(215, 0, 690),
+    partStartPosition: new Vector3(215, 0, 660),
     partType: "4864b",
     materialId: "bluePlasticMaterial",
     slotId: "ModelMarker.063",
@@ -23,7 +23,7 @@ export const postCart4564Phase12: LegoBlockType[] = [
   },
   {
     partPath: panel_1x2x2x2_with_Solid_Studs_Closed_4864b,
-    partStartPosition: new Vector3(215, 0, 675),
+    partStartPosition: new Vector3(215, 0, 645),
     partType: "4864b",
     materialId: "bluePlasticMaterial",
     slotId: "ModelMarker.064",
@@ -74,8 +74,6 @@ export const postCart4564Phase12: LegoBlockType[] = [
       "ModelMarker.068",
     ],
   },
-
-  ///!!
   {
     partPath: plate_1x6_3666,
     partStartPosition: new Vector3(370, 0, -80),

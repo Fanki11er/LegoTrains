@@ -83,6 +83,7 @@ const TrainInstructionProvider = (
       );
       models.forEach((model) => {
         if (model) {
+          console.log(model);
           handleSaveArrangedModelDataToDatabase(model, true);
         }
       });
