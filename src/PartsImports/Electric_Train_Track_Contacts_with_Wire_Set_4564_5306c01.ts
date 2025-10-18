@@ -1,0 +1,4 @@
+import Electric_Train_Track_Contacts_with_Wire_Set_4564_5306c01_model from "../assets/Blocks/Electric_Train_Track_Contacts_with_Wire_Set_4564_5306c01/Electric_Train_Track_Contacts_with_Wire_Set_4564_5306c01.glb";
+
+export const train_Track_Contacts_with_Wire_4564 =
+  Electric_Train_Track_Contacts_with_Wire_Set_4564_5306c01_model;

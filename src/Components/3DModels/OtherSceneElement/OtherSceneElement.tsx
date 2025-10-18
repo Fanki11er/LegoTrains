@@ -11,9 +11,15 @@ type Props = {
   markerId: string;
   elementDescription?: string;
   materialId?: MaterialsTypes;
+  doNotMoveToFloorLevel?: boolean;
 };
 
-const OtherSceneElement = ({ elementPath, markerId, materialId }: Props) => {
+const OtherSceneElement = ({
+  elementPath,
+  markerId,
+  materialId,
+  doNotMoveToFloorLevel,
+}: Props) => {
   const element = useDeferredValue(elementPath);
 
   const { scene } = useThree();
@@ -44,9 +50,11 @@ const OtherSceneElement = ({ elementPath, markerId, materialId }: Props) => {
 
       elementModel.userData.isConnected = destinationMarker.name;
 
-      moveElementToFloorLevel(elementModel);
+      if (!doNotMoveToFloorLevel) {
+        moveElementToFloorLevel(elementModel);
+      }
     }
-  }, [scene, elementModel, elementPath, markerId]);
+  }, [scene, elementModel, elementPath, markerId, doNotMoveToFloorLevel]);
 
   useEffect(() => {
     return () => {

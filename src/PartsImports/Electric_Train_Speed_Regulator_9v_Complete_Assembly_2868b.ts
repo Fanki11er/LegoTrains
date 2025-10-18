@@ -1,0 +1,4 @@
+import Electric_Train_Speed_Regulator_9v_Complete_Assembly_2868b_model from "../assets/Blocks/Electric_Train_Speed_Regulator_9v_Complete_Assembly_2868b/Electric_Train_Speed_Regulator_9v_Complete_Assembly_2868b.glb";
+
+export const train_Speed_Controller_9v =
+  Electric_Train_Speed_Regulator_9v_Complete_Assembly_2868b_model;

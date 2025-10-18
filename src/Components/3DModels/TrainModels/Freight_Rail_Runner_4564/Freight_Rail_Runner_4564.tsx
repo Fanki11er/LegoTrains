@@ -9,6 +9,9 @@ import Instruction from "../../Instruction/Instruction";
 import SceneMarkers from "../../SceneMarkers/SceneMarkers";
 import Tracks from "../../Tracks/Tracks";
 import { TrainModelProps } from "../../TrainModel/TrainModel";
+import OtherSceneElement from "../../OtherSceneElement/OtherSceneElement";
+import { train_Speed_Controller_9v } from "../../../../PartsImports/Electric_Train_Speed_Regulator_9v_Complete_Assembly_2868b";
+import { train_Track_Contacts_with_Wire_4564 } from "../../../../PartsImports/Electric_Train_Track_Contacts_with_Wire_Set_4564_5306c01";
 
 const tracksPaths = [train_Track_9V_Straight_2865, train_Track_9V_Curved_2867];
 
@@ -34,6 +37,18 @@ const FreightRailRunner_4564 = ({
         <Tracks
           tracksMarkersFilePath={tracksMarkers_4564}
           tracksTypesFilePaths={tracksPaths}
+        />
+
+        <OtherSceneElement
+          elementPath={train_Speed_Controller_9v}
+          markerId="SpeedController"
+          elementDescription="Speed Controller"
+        />
+        <OtherSceneElement
+          elementPath={train_Track_Contacts_with_Wire_4564}
+          markerId="TrackContacts"
+          elementDescription="Track Contacts"
+          doNotMoveToFloorLevel={true}
         />
 
         <MaterialsProvider>
