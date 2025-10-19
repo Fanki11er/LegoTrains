@@ -1,5 +1,4 @@
 import { ModelConfiguration } from "../../../Types/ModelTypes";
-// @ts-expect-error Not a type
 import set4552PlatformCartModelMarkers from "../../../assets/Set_4552_V1/ModelsMarkers/PlatformCart4552/Markers.glb";
 import { platformCart4552WorkshopModelBlocks } from "./platformCart4552ModelBlocks";
 

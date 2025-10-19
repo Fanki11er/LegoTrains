@@ -1,6 +1,5 @@
 import { ModelConfiguration } from "../../../Types/ModelTypes";
 import { cargoCrain4552TorchModelBlocks } from "./torch4552ModelBlocks";
-// @ts-expect-error Not a type
 import set4552TorchModelMarkers from "../../../assets/Set_4552_V1/ModelsMarkers/Torch4552/Markers.glb";
 import { torchModelAfterPhaseEndArrangementFunction } from "./torchModelAfterPhaseEndArrangementFunctions";
 export const torch4552Configuration: ModelConfiguration = {

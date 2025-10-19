@@ -5,7 +5,7 @@ import {
   useDeferredValue,
   useMemo,
 } from "react";
-// @ts-expect-error Missing type
+
 import materialsColorsPalette from "../assets/MaterialsColorsPalette/MaterialsColorsPalette.glb";
 import { Material, MeshPhysicalMaterial, MeshStandardMaterial } from "three";
 import { nestMaterial } from "../Materials/NestMaterial";

@@ -1,7 +1,6 @@
 import { ModelConfiguration } from "../../../Types/ModelTypes";
 import { cargoCrane4552CarModelBlocks } from "./car4552ModelBlocks";
 import { carModelAfterPhaseEndArrangementFunction } from "./carModelAfterPhaseEndArrangementFunctions";
-// @ts-expect-error Not a type
 import set4552CarModelMarkers from "../../../assets/Set_4552_V1/ModelsMarkers/Car4552/Markers.glb";
 
 export const car4552Configuration: ModelConfiguration = {

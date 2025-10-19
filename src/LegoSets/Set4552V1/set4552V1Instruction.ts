@@ -1,5 +1,4 @@
 import { TrainInstruction } from "../../Classes/TrainInstruction";
-// @ts-expect-error Not a type
 import set4552SceneMarkers from "../../assets/Set_4552_V1/SceneMarkers/Scene_Markers.glb";
 import { car4552Configuration } from "./Car4552parts/car4552Configuration";
 import { completeCargoCrane4552Configuration } from "./CompleteCargoCrane/completeCargoCrane4552Configuration";
