@@ -1,0 +1,3 @@
+import Minifig_Accessory_Tool_Hand_Truck_Frame_2495_model from "../assets/Blocks/Minifig_Accessory_Tool_Hand_Truck_Frame_2495/Minifig_Accessory_Tool_Hand_Truck_Frame_2495.glb";
+export const minifig_Accessory_Tool_Hand_Truck_Frame_2495 =
+  Minifig_Accessory_Tool_Hand_Truck_Frame_2495_model;

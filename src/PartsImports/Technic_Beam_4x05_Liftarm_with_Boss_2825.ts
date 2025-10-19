@@ -1,0 +1,4 @@
+import Technic_Beam_4x05_LiftArm_with_Boss_2825_model from "../assets/Blocks/Technic_Beam_4x05_Liftarm_with_Boss_2825/Technic_Beam_4x05_Liftarm_with_Boss_2825.glb";
+
+export const technic_Beam_4x05_LiftArm_with_Boss_2825 =
+  Technic_Beam_4x05_LiftArm_with_Boss_2825_model;

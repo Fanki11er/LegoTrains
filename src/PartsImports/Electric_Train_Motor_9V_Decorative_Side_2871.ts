@@ -1,0 +1,4 @@
+import Electric_Train_Motor_9V_Decorative_Side_2871_model from "../assets/Blocks/Electric_Train_Motor_9V_Decorative_Side_2871/Electric_Train_Motor_9V_Decorative_Side_2871.glb";
+
+export const electric_Train_Motor_9V_Decorative_Side_2871 =
+  Electric_Train_Motor_9V_Decorative_Side_2871_model;

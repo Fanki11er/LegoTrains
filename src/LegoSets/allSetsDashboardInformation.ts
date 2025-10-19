@@ -25,16 +25,17 @@ export const ALL_READY_SETS_INFORMATION_DATA: DashboardSetInformationData[] = [
     allModels: 9,
     imagePath: set_4552_image,
   },
+  {
+    setId: "Set_4564_V1",
+    setName: "LEGO 4564 Freight Rail Runner",
+    setVersion: 1,
+    allModels: 9,
+    imagePath: set_4564_image,
+  },
 ];
 
 export const FUTURE_SETS_INFORMATION_DATA: DashboardFutureSetInformationData[] =
   [
-    {
-      setId: "Set_4564_V1",
-      setName: "LEGO 4564 Freight Rail Runner",
-      setVersion: 1,
-      imagePath: set_4564_image,
-    },
     {
       setId: "Set_4563_V1",
       setName: "LEGO 4563 Load N' Haul Railroad",

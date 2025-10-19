@@ -1,0 +1,3 @@
+import Plate_Specialty_1x2_1x4_Bracket_2436_model from "../assets/Blocks/Plate_Specialty_1x2_1x4_Bracket_2436/Plate_Specialty_1x2_1x4_Bracket_2436.glb";
+export const plate_Specialty_1x2_1x4_Bracket_2436 =
+  Plate_Specialty_1x2_1x4_Bracket_2436_model;

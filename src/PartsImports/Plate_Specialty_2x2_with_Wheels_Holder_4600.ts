@@ -1,0 +1,3 @@
+import Plate_Specialty_2x2_with_Wheels_Holder_4600_model from "../assets/Blocks/Plate_Specialty_2x2_with_Wheels_Holder_4600/Plate_Specialty_2x2_with_Wheels_Holder_4600.glb";
+export const plate_Specialty_2x2_with_Wheels_Holder_4600 =
+  Plate_Specialty_2x2_with_Wheels_Holder_4600_model;

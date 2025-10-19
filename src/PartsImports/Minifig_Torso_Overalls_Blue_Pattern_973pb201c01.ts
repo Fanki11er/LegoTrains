@@ -1,0 +1,3 @@
+import Minifig_Torso_Overalls_Blue_Pattern_973pb201c01_model from "../assets/Blocks/Minifig_Torso_Overalls_Blue_Pattern_973pb201c01/Minifig_Torso_Overalls_Blue_Pattern_973pb201c01.glb";
+export const minifig_Torso_Overalls_Blue_Pattern_973pb201c01 =
+  Minifig_Torso_Overalls_Blue_Pattern_973pb201c01_model;

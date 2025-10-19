@@ -1,0 +1,4 @@
+import Brick_Specialty_1x2x1_1_3_with_Curved_Top_6091_model from "../assets/Blocks/Brick_Specialty_1x2x1_1_3_with_Curved_Top_6091/Brick_Specialty_1x2x1_1_3_with_Curved_Top_6091.glb";
+
+export const brick_Specialty_1x2x1_1_3_with_Curved_Top_6091 =
+  Brick_Specialty_1x2x1_1_3_with_Curved_Top_6091_model;

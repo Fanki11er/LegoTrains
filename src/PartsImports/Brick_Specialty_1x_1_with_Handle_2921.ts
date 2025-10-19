@@ -1,0 +1,4 @@
+import Brick_Specialty_1x_1_with_Handle_2921_model from "../assets/Blocks/Brick_Specialty_1x_1_with_Handle_2921/Brick_Specialty_1x_1_with_Handle_2921.glb";
+
+export const brick_Specialty_1x1_with_Handle_2921 =
+  Brick_Specialty_1x_1_with_Handle_2921_model;

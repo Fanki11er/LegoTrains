@@ -1,0 +1,4 @@
+import Hinge_Plate_1x2_with_3_Fingers_4275_model from "../assets/Blocks/Hinge_Plate_1x2_with_3_Fingers_4275/Hinge_Plate_1x2_with_3_Fingers_4275.glb";
+
+export const hinge_Plate_1x2_with_3_Fingers_4275 =
+  Hinge_Plate_1x2_with_3_Fingers_4275_model;

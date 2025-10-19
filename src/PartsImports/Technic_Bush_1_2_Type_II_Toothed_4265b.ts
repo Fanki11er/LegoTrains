@@ -1,0 +1,4 @@
+import Technic_Bush_1_2_Type_II_Toothed_4265b_model from "../assets/Blocks/Technic_Bush_1_2_Type_II_Toothed_4265b/Technic_Bush_1_2_Type_II_Toothed_4265b.glb";
+
+export const technic_Bush_1_2_Type_II_Toothed_4265b =
+  Technic_Bush_1_2_Type_II_Toothed_4265b_model;

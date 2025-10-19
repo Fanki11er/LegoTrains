@@ -1,0 +1,4 @@
+import Door_1x2x3_Pane_with_Vertical_Handle_6546_model from "../assets/Blocks/Door_1x2x3_Pane_with_Vertical_Handle_6546/Door_1x2x3_Pane_with_Vertical_Handle_6546.glb";
+
+export const door_1x2x3_pane_with_vertical_handle_6546 =
+  Door_1x2x3_Pane_with_Vertical_Handle_6546_model;

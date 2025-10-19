@@ -1,0 +1,4 @@
+import Train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092_model from "../assets/Blocks/Train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092/Train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092.glb";
+
+export const train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092 =
+  Train_Bogie_Plate_Tile_Specialty_with_Pin_6x4_4092_model;

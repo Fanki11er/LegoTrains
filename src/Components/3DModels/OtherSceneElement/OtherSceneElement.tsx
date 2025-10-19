@@ -2,23 +2,39 @@ import { useGLTF } from "@react-three/drei";
 import { useDeferredValue, useEffect, useMemo } from "react";
 import { moveElementToFloorLevel } from "../../../Utilities/utilities";
 import { useThree } from "@react-three/fiber";
+import useMaterials from "../../../Hooks/useMaterials";
+import { MaterialsTypes } from "../../../Providers/MaterialsProvider";
+import { Mesh } from "three";
 
 type Props = {
   elementPath: string;
   markerId: string;
   elementDescription?: string;
+  materialId?: MaterialsTypes;
+  doNotMoveToFloorLevel?: boolean;
 };
 
-const OtherSceneElement = ({ elementPath, markerId }: Props) => {
+const OtherSceneElement = ({
+  elementPath,
+  markerId,
+  materialId,
+  doNotMoveToFloorLevel,
+}: Props) => {
   const element = useDeferredValue(elementPath);
 
   const { scene } = useThree();
 
   const { scene: model } = useGLTF(element);
 
+  const { materialsData } = useMaterials();
+
   const elementModel = useMemo(() => {
-    return model.children[0];
-  }, [model]);
+    const elementModel = model.children[0] as Mesh;
+    if (materialId) {
+      elementModel.material = materialsData[materialId];
+    }
+    return elementModel;
+  }, [model, materialId, materialsData]);
 
   useEffect(() => {
     const rootMaker = scene.getObjectByName("SceneRootMarker");
@@ -29,10 +45,16 @@ const OtherSceneElement = ({ elementPath, markerId }: Props) => {
     if (rootMaker && destinationMarker && elementModel) {
       elementModel.position.copy(destinationMarker.position);
       elementModel.quaternion.copy(destinationMarker.quaternion);
+
       rootMaker.add(elementModel);
-      moveElementToFloorLevel(elementModel);
+
+      elementModel.userData.isConnected = destinationMarker.name;
+
+      if (!doNotMoveToFloorLevel) {
+        moveElementToFloorLevel(elementModel);
+      }
     }
-  }, [scene, elementModel, elementPath, markerId]);
+  }, [scene, elementModel, elementPath, markerId, doNotMoveToFloorLevel]);
 
   useEffect(() => {
     return () => {

@@ -1,0 +1,3 @@
+import Brick_Specialty_1x2_with_Grill_2877_model from "../assets/Blocks/Brick_Specialty_1x2_with_Grill_2877/Brick_Specialty_1x2_with_Grill_2877.glb";
+export const brick_Specialty_1x2_with_Grill_2877 =
+  Brick_Specialty_1x2_with_Grill_2877_model;

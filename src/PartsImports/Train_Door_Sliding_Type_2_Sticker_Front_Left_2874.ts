@@ -1,0 +1,4 @@
+import Train_Door_Sliding_Type_2_Sticker_Front_Left_2874_model from "../assets/Blocks/Train_Door_Sliding_Type_2_Sticker_Front_Left_2874/Train_Door_Sliding_Type_2_Sticker_Front_Left_2874.glb";
+
+export const train_Door_Sliding_Type_2_Sticker_Front_Left_2874 =
+  Train_Door_Sliding_Type_2_Sticker_Front_Left_2874_model;

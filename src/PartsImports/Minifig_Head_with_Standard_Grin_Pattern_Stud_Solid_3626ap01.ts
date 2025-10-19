@@ -1,0 +1,4 @@
+import Minifig_Head_with_Standard_Grin_Pattern_Stud_Solid_3626ap01_model from "../assets/Blocks/Minifig_Head_with_Standard_Grin_Pattern_Stud_Solid_3626ap01/Minifig_Head_with_Standard_Grin_Pattern_Stud_Solid_3626ap01.glb";
+
+export const minifig_Head_with_Standard_Grin_Pattern_Stud_Solid_3626ap01 =
+  Minifig_Head_with_Standard_Grin_Pattern_Stud_Solid_3626ap01_model;

@@ -1,0 +1,4 @@
+import Tile_1x2_with_Telemetry_Panel_Pattern_3069px2_model from "../assets/Blocks/Tile_1x2_with_Telemetry_Panel_Pattern_3069px2/Tile_1x2_with_Telemetry_Panel_Pattern_3069px2.glb";
+
+export const tile_1x2_with_Telemetry_Panel_Pattern_3069px2 =
+  Tile_1x2_with_Telemetry_Panel_Pattern_3069px2_model;

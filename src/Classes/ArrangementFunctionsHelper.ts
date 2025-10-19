@@ -680,6 +680,7 @@ export class ArrangementFunctionsHelper {
     );
 
     partialModel.position.copy(partialModelTargetMarker!.position);
+    partialModel.quaternion.copy(partialModelTargetMarker!.quaternion);
 
     const finishPartialModelConnection = () => {
       ArrangementFunctionsHelper.attachModelToNewParent(
@@ -742,5 +743,90 @@ export class ArrangementFunctionsHelper {
     element.rotation!.copy(newPositionMarker!.rotation);
 
     ArrangementFunctionsHelper.attachModelToNewParent(element, parentModel);
+  };
+
+  static rotateHingeTrainGate = (
+    rootMarker: Object3D<Object3DEventMap>,
+    elementSlotId: string,
+    axis: "X" | "Y" | "Z",
+    degree: number
+  ) => {
+    const hingeGate = ArrangementFunctionsHelper.findElementConnectedToMarker(
+      rootMarker,
+      elementSlotId
+    );
+
+    switch (axis) {
+      case "X":
+        ArrangementFunctionsHelper.rotateElementOnXAxis(hingeGate, degree);
+        break;
+      case "Y":
+        ArrangementFunctionsHelper.rotateElementOnYAxis(hingeGate, degree);
+        break;
+      case "Z":
+        ArrangementFunctionsHelper.rotateElementOnZAxis(hingeGate, degree);
+        break;
+    }
+  };
+
+  static moveModelToNewPositionInScene = (
+    model: Object3D<Object3DEventMap>,
+    newPositionMarkerId: string,
+    scene: Object3D<Object3DEventMap>
+  ) => {
+    const newPositionMarker = ArrangementFunctionsHelper.findMarkerByName(
+      scene,
+      newPositionMarkerId
+    );
+
+    model.position!.copy(newPositionMarker!.position);
+    model.quaternion!.copy(newPositionMarker!.quaternion);
+  };
+
+  static rotateConnectedElements = (
+    model: Object3D<Object3DEventMap>,
+    mainElementMarkerId: string,
+    elementsMarkersIds: string[],
+    axis: "X" | "Y" | "Z",
+    degree: number
+  ) => {
+    const elements: Object3D<Object3DEventMap>[] = [];
+
+    const mainElement = ArrangementFunctionsHelper.findElementConnectedToMarker(
+      model,
+      mainElementMarkerId,
+      "Main element not found"
+    );
+
+    elementsMarkersIds.forEach((elementMarkerId) => {
+      const element = ArrangementFunctionsHelper.findElementConnectedToMarker(
+        model,
+        elementMarkerId,
+        "Element not found"
+      );
+      elements.push(element);
+    });
+
+    elements.forEach((element) => {
+      ArrangementFunctionsHelper.attachModelToNewParent(element, mainElement);
+    });
+
+    switch (axis) {
+      case "X":
+        ArrangementFunctionsHelper.rotateElementOnXAxis(mainElement, degree);
+        break;
+      case "Y":
+        ArrangementFunctionsHelper.rotateElementOnYAxis(mainElement, degree);
+        break;
+      case "Z":
+        ArrangementFunctionsHelper.rotateElementOnZAxis(mainElement, degree);
+        break;
+    }
+
+    elements.forEach((element) => {
+      ArrangementFunctionsHelper.attachModelToNewParent(element, model);
+    });
+
+    return [];
   };
 }

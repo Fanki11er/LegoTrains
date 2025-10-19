@@ -1,0 +1,3 @@
+import Hinge_Plate_1x4_Vehicle_Roof_Holder_4315_model from "../assets/Blocks/Hinge_Plate_1x4_Vehicle_Roof_Holder_4315/Hinge_Plate_1x4_Vehicle_Roof_Holder_4315.glb";
+export const hinge_Plate_1x4_Vehicle_Roof_Holder_4315 =
+  Hinge_Plate_1x4_Vehicle_Roof_Holder_4315_model;

@@ -1,0 +1,3 @@
+import Plate_Specialty_1x1_with_Clip_Light_4081b_model from "../assets/Blocks/Plate_Specialty_1x1_with_Clip_Light_4081b/Plate_Specialty_1x1_with_Clip_Light_4081b.glb";
+export const plate_Specialty_1x1_with_Clip_Light_4081b =
+  Plate_Specialty_1x1_with_Clip_Light_4081b_model;

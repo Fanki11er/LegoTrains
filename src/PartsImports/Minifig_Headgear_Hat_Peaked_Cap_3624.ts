@@ -1,0 +1,4 @@
+import Minifig_Headgear_Hat_Peaked_Cap_3624_model from "../assets/Blocks/Minifig_Headgear_Hat_Peaked_Cap_3624/Minifig_Headgear_Hat_Peaked_Cap_3624.glb";
+
+export const minifig_Headgear_Hat_Peaked_Cap_3624 =
+  Minifig_Headgear_Hat_Peaked_Cap_3624_model;

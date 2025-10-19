@@ -51,6 +51,7 @@ export class TrainInstruction {
       afterConnectArraignmentFunctionsNames,
       afterPhaseEndArraignmentFunctionsNames,
       isCollectiveModel = false,
+      doNotCountAsModel = false,
       completeModelId,
     } = modelConfiguration;
 
@@ -61,6 +62,7 @@ export class TrainInstruction {
       isPartialModel,
       isCollectiveModel,
       doNotMoveToTheFloorLevel,
+      doNotCountAsModel,
       completeModelId
     );
 

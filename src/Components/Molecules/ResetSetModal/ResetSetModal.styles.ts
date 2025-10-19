@@ -3,7 +3,8 @@ import { show } from "../../../Theme/helpers";
 import { BaseButton } from "../../Atoms/Buttons/Buttons.styles";
 
 export const ResetSetModalWrapper = styled.div`
-  position: absolute;
+  position: fixed;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;

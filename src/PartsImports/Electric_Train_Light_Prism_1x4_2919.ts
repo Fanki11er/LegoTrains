@@ -1,0 +1,4 @@
+import Electric_Train_Light_Prism_1x4_2919_model from "../assets/Blocks/Electric_Train_Light_Prism_1x4_2919/Electric_Train_Light_Prism_1x4_2919.glb";
+
+export const electric_Train_Light_Prism_1x4_2919 =
+  Electric_Train_Light_Prism_1x4_2919_model;

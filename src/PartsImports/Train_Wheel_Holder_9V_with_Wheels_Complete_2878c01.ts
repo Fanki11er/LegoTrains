@@ -1,0 +1,4 @@
+import Train_Wheel_Holder_9V_with_Wheels_Complete_2878c01_model from "../assets/Blocks/Train_Wheel_Holder_9V_with_Wheels_Complete_2878c01/Train_Wheel_Holder_9V_with_Wheels_Complete_2878c01.glb";
+
+export const train_Wheel_Holder_9V_with_Wheels_Complete_2878c01 =
+  Train_Wheel_Holder_9V_with_Wheels_Complete_2878c01_model;

@@ -20,6 +20,8 @@ import Experience from "../../3DModels/Experience/Experience";
 import { createSet7722V1Instruction } from "../../../LegoSets/Set7722V1/set7722V1Instruction";
 import { createSet4552V1Instruction } from "../../../LegoSets/Set4552V1/set4552V1Instruction";
 import CargoCrain_4552 from "../../3DModels/TrainModels/CargoCrain_4552/CargoCrain_4552";
+import { createSet4564V1Instruction } from "../../../LegoSets/Set4564V1/set4564V1Instruction";
+import FreightRailRunner_4564 from "../../3DModels/TrainModels/Freight_Rail_Runner_4564/Freight_Rail_Runner_4564";
 
 const SteamLocomotive_7722 = lazy(
   () =>
@@ -90,6 +92,14 @@ const LegoSet = () => {
             legoSetId={legoSetId}
             createInstruction={createSet4552V1Instruction}
             model={(props) => <CargoCrain_4552 {...props} />}
+          />
+        );
+      case "Set_4564_V1":
+        return (
+          <Experience
+            legoSetId={legoSetId}
+            createInstruction={createSet4564V1Instruction}
+            model={(props) => <FreightRailRunner_4564 {...props} />}
           />
         );
       default:

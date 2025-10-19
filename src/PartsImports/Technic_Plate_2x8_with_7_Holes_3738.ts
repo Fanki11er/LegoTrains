@@ -1,0 +1,3 @@
+import Technic_Plate_2x8_with_7_Holes_3738_model from "../assets/Blocks/Technic_Plate_2x8_with_7_Holes_3738/Technic_Plate_2x8_with_7_Holes_3738.glb";
+export const technic_Plate_2x8_with_7_Holes_3738 =
+  Technic_Plate_2x8_with_7_Holes_3738_model;

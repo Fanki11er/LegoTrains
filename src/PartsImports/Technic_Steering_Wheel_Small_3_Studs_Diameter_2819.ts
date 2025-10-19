@@ -1,0 +1,4 @@
+import Technic_Steering_Wheel_Small_3_Studs_Diameter_2819_model from "../assets/Blocks/Technic_Steering_Wheel_Small_3_Studs_Diameter_2819/Technic_Steering_Wheel_Small_3_Studs_Diameter_2819.glb";
+
+export const technic_Steering_Wheel_Small_3_Studs_Diameter_2819 =
+  Technic_Steering_Wheel_Small_3_Studs_Diameter_2819_model;

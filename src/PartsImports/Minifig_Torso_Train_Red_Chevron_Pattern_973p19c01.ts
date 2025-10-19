@@ -1,0 +1,4 @@
+import Minifig_Torso_Train_Red_Chevron_Pattern_973p19c01_model from "../assets/Blocks/Minifig_Torso_Train_Red_Chevron_Pattern_973p19c01/Minifig_Torso_Train_Red_Chevron_Pattern_973p19c01.glb";
+
+export const minifig_Torso_Train_Red_Chevron_Pattern_973p19c01 =
+  Minifig_Torso_Train_Red_Chevron_Pattern_973p19c01_model;

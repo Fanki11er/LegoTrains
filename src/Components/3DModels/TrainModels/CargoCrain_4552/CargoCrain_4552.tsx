@@ -24,8 +24,6 @@ const CargoCrain_4552 = ({
   handleGetSetModelsToRenderList,
   getPersistenceUsedPartsDataForModel,
 }: TrainModelProps) => {
-  //useTrackPageView("SteamLocomotive_7722 Experience");
-
   return (
     sceneMarkersInfo && (
       <>
@@ -38,18 +36,6 @@ const CargoCrain_4552 = ({
           tracksMarkersFilePath={tracksMarkers_4552}
           tracksTypesFilePaths={tracksPaths}
         />
-
-        {/* <OtherSceneElement
-          elementPath={train_Signal_Post}
-          markerId="SignalPost"
-          elementDescription="SignalPost"
-        /> */}
-
-        {/* <OtherSceneElement
-          elementPath={train_Direction_Switch_3218}
-          markerId="DestinationSwitch"
-          elementDescription="DestinationSwitch"
-        /> */}
 
         <MaterialsProvider>
           <Floor />

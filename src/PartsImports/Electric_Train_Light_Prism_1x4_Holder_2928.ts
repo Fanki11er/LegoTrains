@@ -1,0 +1,4 @@
+import Electric_Train_Light_Prism_1x4_Holder_2928_model from "../assets/Blocks/Electric_Train_Light_Prism_1x4_Holder_2928/Electric_Train_Light_Prism_1x4_Holder_2928.glb";
+
+export const electric_Train_Light_Prism_1x4_Holder_2928 =
+  Electric_Train_Light_Prism_1x4_Holder_2928_model;

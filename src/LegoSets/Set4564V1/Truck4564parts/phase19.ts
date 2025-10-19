@@ -1,0 +1,132 @@
+import { Vector3 } from "three";
+import { LegoBlockType } from "../../../Types/LegoBlockType";
+import { round_plate_4073 } from "../../../PartsImports/Round_Plate_4073";
+import { antenna_small_base_with_lever_4592c02 } from "../../../PartsImports/Antenna_Small_Base_with_Lever_4592c02";
+import { wheel_11_5mm_D_x12mm_hole_round_for_wheels_holder_pin_6014a } from "../../../PartsImports/Wheel_11.5mm_D_x12mm_hole_round_for_wheels_holder_pin_6014a";
+import { tire_Wide_Offset_Tread_Small_6015 } from "../../../PartsImports/Tire_Wide_Offset_Tread_Small_6015";
+
+export const truck4564Phase19: LegoBlockType[] = [
+  {
+    partPath: round_plate_4073,
+    partStartPosition: new Vector3(390, 0, 190),
+    partType: "4073",
+    materialId: "yellowTransparentMaterial",
+    slotId: "ModelMarker.073",
+    depends: [],
+  },
+
+  {
+    partPath: round_plate_4073,
+    partStartPosition: new Vector3(390, 0, 205),
+    partType: "4073",
+    materialId: "yellowTransparentMaterial",
+    slotId: "ModelMarker.074",
+    depends: ["ModelMarker.073"],
+  },
+  {
+    partPath: antenna_small_base_with_lever_4592c02,
+    partStartPosition: new Vector3(-355, 0, 350),
+    partType: "4592c02",
+    materialId: "blackPlasticMaterial",
+    multipart: true,
+    propagateMainMaterialToChildren: true,
+    slotId: "ModelMarker.075",
+    depends: [],
+  },
+  {
+    partPath: wheel_11_5mm_D_x12mm_hole_round_for_wheels_holder_pin_6014a,
+    partStartPosition: new Vector3(-290, 0, 390),
+    partType: "6014a",
+    materialId: "whitePlasticMaterial",
+    slotId: "ModelMarker.076",
+    depends: [],
+  },
+  {
+    partPath: wheel_11_5mm_D_x12mm_hole_round_for_wheels_holder_pin_6014a,
+    partStartPosition: new Vector3(-310, 0, 390),
+    partType: "6014a",
+    materialId: "whitePlasticMaterial",
+    slotId: "ModelMarker.077",
+    depends: [],
+  },
+  {
+    partPath: wheel_11_5mm_D_x12mm_hole_round_for_wheels_holder_pin_6014a,
+    partStartPosition: new Vector3(-290, 0, 415),
+    partType: "6014a",
+    materialId: "whitePlasticMaterial",
+    slotId: "ModelMarker.078",
+    depends: [],
+  },
+  {
+    partPath: wheel_11_5mm_D_x12mm_hole_round_for_wheels_holder_pin_6014a,
+    partStartPosition: new Vector3(-310, 0, 415),
+    partType: "6014a",
+    materialId: "whitePlasticMaterial",
+    slotId: "ModelMarker.079",
+    depends: [],
+  },
+  {
+    partPath: wheel_11_5mm_D_x12mm_hole_round_for_wheels_holder_pin_6014a,
+    partStartPosition: new Vector3(-290, 0, 440),
+    partType: "6014a",
+    materialId: "whitePlasticMaterial",
+    slotId: "ModelMarker.080",
+    depends: [],
+  },
+  {
+    partPath: wheel_11_5mm_D_x12mm_hole_round_for_wheels_holder_pin_6014a,
+    partStartPosition: new Vector3(-310, 0, 440),
+    partType: "6014a",
+    materialId: "whitePlasticMaterial",
+    slotId: "ModelMarker.081",
+    depends: [],
+  },
+  {
+    partPath: tire_Wide_Offset_Tread_Small_6015,
+    partStartPosition: new Vector3(-290, 0, 465),
+    partType: "6015",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.082",
+    depends: ["ModelMarker.076"],
+  },
+  {
+    partPath: tire_Wide_Offset_Tread_Small_6015,
+    partStartPosition: new Vector3(-320, 0, 465),
+    partType: "6015",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.083",
+    depends: ["ModelMarker.077"],
+  },
+  {
+    partPath: tire_Wide_Offset_Tread_Small_6015,
+    partStartPosition: new Vector3(-290, 0, 490),
+    partType: "6015",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.084",
+    depends: ["ModelMarker.078"],
+  },
+  {
+    partPath: tire_Wide_Offset_Tread_Small_6015,
+    partStartPosition: new Vector3(-320, 0, 490),
+    partType: "6015",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.085",
+    depends: ["ModelMarker.079"],
+  },
+  {
+    partPath: tire_Wide_Offset_Tread_Small_6015,
+    partStartPosition: new Vector3(-290, 0, 515),
+    partType: "6015",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.086",
+    depends: ["ModelMarker.080"],
+  },
+  {
+    partPath: tire_Wide_Offset_Tread_Small_6015,
+    partStartPosition: new Vector3(-320, 0, 515),
+    partType: "6015",
+    materialId: "blackPlasticMaterial",
+    slotId: "ModelMarker.087",
+    depends: ["ModelMarker.081"],
+  },
+];

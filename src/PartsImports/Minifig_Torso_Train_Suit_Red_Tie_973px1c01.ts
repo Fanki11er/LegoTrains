@@ -1,0 +1,4 @@
+import Minifig_Torso_Train_Suit_Red_Tie_973px1c01_model from "../assets/Blocks/Minifig_Torso_Train_Suit_Red_Tie_973px1c01/Minifig_Torso_Train_Suit_Red_Tie_973px1c01.glb";
+
+export const minifig_Torso_Train_Suit_Red_Tie_973px1c01 =
+  Minifig_Torso_Train_Suit_Red_Tie_973px1c01_model;

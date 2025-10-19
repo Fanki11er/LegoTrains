@@ -32,6 +32,7 @@ export class Model {
   private modelMarkersInfo: MarkersInfo;
   private connectedMarkersIds: string[] = [];
   private doNotMoveToTheFloorLevel: boolean;
+  private doNotCountAsModel: boolean = false;
   private arraignmentFunctionRegistrationEntries: ArraignmentFunctionRegistrationEntry[] =
     [];
   private afterPhaseEndArraignmentFunctionsNames: AfterPhaseEndArraignmentFunctionRegistrationEntry[] =
@@ -49,6 +50,7 @@ export class Model {
     isPartialModel: boolean = false,
     isCollectiveModel: boolean = false,
     doNotMoveToTheFloorLevel: boolean = false,
+    doNotCountAsModel: boolean = false,
     completeModelId: string = ""
   ) {
     this.instruction = instruction;
@@ -57,6 +59,7 @@ export class Model {
     this.isCollectiveModel = isCollectiveModel;
     this.completeModelId = completeModelId;
     this.doNotMoveToTheFloorLevel = doNotMoveToTheFloorLevel;
+    this.doNotCountAsModel = doNotCountAsModel;
     this.modelMarkersInfo = {
       markersPath: modelMarkersPath,
       rootMarkerId: `${modelName}_ModelRootMarker`,
@@ -141,6 +144,10 @@ export class Model {
 
   getIsCollectiveModel = () => {
     return this.isCollectiveModel;
+  };
+
+  getDoNotCountAsModel = () => {
+    return this.doNotCountAsModel;
   };
 
   setIsModelFinished = (isFinished: boolean) => {

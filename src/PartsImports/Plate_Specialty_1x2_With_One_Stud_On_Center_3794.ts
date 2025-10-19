@@ -1,0 +1,3 @@
+import Plate_Specialty_1x2_With_One_Stud_On_Center_3794_model from "../assets/Blocks/Plate_Specialty_1x2_With_One_Stud_On_Center_3794/Plate_Specialty_1x2_With_One_Stud_On_Center_3794.glb";
+export const plate_Specialty_1x2_With_One_Stud_On_Center_3794 =
+  Plate_Specialty_1x2_With_One_Stud_On_Center_3794_model;

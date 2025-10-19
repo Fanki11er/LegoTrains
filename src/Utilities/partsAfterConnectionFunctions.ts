@@ -1,6 +1,12 @@
 import { Object3D, Object3DEventMap } from "three";
 import { ArrangementFunctionsHelper } from "../Classes/ArrangementFunctionsHelper";
 import { ArraignmentFunction } from "../Types/ArrangementFunction";
+import {
+  changeRubberBandPhase,
+  connectStringToTruckWinch,
+  rotateHingeHookSliderBaseAndChangeRubberBandPhase,
+  stretchRubberBand,
+} from "../LegoSets/Set4564V1/Truck4564parts/truck4564helperFunctions";
 
 const {
   rotateLeg,
@@ -11,6 +17,7 @@ const {
   changeWinchPhase,
   hideElement,
   throwErrorIfElementIsMissing,
+  rotateElementOnZAxis,
 } = ArrangementFunctionsHelper;
 
 export type PartsArraignmentFunctionsTypes =
@@ -23,7 +30,12 @@ export type PartsArraignmentFunctionsTypes =
   | "changeHoseNozzlePhase"
   | "minifigArms45DegForward"
   | "rotateSmallAntenna30DegBackward"
-  | "hideStringModelAndChangePhaseInWinch";
+  | "hideStringModelAndChangePhaseInWinch"
+  | "rotateHingeHookSliderBase"
+  | "changeRubberBandPhaseAfterConnection"
+  | "rotateHingeHookSliderBaseAndChangeRubberBandPhase"
+  | "stretchRubberBand"
+  | "connectStringToTruckWinch";
 
 export const getPartArrangementFunction = (
   name: PartsArraignmentFunctionsTypes
@@ -58,6 +70,21 @@ export const getPartArrangementFunction = (
     }
     case "hideStringModelAndChangePhaseInWinch": {
       return hideStringModelAndChangePhaseInWinch;
+    }
+    case "rotateHingeHookSliderBase": {
+      return rotateHingeHookSliderBase;
+    }
+    case "changeRubberBandPhaseAfterConnection": {
+      return changeRubberBandPhaseAfterConnection;
+    }
+    case "rotateHingeHookSliderBaseAndChangeRubberBandPhase": {
+      return rotateHingeHookSliderBaseAndChangeRubberBandPhase;
+    }
+    case "stretchRubberBand": {
+      return stretchRubberBand;
+    }
+    case "connectStringToTruckWinch": {
+      return connectStringToTruckWinch;
     }
 
     default: {
@@ -121,5 +148,26 @@ const hideStringModelAndChangePhaseInWinch = (
 
   hideElement(model);
   changeWinchPhase(modelRootMarker!);
+  return [];
+};
+
+const rotateHingeHookSliderBase = (model: Object3D<Object3DEventMap>) => {
+  rotateElementOnZAxis(model, 120);
+  return [];
+};
+
+const changeRubberBandPhaseAfterConnection = (
+  model: Object3D<Object3DEventMap>,
+  modelRootMarker?: Object3D<Object3DEventMap>
+) => {
+  hideElement(model);
+
+  throwErrorIfElementIsMissing(
+    modelRootMarker,
+    "Model root marker is missing in hideStringModelAndChangePhaseInWinch function"
+  );
+
+  changeRubberBandPhase(modelRootMarker!);
+
   return [];
 };

@@ -1,0 +1,4 @@
+import Door_1x5x4_Right_With_Train_Logo_Sticker_3194pb02_model from "../assets/Blocks/Door_1x5x4_Right_With_Train_Logo_Sticker_3194pb02/Door_1x5x4_Right_With_Train_Logo_Sticker_3194pb02.glb";
+
+export const door_1x5x4_Right_With_Train_Logo_Sticker_3194pb02 =
+  Door_1x5x4_Right_With_Train_Logo_Sticker_3194pb02_model;

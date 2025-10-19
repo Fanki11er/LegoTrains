@@ -1,0 +1,4 @@
+import Minifig_Accessory_Headgear_Cap_4485_model from "../assets/Blocks/Minifig_Accessory_Headgear_Cap_4485/Minifig_Accessory_Headgear_Cap_4485.glb";
+
+export const minifig_Accessory_Headgear_Cap_4485 =
+  Minifig_Accessory_Headgear_Cap_4485_model;
