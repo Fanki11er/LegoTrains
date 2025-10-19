@@ -57,7 +57,7 @@ export const truck4564Phase14: LegoBlockType[] = [
     noAutomaticMoveToGroundLevel: true,
     phases: ["phase0"],
     slotId: "ModelMarker.051",
-    depends: [],
+    depends: ["ModelMarker.050"],
   },
   {
     partPath: string_Cord_Thin_Short_x77aw2,
@@ -65,6 +65,6 @@ export const truck4564Phase14: LegoBlockType[] = [
     partType: "x77aw2",
     slotId: "ModelMarker.052",
     doNotArrangeAfterConnectionInNest: true,
-    depends: [],
+    depends: ["ModelMarker.051"],
   },
 ];

@@ -30,7 +30,6 @@ export const set4564platformCartModelBlocks: ModelBlock[] = [
     phaseId: 5,
     legoBlockTypes: platformCart4564Phase5,
   },
-
   {
     phaseId: 6,
     legoBlockTypes: platformCart4564Phase6,

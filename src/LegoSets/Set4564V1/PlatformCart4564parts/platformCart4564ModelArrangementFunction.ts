@@ -44,7 +44,7 @@ export const platformCart4564ModelArrangementFunction: ModelArraignmentFunction 
 
     moveModelToNewPositionInScene(
       carContainerRed!,
-      "SceneHelperMarker.004",
+      "SceneHelperMarker.019",
       sceneRootMarker
     );
 

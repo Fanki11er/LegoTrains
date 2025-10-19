@@ -9,6 +9,7 @@ export const set4564locomotiveTrolleyConfiguration: ModelConfiguration = {
   modelBlocks: set4564locomotiveTrolleyModelBlocks,
   isPartialModel: true,
   completeModelId: "Locomotive4564Model",
+  doNotCountAsModel: true,
   afterConnectArraignmentFunctionsNames: [],
   afterPhaseEndArraignmentFunctionsNames: [],
 };

@@ -17,8 +17,6 @@ const {
   rotateCoupling,
 } = ArrangementFunctionsHelper;
 
-//Todo: Rotate couplings
-
 export const locomotive4564ModelArrangementFunction: ModelArraignmentFunction =
   (
     model: Object3D<Object3DEventMap>,
