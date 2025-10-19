@@ -8,7 +8,7 @@ import {
   Object3DEventMap,
   Vector3,
 } from "three";
-// @ts-expect-error Not a type
+
 import instructionPagePath from "../../../assets/Blocks/InstructionPage/InstructionPage.glb";
 import { InstructionPageTextures } from "../../../Types/InstructionPageTextures";
 import { setTextureOptions } from "../../../Utilities/utilities";
@@ -157,6 +157,7 @@ const InstructionPage = ({
         name={"Page"}
         castShadow
         receiveShadow
+        // @ts-expect-error unnecessary types juggling
         geometry={nodes.PageFront.geometry}
         material={pageMaterials.frontPageMaterial}
         position={[72.05, 0.05, 0]}
@@ -175,6 +176,7 @@ const InstructionPage = ({
         name={"Page"}
         castShadow
         receiveShadow
+        // @ts-expect-error unnecessary types juggling
         geometry={nodes.PageBack.geometry}
         material={pageMaterials.backPageMaterial}
         position={[72.05, -0.05, 0]}

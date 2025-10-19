@@ -1,5 +1,4 @@
 import { ModelConfiguration } from "../../../Types/ModelTypes";
-// @ts-expect-error Not a type
 import set4552WorkshopModelMarkers from "../../../assets/Set_4552_V1/ModelsMarkers/Workshop4552/Markers.glb";
 import { workshop4552ModelArrangementFunction } from "./workshop4552ModelArrangementFunction";
 import { cargoCrain4552WorkshopModelBlocks } from "./workshop4552ModelBlocks";
