@@ -9,8 +9,16 @@ import set_4564_image from "../assets/SetsDashboardImages/SET_4564.jpg";
 import set_4563_image from "../assets/SetsDashboardImages/SET_4563.jpg";
 import set_4565_image from "../assets/SetsDashboardImages/SET_4565.jpg";
 import set_4559_image from "../assets/SetsDashboardImages/SET_4559.jpg";
+import set_4536_image from "../assets/SetsDashboardImages/SET_4536.jpg";
 
 export const ALL_READY_SETS_INFORMATION_DATA: DashboardSetInformationData[] = [
+  {
+    setId: "Set_4536_V1",
+    setName: "LEGO 4536 Blue Hopper Car",
+    setVersion: "(Tutorial Set)",
+    allModels: 2,
+    imagePath: set_4536_image,
+  },
   {
     setId: "Set_7722_V1",
     setName: "LEGO 7722 Steam Cargo Train",

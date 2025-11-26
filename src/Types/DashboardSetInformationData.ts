@@ -1,7 +1,7 @@
 export type DashboardSetInformationData = {
   setId: string;
   setName: string;
-  setVersion: number;
+  setVersion: number | string;
   allModels: number;
   imagePath: string;
 };

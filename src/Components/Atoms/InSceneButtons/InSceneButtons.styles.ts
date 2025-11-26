@@ -36,3 +36,20 @@ export const InSceneArrangeModelButton = styled(InSceneBaseButton)`
     color: ${theme.colors.transparentLightBlack};
   }
 `;
+
+export const InSceneTutorialButton = styled(InSceneBaseButton)`
+  width: fit-content;
+  min-width: 100px;
+  padding: 10px 20px;
+  height: 35px;
+  background-color: ${theme.colors.purpleGray};
+  color: ${theme.colors.purple};
+  justify-self: center;
+  align-self: flex-end;
+
+  &:focus,
+  &:hover {
+    background-color: ${theme.colors.green};
+    color: ${theme.colors.transparentLightBlack};
+  }
+`;
