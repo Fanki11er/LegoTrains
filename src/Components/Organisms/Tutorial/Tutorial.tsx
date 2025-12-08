@@ -26,8 +26,9 @@ import greenSelectedPartImage from "../../../assets/svg/GreenSelectedPartImage.s
 import nestPartImage from "../../../assets/svg/NestPartImage.svg";
 import rotateContextMenuImage from "../../../assets/svg/RotateContextMenuImage.svg";
 import focusContextMenuImage from "../../../assets/svg/FocusContextMenuImage.svg";
+import arrangeModelImage from "../../../assets/svg/ArrangeModelImage.svg";
 
-const totalTutorialPages = 7;
+const totalTutorialPages = 8;
 
 const Tutorial = () => {
   const gl = useThree((state) => state.gl);
@@ -220,6 +221,24 @@ const Tutorial = () => {
             <TutorialPageTextHelperHorizontalImage
               percentWidth={60}
               src={focusContextMenuImage}
+            />
+          </TutorialPage>
+        );
+      case 8:
+        return (
+          <TutorialPage
+            pageNumber={8}
+            header="MODEL ARRANGEMENT"
+            totalPages={totalTutorialPages}
+          >
+            <TutorialPageText>
+              After completing the model and clicking on it, you will see a menu
+              with the "Arrange Model" button. Click on that button to move the
+              model to its final position.
+            </TutorialPageText>
+            <TutorialPageTextHelperHorizontalImage
+              percentWidth={60}
+              src={arrangeModelImage}
             />
           </TutorialPage>
         );
