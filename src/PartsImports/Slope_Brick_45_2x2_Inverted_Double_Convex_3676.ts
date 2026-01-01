@@ -1,0 +1,4 @@
+import Slope_Brick_45_2x2_Inverted_Double_Convex_3676_model from "../assets/Blocks/Slope_Brick_45_2x2_Inverted_Double_Convex_3676/Slope_Brick_45_2x2_Inverted_Double_Convex_3676.glb";
+
+export const slope_Brick_45_2x2_Inverted_Double_Convex_3676 =
+  Slope_Brick_45_2x2_Inverted_Double_Convex_3676_model;

@@ -1,0 +1,4 @@
+import Antenna_Small_Base_with_Lever_298c03_model from "../assets/Blocks/Antenna_Small_Base_with_Lever_298c03/Antenna_Small_Base_with_Lever_298c03.glb";
+
+export const antenna_small_base_with_lever_298c03 =
+  Antenna_Small_Base_with_Lever_298c03_model;

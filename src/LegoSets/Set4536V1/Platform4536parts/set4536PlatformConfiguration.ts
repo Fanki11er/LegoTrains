@@ -6,6 +6,7 @@ export const set4536platformConfiguration: ModelConfiguration = {
   modelName: "Platform4536Model",
   modelMarkers: set4536platformModelMarkers,
   modelBlocks: set4536platformModelBlocks,
+  //Todo Add arrangement functions
   afterConnectArraignmentFunctionsNames: [],
   afterPhaseEndArraignmentFunctionsNames: [],
 };
