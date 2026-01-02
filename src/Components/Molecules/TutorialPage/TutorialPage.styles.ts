@@ -37,6 +37,6 @@ export const TutorialPageTextHelperHorizontalImage = styled.img<{
   align-self: center;
   width: ${({ percentWidth }) => (percentWidth ? `${percentWidth}%` : "100%")};
   height: auto;
-  margin: 15px 0;
+  margin-top: 15px;
   border-radius: 10px;
 `;

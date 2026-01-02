@@ -41,6 +41,7 @@ export const TutorialButtonsWrapper = styled.div`
   display: flex;
   column-gap: 25px;
   justify-content: center;
+  margin-top: 15px;
 `;
 
 export const HideTutorialButton = styled.button`

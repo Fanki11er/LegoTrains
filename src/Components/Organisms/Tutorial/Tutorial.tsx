@@ -28,12 +28,14 @@ import rotateContextMenuImage from "../../../assets/svg/RotateContextMenuImage.s
 import focusContextMenuImage from "../../../assets/svg/FocusContextMenuImage.svg";
 import arrangeModelImage from "../../../assets/svg/ArrangeModelImage.svg";
 import specialCasesImage from "../../../assets/svg/SpecialCasesImage.svg";
+import useDetectMobile from "../../../Hooks/useDetectMobile";
 
 const totalTutorialPages = 9;
 
 const Tutorial = () => {
   const gl = useThree((state) => state.gl);
   const rootRef = useRef<Root | null>(null);
+  const isMobile = useDetectMobile();
 
   const target = gl.domElement.parentNode;
 
@@ -93,12 +95,14 @@ const Tutorial = () => {
           >
             <TutorialPageText>
               This short tutorial shows you how to use this application. You can
-              hide it by clicking the
+              hide it by {isMobile ? "tapping" : "clicking"} the
               <TutorialTextIcon src={hideTutorialIcon} /> icon. To show it
-              again, click the <TutorialTextIcon src={showTutorialIcon} /> icon
-              in the top right corner.
+              again, {isMobile ? "tap" : "click"} the{" "}
+              <TutorialTextIcon src={showTutorialIcon} /> icon in the top right
+              corner.
               <br />
-              Please click Next button when you are ready.
+              Please {isMobile ? "tap" : "click"} Next button when you are
+              ready.
             </TutorialPageText>
           </TutorialPage>
         );
@@ -109,11 +113,19 @@ const Tutorial = () => {
             header="Controls Overview"
             totalPages={totalTutorialPages}
           >
-            <TutorialPageText>
-              To move around the scene, you need to press and hold the right
-              mouse button. To rotate the scene, press and hold the left mouse
-              button. To zoom in or zoom out, use your mouse wheel.
-            </TutorialPageText>
+            {isMobile ? (
+              <TutorialPageText>
+                To move around the scene, touch the screen with two fingers and
+                drag. To rotate the scene, touch the screen with one finger and
+                move. To zoom in or zoom out, use two fingers and pinch.
+              </TutorialPageText>
+            ) : (
+              <TutorialPageText>
+                To move around the scene, you need to press and hold the right
+                mouse button. To rotate the scene, press and hold the left mouse
+                button. To zoom in or zoom out, use your mouse wheel.
+              </TutorialPageText>
+            )}
           </TutorialPage>
         );
       case 2:
@@ -126,8 +138,9 @@ const Tutorial = () => {
             <TutorialPageText>
               Use the instruction to determine which parts you need at the
               current stage of building the model. You can turn the instruction
-              page by clicking its edge.
+              page by {isMobile ? "tapping" : "clicking"} its edge.
             </TutorialPageText>
+
             <TutorialPageTextHelperHorizontalImage
               src={instructionEdgeImage}
               percentWidth={80}
@@ -176,12 +189,19 @@ const Tutorial = () => {
             header="Building the Model"
             totalPages={totalTutorialPages}
           >
-            <TutorialPageText>
-              With the part selected, move the mouse around the model and find a
-              place where it fits. When the cursor is over, you will see a
-              bluish representation of the selected part. Click it to place a
-              part in the model.
-            </TutorialPageText>
+            {isMobile ? (
+              <TutorialPageText>
+                After selecting the part, you will see a bluish representation
+                of it in the model. Tap it to place a part in the model.
+              </TutorialPageText>
+            ) : (
+              <TutorialPageText>
+                With the part selected, move the mouse around the model and find
+                a place where it fits. When the cursor is over, you will see a
+                bluish representation of the selected part. Click it to place a
+                part in the model.
+              </TutorialPageText>
+            )}
             <TutorialPageTextHelperHorizontalImage
               src={nestPartImage}
               percentWidth={60}
@@ -197,8 +217,8 @@ const Tutorial = () => {
           >
             <TutorialPageText>
               Sometimes you need to rotate the model to add the following parts.
-              To achieve this, click the model and rotate it using the buttons
-              in the bottom-right corner of the screen.
+              To achieve this, {isMobile ? "tap" : "click"} the model and rotate
+              it using the buttons in the bottom-right corner of the screen.
             </TutorialPageText>
             <TutorialPageTextHelperHorizontalImage
               percentWidth={60}
@@ -233,9 +253,10 @@ const Tutorial = () => {
             totalPages={totalTutorialPages}
           >
             <TutorialPageText>
-              After completing the model and clicking on it, you will see a menu
-              with the "Arrange Model" button. Click on that button to move the
-              model to its final position.
+              After completing the model and {isMobile ? "tapping" : "clicking"}{" "}
+              on it, you will see a menu with the "Arrange Model" button.{" "}
+              {isMobile ? "Tap" : "Click"} on that button to move the model to
+              its final position.
             </TutorialPageText>
             <TutorialPageTextHelperHorizontalImage
               percentWidth={60}
@@ -258,7 +279,7 @@ const Tutorial = () => {
               suggest.
             </TutorialPageText>
             <TutorialPageTextHelperHorizontalImage
-              percentWidth={60}
+              percentWidth={80}
               src={specialCasesImage}
             />
           </TutorialPage>
