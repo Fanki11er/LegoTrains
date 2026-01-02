@@ -27,8 +27,9 @@ import nestPartImage from "../../../assets/svg/NestPartImage.svg";
 import rotateContextMenuImage from "../../../assets/svg/RotateContextMenuImage.svg";
 import focusContextMenuImage from "../../../assets/svg/FocusContextMenuImage.svg";
 import arrangeModelImage from "../../../assets/svg/ArrangeModelImage.svg";
+import specialCasesImage from "../../../assets/svg/SpecialCasesImage.svg";
 
-const totalTutorialPages = 8;
+const totalTutorialPages = 9;
 
 const Tutorial = () => {
   const gl = useThree((state) => state.gl);
@@ -125,7 +126,7 @@ const Tutorial = () => {
             <TutorialPageText>
               Use the instruction to determine which parts you need at the
               current stage of building the model. You can turn the instruction
-              page by clicking its right or left edge.
+              page by clicking its edge.
             </TutorialPageText>
             <TutorialPageTextHelperHorizontalImage
               src={instructionEdgeImage}
@@ -239,6 +240,26 @@ const Tutorial = () => {
             <TutorialPageTextHelperHorizontalImage
               percentWidth={60}
               src={arrangeModelImage}
+            />
+          </TutorialPage>
+        );
+      case 9:
+        return (
+          <TutorialPage
+            pageNumber={9}
+            header="SPECIAL CASES"
+            totalPages={totalTutorialPages}
+          >
+            <TutorialPageText>
+              In most cases, you will follow the instructions. Sometimes,
+              because all parts added to the model must be connected to it (they
+              can't be floating), you will need to determine the correct order
+              of connecting them, which may differ from what the instructions
+              suggest.
+            </TutorialPageText>
+            <TutorialPageTextHelperHorizontalImage
+              percentWidth={60}
+              src={specialCasesImage}
             />
           </TutorialPage>
         );

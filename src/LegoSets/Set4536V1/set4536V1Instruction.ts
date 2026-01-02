@@ -11,7 +11,7 @@ export const createSet4536V1Instruction = () => {
   );
 
   //?? Platform
-  // set4536Instruction.createModel(set4536platformConfiguration);
+  set4536Instruction.createModel(set4536platformConfiguration);
 
   //?? Blue Hopper
   set4536Instruction.createModel(set4536blueHopperConfiguration);
