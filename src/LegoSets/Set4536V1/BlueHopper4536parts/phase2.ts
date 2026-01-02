@@ -47,7 +47,7 @@ export const blueHopper4536Phase2: LegoBlockType[] = [
   },
   {
     partPath: tile_1x4_2431,
-    partStartPosition: new Vector3(-35, 0, 305),
+    partStartPosition: new Vector3(10, 0, 300),
     partType: "2431",
     materialId: "blackPlasticMaterial",
     slotId: "ModelMarker.006",
@@ -87,7 +87,7 @@ export const blueHopper4536Phase2: LegoBlockType[] = [
   },
   {
     partPath: tile_1x4_2431,
-    partStartPosition: new Vector3(-35, 0, 320),
+    partStartPosition: new Vector3(10, 0, 315),
     partType: "2431",
     materialId: "blackPlasticMaterial",
     slotId: "ModelMarker.011",

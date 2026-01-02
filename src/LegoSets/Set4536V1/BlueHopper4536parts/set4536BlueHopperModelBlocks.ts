@@ -1,5 +1,11 @@
 import { ModelBlock } from "../../../Types/ModelBlock";
 import { blueHopper4536Phase1 } from "./phase1";
+import { blueHopper4536Phase10 } from "./phase10";
+import { blueHopper4536Phase11 } from "./phase11";
+import { blueHopper4536Phase12 } from "./phase12";
+import { blueHopper4536Phase13 } from "./phase13";
+import { blueHopper4536Phase14 } from "./phase14";
+import { blueHopper4536Phase15 } from "./phase15";
 import { blueHopper4536Phase2 } from "./phase2";
 import { blueHopper4536Phase3 } from "./phase3";
 import { blueHopper4536Phase4 } from "./phase4";
@@ -45,5 +51,29 @@ export const set4536blueHopperModelBlocks: ModelBlock[] = [
   {
     phaseId: 9,
     legoBlockTypes: blueHopper4536Phase9,
+  },
+  {
+    phaseId: 10,
+    legoBlockTypes: blueHopper4536Phase10,
+  },
+  {
+    phaseId: 11,
+    legoBlockTypes: blueHopper4536Phase11,
+  },
+  {
+    phaseId: 12,
+    legoBlockTypes: blueHopper4536Phase12,
+  },
+  {
+    phaseId: 13,
+    legoBlockTypes: blueHopper4536Phase13,
+  },
+  {
+    phaseId: 14,
+    legoBlockTypes: blueHopper4536Phase14,
+  },
+  {
+    phaseId: 15,
+    legoBlockTypes: blueHopper4536Phase15,
   },
 ];
