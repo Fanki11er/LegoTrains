@@ -2,13 +2,17 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { InstructionPageTextures } from "../../../Types/InstructionPageTextures";
 import InstructionPage from "../InstructionPage/InstructionPage";
 import { Group } from "three";
-import { moveElementToFloorLevel } from "../../../Utilities/utilities";
+import {
+  convertDegreesToRadians,
+  moveElementToFloorLevel,
+} from "../../../Utilities/utilities";
 
 type Props = {
   position: [number, number, number];
   instructionTextures: InstructionPageTextures[];
+  rotation?: number;
 };
-const Instruction = ({ position, instructionTextures }: Props) => {
+const Instruction = ({ position, instructionTextures, rotation }: Props) => {
   const instructionRef = useRef<Group>(null);
   const [onTopPagesIndexes, setOnTopPagesIndexes] = useState<number[]>([0]);
   const pagesCount = instructionTextures.length;
@@ -65,7 +69,11 @@ const Instruction = ({ position, instructionTextures }: Props) => {
   };
 
   return (
-    <group ref={instructionRef} position={position}>
+    <group
+      ref={instructionRef}
+      position={position}
+      rotation-y={rotation ? convertDegreesToRadians(rotation) : 0}
+    >
       {renderInstruction(instructionTextures)}
     </group>
   );

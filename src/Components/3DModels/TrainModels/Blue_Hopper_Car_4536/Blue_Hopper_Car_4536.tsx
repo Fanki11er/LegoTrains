@@ -39,8 +39,9 @@ const BlueHopperCar_4536 = ({
         <MaterialsProvider>
           <Floor />
           <Instruction
-            position={[-200, 0.1, 0]}
+            position={[-250, 0.1, 0]}
             instructionTextures={instruction_textures_4536}
+            rotation={-90}
           />
 
           {renderModels(handleGetSetModelsToRenderList(), modelsData)}
