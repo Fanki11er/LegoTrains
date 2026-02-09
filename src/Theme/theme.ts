@@ -20,6 +20,8 @@ export const theme: Theme = {
     transparentBlack: "rgba(0, 0, 0, 0.8)",
     nestBlue: "rgba(44, 66, 230, 1)",
     floorBlue: "rgba(0, 87, 166, 1)",
+    gradientOrange: "rgba(244, 73, 3, 1)",
+    gradientYellow: "rgba(251, 164, 0, 1)",
   },
 
   defaultFontFamily: "Inter, sans-serif",
@@ -54,6 +56,8 @@ export type Theme = {
     transparentLightBlack: string;
     nestBlue: string;
     floorBlue: string;
+    gradientOrange: string;
+    gradientYellow: string;
   };
 
   fontSizes: {

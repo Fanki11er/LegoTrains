@@ -1,4 +1,5 @@
 export const paths = {
+  rootPath: "/",
   accountRegistrationPath: "/Registration",
   loginPath: "/Login",
   resetPasswordPath: "/Reset",
