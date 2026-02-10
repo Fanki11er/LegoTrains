@@ -19,11 +19,6 @@ const LandingPageAnimation = ({ scene, animations, model, camera }: Props) => {
   const { actions } = useAnimations(animations, scene);
   const scroll = useScroll();
 
-  // const frontLightRef = useRef<DirectionalLight>(null);
-  // const sideLightRef = useRef<DirectionalLight>(null);
-  // const cameraLightRef = useRef<DirectionalLight>(null);
-  // const topLightRef = useRef<DirectionalLight>(null);
-
   useEffect(() => {
     for (const actionKey in actions) {
       const action = actions[actionKey];
@@ -47,22 +42,12 @@ const LandingPageAnimation = ({ scene, animations, model, camera }: Props) => {
 
   return (
     <>
-      <directionalLight
-        position={[-200, 20, -50]}
-        intensity={5}
-        //ref={frontLightRef}
-      />
-      <directionalLight
-        position={[100, 20, 200]}
-        intensity={5}
-        //ref={sideLightRef}
-      />
-
+      <directionalLight position={[-200, 20, -50]} intensity={5} />
+      <directionalLight position={[100, 20, 200]} intensity={5} />
       <directionalLight
         position={camera?.position.toArray() || [100, 100, 100]}
         rotation={camera?.rotation}
         intensity={2}
-        //ref={cameraLightRef}
       />
 
       <directionalLight
@@ -70,7 +55,6 @@ const LandingPageAnimation = ({ scene, animations, model, camera }: Props) => {
         rotation={[0, 0, 0]}
         intensity={3}
         color={new Color("#FBA400")}
-        //ref={topLightRef}
       />
 
       {scene && <primitive object={scene} position={[0, -185, 0]} />}

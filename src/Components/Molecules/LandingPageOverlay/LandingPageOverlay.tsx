@@ -27,10 +27,11 @@ const LandingPageOverlay = () => {
       <LandingPageOverlaySection $opacity={firstSectionOpacity}>
         <LandingPageOverlayContentWrapper $gridPosition="1/2">
           <WithGradientContainer>
-            <h2>Unlock the magic</h2>
+            <h2>Unlock </h2>
             <p>
-              of LEGO trains building with this innovative app! Immerse yourself
-              in a world where nostalgia meets modern technology.
+              the magic of LEGO trains building with this innovative app!
+              Immerse yourself in a world where nostalgia meets modern
+              technology.
             </p>
           </WithGradientContainer>
         </LandingPageOverlayContentWrapper>
@@ -50,9 +51,10 @@ const LandingPageOverlay = () => {
       <LandingPageOverlaySetsContentContainer $opacity={setsSectionOpacity}>
         <LandingPageOverlayContentWrapper>
           <WithGradientContainer>
-            <h2>Join the adventure</h2>
+            <h2>Join </h2>
             <span>
-              today and start building your dream LEGO trains collection!
+              the adventure today and start building your dream LEGO trains
+              collection!
             </span>
             <span>Don't miss out on this unique experience.</span>
           </WithGradientContainer>

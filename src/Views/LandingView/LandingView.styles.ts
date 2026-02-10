@@ -15,6 +15,25 @@ export const LandingPageHeader = styled.img`
   left: 50%;
   transform: translateX(-50%);
   width: 70%;
-  //width: 300px;
-  //z-index: 10;
+`;
+
+export const LandingPageButtonsSection = styled.section`
+  width: fit-content;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  position: absolute;
+  top: 0;
+  right: 0px;
+  z-index: 10;
+`;
+
+export const LandingPageFooterSection = styled.section`
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
 `;

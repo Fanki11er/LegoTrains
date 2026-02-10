@@ -6,7 +6,7 @@ export const FooterWrapper = styled.footer`
   width: 100vw;
   height: 80px;
   background-color: ${({ theme }) => theme.colors.darkGray};
-  padding: 0 1rem;
+  padding: 0 1.5rem;
   align-self: flex-end;
 
   @media screen and (max-width: 680px) {
