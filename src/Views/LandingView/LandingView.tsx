@@ -31,6 +31,7 @@ const LandingView = () => {
         </StyledSubmitButton>
       </LandingPageButtonsSection>
       <LandingPageHeader src={landingPageHeaderSrc} />
+
       <StyledCanvas
         camera={{
           near: 1,

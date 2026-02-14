@@ -28,12 +28,3 @@ export const LandingPageButtonsSection = styled.section`
   right: 0px;
   z-index: 10;
 `;
-
-export const LandingPageFooterSection = styled.section`
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-`;

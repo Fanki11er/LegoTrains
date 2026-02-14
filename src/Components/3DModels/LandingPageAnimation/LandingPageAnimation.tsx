@@ -1,13 +1,7 @@
 import { useAnimations, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useEffect /*useRef*/ } from "react";
-import {
-  AnimationClip,
-  Color,
-  //DirectionalLight,
-  Object3D,
-  Object3DEventMap,
-} from "three";
+import { useEffect } from "react";
+import { AnimationClip, Color, Object3D, Object3DEventMap } from "three";
 
 type Props = {
   scene: Object3D<Object3DEventMap>;

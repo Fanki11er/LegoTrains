@@ -26,6 +26,14 @@ export const LandingPageOverlaySection = styled.section<OpacityProps>`
   opacity: ${(props) => props.$opacity};
   justify-items: center;
 `;
+export const LandingPageRelativeContainerSection = styled.section<OpacityProps>`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  opacity: ${(props) => props.$opacity};
+`;
 
 export const LandingPageOverlayContentWrapper = styled.div<ContentWrapperProps>`
   width: 300px;
@@ -71,4 +79,26 @@ export const WithGradientContainer = styled.div`
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+`;
+
+export const LandingPageScrollDownIndicator = styled.img`
+  height: 100px;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  animation: scrollDownIndicatorAnimation 2s infinite;
+
+  @keyframes scrollDownIndicatorAnimation {
+    0% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(15px);
+    }
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+  }
 `;

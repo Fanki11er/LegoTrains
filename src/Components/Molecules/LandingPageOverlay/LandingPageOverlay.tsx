@@ -4,26 +4,36 @@ import {
   LandingPageOverlaySection,
   LandingPageOverlaySetsContentContainer,
   LandingPageOverlayWrapper,
+  LandingPageRelativeContainerSection,
+  LandingPageScrollDownIndicator,
   WithGradientContainer,
 } from "./LandingPageOverlay.styles";
 import { useState } from "react";
 import { useFrame } from "@react-three/fiber";
+import scrollIndicatorImage from "../../../assets/svg/ScrollIndicator.svg";
 
 const LandingPageOverlay = () => {
   const scroll = useScroll();
 
+  const [scrollIndicatorSectionOpacity, setScrollIndicatorSectionOpacity] =
+    useState(1);
   const [firstSectionOpacity, setFirstSectionOpacity] = useState(1);
   const [secondSectionOpacity, setSecondSectionOpacity] = useState(1);
   const [setsSectionOpacity, setSetsSectionOpacity] = useState(1);
 
   useFrame(() => {
+    setScrollIndicatorSectionOpacity(1 - scroll.range(0, 1 / 20));
     setFirstSectionOpacity(1 - scroll.range(1 / 6, 1 / 10));
     setSecondSectionOpacity(1 - scroll.range(1 / 2, 1 / 10));
     setSetsSectionOpacity(1 - scroll.range(5 / 6, 1 / 15));
   });
   return (
     <LandingPageOverlayWrapper html>
-      <LandingPageOverlaySection $opacity={1} />
+      <LandingPageRelativeContainerSection
+        $opacity={scrollIndicatorSectionOpacity}
+      >
+        <LandingPageScrollDownIndicator src={scrollIndicatorImage} />
+      </LandingPageRelativeContainerSection>
       <LandingPageOverlaySection $opacity={firstSectionOpacity}>
         <LandingPageOverlayContentWrapper $gridPosition="1/2">
           <WithGradientContainer>
