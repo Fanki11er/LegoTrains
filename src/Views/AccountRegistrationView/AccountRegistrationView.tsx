@@ -11,5 +11,5 @@ const AccountRegistrationView = () => {
     </AccountViewTemplate>
   );
 };
-
+//Todo if logged in move to dashboard
 export default AccountRegistrationView;

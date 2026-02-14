@@ -1,5 +1,5 @@
 import { LogoImage } from "./Logo.styles";
-import logoImage from "../../../assets/svg/legoTrainsLogo.svg";
+import logoImage from "../../../assets/svg/LegoTrainsLogo.svg";
 import { Link } from "react-router-dom";
 import { paths } from "../../../router/routerPaths";
 

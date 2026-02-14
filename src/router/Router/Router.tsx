@@ -4,11 +4,12 @@ import LegoSet from "../../Components/Organisms/LegoSet/LegoSet";
 import AccountRegistrationView from "../../Views/AccountRegistrationView/AccountRegistrationView";
 import { paths } from "../routerPaths";
 import AccountLoginFormView from "../../Views/AccountLoginFormView/AccountLoginFormView";
-import AuthComponent from "../../Components/Molecules/AuthComponent/AuthComponent";
+import RequireAuthComponent from "../../Components/Molecules/RequireAuthComponent/RequireAuthComponent";
 import ResetPasswordView from "../../Views/ResetPasswordView/ResetPasswordView";
 import UpgradeAccountView from "../../Views/UpgradeAccountView/UpgradeAccountView";
 import ErrorView from "../../Views/ErrrorView/ErrorView";
 import LandingView from "../../Views/LandingView/LandingView";
+import RedirectAuthenticatedUserComponent from "../../Components/Molecules/RedirectAuthenticatedUserComponent/RedirectAuthenticatedUserComponent";
 
 const {
   userDashboardRouterPath,
@@ -30,9 +31,13 @@ const Router = () => {
           path={accountRegistrationPath}
           element={<AccountRegistrationView />}
         />
-        <Route path={loginPath} element={<AccountLoginFormView />} />
-        <Route path={resetPasswordPath} element={<ResetPasswordView />} />
-        <Route element={<AuthComponent />}>
+
+        <Route element={<RedirectAuthenticatedUserComponent />}>
+          <Route path={loginPath} element={<AccountLoginFormView />} />
+          <Route path={resetPasswordPath} element={<ResetPasswordView />} />
+        </Route>
+
+        <Route element={<RequireAuthComponent />}>
           <Route path={userDashboardRouterPath} element={<UserDashboard />} />
           <Route path={upgradeAccountPath} element={<UpgradeAccountView />} />
           <Route path={legoSetRouterPath} element={<LegoSet />} />
