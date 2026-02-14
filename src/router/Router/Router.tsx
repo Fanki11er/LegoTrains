@@ -27,14 +27,13 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path={rootPath} element={<LandingView />} />
-        <Route
-          path={accountRegistrationPath}
-          element={<AccountRegistrationView />}
-        />
-
+        <Route path={resetPasswordPath} element={<ResetPasswordView />} />
         <Route element={<RedirectAuthenticatedUserComponent />}>
           <Route path={loginPath} element={<AccountLoginFormView />} />
-          <Route path={resetPasswordPath} element={<ResetPasswordView />} />
+          <Route
+            path={accountRegistrationPath}
+            element={<AccountRegistrationView />}
+          />
         </Route>
 
         <Route element={<RequireAuthComponent />}>
