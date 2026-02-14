@@ -13,6 +13,7 @@ import {
   DashboardSetInformationWrapper,
   OpenSetLink,
 } from "./DashboardSetInformation.styles";
+import { GradientTextWrapper } from "../../Atoms/GradientTextWrapper/GradientTextWrapper.styles";
 type Props = {
   dashboardSetInformationData: DashboardSetInformationData;
   setInformationDTO?: SetPersistenceData;
@@ -29,7 +30,7 @@ const DashboardSetInformation = ({
 
   const setStatus = (
     setInformationDTO: SetPersistenceData | undefined,
-    allModels: number
+    allModels: number,
   ): DashboardSetStatus => {
     if (!setInformationDTO) {
       return "";
@@ -55,12 +56,18 @@ const DashboardSetInformation = ({
           <ResetSetButtonImage src={resetSetIcon} alt={"Reset button image"} />
         </ResetSetButton>
       )}
-      <h3>{setName}</h3>
-      <span>{`Set version: ${setVersion}`}</span>
+      <GradientTextWrapper>
+        <h3>{setName}</h3>
+      </GradientTextWrapper>
+      <GradientTextWrapper>
+        <span>{`Set version: ${setVersion}`}</span>
+      </GradientTextWrapper>
       <DashboardSetInformationImage src={imagePath} alt={"Cover image"} />
-      <span>{`Completed models: ${
-        setInformationDTO ? setInformationDTO.finishedModelsNumber : 0
-      }/${allModels}`}</span>
+      <GradientTextWrapper>
+        <span>{`Completed models: ${
+          setInformationDTO ? setInformationDTO.finishedModelsNumber : 0
+        }/${allModels}`}</span>
+      </GradientTextWrapper>
       <OpenSetLink to={legoSetRouterNavigationPath(setId)}>Open</OpenSetLink>
     </DashboardSetInformationWrapper>
   );

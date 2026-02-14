@@ -1,4 +1,5 @@
 import { DashboardFutureSetInformationData } from "../../../Types/DashboardSetInformationData";
+import { GradientTextWrapper } from "../../Atoms/GradientTextWrapper/GradientTextWrapper.styles";
 import {
   DashboardFutureSetInformationImage,
   DashboardFutureSetInformationSpan,
@@ -19,9 +20,11 @@ const DashboardFutureSetsInformation = ({
       <h3>{setName}</h3>
       <span>{`Set version: ${setVersion}`}</span>
       <DashboardFutureSetInformationImage src={imagePath} alt={"Cover image"} />
-      <DashboardFutureSetInformationSpan>
-        {informationText || "Available soon..."}
-      </DashboardFutureSetInformationSpan>
+      <GradientTextWrapper>
+        <DashboardFutureSetInformationSpan>
+          {informationText || "Available soon..."}
+        </DashboardFutureSetInformationSpan>
+      </GradientTextWrapper>
     </DashboardFutureSetsInformationWrapper>
   );
 };

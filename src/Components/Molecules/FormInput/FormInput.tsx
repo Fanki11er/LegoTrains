@@ -1,5 +1,6 @@
 import { useField } from "formik";
 import {
+  GradientLabelSpan,
   StyledFormInput,
   StyledFormInputError,
   StyledFormInputLabel,
@@ -16,7 +17,8 @@ const FormInput = ({ name, placeholderText, labelText, type }: Props) => {
 
   return (
     <StyledFormInputLabel>
-      {labelText}
+      <GradientLabelSpan>{labelText}</GradientLabelSpan>
+
       <StyledFormInput
         type={type || "text"}
         placeholder={placeholderText}

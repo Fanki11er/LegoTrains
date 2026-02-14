@@ -1,4 +1,5 @@
 import useAuth from "../../../Hooks/useAuth";
+import { GradientTextWrapper } from "../../Atoms/GradientTextWrapper/GradientTextWrapper.styles";
 import Logo from "../Logo/Logo";
 import Logout from "../Logout/Logout";
 import {
@@ -18,7 +19,9 @@ const UserDashboardTopNavigation = () => {
       </UserDashboardTopNavigationElementContainer>
       <UserDashboardTopNavigationElementContainer>
         <UserDashboardTopNavigationUserInfo>
-          {isAnonymous ? "Anonymous" : currentUser?.displayName}
+          <GradientTextWrapper>
+            <span>{isAnonymous ? "Anonymous" : currentUser?.displayName}</span>
+          </GradientTextWrapper>
         </UserDashboardTopNavigationUserInfo>
         <Logout />
       </UserDashboardTopNavigationElementContainer>

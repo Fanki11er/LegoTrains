@@ -11,6 +11,7 @@ import gitHubLogo from "../../../assets/svg/GitHubLogo.svg";
 import linkedInLogo from "../../../assets/svg/LinkedInLogo.svg";
 import youTubeLogo from "../../../assets/svg/YoutubeLogo.svg";
 import kdzLogo from "../../../assets/svg/KdzLogo.svg";
+import { GradientTextWrapper } from "../../Atoms/GradientTextWrapper/GradientTextWrapper.styles";
 
 const Footer = () => {
   return (
@@ -40,7 +41,9 @@ const Footer = () => {
           <FooterLogo src={kdzLogo} alt={"Author logo"} />
         </FooterLogoLink>
       </FooterIconsWrapper>
-      <FooterVersionInfo>{APP_VERSION}</FooterVersionInfo>
+      <FooterVersionInfo>
+        <GradientTextWrapper>{APP_VERSION}</GradientTextWrapper>
+      </FooterVersionInfo>
     </FooterWrapper>
   );
 };

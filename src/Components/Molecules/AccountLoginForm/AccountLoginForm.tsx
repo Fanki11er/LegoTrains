@@ -17,6 +17,8 @@ import { paths } from "../../../router/routerPaths";
 import { EMAIL_FIELD, PASSWORD_FIELD } from "../../../Constants/constants";
 import { yupEmailValidationShape } from "../../../Utilities/validators/validators";
 import useAnalytics from "../../../Hooks/useAnalytics";
+import { GradientTextWrapper } from "../../Atoms/GradientTextWrapper/GradientTextWrapper.styles";
+import { FormOneLineSpan } from "../../Atoms/FormOneLineSpan/FormOneLineSpan.styles";
 
 const { userDashboardRouterPath, accountRegistrationPath, resetPasswordPath } =
   paths;
@@ -49,7 +51,7 @@ const AccountLoginForm = () => {
         setSubmitting(true);
         loginUserWithEmailAndPassword(
           values[EMAIL_FIELD],
-          values[PASSWORD_FIELD]
+          values[PASSWORD_FIELD],
         )
           .then(() => {
             resetForm();
@@ -81,13 +83,16 @@ const AccountLoginForm = () => {
             </>
           )}
           <FormChoicesWrapper>
-            <span>
-              Don't have account?
+            <FormOneLineSpan>
+              <GradientTextWrapper>Don't have account?</GradientTextWrapper>
+
               <FormRedirectionLink to={accountRegistrationPath}>
                 Register
               </FormRedirectionLink>
-            </span>
-            <FormPaddingSpan>or</FormPaddingSpan>
+            </FormOneLineSpan>
+            <FormPaddingSpan>
+              <GradientTextWrapper>or</GradientTextWrapper>
+            </FormPaddingSpan>
             <StyledSubmitButton
               type={"button"}
               onClick={() => {

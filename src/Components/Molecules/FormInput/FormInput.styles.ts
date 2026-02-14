@@ -34,10 +34,21 @@ export const StyledFormInputLabel = styled.label`
   display: flex;
   flex-direction: column;
   transition: all 0.5s;
-  font-weight: 400;
+  font-weight: 500;
   row-gap: 0.5rem;
   width: 100%;
   color: ${({ theme }) => theme.colors.white};
+`;
+
+export const GradientLabelSpan = styled.span`
+  background: linear-gradient(
+    180deg,
+    ${({ theme }) => theme.colors.gradientYellow},
+    ${({ theme }) => theme.colors.gradientOrange}
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
 export const StyledFormInputError = styled.span`

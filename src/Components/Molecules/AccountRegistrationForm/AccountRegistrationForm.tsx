@@ -21,6 +21,8 @@ import {
 import { yupRegistrationValidationShape } from "../../../Utilities/validators/validators";
 import { createUserData } from "../../../firebase/writeToDbFunctions";
 import useAnalytics from "../../../Hooks/useAnalytics";
+import { GradientTextWrapper } from "../../Atoms/GradientTextWrapper/GradientTextWrapper.styles";
+import { FormOneLineSpan } from "../../Atoms/FormOneLineSpan/FormOneLineSpan.styles";
 
 const { userDashboardRouterPath, loginPath } = paths;
 
@@ -58,7 +60,7 @@ const AccountRegistrationForm = () => {
             await setUsername(userCredentials.user, values[NAME_FIELD]).catch(
               (err) => {
                 setAuthError(err.message);
-              }
+              },
             );
 
             createUserData().catch((err) => {
@@ -97,10 +99,10 @@ const AccountRegistrationForm = () => {
           ) : (
             <StyledSubmitButton type={"submit"}>Register</StyledSubmitButton>
           )}
-          <div>
-            Already have account?
+          <FormOneLineSpan>
+            <GradientTextWrapper>Already have account?</GradientTextWrapper>
             <FormRedirectionLink to={loginPath}>Login</FormRedirectionLink>
-          </div>
+          </FormOneLineSpan>
         </FormikForm>
       )}
     </Formik>

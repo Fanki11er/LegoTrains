@@ -34,7 +34,7 @@ export const FooterVersionInfo = styled.span`
   align-items: center;
   width: fit-content;
   margin-left: auto;
-  color: ${({ theme }) => theme.colors.purple};
+  font-weight: bold;
 
   @media screen and (max-width: 680px) {
     font-size: ${({ theme }) => theme.fontSizes.S};
@@ -49,7 +49,11 @@ export const FooterLogoLink = styled.a`
   border-radius: 1rem;
   &:hover,
   &:focus {
-    background-color: ${({ theme }) => theme.colors.purple};
+    background: linear-gradient(
+      180deg,
+      ${({ theme }) => theme.colors.gradientYellow},
+      ${({ theme }) => theme.colors.gradientOrange}
+    );
   }
 `;
 
