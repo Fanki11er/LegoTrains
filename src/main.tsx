@@ -16,7 +16,7 @@ const isProd = import.meta.env.PROD;
 
 export const withHelper = isProd ? false : true; // Disable context menu helper in production
 
-export const APP_VERSION = "26.01.03";
+export const APP_VERSION = "26.02.14";
 
 const queryClient = new QueryClient();
 
@@ -35,5 +35,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         </AnalyticsProvider>
       </ThemeProvider>
     </ErrorBoundary>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

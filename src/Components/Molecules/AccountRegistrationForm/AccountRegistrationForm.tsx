@@ -82,16 +82,23 @@ const AccountRegistrationForm = () => {
           {authError && <FormError>{authError}</FormError>}
           <StyledInputsWrapper>
             <FormInput name={NAME_FIELD} labelText={"Name"} />
-            <FormInput name={EMAIL_FIELD} labelText={"Email"} type={"email"} />
+            <FormInput
+              name={EMAIL_FIELD}
+              labelText={"Email"}
+              type={"email"}
+              attributes={{ autoComplete: "username" }}
+            />
             <FormInput
               name={PASSWORD_FIELD}
               labelText={"Password"}
               type={"password"}
+              attributes={{ autoComplete: "new-password" }}
             />
             <FormInput
               name={REPEAT_PASSWORD_FIELD}
               labelText={"Repeated Password"}
               type={"password"}
+              attributes={{ autoComplete: "new-password" }}
             />
           </StyledInputsWrapper>
           {isSubmitting ? (

@@ -68,11 +68,17 @@ const AccountLoginForm = () => {
         <FormikForm header={"Login"}>
           {authError && <FormError>{authError}</FormError>}
           <StyledInputsWrapper>
-            <FormInput name={EMAIL_FIELD} labelText={"Email"} type={"email"} />
+            <FormInput
+              name={EMAIL_FIELD}
+              labelText={"Email"}
+              type={"email"}
+              attributes={{ autoComplete: "username" }}
+            />
             <FormInput
               name={PASSWORD_FIELD}
               labelText={"Password"}
               type={"password"}
+              attributes={{ autoComplete: "current-password" }}
             />
           </StyledInputsWrapper>
           {isSubmitting ? (

@@ -84,7 +84,7 @@ export const WithGradientContainer = styled.div`
 export const LandingPageScrollDownIndicator = styled.img`
   height: 100px;
   position: absolute;
-  top: 45%;
+  top: 40%;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;

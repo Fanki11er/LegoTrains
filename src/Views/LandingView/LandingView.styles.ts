@@ -15,6 +15,11 @@ export const LandingPageHeader = styled.img`
   left: 50%;
   transform: translateX(-50%);
   width: 70%;
+
+  @media screen and (max-width: 800px) {
+    width: 90%;
+    top: 150px;
+  }
 `;
 
 export const LandingPageButtonsSection = styled.section`

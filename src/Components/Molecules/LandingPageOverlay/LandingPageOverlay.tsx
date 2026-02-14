@@ -39,7 +39,7 @@ const LandingPageOverlay = () => {
           <WithGradientContainer>
             <h2>Unlock </h2>
             <p>
-              the magic of LEGO trains building with this innovative app!
+              the magic of LEGO trains building with this innovative app.
               Immerse yourself in a world where nostalgia meets modern
               technology.
             </p>
@@ -64,7 +64,7 @@ const LandingPageOverlay = () => {
             <h2>Join </h2>
             <span>
               the adventure today and start building your dream LEGO trains
-              collection!
+              collection.
             </span>
             <span>Don't miss out on this unique experience.</span>
           </WithGradientContainer>

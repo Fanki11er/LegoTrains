@@ -11,8 +11,15 @@ type Props = {
   placeholderText?: string;
   labelText: string;
   type?: string;
+  attributes?: React.InputHTMLAttributes<HTMLInputElement>;
 };
-const FormInput = ({ name, placeholderText, labelText, type }: Props) => {
+const FormInput = ({
+  name,
+  placeholderText,
+  labelText,
+  type,
+  attributes,
+}: Props) => {
   const [fieldProps, meta] = useField(name);
 
   return (
@@ -23,6 +30,7 @@ const FormInput = ({ name, placeholderText, labelText, type }: Props) => {
         type={type || "text"}
         placeholder={placeholderText}
         {...fieldProps}
+        {...attributes}
         $error={meta.touched && meta.error ? meta.error : undefined}
       />
       {meta.touched && meta.error && (
