@@ -16,7 +16,7 @@ const isProd = import.meta.env.PROD;
 
 export const withHelper = isProd ? false : true; // Disable context menu helper in production
 
-export const APP_VERSION = "26.02.14";
+export const APP_VERSION = "26.02.21";
 
 const queryClient = new QueryClient();
 
